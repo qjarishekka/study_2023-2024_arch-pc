@@ -4,18 +4,21 @@
 
 int main()
 {
-    float grupo[8];
+    int grupo[7];
     int i = 0;
 
-    for(i=0;i<=8;i++) {
+     printf("%d\n",grupo[8]);
+
+    for(i=0;i<=6;i++){
         grupo[i] = 0;
 
     }
 
 
-    for (i=0;i<=8;i++){
+    for (i=1;i<=7;i++){
 
-        printf("le valor del arreglo en la fila %d es: %f\n",i , grupo[i]);
+        printf("le valor del arreglo en la fila %d es: %d\n", i , grupo[i-1]);
+    
     }
-
+   
 }
