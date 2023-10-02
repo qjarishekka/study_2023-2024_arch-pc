@@ -14,7 +14,8 @@ int main()
 
 
     for (i=0;i<=8;i++){
-        printf("le valor del arreglo en la fila %d es: %d",i, grupo[i]);
+
+        printf("le valor del arreglo en la fila %d es: %f\n",i , grupo[i]);
     }
 
 }
