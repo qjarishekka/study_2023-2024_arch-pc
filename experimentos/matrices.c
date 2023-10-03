@@ -41,7 +41,7 @@ int main(){
 
          for(x=0;x<=7;x++){
             
-            if(pow(-1,x+y)>0){
+            if(pow(-1,x+y-1)>0){
 
                 matriz[y][x] = cuadrado_oscuro;
 
@@ -59,12 +59,17 @@ int main(){
     }
     //
     
+    
+    //bucle de juego
     for(i=0;i<=1;i++){ //este bucle es temporal hasta que pueda hacer la parte del codigo que la orden jaque mate
 
+        
 
         printf("\n\n\n\n\n");
 
-                for(y=0;y<=7;y++){      //imprimir el tablero de ajedrez
+                
+                //imprimir el tablero de ajedrez
+                for(y=0;y<=7;y++){      
 
                     for(x=0;x<=7;x++){
 
@@ -73,7 +78,7 @@ int main(){
                         }
                         printf("\n");
                     }
-                     //
+                //
 
                             
                             //imprimir posicion inicial
@@ -84,17 +89,56 @@ int main(){
 
                                 matriz[1][x] = peon_negro;
                                 matriz[6][x] = peon_blanco;
+                                    //
 
                             }
 
                                     //impresion de torres
+                            
+                            matriz[0][0] = torre_negra;
+                            matriz[0][7] = torre_negra;
+                            matriz[7][0] = torre_blanca;
+                            matriz[7][7] = torre_blanca;
+                                    //
                                     
+                                    
+                                    //impresion de caballos
+                    
+                            matriz[0][1] = caballo_negro;
+                            matriz[0][6] = caballo_negro;
+                            matriz[7][1] = caballo_blanco;
+                            matriz[7][6] = caballo_blanco;
+                                    //
 
-            
+                                    
+                                    //impresion de alfiles
+                            
+                            matriz[0][2] = alfil_negro;
+                            matriz[0][5] = alfil_negro;
+                            matriz[7][2] = alfil_blanco;
+                            matriz[7][5] = alfil_blanco;
+                                    //
+                                    
+                                    
+                                    //impresion de reynas
+                           
+                            matriz[0][3] = dama_negra;
+                            matriz[7][3] = dama_blanca;
+                                    //
+
+
+                                    //impresion de reyes
+                            matriz[0][4] = rey_negro;
+                            matriz[7][4] = rey_blanco;
+                                    //
+                                
+                                
+                             //
+
+
 
     }
-
-
+    //
 
 
 

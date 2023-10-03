@@ -6,7 +6,7 @@ int main()
 {
     int grupo[7];
     int i = 0;
-
+    char ficha[5];
      printf("%d\n",grupo[8]);
 
     for(i=0;i<=6;i++){
@@ -20,5 +20,11 @@ int main()
         printf("le valor del arreglo en la fila %d es: %d\n", i , grupo[i-1]);
     
     }
-   
+    
+    scanf("%s",&ficha);
+
+    printf("%s",ficha);
+    
+    
+
 }
