@@ -3,6 +3,11 @@
 
 int main(){
 
+    //entrada de turnos
+
+    char turno_blancas[3];
+    char turno_negras[3];
+
 
     //tablero de juego
     char matriz[8][8];
@@ -11,12 +16,12 @@ int main(){
     int jaque_mate = 0;
 
     //cambiar el tablero
-    char cuadrado_claro = 'O';      
+    char cuadrado_claro = 'O';      //remplazar los caracteres y el tablero cambia
     char cuadrado_oscuro = '0';
     //
     
     //fichas de juego
-    char peon_negro = 'p';
+    char peon_negro = 'p';              //debo de encontrar una forma de que se vea mejor
     char caballo_negro = 'c';
     char alfil_negro = 'a';
     char torre_negra = 't';
@@ -135,7 +140,13 @@ int main(){
                                 
                              //
 
+                       
+                         //mover las fichas
+                                
+                                //la idea es sencilla, tomar los datos ingresados como texto e interpretarlos como movimiento
 
+                           
+                         
 
     }
     //
