@@ -145,8 +145,21 @@ int main(){
                                 
                                 //la idea es sencilla, tomar los datos ingresados como texto e interpretarlos como movimiento
 
-                           
-                         
+                        
+                        
+                        scanf("%s",turno_blancas);
+
+                        
+                        
+                        
+                        
+                        /*
+                        for(i=0;i<=2;i++){
+
+                                printf("%c ",turno_blancas[i]);
+
+                        }
+                        */
 
     }
     //
