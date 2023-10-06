@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-void main()
+int main()
 {
     int a, b, c,max ,min;
 
