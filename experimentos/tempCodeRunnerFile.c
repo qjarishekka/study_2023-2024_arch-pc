@@ -1,2 +1,9 @@
+#include <stdio.h>
+int main(){
 
-         for(x=0;x<=7;x++){
+    int puntaje = 0;
+
+    puntaje++;
+    printf("%d \n",puntaje);
+
+}

@@ -7,9 +7,12 @@ int main()
     int area_circulo ,area_cuadrado;
     float lado;
     float radio;
-    printf("введите 3 числа:\n");
+    printf("введите площадь круга:\n");
 
     scanf("%d",&area_circulo);
+
+    printf("введите площадь квадрата:\n");
+
     scanf("%d",&area_cuadrado);
 
     lado = pow(area_cuadrado,0.5);
@@ -21,10 +24,10 @@ int main()
 
     if(radio <= lado/2) {
 
-        printf("круг уместится в квадрате");
+        printf("круг уместится в квадрате\n");
     }
         else {
-            printf("круг не уместится в квадрате");
+            printf("круг не уместится в квадрате\n");
         }
 
 

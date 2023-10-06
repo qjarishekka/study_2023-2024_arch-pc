@@ -5,6 +5,10 @@ int main(){
 
     //entrada de turnos
 
+
+
+    int turno = 0;
+
     char turno_blancas[3];
     char turno_negras[3];
 
@@ -66,7 +70,7 @@ int main(){
     
     
     //bucle de juego
-    for(i=0;i<=1;i++){ //este bucle es temporal hasta que pueda hacer la parte del codigo que la orden jaque mate
+    for(i=0;i<=5;i++){ //este bucle es temporal hasta que pueda hacer la parte del codigo que la orden jaque mate
 
         
 
@@ -146,20 +150,41 @@ int main(){
                                 //la idea es sencilla, tomar los datos ingresados como texto e interpretarlos como movimiento
 
                         
-                        
-                        scanf("%s",turno_blancas);
+                        //fase de turnos
+
+                        /*if(turno % 2 == 0) {
+
+                                scanf("jugaron las blancas");
+                                turno++;
+                        }
+                                else{
+                                        scanf("jugaron las negras");
+                                        turno++;
+                                
+                                }
+                                
 
                         
                         
                         
                         
-                        /*
+                        
+
+                        
+
+
+                        
+                        
+                        
+                        
                         for(i=0;i<=2;i++){
 
                                 printf("%c ",turno_blancas[i]);
+                                printf("%c ",turno_negras[i]);
 
                         }
                         */
+
 
     }
     //
