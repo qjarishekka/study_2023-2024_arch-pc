@@ -1,20 +1,26 @@
 #include <stdio.h>
+#include <string.h>
 //Вывести названия дня по его номеру
 int main(){
-int day;
-printf("Программа выводит названия дня недели по его номеру\n");
+char a[3];
+
+
+/*
+char I[3] = "I";
+char II[3] = "II";
+char III[3] = "III";
+char IV[3] = "IV";
+char V[3] = "V";
+char VI[3] = "VI";
+*/
+
 do{
-printf("Введите номер дня недели от 1 до 7");
-scanf("%d",&day);
-}while(day <= 1 || day >= 7);
-switch (day){
-case	1 :	printf("Понедельник\n"); break;
-case 2 : printf("Вторник\n"); break;
-case 3 : printf("Среда\n");   break;
-case 4 : printf("Четверг\n"); break;
-case 5 : printf("Пятница\n"); break;
-case 6 : printf("Суббота\n"); break;
-case 7 :	printf("Воскресенье\n"); break;
-}
+printf("hola inserte numero romano \n");
+scanf("%s",a);
+
+}while(strcmp(a,"I") && strcmp(a,"II") && strcmp(a,"III") && strcmp(a,"IV") && strcmp(a,"V") && strcmp(a,"VI"));
+
+printf("usted inserto %s \n",a);
+
 }
 
