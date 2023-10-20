@@ -20,7 +20,7 @@ printf("введите %d чисел\n",n);
 
 
 
-do{
+while(i<n){
 
     scanf("%d",&NumeroIngresado);
 
@@ -42,7 +42,7 @@ do{
 
     i++;
 
-}while(i<n);
+}
 
 
 
