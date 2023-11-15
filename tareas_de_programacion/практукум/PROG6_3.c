@@ -3,6 +3,7 @@
 #include <time.h>
 #define lim1 10
 #define lim2 10
+#define limrand 11
 
 int main() {
 
@@ -12,8 +13,9 @@ int arreglo[lim1][lim2];
 int random = 0;
 int i = 0;
 int j = 0;
+int k = 0;
 int suma = 0;
-int max = 0;
+int min = 0;
 
 do{
 
@@ -22,7 +24,7 @@ printf("введите значение для \"n\" и \"m\" не больше 
 scanf("%d",&n);
 scanf("%d",&m);
 
-}while(n<=0 || n >10 || m<=0 || m>10);
+}while(n<=0 || n >lim1 || m<=0 || m>lim2);
 
 srand(time(NULL));
 
@@ -30,7 +32,7 @@ for(i=0;i<n;i++){
 
     for(j=0;j<m;j++){
 
-        arreglo[i][j] = rand() % 11;
+        arreglo[i][j] = rand() % limrand;
 
     }
 
@@ -42,32 +44,31 @@ for(i=0;i<n;i++){
     for(j=0;j<m;j++){
        
        printf("%d\t",arreglo[i][j]);
-       }
+    
+    }
+
     printf("\n\n");
 
 }
 
 for(i=0;i<n;i++){
 
-    for(j=0;j<m;j++){
+    for(k=n;k>=0;k--){
 
-        if(arreglo[i][j]>= max){
+        for(j=0;j<m;j++){
 
-            max = arreglo[i][j];
+            suma = suma + arreglo[i][j];
 
         }
 
-    
+
 
     }
 
-    suma = suma + max;
-    max = 0;
-}
 
-printf("сумма равна: %d\n",suma);
+} 
 
-
-
+printf("сумма элементов, расположенных выше побочной диагонали матрицы равна: %d\n",suma);
 
 }
+
