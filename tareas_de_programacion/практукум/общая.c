@@ -12,7 +12,8 @@ int arreglo[lim1][lim2];
 int random = 0;
 int i = 0;
 int j = 0;
-
+int suma = 0;
+int max = 0;
 
 do{
 
@@ -23,7 +24,7 @@ scanf("%d",&m);
 
 }while(n<=0 || n >10 || m<=0 || m>10);
 
-
+srand(time(NULL));
 
 for(i=0;i<n;i++){
 
@@ -36,9 +37,27 @@ for(i=0;i<n;i++){
 
 }
 
-//for(i=0;i<n;i++){for(j=0;j<m;j++){printf("%d\t",arreglo[i][j]);}printf("\n\n");}
+for(i=0;i<n;i++){for(j=0;j<m;j++){printf("%d\t",arreglo[i][j]);}printf("\n\n");}
 
+for(i=0;i<n;i++){
 
+    for(j=0;j<m;j++){
+
+        if(arreglo[i][j]>= max){
+
+            max = arreglo[i][j];
+
+        }
+
+    
+
+    }
+
+    suma = suma + max;
+    max = 0;
+}
+
+printf("сумма равна: %d\n",suma);
 
 
 
