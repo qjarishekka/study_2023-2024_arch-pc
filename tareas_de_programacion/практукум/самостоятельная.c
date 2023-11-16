@@ -18,34 +18,43 @@ int j = 0;
 int max = 0;
 int suma_temp = 0;
 
+
+//que hace el programa?
 printf("\nэта программа выводит наименьшая сумма столцов матрицы\n");
 
+
+//preguntar el valor de n(filas) y m(columnas)
 do{
 
-printf("введите значение для \"n\" и \"m\" не больше десяти и не меньше нуля\n");
+    printf("введите значение для \"n\" и \"m\" не больше %d и не меньше нуля\n",lim1);
 
-scanf("%d",&n);
-scanf("%d",&m);
+    scanf("%d",&n);
+    scanf("%d",&m);
 
 }while(n<=0 || n >lim1 || m<=0 || m>lim2);
 
 
+//dar el valor maximo para la suma de elemtos de las columnas
 max = limrand * n;
 
 
+//semilla (семя) para rand
 srand(time(NULL));
+ 
 
+ //llenado de la matriz con numeros random
 for(i=0;i<n;i++){
 
     for(j=0;j<m;j++){
 
-        arreglo[i][j] = rand() % limrand;
+        arreglo[i][j] = rand() % (limrand-1) + 1;
 
     }
 
 }
 
 
+//impresion de la matriz
 for(i=0;i<n;i++){
     
     for(j=0;j<m;j++){
@@ -60,12 +69,12 @@ for(i=0;i<n;i++){
 
 
 
+//calculo de la suma de valores de las columnas y su valor maximo
 for(i=0;i<m;i++){
 
     for(j=0;j<n;j++){
 
         suma_temp = suma_temp + arreglo[j][i];
-
 
     }
 
@@ -81,6 +90,7 @@ for(i=0;i<m;i++){
 }
 
 
+//impresion de la respuesta
 printf("наименьшая сумма столцов равна: %d\n",max);
 
 
