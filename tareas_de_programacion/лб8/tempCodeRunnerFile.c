@@ -1,1 +1,1 @@
-medias_geometricas
+random1

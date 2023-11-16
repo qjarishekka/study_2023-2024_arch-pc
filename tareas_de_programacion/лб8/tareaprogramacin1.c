@@ -2,11 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 #define lim 10  //limit of matrix
-#define limrand 11
+#define limrand 11 //limite de los numeros random
 
-
-
-#define sum 2
+#define sum 2 //limite de sumas
 
 int main(){
 
@@ -16,10 +14,6 @@ int arreglo[lim][lim];
 int i = 0;
 int j = 0;
 int n = 0;
-int random1 = 0;
-int random2 = 0;
-int random3 = 0;
-int random4 = 0;
 int sumasup = 0;
 int sumainf = 0;
 
@@ -28,10 +22,16 @@ int sumainf = 0;
 int suma[sum];
 
 
+
+//semilla(семя) de los numeros random
 srand(time(NULL));
 
+
+// que hace este programa?
 printf("\nэта программа выводит две суммы расположенных ниже и выше главной диагонали\n");
 
+
+//ingreso del valor de la variable n para el tamaño de la matriz
 do{
 
     printf("\nвведите значение \"n\" чтобы определить размер матрицы\n");
@@ -42,6 +42,8 @@ do{
 }while(n <= 0 || n > lim);
 
 
+
+//lenado de la matriz con numeros random
 for(i=0;i<n;i++){
     
     for(j=0;j<n;j++){
@@ -53,6 +55,7 @@ for(i=0;i<n;i++){
 }
 
 
+//impresion de la matriz
 for(i=0;i<n;i++){
     
     for(j=0;j<n;j++){
@@ -66,35 +69,12 @@ for(i=0;i<n;i++){
 }
 
 
-/*
-for(i=0;i<2;i++){
-
-    do{
-
-    random1 = rand() % n;
-    random2 = rand() % n;
-
-    }while(random1-random2>=0);
-
-
-
-    do{
-
-    random3 = rand() % n;
-    random4 = rand() % n;
-
-    }while(random3-random4<=0);
-
-    suma[i] = arreglo[random1][random2] + arreglo[random3][random4];
-
-}
-*/
-
+//suma de los numeros superiores a la diagonal principal
 for(i=0;i<n;i++){
     
     for(j=0;j<n;j++){
        
-        if(i-j<0){
+        if(i-j<0){      
 
             sumasup = sumasup + arreglo[i][j];
 
@@ -104,6 +84,8 @@ for(i=0;i<n;i++){
 
 }
 
+
+//suma de numeros inferior a la diagonal principal
 for(i=0;i<n;i++){
     
     for(j=0;j<n;j++){

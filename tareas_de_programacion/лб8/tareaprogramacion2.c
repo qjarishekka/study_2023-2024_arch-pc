@@ -44,7 +44,11 @@ scanf("%d",&m);
 //semilla(семя) para rand
 srand(time(NULL));
 
+
+//dar valor a la variable en relacion a n
 exp = 1.0/n;
+
+
 
 //llenado de la matriz con numeros random
 for(i=0;i<n;i++){
@@ -55,8 +59,8 @@ for(i=0;i<n;i++){
 
     }
 
-
 }
+
 
 
 //impresion de la matriz
@@ -73,7 +77,7 @@ for(i=0;i<n;i++){
 
 
 
-
+//calculo de las medias geometricas(средний геометрический)
 for(j=0;j<m;j++){
 
     for(i=0;i<n;i++){
@@ -81,7 +85,6 @@ for(j=0;j<m;j++){
         multiplicacion_temporal = arreglo[i][j] * multiplicacion_temporal;
 
     }
-
 
     media_geometrica_temporal = pow(multiplicacion_temporal,exp);
 
@@ -94,14 +97,14 @@ for(j=0;j<m;j++){
 
 
 
-
+//dar valor 0 a todos los valores del arreglo
 for(i=0;i<lim2;i++){
 
     numeros_mayores_a_la_media[i] = 0;
 
 }
 
-
+//llenar el arreglo "numeros_mayores_a_la_media" 
 for(j=0;j<m;j++){
 
     for(i=0;i<n;i++){
@@ -116,7 +119,7 @@ for(j=0;j<m;j++){
 
 }
 
-
+//imprimir cantidad de valores mayores a sus respectivas medias geometricas
 for(i=0;i<n;i++){
 
     printf("\nколичество чисел выше чем средний геомерический в столбе %d равно: %d\n",i+1,numeros_mayores_a_la_media[i]);
