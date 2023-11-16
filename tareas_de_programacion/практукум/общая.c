@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include <time.h>
+
 #define lim1 10
 #define lim2 10
 #define limrand 11
@@ -31,7 +32,7 @@ printf("введите значение для \"n\" и \"m\" не больше 
 scanf("%d",&n);
 scanf("%d",&m);
 
-}while(n<=0 || n >10 || m<=0 || m>10);
+}while(n<=0 || n >lim1 || m<=0 || m>lim2);
 
 
 //semilla(семя) para rand
