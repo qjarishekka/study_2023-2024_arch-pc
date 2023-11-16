@@ -3,8 +3,8 @@
 #include <time.h>
 
 
-#define lim1 10         //количество стро
-#define lim2 10
+#define lim1 10         //количество строк
+#define lim2 10         //количество столбцов
 #define limrand 11
 
 int main() {
