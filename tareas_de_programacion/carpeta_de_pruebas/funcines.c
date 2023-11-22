@@ -6,7 +6,7 @@
 char * funcion(int a, int b, int c);
 
 
-int main(void){
+int main(){
 
 int x,y,z;
 
