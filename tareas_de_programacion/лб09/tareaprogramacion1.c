@@ -2,6 +2,46 @@
 #include <math.h>
 #include <string.h>
 
+
+
+char * respuesta(int a, int b, int c);
+
+
+
+
+int main(){
+
+  int x = 0;
+  int y = 0;
+  int z = 0;
+  char R[100];
+
+  
+
+  do{
+
+    printf("введите значение a, b и c для решения выражения ax^2 + bx + c  a должен быть больше нуля\n");
+
+    scanf("%d %d %d",&x,&y,&z);
+
+
+  }while(x == 0);
+
+  
+
+  strcpy(R,respuesta(x,y,z));
+
+  printf("%s\n",respuesta(x,y,z));
+  //printf("%s\n",respuesta(x,y,z)); //activar solo en windows y desctivar la linea de arriba
+
+}
+
+
+
+
+// LAS FUNCIONES EMPIEZAN AQUI 
+
+
 char * respuesta(int a, int b, int c){
 
 float discriminante = 0;
@@ -9,7 +49,7 @@ float discriminante = 0;
 float raiz1;
 float raiz2;
 
-char raizL[30];
+char raizL[100];
 char * raizsalida;
 
 
@@ -30,36 +70,15 @@ if(discriminante >= 0){
 
   raiz2 = (-b - discriminante)/(2*a);
 
-  sprintf(raizL,"%f и %f",raiz1,raiz2);
+  sprintf(raizL,"%f и %f - эти корни",raiz1,raiz2);
 
   raizsalida = raizL;
 
   return raizsalida;
 
 }else{
-  return "no hay respuesta";
+  return "нет решения";
   }
 
 
 } 
-
-
-
-
-
-
-int main(){
-
-  int x,y,z;
-  char R[30];
-
-  
-
-  scanf("%d %d %d",&x,&y,&z);
-
-  strcpy(R,respuesta(x,y,z));
-
-  printf("%s\n",respuesta(x,y,z));
-  //printf("%s\n",respuesta(x,y,z)); //activar solo en windows y desctivar la linea de arriba
-
-}
