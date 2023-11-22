@@ -59,6 +59,6 @@ void main(void){
 
   strcpy(R,respuesta(x,y,z));
 
-  printf("%s\n",R);
+  printf("%s\n",respuesta(x,y,z));
 
 }
