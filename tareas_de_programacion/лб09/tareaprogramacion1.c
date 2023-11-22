@@ -1,33 +1,49 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 char * respuesta(int a, int b, int c){
 
-char * res = "no hay respuesta";
+float discriminante = 0;
 
-int discriminante = 0;
-int respuesta1,respuesta2;
+float raiz1;
+float raiz2;
+
+char raizL[30];
+char * raizsalida;
+
+
+
 
 
 discriminante = (b*b + ((-4)*a*c));
 
+
+
+
 if(discriminante >= 0){
 
-  respuesta1 = (-b + discriminante)/(2*a);
-  respuesta2 = (-b - discriminante)/(2*a);
 
-  res = 
+  
 
-}
+  raiz1 = (-b + discriminante)/(2*a);
 
+  raiz2 = (-b - discriminante)/(2*a);
 
+  sprintf(raizL,"%f и %f",raiz1,raiz2);
 
+  raizsalida = raizL;
 
+  return raizsalida;
 
-  return res;
+}else{
+  return "no hay respuesta";
+  }
+
 
 } 
+
+
 
 
 
@@ -35,9 +51,14 @@ if(discriminante >= 0){
 void main(void){
 
   int x,y,z;
+  char R[30];
+
+  
 
   scanf("%d %d %d",&x,&y,&z);
 
-  printf("%s\n",respuesta(x,y,z)); 
+  strcpy(R,respuesta(x,y,z));
+
+  printf("%s\n",R);
 
 }
