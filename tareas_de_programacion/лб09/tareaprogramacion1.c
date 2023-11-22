@@ -48,7 +48,7 @@ if(discriminante >= 0){
 
 
 
-void main(void){
+int main(){
 
   int x,y,z;
   char R[30];
