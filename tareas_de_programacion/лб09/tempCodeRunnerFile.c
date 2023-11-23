@@ -1,1 +1,2 @@
-raizL
+
+printf("%s",SiNo(A,B));
