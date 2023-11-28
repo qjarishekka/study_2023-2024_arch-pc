@@ -13,37 +13,76 @@ int contador_de_letras = 0;
 char frase[lim];
 int inicio_de_palabra_mas_grande = 0;
 int ubicacion_de_espacio[lim];
+int inicio_de_palabra = 0;
+int final_de_palabra = 0;
+int palabra_mas_grande = 0;
 int j = 0;
+
+char LaPalabraMasGrande[lim2];
+char * LaPalabra;
 
 
 strcpy(frase,CadenaDeSimbolos);
 
 for(i=0;i<lim;i++){
 
-    if(frase[i] == ' ' || frase[i] == '\t' || frase[i] == '\v'){    
-    
-        ubicacion_de_espacio[j]= i;
-        j++;
+    if(frase[i] == '\0'){
 
+            if( i - inicio_de_palabra >= palabra_mas_grande ){
 
-        if(i >= i - inicio_de_palabra_mas_grande){
+            palabra_mas_grande = i - inicio_de_palabra;
 
-            contador_de_letras = i - inicio_de_palabra_mas_grande ;
+            inicio_de_palabra_mas_grande = i - palabra_mas_grande;
 
-            inicio_de_palabra_mas_grande = i - contador_de_letras;
+            
+
+            i = lim;
 
         }
 
-    }
+        }
 
+
+    if(frase[i] == ' ' || frase[i] == '\t' || frase[i] == '\v'){   
+
+        
+    
+                if( i - inicio_de_palabra >= palabra_mas_grande ){
+
+                    palabra_mas_grande = i - inicio_de_palabra;
+
+                    inicio_de_palabra_mas_grande = i - palabra_mas_grande;
+
+
+
+                }
+
+                inicio_de_palabra = i;
+
+        
+
+    }
    
+}
+
+
+strcpy(LaPalabraMasGrande, frase + inicio_de_palabra_mas_grande);
+
+
+for(i=palabra_mas_grande;i<lim2;i++){
+
+    LaPalabraMasGrande[i] = '\0';
 
 }
 
-printf("%d\n",contador_de_letras);
+
+LaPalabra = LaPalabraMasGrande;
 
 
-return "hola";
+
+
+
+return LaPalabra;
 
 
 
