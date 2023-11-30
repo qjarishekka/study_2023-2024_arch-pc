@@ -69,7 +69,7 @@ int main(){
 
 char PalabraIngresada[lim];
 
-printf("\nэта программа выводит самое длинное слово из введенной строки\n");
+printf("\nэта программа говорит, введенное слово ли палиндром\n");
 printf("введите строку\n");
 
 fgets(PalabraIngresada, lim, stdin);

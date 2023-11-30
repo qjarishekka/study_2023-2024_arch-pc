@@ -38,8 +38,10 @@ printf("%s\n",SiNo(A,B));
 }
 
 
-//AQUI VAN LAS FUNCIONES
 
+//////////////////////////
+//AQUI VAN LAS FUNCIONES//
+//////////////////////////
 
 
 char * SiNo(int X, int Y){ //funcion SiNo requiere de 2 variables la primera el numero al que se le quitan las cifras el segundo el numero quitado 
