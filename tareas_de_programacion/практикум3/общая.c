@@ -5,6 +5,12 @@
 #define lim 10
 #define limPrimos 10
 
+
+
+//////////////////////////////////
+//AQUI SE DECLARAN LAS FUNCIONES//
+//////////////////////////////////
+
 char * suma(char FraccionA[lim], char FraccionB[lim]);
 
 ///////////////////////
