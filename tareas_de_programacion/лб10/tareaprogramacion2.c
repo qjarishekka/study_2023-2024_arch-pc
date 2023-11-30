@@ -7,6 +7,10 @@
 #define lim2 10
 #define limrand 11
 
+
+float MediaGeometrica(int matriz[lim1][lim2],int M, int N);
+
+
 int main() {
 
 
@@ -23,7 +27,7 @@ float media_geometrica_temporal = 0;
 float multiplicacion_temporal = 1;
 float medias_geometricas[lim1];
 int numeros_mayores_a_la_media[lim2];
-float exp;
+
 
 
 //que hace el programa?
@@ -46,7 +50,7 @@ srand(time(NULL));
 
 
 //dar valor a la variable en relacion a n
-exp = 1.0/n;
+
 
 
 
@@ -74,28 +78,11 @@ for(i=0;i<n;i++){
 
 }
 
+for(i=0;i<m;i++){
 
-
-
-//calculo de las medias geometricas(средний геометрический)
-for(j=0;j<m;j++){
-
-    for(i=0;i<n;i++){
-
-        multiplicacion_temporal = arreglo[i][j] * multiplicacion_temporal;
-
-    }
-
-    media_geometrica_temporal = pow(multiplicacion_temporal,exp);
-
-    medias_geometricas[j] = media_geometrica_temporal;
-
-    multiplicacion_temporal = 1;
+medias_geometricas[i] = MediaGeometrica(arreglo, i, n);
 
 }
-
-
-
 
 //dar valor 0 a todos los valores del arreglo
 for(i=0;i<lim2;i++){
@@ -126,9 +113,34 @@ for(i=0;i<n;i++){
 
 }
 
-
 }
 
 
 
 
+
+
+
+float MediaGeometrica(int matriz[lim1][lim2],int M, int N){
+
+float exp;
+int MultiplicacionFilas = 1;
+int i = 0;
+float media = 0;
+
+exp = 1.0 / N;
+
+for(i=0;i<N;i++){
+
+    MultiplicacionFilas *= matriz[i][M];
+
+
+
+}
+
+media = pow(MultiplicacionFilas,exp);
+
+
+return media;
+
+}

@@ -1,84 +1,161 @@
 #include <stdio.h>
-#include <math.h>
-#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+#define lim 10  //limit of matrix
+#define limrand 11 //limite de los numeros random
+
+#define sum 2 //limite de sumas
 
 
+//////////////////////////////////
+//AQUI SE DECLARAN LAS FUNCIONES//
+//////////////////////////////////
 
-char * respuesta(int a, int b, int c);
+int SumaSuperior(int arreglo[lim][lim], int n);
+int SumaInferior(int arreglo[lim][lim], int n);
 
 
-
+///////////////////////
+//INICIO DEL CODIGO////
+///////////////////////
 
 int main(){
 
-  int x = 0;
-  int y = 0;
-  int z = 0;
-  char R[100];
-
-  
-
-  do{
-
-    printf("введите значение a, b и c для решения выражения ax^2 + bx + c  a должен быть больше нуля\n");
-
-    scanf("%d %d %d",&x,&y,&z);
+int arreglo[lim][lim];
 
 
-  }while(x == 0);
+int i = 0;
+int j = 0;
+int n = 0;
+int sumasup = 0;
+int sumainf = 0;
 
-  
 
-  strcpy(R,respuesta(x,y,z));
 
-  printf("%s\n",respuesta(x,y,z));
-  //printf("%s\n",R); //activar solo en windows y desctivar la linea de arriba
+int suma[sum];
+
+
+
+//semilla(семя) de los numeros random
+srand(time(NULL));
+
+
+// que hace este programa?
+printf("\nэта программа выводит две суммы расположенных ниже и выше главной диагонали\n");
+
+
+//ingreso del valor de la variable n para el tamaño de la matriz
+do{
+
+    printf("\nвведите значение \"n\" чтобы определить размер матрицы\n");
+
+    scanf("%d",&n);
+
+
+}while(n <= 0 || n > lim);
+
+
+
+//llenado de la matriz con numeros random
+for(i=0;i<n;i++){
+    
+    for(j=0;j<n;j++){
+
+        arreglo[i][j] = rand() % (limrand-1) + 1; 
+
+    }
+
+}
+
+
+//impresion de la matriz
+for(i=0;i<n;i++){
+    
+    for(j=0;j<n;j++){
+       
+       printf("%d\t",arreglo[i][j]);
+    
+    }
+
+    printf("\n\n");
 
 }
 
 
 
 
-// LAS FUNCIONES EMPIEZAN AQUI 
+//suma de los numeros superiores a la diagonal principal
+
+sumasup = SumaSuperior(arreglo,n);
+
+//suma de numeros inferior a la diagonal principal
 
 
-char * respuesta(int a, int b, int c){
-
-float discriminante = 0;
-
-float raiz1;
-float raiz2;
-
-char raizL[100];
-char * raizsalida;
+sumainf = SumaInferior(arreglo,n);
 
 
 
+printf("\nдве суммы элементов, расположенных ниже и выше главной диагонали равны:\nвысшяя сумма: %d \nнижняя сумма: %d\n",sumasup,sumainf);
 
 
-discriminante = (b*b + ((-4)*a*c));
+}
+
+
+///////////////////////////////////////
+//AQUI VAN LAS FUNCIONES///////////////
+///////////////////////////////////////
 
 
 
+int SumaSuperior(int arreglo[lim][lim], int n){
 
-if(discriminante >= 0){
-
-
-  
-
-  raiz1 = (-b + discriminante)/(2*a);
-
-  raiz2 = (-b - discriminante)/(2*a);
-
-  sprintf(raizL,"%f и %f - эти корни",raiz1,raiz2);
-
-  raizsalida = raizL;
-
-  return raizsalida;
-
-}else{
-  return "нет решения";
-  }
+int sumasup = 0;
+int i = 0;
+int j = 0;
 
 
-} 
+for(i=0;i<n;i++){
+    
+    for(j=0;j<n;j++){
+       
+        if(i-j<0){      
+
+            sumasup = sumasup + arreglo[i][j];
+
+        }
+    
+    }
+
+}
+
+return sumasup;
+
+
+}
+
+////////////////////////////////////////////////////
+
+
+int SumaInferior(int arreglo[lim][lim], int n){
+
+int i = 0;
+int j = 0;
+int sumainf = 0;
+
+for(i=0;i<n;i++){
+    
+    for(j=0;j<n;j++){
+       
+        if(i-j>0){
+
+            sumainf = sumainf + arreglo[i][j];
+
+        }
+    
+    }
+
+}
+
+return sumainf;
+
+}

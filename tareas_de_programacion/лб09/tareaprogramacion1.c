@@ -2,12 +2,16 @@
 #include <math.h>
 #include <string.h>
 
-
+//////////////////////////////////
+//AQUI SE DECLARAN LAS FUNCIONES//
+//////////////////////////////////
 
 char * respuesta(int a, int b, int c);
 
 
-
+///////////////////////
+//INICIO DEL CODIGO////
+///////////////////////
 
 int main(){
 
@@ -38,8 +42,9 @@ int main(){
 
 
 
-
-// LAS FUNCIONES EMPIEZAN AQUI 
+////////////////////////////////
+// LAS FUNCIONES EMPIEZAN AQUI//
+//////////////////////////////// 
 
 
 char * respuesta(int a, int b, int c){
