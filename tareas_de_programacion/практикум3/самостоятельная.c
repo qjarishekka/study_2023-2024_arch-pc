@@ -40,18 +40,18 @@ SumaDivisoresC = SumaDivisores(C);
 
 if(SumaDivisoresA >= SumaDivisoresB && SumaDivisoresA >= SumaDivisoresC){
 
-    printf("число, сумма делителей которого максимальна: %d",A);
+    printf("число, сумма делителей которого максимальна: %d\n",A);
 
 }else{
 
     if(SumaDivisoresB >= SumaDivisoresC){
 
-        printf("число, сумма делителей которого максимальна: %d",B);
+        printf("число, сумма делителей которого максимальна: %d\n",B);
 
 
     }else{
 
-        printf("число, сумма делителей которого максимальна: %d",C);
+        printf("число, сумма делителей которого максимальна: %d\n",C);
 
     }
 

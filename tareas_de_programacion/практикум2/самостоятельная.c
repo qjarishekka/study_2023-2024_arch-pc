@@ -81,6 +81,6 @@ fgets(CadenaDeGuardado,lim,stdin);
 
 
 
-printf("число повторений первого слова: %d",NumeroDePalabrasIgualesALaPrimera(CadenaDeGuardado));
+printf("число повторений первого слова: %d\n",NumeroDePalabrasIgualesALaPrimera(CadenaDeGuardado));
 
 }

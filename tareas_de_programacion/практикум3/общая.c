@@ -11,7 +11,7 @@
 //AQUI SE DECLARAN LAS FUNCIONES//
 //////////////////////////////////
 
-char * suma(char FraccionA[lim], char FraccionB[lim]);
+char * sumaFracciones(char FraccionA[lim], char FraccionB[lim]);
 
 ///////////////////////
 //INICIO DEL CODIGO////
@@ -88,7 +88,7 @@ for(i=UbicacionDeLDiagonal;i<lim;i++){
 
 }while(EsUnaFraccion == 0);
 
-printf("сумма дробей равна: %s",suma(Fraccion1,Fraccion2));
+printf("сумма дробей равна: %s",sumaFracciones(Fraccion1,Fraccion2));
 
 
 
@@ -104,7 +104,7 @@ printf("сумма дробей равна: %s",suma(Fraccion1,Fraccion2));
 
 
 
-char * suma(char FraccionA[lim], char FraccionB[lim]){
+char * sumaFracciones(char FraccionA[lim], char FraccionB[lim]){
 
 int NumerosPrimos[lim] = {2,3,5,7,11,13,17,19,23,29};
 
@@ -179,7 +179,7 @@ DenominadorSuma = DenominadorFraccionA * DenominadorFraccionB;
 
 
 
-for(i=0;i<limPrimos;i++){
+for(i=2;i<=limPrimos;i++){
 
     while(NumeradorSuma % NumerosPrimos[i] == 0 && DenominadorSuma % NumerosPrimos[i] == 0){
 

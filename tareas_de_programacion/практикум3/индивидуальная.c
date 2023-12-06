@@ -36,17 +36,17 @@ NOKXZ = NOK(X,Z);
 
 if(NOKXY >= NOKYZ && NOKXY >= NOKXZ){
 
-    printf("%d %d",X,Y);
+    printf("%d %d\n",X,Y);
 
 }else{
 
     if(NOKYZ >= NOKXZ){
 
-        printf("%d %d",Y,Z);
+        printf("%d %d\n",Y,Z);
 
     }else{
 
-        printf("%d %d",X,Z);
+        printf("%d %d\n",X,Z);
 
     }
 
