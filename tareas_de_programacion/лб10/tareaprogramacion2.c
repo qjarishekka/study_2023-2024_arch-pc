@@ -1,146 +1,105 @@
 #include <stdio.h>
-#include <time.h>
-#include <math.h>
+#include <string.h>
 #include <stdlib.h>
 
-#define lim1 10
-#define lim2 10
-#define limrand 11
+#define lim 30
+#define lim2 100
+
+//////////////////////////////////
+//AQUI SE DECLARAN LAS FUNCIONES//
+//////////////////////////////////
+
+char * ElNumero(int [], int );
 
 
-float MediaGeometrica(int matriz[lim1][lim2],int M, int N);
+///////////////////////
+//INICIO DEL CODIGO////
+///////////////////////
 
 
-int main() {
 
+int main(){
 
-//variables
-int m = 0; 
-int n = 0;
-int arreglo[lim1][lim2];
-int random = 0;
+int arreglo[lim];
 int i = 0;
-int j = 0;
+int n = 0;
+int counter = 0;
+int counter2 = 0;
+
+printf("эта программа выводит первое число, которое удобледворяет уравенство Ak < An \n");
 
 
-float media_geometrica_temporal = 0;
-float multiplicacion_temporal = 1;
-float medias_geometricas[lim1];
-int numeros_mayores_a_la_media[lim2];
-
-
-
-//que hace el programa?
-printf("\nэта программа выводит сумму максимальных элементов строк матрицы\n");
-
-
-//preguntar los valores para n(filas) y m(columnas)
 do{
+    printf("сколько чисел вы ведёте? \nколичество должно удавлетворять неравество 0 < n < 30 \n");
+    scanf("%d",&n);
+}while(n<=0 || n>30);
 
-printf("введите значение для \"n\" и \"m\" не больше %d и не меньше нуля\n",lim1);
+do{
+    counter = 0;
 
-scanf("%d",&n);
-scanf("%d",&m);
-
-}while(n<=0 || n >lim1 || m<=0 || m>lim2);
-
-
-//semilla(семя) para rand
-srand(time(NULL));
-
-
-//dar valor a la variable en relacion a n
-
-
-
-
-//llenado de la matriz con numeros random
-for(i=0;i<n;i++){
-
-    for(j=0;j<m;j++){
-
-        arreglo[i][j] = rand() % (limrand-1) + 1;
-
-    }
-
-}
-
-
-
-//impresion de la matriz
-for(i=0;i<n;i++){
-    
-    for(j=0;j<m;j++){
-       
-       printf("%d\t",arreglo[i][j]);
-       }
-    printf("\n\n");
-
-}
-
-for(i=0;i<m;i++){
-
-medias_geometricas[i] = MediaGeometrica(arreglo, i, n);
-
-}
-
-//dar valor 0 a todos los valores del arreglo
-for(i=0;i<lim2;i++){
-
-    numeros_mayores_a_la_media[i] = 0;
-
-}
-
-//llenar el arreglo "numeros_mayores_a_la_media" 
-for(j=0;j<m;j++){
+    printf("введите %d чисел, не должно быть ни одного нуля \n",n);
 
     for(i=0;i<n;i++){
 
-        if(arreglo[i][j]>medias_geometricas[j]){
+        scanf("%d",&arreglo[i]);
 
-            numeros_mayores_a_la_media[j]++;
+        if(arreglo[i] == 0){
+
+            counter++;
 
         }
 
     }
 
+
+}while(counter != 0);
+
+
+
+printf("%s\n",ElNumero(arreglo,n));
+
+
 }
 
-//imprimir cantidad de valores mayores a sus respectivas medias geometricas
+
+///////////////////////////////////////
+//AQUI VAN LAS FUNCIONES///////////////
+///////////////////////////////////////
+
+
+char * ElNumero(int arreglo[], int n){
+
+int counter2 = 0;
+int i = 0;
+char * salida;
+char guardado[lim2];
+
 for(i=0;i<n;i++){
 
-    printf("\nколичество чисел выше чем средний геомерический в столбе %d равно: %d\n",i+1,numeros_mayores_a_la_media[i]);
+    if(arreglo[i]< arreglo[n-1]){
+
+        sprintf(guardado,"первое число, которое удавлетворяет неравенство Ak < An равно: %d",arreglo[i]);
+        
+        printf("%s",guardado);
+
+        break;
+
+    }else(counter2++);
+}
+
+
+if(counter2 == n){
+
+    return "\nне существует число,которое удавлетворяет неравество  Ak < An : \n0\n";
 
 }
 
-}
 
-
-
-
-
-
-
-float MediaGeometrica(int matriz[lim1][lim2],int M, int N){
-
-float exp;
-int MultiplicacionFilas = 1;
-int i = 0;
-float media = 0;
-
-exp = 1.0 / N;
-
-for(i=0;i<N;i++){
-
-    MultiplicacionFilas *= matriz[i][M];
+strcpy(salida,guardado);
+        
+return salida;
 
 
 
 }
 
-media = pow(MultiplicacionFilas,exp);
-
-
-return media;
-
-}
