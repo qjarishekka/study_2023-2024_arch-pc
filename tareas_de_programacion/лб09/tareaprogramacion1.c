@@ -35,8 +35,8 @@ int main(){
 
   strcpy(R,respuesta(x,y,z));
 
-  printf("%s\n",respuesta(x,y,z));
-  //printf("%s\n",R); //activar solo en windows y desctivar la linea de arriba
+  //printf("%s\n",respuesta(x,y,z));
+  printf("%s\n",R); //activar solo en windows y desctivar la linea de arriba
 
 }
 
