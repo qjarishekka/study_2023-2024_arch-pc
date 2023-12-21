@@ -19,7 +19,7 @@ int SecuenciaPositivos[lim];
 int numerocuadrado[lim];
 int counter = 0;
 int counter2 = 0;
-int respuesta = 0;
+float respuesta = 0;
 
 float cadenademedia[lim];
 
