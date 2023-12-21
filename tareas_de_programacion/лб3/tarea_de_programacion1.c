@@ -3,53 +3,33 @@
 
 int main(){
 
-char ZonaHoraria[3];
+int ZonaHoraria;
 
-printf("эта программа даёт стоимость зависит от зоны от I до VI \n ");
+printf("эта программа даёт стоимость зависит от зоны от I до VI \n");
+
+
 
 do{
     printf("введите номер торифоной зоны\n");
-    scanf("%s",ZonaHoraria);
-}while(strcmp(ZonaHoraria,"I") && strcmp(ZonaHoraria,"II") && strcmp(ZonaHoraria,"III") && strcmp(ZonaHoraria,"IV") && strcmp(ZonaHoraria,"V") && strcmp(ZonaHoraria,"VI"));
+    scanf("%d",&ZonaHoraria);
+}while(ZonaHoraria != 1 && ZonaHoraria != 2 && ZonaHoraria != 3 && ZonaHoraria != 4 && ZonaHoraria != 5 && ZonaHoraria != 6);
 
-//printf("usted inserto %s \n",ZonaHoraria);
-
-if(strcmp(ZonaHoraria,"I")){
-
-    if(strcmp(ZonaHoraria,"II")){
-
-        if(strcmp(ZonaHoraria,"III")){
-
-            if(strcmp(ZonaHoraria,"IV")){
-
-                if(strcmp(ZonaHoraria,"V")){
-
-                    if(strcmp(ZonaHoraria,"VI")){
 
 
 
-                    }else{
-                        printf("цена равна $6\n");
-                    }
+//printf("usted inserto %s \n",ZonaHoraria);
+//printf("стоимость минуты разговора по телефону равна: $2");
 
-                }else{
-                    printf("цена равна $5\n");
-                }
+switch(ZonaHoraria){
 
-            }else{
-                printf("цена равна $4\n");
-            }
+    case 1 : printf("стоимость минуты разговора по телефону равна: $10"); break;
+    case 2 : printf("стоимость минуты разговора по телефону равна: $20"); break;
+    case 3 : printf("стоимость минуты разговора по телефону равна: $30"); break;
+    case 4 : printf("стоимость минуты разговора по телефону равна: $40"); break;
+    case 5 : printf("стоимость минуты разговора по телефону равна: $50"); break;
+    case 6 : printf("стоимость минуты разговора по телефону равна: $60"); break;
 
-        }else{
-            printf("цена равна $3\n");
-        }
 
-    }else{
-    printf("цена равна $2\n");
-    }
-
-}else{
-    printf("цена равна $1\n");
 }
 
 
