@@ -3,13 +3,14 @@
 #include <stdlib.h>
 
 #define lim 30
-#define lim2 100
+#define lim2 140
 
 //////////////////////////////////
 //AQUI SE DECLARAN LAS FUNCIONES//
 //////////////////////////////////
 
-char * ElNumero(int [], int );
+
+char* ElNumero(int arreglo[], int n);
 
 
 ///////////////////////
@@ -67,20 +68,19 @@ printf("%s\n",ElNumero(arreglo,n));
 ///////////////////////////////////////
 
 
-char * ElNumero(int arreglo[], int n){
+char* ElNumero(int arreglo[], int n){
 
 int counter2 = 0;
 int i = 0;
 char * salida;
 char guardado[lim2];
 
+
 for(i=0;i<n;i++){
 
-    if(arreglo[i]< arreglo[n-1]){
+    if(arreglo[i] < arreglo[n-1]){
 
         sprintf(guardado,"первое число, которое удавлетворяет неравенство Ak < An равно: %d",arreglo[i]);
-        
-        printf("%s",guardado);
 
         break;
 
@@ -95,8 +95,8 @@ if(counter2 == n){
 }
 
 
-strcpy(salida,guardado);
-        
+salida = guardado;
+
 return salida;
 
 
