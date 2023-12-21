@@ -56,7 +56,7 @@ if(strcmp(temp,"stop") == 0){
 
 }else{
 
-    if(!comprobacion(temp)){
+    if(comprobacion(temp)){
 
       sscanf(temp,"%d",&arreglo[j-1]);
      
@@ -92,7 +92,7 @@ printf("\n");
 
 
 
-for(i=0;i<j-2;i++){
+for(i=0;i<j-1;i++){
 
     if(arreglo[i] > 0){
 
@@ -175,7 +175,7 @@ for(i=0;i<counter;i++){
 
 }
 
-printf("\nответ: %f",respuesta);
+printf("\nответ\n: %f",respuesta);
 
 
 
@@ -201,18 +201,23 @@ int cantidadnumeros = 0;
 int counter = 0;
 
 
-for(i=0;i<lim;i++){
 
-    if(entrada[i] != '\0'){
-
-        cantidadnumeros++;
-
-    }
+do{
 
 
-}
+    cantidadnumeros++;
 
-for(i=0;i<lim;i++){
+    i++;
+
+
+
+}while(entrada[i] != '\0');
+
+
+
+
+
+for(i=0;i<cantidadnumeros;i++){
 
     if(isdigit(entrada[i])){
 
@@ -226,6 +231,9 @@ for(i=0;i<lim;i++){
 
 
 }
+
+//printf("%d %d",cantidadnumeros,counter);
+
 
 if(cantidadnumeros == counter){
 
