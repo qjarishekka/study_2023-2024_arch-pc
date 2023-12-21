@@ -18,6 +18,8 @@ char temp[limchar];
 int SecuenciaPositivos[lim];
 int numerocuadrado[lim];
 int counter = 0;
+int counter2 = 0;
+int respuesta = 0;
 
 float cadenademedia[lim];
 
@@ -81,18 +83,28 @@ for(i=0;i<j-1;i++){
 
 }
 
+
+
+
 printf("\n");
 
 
-for(i=0;i<j-1;i++){
 
-if(arreglo[i]>0){
 
-    SecuenciaPositivos[i] = arreglo[i];
 
-   printf("%d ", SecuenciaPositivos[i]);
+for(i=0;i<j-2;i++){
 
-}
+    if(arreglo[i] > 0){
+
+        SecuenciaPositivos[i-counter2] = arreglo[i];
+        
+    }else{
+
+        counter2++;
+
+    }
+
+printf("%d ", SecuenciaPositivos[i-counter2]);
 
 }
 
@@ -116,7 +128,7 @@ for(i=0;i<lim;i++){
 
 
 
-numerocuadrado[0]= 1;
+
 for(i=0;i<counter;i++){
 
     for(j=0;j<=i;j++){
@@ -131,12 +143,39 @@ printf("%d ",numerocuadrado[i]);
 
 printf("\n");
 
+
+
+
+
+
+
+
+
+
+
+
 for(i=0;i<counter;i++){
 
-    cadenademedia[i] = pow(numerocuadrado[i],i+1);
+    cadenademedia[i] = pow(numerocuadrado[i], 1.0 / (i+1) );
 
     printf("%f ",cadenademedia[i]);
 }
+
+
+for(i=0;i<counter;i++){
+
+    if(cadenademedia[i] >= respuesta){
+
+        respuesta = cadenademedia[i];
+
+
+    }
+
+
+
+}
+
+printf("\nответ: %f",respuesta);
 
 
 
