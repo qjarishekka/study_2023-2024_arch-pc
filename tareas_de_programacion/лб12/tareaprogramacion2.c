@@ -175,7 +175,7 @@ for(i=0;i<counter;i++){
 
 }
 
-printf("\nответ\n: %f",respuesta);
+printf("\nответ: %f\n",respuesta);
 
 
 
