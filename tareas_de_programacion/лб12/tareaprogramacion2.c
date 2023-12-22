@@ -216,6 +216,26 @@ do{
 
 
 
+if(entrada[0] == '-'){
+for(i=1;i<cantidadnumeros;i++){
+
+    if(isdigit(entrada[i])){
+
+        counter++;
+
+    }else{
+
+        counter--;
+
+    }
+
+
+}
+
+counter++;
+printf("%d",counter);
+
+}else{
 
 for(i=0;i<cantidadnumeros;i++){
 
@@ -231,6 +251,10 @@ for(i=0;i<cantidadnumeros;i++){
 
 
 }
+
+}
+
+
 
 //printf("%d %d",cantidadnumeros,counter);
 
