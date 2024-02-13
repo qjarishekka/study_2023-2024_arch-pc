@@ -4,21 +4,25 @@ using namespace std;
 
 
 
-int qs(int X[], int inicio, int fin, int largo){
+int qs(int X[], int inicio, int fin, int largo){  //функция для сортировки массива
 
-int izq, der, pivote, aux;
-izq = inicio;
+int izq, der, pivote, aux;    // некоторые переменные для работы сортировки
+
+
+izq = inicio;                   // сначала даём переменным значения индексов первого и последнего переменных массива
 der = fin;
-pivote = X[(izq+der)/2];
 
 
-int counter1= 0;
-int counter2 = 0;
-
-int i = 0;
+pivote = X[(izq+der)/2];    // даём переменнему "pivote" любое значение массива, который находится около центра массива
 
 
-do{
+int counter1= 0;            // это переменный служит для счета сколького циклов перестановок совершены
+
+
+int i = 0;              // переменный для работы команды "for"
+
+
+do{                                             
 
     while(X[izq] < pivote && izq < fin){
 
