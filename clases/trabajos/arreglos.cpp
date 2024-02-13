@@ -2,12 +2,20 @@
 #include <time.h>
 using namespace std;
 
-void qs(int X[], int inicio, int fin){
+
+
+int qs(int X[], int inicio, int fin, int largo){
 
 int izq, der, pivote, aux;
 izq = inicio;
 der = fin;
 pivote = X[(izq+der)/2];
+
+
+int counter1= 0;
+int counter2 = 0;
+
+int i = 0;
 
 
 do{
@@ -31,24 +39,45 @@ do{
         X[der] = aux;
         izq++;
         der--;
+        
+       counter1++;
+        
+       cout<<"изменение "<<endl;
 
+        for(i=0;i<largo;i++){
+
+            cout<< X[i]<<endl;
+
+
+        }
+        cout<<endl;
+        
 
     }
 
+
+
 }while(izq <= der);
+
+
+
 
 if(inicio <= der){
 
-    qs(X,inicio,der);
+   counter1 = counter1 +  qs(X,inicio,der,largo);
+
 
 }
 
 if(fin > izq){
 
-    qs(X,izq,fin);
+    counter1 = counter1 + qs(X,izq,fin,largo);
 
 }
 
+
+
+return counter1;
 
 }
 
@@ -63,13 +92,15 @@ int main (){
 srand(time(NULL));
 
 int i = 0;
-int j = 0;
-
-int buff = 0;
 
 int * X;
 int n = 10;
-X = new int [n+2];
+int cuenta= 0;
+cout << "введите количество введённых данных:" << endl;
+cin >> n;
+
+
+X = new int [n+1];
 
 
 for(i=0;i<n ;i++){
@@ -77,23 +108,34 @@ for(i=0;i<n ;i++){
 
 }
 
-cout << "неупарядочный массив";
+cout << "неупарядочный массив\n";
 
 for(i = 0; i<n;i++){
 
-    cout << X[i]<< endl;
+
+    cout<< X[i]<< endl;
 
 }
  
- cout << endl << "упорядочный массив\n";
+// cout << endl << "упорядочный массив\n";
 
-qs(X,0,n);
+cuenta = qs(X,0,n-1,n);
 
+
+
+
+cout<<"salida"<<endl;
 for(i=0;i<n;i++){
 
 cout<< X[i]<<endl;
 
 }
+
+
+
+cout << endl<< endl;
+
+cout << "подсчет производных перестановок:" << cuenta<< endl;
 
 return 0;
 }
