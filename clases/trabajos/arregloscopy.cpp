@@ -2,6 +2,9 @@
 #include <time.h>
 using namespace std;
 
+
+
+
 int compare(int X[], int Y[], int largo){
 
 int i = 0;
@@ -169,7 +172,7 @@ for(i = 0; i<n;i++){
  
 // cout << endl << "упорядочный массив\n";
 
-cuenta = qs(X,0,n-1,n);
+cuenta = qs(X,0,n,n);
 
 
 
