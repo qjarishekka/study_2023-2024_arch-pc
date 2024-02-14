@@ -32,14 +32,8 @@ int salida = 0;
 
 
 
-int qs(int X[], int inicio, int fin, int largo){  //функция для сортировки массива
+int qs(int X[], int inicio, int fin, int largo){
 
-<<<<<<< HEAD
-int izq, der, pivote, aux;    // некоторые переменные для работы сортировки
-
-
-izq = inicio;                   // сначала даём переменным значения индексов первого и последнего переменных массива
-=======
 int izq, der, pivote, aux;
 
 
@@ -50,22 +44,16 @@ Y = new int [n+1];
 
 
 izq = inicio;
->>>>>>> 8bcd58a (codigo completamente funcional)
 der = fin;
+pivote = X[(izq+der)/2];
 
 
-pivote = X[(izq+der)/2];    // даём переменнему "pivote" любое значение массива, который находится около центра массива
+int counter1= 0;
+int counter2 = 0;
+
+int i = 0;
 
 
-<<<<<<< HEAD
-int counter1= 0;            // это переменный служит для счета сколького циклов перестановок совершены
-
-
-int i = 0;              // переменный для работы команды "for"
-
-
-do{                                             
-=======
 
 for(i=0;i<largo;i++){
 
@@ -76,7 +64,6 @@ for(i=0;i<largo;i++){
 
 
 do{
->>>>>>> 8bcd58a (codigo completamente funcional)
 
     while(X[izq] < pivote && izq < fin){
 
