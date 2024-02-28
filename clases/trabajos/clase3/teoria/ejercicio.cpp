@@ -1,48 +1,95 @@
 #include<iostream>
+using namespace std;
 
 struct tovar{
     string comida;
     float price;
     float cantidad;
-    string comida2;
     tovar *next;
-}
+};
 
-void addfirst(tovar *&bufet, string c1, float p, int ca, string c2){
+void addfirst(tovar *&bufet, string c1, float p, int ca){
 
 tovar *tmp = new tovar;
 
 tmp -> comida = c1;
 tmp -> price =  p;
 tmp -> cantidad = ca;
-tmp -> comida2 = c2;
+tmp -> next = bufet;
 bufet = tmp;
-return;
 
 }
 
-int addafter(tovar*bufet, string c1, float p, int ca, string c2, string nafter){
+int addafter(tovar*bufet, string c1, float p, int ca, string nafter){
 
-    if(bufer == NULL)return 1;
+    if(bufet == NULL){
+
+        return 1;
+    
+    }
 
     tovar *tmp = bufet;
 
-    while(tmp!= NULL && tmp -> comida != nafter) tmp = tmp -> next;
+    while(tmp!= NULL && tmp -> comida != nafter){
 
-    if(tmp == NULL )return;
+         tmp = tmp -> next;
 
-    tovar *newtover = newtovar;
+    }
+
+    if(tmp == NULL ){
+
+        return 1;
+
+    }
+
+    tovar *newtovar = new tovar;
+
+    newtovar -> comida = c1;
+    newtovar -> price = p;
+    newtovar -> cantidad = ca;
+    newtovar -> next = tmp -> next;
+    tmp -> next = newtovar;
+    return 0;
+
+
 
 }
 
 
-void printlist(tovar * bufet){}
+void printlist(tovar * bufet){
 
-for()
+    if(bufet == NULL){
+
+        cout<< "список пуст!"<< endl;
+        return;
+
+
+    }
+
+    tovar *tmp = bufet;
+
+while(bufet != NULL){
+
+    cout <<tmp -> comida<< endl;
+    cout <<tmp -> price<< endl;
+    cout <<tmp -> cantidad<< endl;
+    tmp = tmp -> next;
+   
+}
+
+
+
+}
 
 
 int main(){
 
+tovar *bufet = NULL;
+printlist(bufet);
+addfirst(bufet,"puncake",25,2);
+addafter(bufet,"cake",55,20,"puncake");
+printlist(bufet);
+return 0;
 
 
 }
