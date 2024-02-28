@@ -2,6 +2,8 @@
 
 using namespace std;
 
+int X = 0;
+
 struct student{
 int id;
 string names;
