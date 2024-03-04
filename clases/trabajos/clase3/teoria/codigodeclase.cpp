@@ -51,3 +51,33 @@ int addafter(tovar *bufet, string n, float p, int am, int am, string nafter){
 
 }
 
+int AddBefore(Node *&Head, string NewName, int n, string NameBefore){
+
+if (Head = Null) return 1;
+
+if(Head -> name == NameBefore){
+
+    addfirst(Head,NewName,n);return 0;
+
+}
+
+if(Head->next == Null) return 1;
+
+tovar * prev=Head, *tmp = Head -> next;
+
+while (tmp -> next!=NULL && tmp->name!=NameBefore){
+
+    prev = prev->next; tmp=tmp-> next;
+
+}
+
+if(tmp->next == NULL && tmp-> name!=NameBefore)
+return 1;
+
+ tovar *Newnode = new tovar;
+
+ 
+
+
+}
+
