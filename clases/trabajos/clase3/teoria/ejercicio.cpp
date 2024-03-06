@@ -81,6 +81,27 @@ while(bufet != NULL){
 
 }
 
+int addbefore(tovar*bufet, string c1, float p, int ca, string bafter){
+
+    if(bufet == NULL){
+
+        return 1;
+    
+    }
+
+    tovar * newtovar = new tovar;
+
+    
+
+
+
+
+
+
+}
+
+
+
 
 int main(){
 
