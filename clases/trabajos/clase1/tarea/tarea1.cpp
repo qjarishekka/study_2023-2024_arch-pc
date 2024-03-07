@@ -15,12 +15,6 @@ void addfirst( nodo *&lista, string l, int n, double gn){
 
 nodo *tmp = new nodo;
 
-while (lista != NULL){
-
-    tmp = lista->next;
-
-}
-
 tmp -> letras = letras;
 tmp -> numeros = n;
 tmp -> grandesnumeros = gn;
@@ -30,14 +24,14 @@ tmp -> next = lista;
 lista = tmp;
 
 
-
-
 }
 
 
 void addlast(nodo * lista, string l, int n, double gn){
 
+nodo * tmp = new nodo
 
+tmp = 
 
 
 }
