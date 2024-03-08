@@ -130,11 +130,6 @@ int printlist(nodo *lista){
 
     nodo * tmp = lista;
 
-
-
-
-
-
     while(tmp->next != NULL){
 
         cout << tmp -> letras<<endl;
@@ -152,7 +147,6 @@ int printlist(nodo *lista){
     return 0;
     
 }
-
 
 int main(){
 
@@ -180,8 +174,6 @@ printlist(lista);
 
 delnode(lista,"rabanos");
 printlist(lista);
-
-
 
 return 0;
 
