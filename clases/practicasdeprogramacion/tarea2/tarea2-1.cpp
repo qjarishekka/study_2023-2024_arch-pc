@@ -56,7 +56,7 @@ return pi;
 
 int main(){
 
-    long double pi = calculopi(40000); //3,141592653589793  735
+    long double pi = calculopi(40000); //3,141592653589793
 
     cout<< setprecision(17);
     cout << pi <<endl<<endl;
