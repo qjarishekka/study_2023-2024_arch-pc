@@ -13,8 +13,6 @@ struct nodo{
 
 void addfirst( nodo *&lista, string l, int n, double gn){
 
-
-
     nodo *tmp = new nodo;
 
     tmp -> letras = l;
@@ -25,20 +23,27 @@ void addfirst( nodo *&lista, string l, int n, double gn){
 
     lista = tmp;
 
-
 }
-
 
 void addlast(nodo * lista, string l, int n, double gn){
 
-    nodo * tmp = new nodo;
+    nodo*tmp = lista;
 
-    tmp -> letras = l;
-    tmp -> numeros = n;
-    tmp -> grandesnumeros = gn;
 
-    tmp -> next = lista;
+    while(tmp->next != NULL){
 
+        tmp = tmp -> next;
+
+    }
+
+    nodo * newnodo = new nodo;
+
+    newnodo -> letras = l;
+    newnodo -> numeros = n;
+    newnodo -> grandesnumeros = gn;
+
+    newnodo -> next = tmp->next;
+    tmp -> next = newnodo;
 
 }
 
@@ -153,13 +158,6 @@ int main(){
 
 nodo * lista = NULL;
 
-/*
-string a = "patata";
-string b = "tomate";
-string c = "camote";c 
-string d = "rabanos";
-*/
-
 
 addfirst(lista,"patata",5,100);
 printlist(lista);
@@ -177,8 +175,13 @@ printlist(lista);
 addbefore(lista,"yuka",7,500,"patata");
 printlist(lista);
 
+addlast(lista,"chuño",8,600);
+printlist(lista);
+
 delnode(lista,"rabanos");
 printlist(lista);
+
+
 
 return 0;
 
