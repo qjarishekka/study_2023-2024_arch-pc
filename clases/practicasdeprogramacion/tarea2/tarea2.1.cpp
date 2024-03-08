@@ -25,7 +25,7 @@ int pi = 3;
 
 for(i=0;i<precicion;i++){
 
-    pi = pi + (pow1(-1,i)*(pi/((2+(2*i))*(3+(2*i))*(4+(2*i)))));
+    //pi = pi + (pow1(-1,i)*(pi/((2+(2*i))*(3+(2*i))*(4+(2*i)))));
 
 }
 
@@ -34,7 +34,7 @@ return pi;
 
 int main(){
 
-    int pi = calculopi1(15);
+    int pi = 5;//calculopi1(15);
 
     cout<<"hola"<<endl;
     cout << pi <<endl;
