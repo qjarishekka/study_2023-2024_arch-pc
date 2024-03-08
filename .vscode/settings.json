@@ -7,5 +7,10 @@
         "количество",
         "массиве",
         "чисел"
-    ]
+    ],
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.saveAllFilesBeforeRun": true,
+    "code-runner.clearPreviousOutput": false,
+    "code-runner.enableAppInsights": true
 }
