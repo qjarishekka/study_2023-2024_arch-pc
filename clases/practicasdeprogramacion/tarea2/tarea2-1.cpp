@@ -48,6 +48,8 @@ for(i=0;i<precicion;i++){
     sumando = (pow((-1),i)*(  4.0/((2+(2*i))*(3+(2*i))*(4+(2*i))) ));
     pi = pi + sumando;
 
+    numero_de_operaciones_aritmeticas += 10;
+
     //cout<<sumando;
 }
 
@@ -60,5 +62,6 @@ int main(){
 
     cout<< setprecision(17);
     cout << pi <<endl<<endl;
+    cout << "количество арифметических операций: "<< numero_de_operaciones_aritmeticas<<endl;
 
 }
