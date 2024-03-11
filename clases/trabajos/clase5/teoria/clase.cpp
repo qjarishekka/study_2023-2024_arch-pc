@@ -8,6 +8,8 @@ private:
 public:
     int num; //номер
     static int count; //количество векторов
+
+
 vect();
 vect(int d, double *X);
 vect(vect &X);
@@ -17,6 +19,8 @@ friend vect operator-(vect e, vect r)//r
 vect operator = (vect&r)
 void print();
 }
+
+
 int vect::count = 0;
 
 vect::vect(){

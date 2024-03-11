@@ -1,11 +1,9 @@
-#include <iostream>
+#include<iostream>
 #include <iomanip>
 
 using namespace std;
 
 int numero_de_operaciones_aritmeticas = 0;
-
-
 
 int pow(int numero,int potencia){
 
@@ -26,7 +24,6 @@ for(i = 1; i < potencia ; i++){
 }
 
 
-
 //cout<<numero<<endl;
 
 
@@ -35,42 +32,28 @@ return numero;
 }
 
 
+long double calculopi(int precision){
 
+int i = 0;
 
+long double pi = 0.0;
 
-double factorial(double numero){
+long double numerador = 0;
+long double denominador = 0;
 
-    if(numero == 1){
+long double sumando = 0.0;
 
-        return 1;
+for(i=0;i<precision;i++){
 
-    }
+numerador = (pow(-1,i) * 4) ;
+denominador = ((2*i) + 1 );
 
-    numero =  numero * factorial(numero -1);
-    numero_de_operaciones_aritmeticas++;
-
-return numero;
-}
-
-
-
-double calculopi(int precicion){
-
-double pi = 12.0;
-
-double i = 0;
-
-double sumando = 0.0;
-
-for(i = 0; i<precicion;i++){
-
-sumando = (pow(-1,i) * (factorial(6*i)) * ((545140134 * i) + 13591409)) / (  (factorial(3*i)) * (pow(factorial(i),3)) * (pow(640320, (3*i) + 3.0/2))   );
+sumando = numerador / denominador;
 
 pi = pi + sumando;
 
-}
 
-pi = 1 / pi;
+}
 
 
 return pi;
@@ -78,14 +61,14 @@ return pi;
 }
 
 
-
-
-
 int main(){
 
-long double pi = calculopi(2);
+//3,141592653589793
 
-cout<< setprecision(17);
+long double pi = calculopi(1000000);
+
+cout << setprecision(17);
+
 cout << pi << endl;
 
 }
