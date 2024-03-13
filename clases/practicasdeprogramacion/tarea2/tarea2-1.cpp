@@ -8,26 +8,24 @@ int pow(int numero,int potencia){
 
 int i = 0;
 
+int resultado = numero;
+
 if(potencia == 0){
-
+    
+    numero_de_operaciones_aritmeticas++;
     return 1;
-
+    
 }
 
-for(i = 1; i < potencia ; i++){
+for(i = 1; i < potencia; i++){
 
-    numero = numero * -1;
+    resultado = numero * resultado;
 
     numero_de_operaciones_aritmeticas++;
 
 }
 
-
-
-//cout<<numero<<endl;
-
-
-return numero;
+return resultado;
 
 }
 
@@ -59,6 +57,8 @@ return pi;
 int main(){
 
     long double pi = calculopi(40000); //3,141592653589793
+
+    //long double pi = pow(-1,2);
 
     cout<< setprecision(17);
     cout << pi <<endl<<endl;
