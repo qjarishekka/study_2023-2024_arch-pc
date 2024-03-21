@@ -1,0 +1,145 @@
+#include <iostream>
+using namespace std;
+class vect {
+private:
+    int dim;
+    double *v;
+public:
+    int num;
+    static int count;
+
+    vect();
+    vect(int d, double *x);
+    vect(vect &x);
+    ~vect();
+
+    vect operator+(vect &r);
+    friend vect operator-(vect l, vect r);
+    friend vect operator*(vect l, int r);
+    int operator*(vect &r);
+    vect operator=(vect &r);
+    void print();
+};
+
+int vect::count = 0;
+vect::vect() {
+    count++;
+    num = count;
+    dim = 0;
+    v = NULL;
+}
+vect::vect(int d, double *x) {
+    count++; num = count;
+    if (d > 0) {
+        dim = d;
+        v = new double[dim];
+        for (int i = 0; i < dim; i++) {
+            v[i] = x[i];
+        }
+    }
+}
+vect::vect(vect &x) {
+    count++; num = count;
+    dim = x.dim; // this -> dim = x.dim
+    v = new double [dim];
+    for (int i = 0; i < dim; i++) {
+        v[i] = x.v[i];
+    }
+}
+vect::~vect() {
+    delete[] v;
+}
+vect vect::operator+(vect &r) {
+    vect tmp;
+    tmp.dim = dim; //(r.dim, this -> dim)
+    tmp.v = new double [dim];
+    for (int i = 0; i < dim; i++) {
+        tmp.v[i] = v[i] + r.v[i];
+    }
+    return tmp;
+}
+vect operator-(vect l, vect r) {
+    vect tmp;
+    tmp.dim = r.dim; //(r.dim, this -> dim)
+    tmp.v = new double [r.dim];
+    for (int i = 0; i < r.dim; i++) {
+        tmp.v[i] = l.v[i] - r.v[i];
+    }
+    return tmp;
+}
+vect operator*(vect l, int r) {
+    vect tmp;
+    tmp.dim = l.dim; //(r.dim, this -> dim)
+    tmp.v = new double [l.dim];
+    for (int i = 0; i < l.dim; i++) {
+        tmp.v[i] = l.v[i] * r;
+    }
+    return tmp;
+}
+int vect::operator*(vect &r) {
+    int tmp;
+    for (int i = 0; i < dim; i++) {
+        tmp += v[i] * r.v[i];
+    }
+    return tmp;
+}
+
+vect vect::operator=(vect &r) {
+    for (int i = 0; i < dim; i++) {
+        v[i] = r.v[i];
+    }
+    return *this;
+}
+void vect::print() {
+    for (int i = 0; i < this->dim; i++) {
+        std::cout << this->v[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+
+
+
+
+
+int ind(int n, int i, int j){
+
+return n*(i-1)+j-1;
+
+}
+
+class matr{
+
+    int dim; double*a;
+    public: matr();
+    matr(matr&x);
+    matr(int n); //единичная матрица
+    matr(int n, double *x);
+    ~matr();
+
+    matr operator+(matr&r);
+    matr operator-(matr&r);
+    matr operator-();
+    matr operator*(matr&r);
+    friend matr operator*(double k, matr &r);
+    vect operator*(vect &r);
+    matr print();
+};
+
+
+
+
+
+
+
+
+
+
+int main(){
+
+
+
+
+return 0;
+
+}

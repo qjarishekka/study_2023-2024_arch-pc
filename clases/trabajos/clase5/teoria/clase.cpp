@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 
 
 class vect{
@@ -83,3 +83,4 @@ return *this;
 //tarea: 1)павловская   2) K*V = V      3) V*V= k       4) -V
  
 }
+*/
