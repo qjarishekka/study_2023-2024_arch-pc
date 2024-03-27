@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int calcularpi(int precision){
+int calcularpi(double precision){
 
 cout<<"calculo de pi"<<endl;
 
@@ -64,6 +64,10 @@ for(j = 0; j < precision;j++){
 
             //cout<<calculo[i]<<endl;
 
+            /////////////////////////////////////
+            /////RASTREO DE NUMEROS INVALIDOS////
+            /////////////////////////////////////
+
 
             pi[j] = presto;
 
@@ -113,10 +117,10 @@ for(j = 0; j < precision;j++){
 
 
 
+cout<<pi[0]<<",";
 
 
-for(int m = 0; m< precision;m++){
-
+for(int m = 1; m< precision;m++){
 cout<< pi[m];
 
 }
@@ -133,7 +137,7 @@ return 0;
 
 int main(){
 
-int precision;
+double precision;
 
 
 cin>> precision; //3.14159265358979323846
