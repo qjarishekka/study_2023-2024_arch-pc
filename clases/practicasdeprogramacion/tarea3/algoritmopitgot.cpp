@@ -1,20 +1,29 @@
 #include <iostream>
+#include <string.h>
 
 using namespace std;
 
-double calcularpi(int precision){
+int calcularpi(int precision){
+
+cout<<"calculo de pi"<<endl;
 
 //reservar memoria
 
 int Largo_memoria = (precision * 10) / 3;
 
-cout << Largo_memoria<< endl;
+cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;
 
 int i;
-int *calculo = new int[Largo_memoria];
+int j;
 
+int *calculo = new int[Largo_memoria];
+int *pi = new int[Largo_memoria];
+
+
+int multiplicacion = 0;
 int suma = 0;
 int presto = 0;
+
 
 
 for(i = 0; i < Largo_memoria; i++){
@@ -24,12 +33,79 @@ for(i = 0; i < Largo_memoria; i++){
 }
 
 
+
 // empieza el algoritmo
-for(i = Largo_memoria-1; i == -1; i--){  //fijarse aqui si hay error
+
+for(j = 0; j < precision;j++){
+
+    for(i = Largo_memoria-1; i > -1; i--){  //fijarse aqui si hay error
+
+        if(i == 0){
+
+            //cout<<"se ejecuta el i==0"<<endl;
+
+
+            multiplicacion = calculo[i] * 10;
+
+            //cout<<"multiplicacion: "<<multiplicacion<<endl;
+
+
+            suma = multiplicacion + presto;
+
+            //cout<< "suma"<<suma<< endl;
+
+
+            presto = suma/10;
+
+            //cout<<presto<<endl;
+
+
+            calculo[i] = suma %10;
+
+            //cout<<calculo[i]<<endl;
+
+
+            pi[j] = presto;
+
+
+
+        }else{
+
+
+            multiplicacion = calculo[i] * 10;
+
+            //cout<<"multiplicacion: "<<multiplicacion<<endl;
+
+
+            suma = multiplicacion + presto;
+
+            //cout<< "suma"<<suma<< endl;
+
+            calculo[i] = suma % ((i*2) +1);
+
+            presto = (suma/((i*2) + 1)) * i;
+
+            //cout << presto << " "<<i<< endl;
+
+        }
 
 
 
 
+    }
+
+
+    
+    
+
+
+
+
+    for(int k = 0; k < Largo_memoria; k++){
+
+            //cout<<calculo[k]<< " ";
+ 
+    }
 
 
 
@@ -39,18 +115,11 @@ for(i = Largo_memoria-1; i == -1; i--){  //fijarse aqui si hay error
 
 
 
+for(int m = 0; m< precision;m++){
 
-
-
-
-
-for(i = 0; i < Largo_memoria; i++){
-
-    cout<<calculo[i];
+cout<< pi[m];
 
 }
-
-
 
 
 cout <<endl;
@@ -67,9 +136,8 @@ int main(){
 int precision;
 
 
-cin>> precision;
+cin>> precision; //3.14159265358979323846
 
 calcularpi(precision);
-
 
 }
