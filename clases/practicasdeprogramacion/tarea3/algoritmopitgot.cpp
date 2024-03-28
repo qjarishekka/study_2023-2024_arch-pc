@@ -15,6 +15,7 @@ cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;
 
 int i;
 int j;
+int l = 0;
 
 int *calculo = new int[Largo_memoria];
 int *pi = new int[Largo_memoria];
@@ -68,9 +69,28 @@ for(j = 0; j < precision;j++){
             /////RASTREO DE NUMEROS INVALIDOS////
             /////////////////////////////////////
 
-
+            if(presto<10){
             pi[j] = presto;
+            presto = 0;
+            }else{
 
+                pi[j-l] = presto %10;
+                presto = presto / 10;
+                l++;
+                pi[j-l] +=presto; 
+
+                while(pi[j-l]>9){
+
+                    pi[j-l] = pi[j-l] + presto;
+
+
+                    l++;
+
+                }
+
+
+
+            }
 
 
         }else{
@@ -140,7 +160,8 @@ int main(){
 double precision;
 
 
-cin>> precision; //3.14159265358979323846
+cin>> precision;    //3.14159265358979323846
+                    //
 
 calcularpi(precision);
 
