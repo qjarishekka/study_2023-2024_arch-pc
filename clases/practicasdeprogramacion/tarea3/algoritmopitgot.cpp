@@ -7,26 +7,26 @@ int calcularpi(double precision){
 
 cout<<"calculo de pi"<<endl;
 
-//reservar memoria
+//резервирование памяти
 
 int Largo_memoria = (precision * 10) / 3;
 
 cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;
 
+int *calculo = new int[Largo_memoria];
+int *pi = new int[Largo_memoria];
+
+//переменные команд for 
 int i;
 int j;
 int l = 0;
 
-int *calculo = new int[Largo_memoria];
-int *pi = new int[Largo_memoria];
-
-
+//переменные для сохранения временных чисел
 int multiplicacion = 0;
 int suma = 0;
 int presto = 0;
 
-
-
+//инициализация массив(остаток)
 for(i = 0; i < Largo_memoria; i++){
 
     calculo[i] = 2;
@@ -34,45 +34,32 @@ for(i = 0; i < Largo_memoria; i++){
 }
 
 
+// начало алгоритма
+//////////////////////////////////////////////
 
-// empieza el algoritmo
+for(j = 0; j < precision;j++){//цикл для сохранение знаков Пи
 
-for(j = 0; j < precision;j++){
+    for(i = Largo_memoria-1; i > -1; i--){//цикл для вычисления знаков Пи
 
-    for(i = Largo_memoria-1; i > -1; i--){  //fijarse aqui si hay error
-
-        if(i == 0){
-
-            //cout<<"se ejecuta el i==0"<<endl;
-
+        if(i == 0){//вычисление под номером 0
 
             multiplicacion = calculo[i] * 10;
 
-            //cout<<"multiplicacion: "<<multiplicacion<<endl;
-
-
             suma = multiplicacion + presto;
-
-            //cout<< "suma"<<suma<< endl;
-
 
             presto = suma/10;
 
-            //cout<<presto<<endl;
-
-
             calculo[i] = suma %10;
 
-            //cout<<calculo[i]<<endl;
 
             /////////////////////////////////////
-            /////RASTREO DE NUMEROS INVALIDOS////
+            /////слежение неправильных знаков////
             /////////////////////////////////////
 
-            if(presto<10){
+            if(presto<10){// когда знак строго меньше чем 10 не сделать ничего
             pi[j] = presto;
             presto = 0;
-            }else{
+            }else{ //когда знак вольше чем 10 перевычислать знаки
 
                 pi[j-l] = presto %10;
                 presto = presto / 10;
@@ -81,88 +68,66 @@ for(j = 0; j < precision;j++){
 
                 while(pi[j-l]>9){
 
-                    pi[j-l] = pi[j-l] + presto;
 
+                    presto = pi[j-l];
+                    
+                    pi[j-l] = presto % 10;
 
                     l++;
 
+                    presto = presto/10;
+
+                    pi[j-l] = presto;
+
                 }
 
-
+                presto = 0;
 
             }
 
 
-        }else{
+        }else{//вычисление под номером n-ем n-1 n-2 ..... 1.
 
 
             multiplicacion = calculo[i] * 10;
 
-            //cout<<"multiplicacion: "<<multiplicacion<<endl;
-
-
             suma = multiplicacion + presto;
-
-            //cout<< "suma"<<suma<< endl;
 
             calculo[i] = suma % ((i*2) +1);
 
             presto = (suma/((i*2) + 1)) * i;
 
-            //cout << presto << " "<<i<< endl;
 
         }
 
-
-
-
     }
-
-
-    
-    
-
-
-
-
-    for(int k = 0; k < Largo_memoria; k++){
-
-            //cout<<calculo[k]<< " ";
- 
-    }
-
-
 
 }
 
 
-
+//печатание номера Пи на экран
 cout<<pi[0]<<",";
-
-
 for(int m = 1; m< precision;m++){
 cout<< pi[m];
 
 }
 
-
+//конец
 cout <<endl;
 return 0;
 
 }
 
 
-
-
-
 int main(){
 
 double precision;
 
-
-cin>> precision;    //3.14159265358979323846
+cout<<"сколько знаков Пи вы хотите вычислить?: ";
+//ввод желанное количество знаков
+cin>> precision;    
+                    //3,1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
                     //
-
 calcularpi(precision);
 
 }
