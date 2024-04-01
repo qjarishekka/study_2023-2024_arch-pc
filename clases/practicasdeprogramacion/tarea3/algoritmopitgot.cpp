@@ -10,16 +10,18 @@ cout<<"calculo de pi"<<endl;
 //резервирование памяти
 
 int Largo_memoria = (precision * 10) / 3;
+int largopi = precision;
 
 cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;
 
 int *calculo = new int[Largo_memoria];
-int *pi = new int[Largo_memoria];
+int *pi = new int[largopi];
 
 //переменные команд for 
 int i;
 int j;
 int l = 0;
+
 
 //переменные для сохранения временных чисел
 int multiplicacion = 0;
@@ -33,8 +35,8 @@ for(i = 0; i < Largo_memoria; i++){
 
 }
 
-
-// начало алгоритма
+/////////////////////////////////////////////
+// начало алгоритма/////////////////////////
 //////////////////////////////////////////////
 
 for(j = 0; j < precision;j++){//цикл для сохранение знаков Пи
@@ -59,7 +61,7 @@ for(j = 0; j < precision;j++){//цикл для сохранение знако�
             if(presto<10){// когда знак строго меньше чем 10 не сделать ничего
             pi[j] = presto;
             presto = 0;
-            }else{ //когда знак вольше чем 10 перевычислать знаки
+            }else{ //когда знак больше чем 10 перевычислать знаки
 
                 pi[j-l] = presto %10;
                 presto = presto / 10;
