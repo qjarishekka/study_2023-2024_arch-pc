@@ -3,16 +3,19 @@
 
 using namespace std;
 
+
+int numero_de_operaciones_aritmeticas = 0;  //счет количества арифметических операций
+
 int calcularpi(double precision){
 
-cout<<"calculo de pi"<<endl;
+std::cout<<"calculo de pi"<<endl;
 
 //резервирование памяти
 
 int Largo_memoria = (precision * 10) / 3;
 int largopi = precision;
 
-cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;
+std::cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;
 
 int *calculo = new int[Largo_memoria];
 int *pi = new int[largopi];
@@ -21,7 +24,6 @@ int *pi = new int[largopi];
 int i;
 int j;
 int l = 0;
-
 
 //переменные для сохранения временных чисел
 int multiplicacion = 0;
@@ -53,6 +55,8 @@ for(j = 0; j < precision;j++){//цикл для сохранение знако�
 
             calculo[i] = suma %10;
 
+            numero_de_operaciones_aritmeticas += 4;
+
 
             /////////////////////////////////////
             /////слежение неправильных знаков////
@@ -68,6 +72,8 @@ for(j = 0; j < precision;j++){//цикл для сохранение знако�
                 l++;
                 pi[j-l] +=presto; 
 
+                numero_de_operaciones_aritmeticas += 3;
+
                 while(pi[j-l]>9){
 
 
@@ -80,6 +86,8 @@ for(j = 0; j < precision;j++){//цикл для сохранение знако�
                     presto = presto/10;
 
                     pi[j-l] = presto;
+
+                    numero_de_operaciones_aritmeticas +=2; 
 
                 }
 
@@ -99,7 +107,7 @@ for(j = 0; j < precision;j++){//цикл для сохранение знако�
 
             presto = (suma/((i*2) + 1)) * i;
 
-
+            numero_de_operaciones_aritmeticas += 8;
         }
 
     }
@@ -108,16 +116,16 @@ for(j = 0; j < precision;j++){//цикл для сохранение знако�
 
 
 //печатание номера Пи на экран
-cout<<pi[0]<<",";
-for(int m = 1; m< precision;m++){
-cout<< pi[m];
+std::cout<<pi[0]<<",";
 
+for(int m = 1; m< precision;m++){
+    std::cout<< pi[m];
 }
 
-//конец
-cout <<endl;
-return 0;
 
+//конец
+std::cout<<endl;
+return 0;
 }
 
 
@@ -131,5 +139,7 @@ cin>> precision;
                     //3,1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
                     //
 calcularpi(precision);
+
+cout<< "количество арифметических операций: "<< numero_de_operaciones_aritmeticas<<endl;
 
 }
