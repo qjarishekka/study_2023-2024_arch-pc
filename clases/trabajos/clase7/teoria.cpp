@@ -13,11 +13,11 @@ public:
     vect(vect &x);
     ~vect();
 
-    vect operator+(vect &r);
+    const vect &operator+(vect r);
     friend vect operator-(vect l, vect r);
     friend vect operator*(vect l, int r);
     int operator*(vect &r);
-    vect const &operator=(vect &r);
+    const vect &operator=(const vect &r);
     void print();
 };
 
@@ -52,7 +52,7 @@ vect::~vect() {
 
 ///////////////////////////////
 
-vect vect::operator+(vect &r) {
+const vect &vect::operator+(vect r) {
     vect tmp;
     tmp.dim = dim; //(r.dim, this -> dim)
     tmp.v = new double [dim];
@@ -87,7 +87,7 @@ int vect::operator*(vect &r) {
     return tmp;
 }
 
-vect const &vect::operator=(vect &r) {
+const vect &vect::operator=(const vect &r) {
     for (int i = 0; i < dim; i++) {
         v[i] = r.v[i];
     }
@@ -146,6 +146,8 @@ double x2[] = {1,2,3,4,};
 vect v1(4,x1), v2(4,x2),v3;
 
 v3 = v1 + v2;
+
+v3.print();
 
 return 0;
 
