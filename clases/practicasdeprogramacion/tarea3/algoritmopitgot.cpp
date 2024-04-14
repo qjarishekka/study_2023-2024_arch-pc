@@ -1,24 +1,28 @@
 #include <iostream>
-#include <string.h>
+
 
 using namespace std;
 
 
-int numero_de_operaciones_aritmeticas = 0;  //счет количества арифметических операций
+int numero_de_operaciones_aritmeticas = 0;                      //счет количества арифметических операций
 
+
+//////////////////////////////////
+//функция для вычисления Пи///////
+//////////////////////////////////
 int calcularpi(double precision){
 
 std::cout<<"calculo de pi"<<endl;
 
 //резервирование памяти
 
-int Largo_memoria = (precision * 10) / 3;
-int largopi = precision;
+int Largo_memoria = (precision * 10) / 3;                       //вычисление необходимой памяти
+int largopi = precision;                                        //опредиление размера Пи
 
-std::cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;
+std::cout <<"largo de memoria "<< Largo_memoria<< endl<<endl;   //печатание на экране
 
-int *calculo = new int[Largo_memoria];
-int *pi = new int[largopi];
+int *calculo = new int[Largo_memoria];                          //резервирование памяти для вычисления номера Пи
+int *pi = new int[largopi];                                     //резервирование памяти для номера Пи
 
 //переменные команд for 
 int i;
@@ -26,72 +30,86 @@ int j;
 int l = 0;
 
 //переменные для сохранения временных чисел
-int multiplicacion = 0;
-int suma = 0;
-int presto = 0;
+int multiplicacion = 0; //множение
+int suma = 0; //сумма
+int presto = 0; //перенос
 
-//инициализация массив(остаток)
+//инициализация массива(остаток)
 for(i = 0; i < Largo_memoria; i++){
 
     calculo[i] = 2;
 
 }
 
+
+
+
+
+
 /////////////////////////////////////////////
 // начало алгоритма/////////////////////////
 //////////////////////////////////////////////
 
-for(j = 0; j < precision;j++){//цикл для сохранение знаков Пи
+for(j = 0; j < precision;j++){                      //цикл для сохранение знаков Пи
 
-    for(i = Largo_memoria-1; i > -1; i--){//цикл для вычисления знаков Пи
+    for(i = Largo_memoria-1; i > -1; i--){          //цикл для вычисления знаков Пи
 
-        if(i == 0){//вычисление под номером 0
+        if(i == 0){                     //вычисление под номером 0
 
-            multiplicacion = calculo[i] * 10;
+            multiplicacion = calculo[i] * 10;       //множение
 
-            suma = multiplicacion + presto;
+            suma = multiplicacion + presto;         //сумма
 
-            presto = suma/10;
+            presto = suma/10;                       //перенос
 
-            calculo[i] = suma %10;
+            calculo[i] = suma %10;                  //вычисление знака Пи
 
-            numero_de_operaciones_aritmeticas += 4;
+            numero_de_operaciones_aritmeticas += 4; //обновление количества арифметических операций
+
+
+
+
 
 
             /////////////////////////////////////
             /////слежение неправильных знаков////
             /////////////////////////////////////
 
-            if(presto<10){// когда знак строго меньше чем 10 не сделать ничего
+            if(presto<10){//когда знак строго меньше чем 10 не сделать ничего
+
             pi[j] = presto;
             presto = 0;
-            }else{ //когда знак больше чем 10 перевычислать знаки
 
-                pi[j-l] = presto %10;
-                presto = presto / 10;
-                l++;
-                pi[j-l] +=presto; 
+            }else{ //когда знак больше чем 10 перевычислять знаки
 
-                numero_de_operaciones_aritmeticas += 3;
+                pi[j-l] = presto %10;       //передача единиц переноса на Пи
+                presto = presto / 10;       //обнавление переноса
+                l++;                        //увеличиваем значение l
+                pi[j-l] +=presto;           //исправление предидущего знака
 
-                while(pi[j-l]>9){
+                numero_de_operaciones_aritmeticas += 3;//обновление количества арифметических операций
+                
+                
+                //исправление предыдущих знаков
+
+                while(pi[j-l]>9){       
 
 
-                    presto = pi[j-l];
+                    presto = pi[j-l];                       //испавление переноса
                     
-                    pi[j-l] = presto % 10;
+                    pi[j-l] = presto % 10;                  //предыдущий номер равен единицам переноса
 
-                    l++;
+                    l++;                                    //увеличиваем переменную
 
-                    presto = presto/10;
+                    presto = presto/10;                     //перенос равен своим десяткам
 
-                    pi[j-l] = presto;
+                    pi[j-l] = presto;                       //предидущий знак равен переносу
 
-                    numero_de_operaciones_aritmeticas +=2; 
+                    numero_de_operaciones_aritmeticas +=2;  //обновление количества арифметических операций
 
                 }
 
-                presto = 0;
+                presto = 0;                                 //обнулиаем перенос
 
             }
 
@@ -99,15 +117,15 @@ for(j = 0; j < precision;j++){//цикл для сохранение знако�
         }else{//вычисление под номером n-ем n-1 n-2 ..... 1.
 
 
-            multiplicacion = calculo[i] * 10;
+            multiplicacion = calculo[i] * 10;       //вычисление множения
 
-            suma = multiplicacion + presto;
+            suma = multiplicacion + presto;         //вычисление суммы
 
-            calculo[i] = suma % ((i*2) +1);
+            calculo[i] = suma % ((i*2) +1);         //вычисление остатка
 
-            presto = (suma/((i*2) + 1)) * i;
+            presto = (suma/((i*2) + 1)) * i;        //вычисление переноса
 
-            numero_de_operaciones_aritmeticas += 8;
+            numero_de_operaciones_aritmeticas += 8; //обновление количества арифметических операций
         }
 
     }
@@ -128,6 +146,11 @@ std::cout<<endl;
 return 0;
 }
 
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+
 
 int main(){
 
@@ -138,7 +161,7 @@ cout<<"сколько знаков Пи вы хотите вычислить?: "
 cin>> precision;    
                     //3,1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
                     //
-calcularpi(precision);
+calcularpi(precision); //вызов функции
 
 cout<< "количество арифметических операций: "<< numero_de_operaciones_aritmeticas<<endl;
 

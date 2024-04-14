@@ -13,11 +13,11 @@ public:
     vect(vect &x);
     ~vect();
 
-    const vect &operator+(vect r);
+    const vect operator+(vect &r) const;
     friend vect operator-(vect l, vect r);
     friend vect operator*(vect l, int r);
     int operator*(vect &r);
-    const vect &operator=(const vect &r);
+    vect operator=(const vect &r);
     void print();
 };
 
@@ -52,7 +52,7 @@ vect::~vect() {
 
 ///////////////////////////////
 
-const vect &vect::operator+(vect r) {
+const vect vect::operator+(vect &r)const {
     vect tmp;
     tmp.dim = dim; //(r.dim, this -> dim)
     tmp.v = new double [dim];
@@ -87,18 +87,24 @@ int vect::operator*(vect &r) {
     return tmp;
 }
 
-const vect &vect::operator=(const vect &r) {
+vect vect::operator=(const vect &r){
+    dim = r.dim;
+    v = new double [dim];
+
     for (int i = 0; i < dim; i++) {
         v[i] = r.v[i];
     }
+
     return *this;
 }
+
+
 void vect::print() {
     for (int i = 0; i < this->dim; i++) {
         std::cout << this->v[i] << " ";
     }
     std::cout << std::endl;
-}
+} 
 
 
 
@@ -140,14 +146,16 @@ class matr{
 
 int main(){
 
-double x1[] = {1,1,1,1,};
-double x2[] = {1,2,3,4,};
+double x1[] = {1,1,1,1,1};
+double x2[] = {1,2,3,4};
 
-vect v1(4,x1), v2(4,x2),v3;
+vect v1(5,x1), v2(4,x2),v3;
 
 v3 = v1 + v2;
 
 v3.print();
+v2.print();
+v1.print();
 
 return 0;
 
