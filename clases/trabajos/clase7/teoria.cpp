@@ -90,6 +90,8 @@ int vect::operator*(vect &r) {
 }
 
 vect vect::operator=(const vect &r){
+
+    delete[] v;
     dim = r.dim;
     v = new double [dim];
 
@@ -137,7 +139,9 @@ class matr{
     matr print();
 };
 
+/*
 matr matr::operator*(matr &r) {
+    
     matr tmp (r.dim);
     for (int i = 1; i <= dim; i++){
         for (int j = 1; j <= dim; j++){
@@ -145,7 +149,7 @@ matr matr::operator*(matr &r) {
         }
     }
 }
-
+*/
 
 
 
