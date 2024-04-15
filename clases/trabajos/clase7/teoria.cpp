@@ -14,7 +14,7 @@ public:
     ~vect();
 
     const vect operator+(vect &r) const;
-    friend vect operator-(vect l, vect r);
+    const friend vect operator-(vect l, vect r);
     friend vect operator*(vect l, int r);
     int operator*(vect &r);
     vect operator=(const vect &r);
@@ -52,7 +52,7 @@ vect::~vect() {
 
 ///////////////////////////////
 
-const vect vect::operator+(vect &r)const {
+const vect vect::operator+(vect &r)const{
     vect tmp;
     tmp.dim = dim; //(r.dim, this -> dim)
     tmp.v = new double [dim];
@@ -61,7 +61,7 @@ const vect vect::operator+(vect &r)const {
     }
     return tmp;
 }
-vect operator-(vect l, vect r) {
+vect const operator-(vect l, vect r){
     vect tmp;
     tmp.dim = r.dim; //(r.dim, this -> dim)
     tmp.v = new double [r.dim];
@@ -70,7 +70,7 @@ vect operator-(vect l, vect r) {
     }
     return tmp;
 }
-vect operator*(vect l, int r) {
+vect operator*(vect l, int r){
     vect tmp;
     tmp.dim = l.dim; //(r.dim, this -> dim)
     tmp.v = new double [l.dim];
@@ -79,6 +79,8 @@ vect operator*(vect l, int r) {
     }
     return tmp;
 }
+
+
 int vect::operator*(vect &r) {
     int tmp;
     for (int i = 0; i < dim; i++) {
@@ -135,7 +137,14 @@ class matr{
     matr print();
 };
 
-
+matr matr::operator*(matr &r) {
+    matr tmp (r.dim);
+    for (int i = 1; i <= dim; i++){
+        for (int j = 1; j <= dim; j++){
+            
+        }
+    }
+}
 
 
 
@@ -146,17 +155,55 @@ class matr{
 
 int main(){
 
-double x1[] = {1,1,1,1,1};
+double x1[] = {1,1,1,1};
 double x2[] = {1,2,3,4};
 
-vect v1(5,x1), v2(4,x2),v3;
+vect v1(4,x1), v2(4,x2),v3;
 
-v3 = v1 + v2;
+v3 = v2 + v1;
 
 v3.print();
 v2.print();
 v1.print();
 
+cout<<endl;
+
+v3 = v2 - v1;
+
+v3.print();
+v2.print();
+v1.print();
+
+cout<<endl;
+
+
+int pato = v2 * v1;
+
+cout<< pato<< endl;
+
+cout<<endl;
+
+
+
+v3 = v2 * 4;
+
+v3.print();
+v2.print();
+v1.print();
+
+cout<<endl;
+
+
+v3 = v2 = v1;
+
+v3.print();
+v2.print();
+v1.print();
+
+
+
+
+cout<< vect::count<<endl;
 return 0;
 
 }
