@@ -151,22 +151,33 @@ class matr{
 
 
 
-/*
-matr matr::operator*(matr &r) {
-    
-    matr tmp (r.dim);
-    for (int i = 1; i <= dim; i++){
-        for (int j = 1; j <= dim; j++){
-            
+
+
+
+
+matr matr::operator*(matr&r){
+
+matr tmp(r.dim);
+
+for(int i = 1; i<=dim; i++){
+
+    for(int j = 1; j <= dim; j++ ){
+
+        tmp.a[ind(dim,i,j)] = NULL;
+        for(int k=1;k<=dim;k++){
+
+            tmp.a[ind(dim,i,j)] += a[ind(dim,i,k)]* r.a[ind(dim,k,j)];
+
+            return tmp; 
+
         }
+
     }
+
 }
-*/
 
 
-
-
-
+}
 
 
 int main(){

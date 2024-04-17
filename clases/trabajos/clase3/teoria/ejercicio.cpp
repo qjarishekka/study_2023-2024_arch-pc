@@ -106,6 +106,7 @@ int addbefore(tovar*bufet, string c1, float p, int ca, string bafter){
 int main(){
 
 tovar *bufet = NULL;
+
 printlist(bufet);
 addfirst(bufet,"puncake",25,2);
 addafter(bufet,"cake",55,20,"puncake");
