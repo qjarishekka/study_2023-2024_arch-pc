@@ -1,29 +1,16 @@
 {
-    // Use IntelliSense para saber los atributos posibles.
-    // Mantenga el puntero para ver las descripciones de los existentes atributos.
-    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
     "configurations": [
         {
-            "name": "(lldb) Iniciar",
+            "name": "Launch App",
             "type": "cppdbg",
             "request": "launch",
-            "program": "tareaprogramacion1",
-            "args": [],
             "stopAtEntry": false,
-            "cwd": "${tareaprogramacion1}",
+            "cwd": "${workspaceFolder}/bin/",
             "environment": [],
-            "externalConsole": false,
-            "MIMode": "lldb"
-        },
-    
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "tarea2.1",
-            "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}\\app.js"
-          }
-
+            "program": "${workspaceFolder}/bin/app",
+            "MIMode": "lldb",
+            "targetArchitecture": "arm64",
+            "externalConsole": false
+        }
     ]
 }

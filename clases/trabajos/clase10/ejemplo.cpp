@@ -1,41 +1,38 @@
-#include<graphics.h>
+
+#include <SFML/Graphics.hpp>
 #include<iostream>
+int main() {
 
-class point{
+    // create the window
+    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 
-protected:
-        int x; int y; int color;
-public:
-       
-        point();
-        point(int xx,int yy);
-        ~point();
-        void draw();
-        void line();
-        void move(int xx; int yy);
-        void rotate(double fi);
-}
+    // run the program as long as the window is open
+    while (window.isOpen())
+    {
+        // check all the window's events that were triggered since the last iteration of the loop
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
 
-class tline{
+        // clear the window with black color
+        window.clear(sf::Color::Black);
 
-        tline();
-        tline(int xx, int yy, int dxx, int dyy);
-        ~tline();
-        void draw();
-        void line();
-        void move(int xx; int yy);
-        void rotate(double fi);
-}
-
-tline::tline(int xx, int yy, int dxx, int dyy):point(xx,yy){
-
-dx = dxx; dy = dyy;
+        // draw everything here...
+        // window.draw(...);
 
 
-}
+        sf::CircleShape shape(50.f);
 
-int main{
-
-cout<<"hola"<<endl;
+    // set the shape color to green
+        shape.setFillColor(sf::Color(100, 250, 50));
+        window.draw(shape);
+        // end the current frame
+        window.display();
+    }
+    return 0;
 
 }
