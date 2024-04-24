@@ -1,28 +1,23 @@
 #include <iostream>
-using namespace std;
-
-
 
 class vect {
-
 public:
     int num;
     static int count;
     int dim;
     double *v;
 
-
     vect();
     vect(int d, double *x);
-    
     vect(vect &x);
     ~vect();
 
-    const vect operator+(vect &r) const;
-    const friend vect operator-(vect l, vect r);
+    vect operator+(vect &r);
+    vect operator-();
+    friend vect operator-(vect l, vect r);
     friend vect operator*(vect l, int r);
     int operator*(vect &r);
-    vect operator=(const vect &r);
+    vect operator=(vect &r);
     void print();
 };
 
@@ -31,21 +26,19 @@ vect::vect() {
     count++;
     num = count;
     dim = 0;
-
     v = NULL;
+    std::cout << "Создан вектор\nНомер вектора: " << num << "\nВсего векторов: " << count;
 }
-
-
 vect::vect(int d, double *x) {
     count++; num = count;
     if (d > 0) {
         dim = d;
-        v = new double[dim];
+            v = new double[dim];
         for (int i = 0; i < dim; i++) {
             v[i] = x[i];
         }
     }
-
+    std::cout << "Создан вектор\nНомер вектора: " << num << "\nВсего векторов: " << count;
 }
 vect::vect(vect &x) {
     count++; num = count;
@@ -54,100 +47,94 @@ vect::vect(vect &x) {
     for (int i = 0; i < dim; i++) {
         v[i] = x.v[i];
     }
+    std::cout << "Создан вектор\nНомер вектора: " << num << "\nВсего векторов: " << count;
 }
 vect::~vect() {
+    count--;
+    std::cout << "Уничтожен вектор\nНомер вектора: " << num << "\nВсего векторов: " << count;
     delete[] v;
 }
-
-///////////////////////////////
-
-const vect vect::operator+(vect &r)const{
+vect vect::operator+(vect &r) {
     vect tmp;
     tmp.dim = dim; //(r.dim, this -> dim)
     tmp.v = new double [dim];
     for (int i = 0; i < dim; i++) {
         tmp.v[i] = v[i] + r.v[i];
     }
+    std::cout << "Произошло сложение векторов с номерами " << num << " и"  << r.num;
     return tmp;
 }
-vect const operator-(vect l, vect r){
+vect operator-(vect l, vect r) {
     vect tmp;
     tmp.dim = r.dim; //(r.dim, this -> dim)
     tmp.v = new double [r.dim];
     for (int i = 0; i < r.dim; i++) {
         tmp.v[i] = l.v[i] - r.v[i];
     }
+    std::cout << "Произошло вычитание векторов с номерами " << l.num << " и"  << r.num;
     return tmp;
 }
-vect operator*(vect l, int r){
+vect vect::operator-() {
+    vect tmp;
+    tmp.dim = dim;
+    tmp.v = new double [dim];
+    for (int i = 0; i < dim; i++) {
+        tmp.v[i] = -v[i];
+    }
+    std::cout << "Произошло унарное вычитание вектора с номером " << num;
+    return tmp;
+}
+vect operator*(vect l, int r) {
     vect tmp;
     tmp.dim = l.dim; //(r.dim, this -> dim)
     tmp.v = new double [l.dim];
     for (int i = 0; i < l.dim; i++) {
         tmp.v[i] = l.v[i] * r;
     }
+    std::cout << "Произошло умножение числа на вектор с номером " << l.num;
     return tmp;
 }
-
-
 int vect::operator*(vect &r) {
     int tmp;
     for (int i = 0; i < dim; i++) {
         tmp += v[i] * r.v[i];
     }
+    std::cout << "Произошло умножение векторов с номерами " << num << " и"  << r.num;
     return tmp;
 }
 
-vect vect::operator=(const vect &r){
-
-    delete[] v;
-    dim = r.dim;
-    v = new double [dim];
-
+vect vect::operator=(vect &r) {
     for (int i = 0; i < dim; i++) {
         v[i] = r.v[i];
     }
-
+    std::cout << "Произошло присваивание векторов с номерами " << num << " и"  << r.num;
     return *this;
 }
-
-
 void vect::print() {
     for (int i = 0; i < this->dim; i++) {
         std::cout << this->v[i] << " ";
     }
     std::cout << std::endl;
-} 
-
-
-
-//////////////////////////////////////////
-
-
-int ind(int n, int i, int j){
-
-return n*(i-1)+j-1;
-
 }
 
-class matr{
 
-    int dim; double**a;
-
-public: 
+int ind (int n, int c, int j);
+class matr {
+    int dim; double **a;
+public:
     matr();
-    matr(matr&x);
-    matr(int n); //единичная матрица
+    matr(matr &x);
+    matr(int n);
     matr(int n, double **x);
     ~matr();
 
-    const matr operator+(matr&r)const;
-    matr operator-(matr&r);
+    matr operator+(matr &r);
+    matr operator-(matr &r);
     matr operator-();
-    matr operator*(matr&r);
+    matr operator*(matr &r);
     friend matr operator*(double k, matr &r);
     vect operator*(vect &r);
-    matr  operator=(const matr &r);
+    matr operator=(matr &r);
     void print();
 };
 
@@ -190,8 +177,7 @@ matr::~matr() {
     delete[] a;
 }
 
-
-matr const matr::operator+(matr &r)const {
+matr matr::operator+(matr &r) {
     matr tmp;
     tmp.dim = dim;
     tmp.a = new double * [dim];
@@ -203,7 +189,6 @@ matr const matr::operator+(matr &r)const {
     }
     return tmp;
 }
-
 
 matr matr::operator-(matr &r) {
     matr tmp;
@@ -250,7 +235,7 @@ matr matr::operator*(matr &r) {
     return tmp;
 }
 
-matr matr::operator=(const matr &r){
+matr matr::operator=(matr &r) {
     dim = r.dim;
     a = new double * [dim];
     for (int i = 0; i < dim; i++) {
@@ -297,89 +282,22 @@ void matr::print() {
     }
 }
 
-
-
-int main(){
-
-double x1[] = {1,1,1,1};
-double x2[] = {1,2,3,4};
-
-vect v1(4,x1), v2(4,x2),v3;
-
-v3 = v2 + v1;
-
-v3.print();
-v2.print();
-v1.print();
-
-cout<<endl;
-
-v3 = v2 - v1;
-
-v3.print();
-v2.print();
-v1.print();
-
-cout<<endl;
-
-
-int pato = v2 * v1;
-
-cout<< pato<< endl;
-
-cout<<endl;
-
-
-
-v3 = v2 * 4;
-
-v3.print();
-v2.print();
-v1.print();
-
-cout<<endl;
-
-
-v3 = v2 = v1;
-
-v3.print();
-v2.print();
-v1.print();
-
-
- double **a = new double * [3];
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    double **a = new double * [3];
     for (int i = 0; i < 3; i++) {
         a[i] = new double[3];
         for (int j = 0; j < 3; j++) {
             std::cin >> a[i][j];
         }
     }
+    matr *m1 = new matr(3, a);
+    matr *m2 = new matr(3, a);
+    matr m3 = *m1 + *m2;
+    matr m4 = *m1 * m3;
+    m1->print();
+    m3.print();
+    m4.print();
 
-matr m1(3,a);
-matr m2(3,a);
-
-matr m3;
-matr m4;
-
-m3 = m1 + m2;
-
-
-m4 = m1 * m3;
-
-
-
-m3.print();
-
-cout<<endl;
-
-m4.print();
-
-cout<<endl;
-
-
-
-
-cout<< vect::count<<endl;
-return 0;
-
+    return 0;
 }
