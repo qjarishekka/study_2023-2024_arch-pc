@@ -355,6 +355,9 @@ v1.print();
         }
     }
 
+
+cout<<endl;
+
 matr m1(3,a);
 matr m2(3,a);
 
