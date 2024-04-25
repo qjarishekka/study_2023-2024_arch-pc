@@ -1,10 +1,9 @@
 
 #include <SFML/Graphics.hpp>
-#include<iostream>
 int main() {
 
     // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "esta es una ventana de ejemplo");
 
     // run the program as long as the window is open
     while (window.isOpen())
