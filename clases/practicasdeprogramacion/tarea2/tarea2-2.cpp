@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int numero_de_operaciones_aritmeticas = 0;
+double numero_de_operaciones_aritmeticas = 0;
 
 int pow(int numero,int potencia){
 
@@ -66,7 +66,7 @@ int main(){
 
 //3,141592653589793
 
-long double pi = calculopi(999999);  //9999990
+long double pi = calculopi(9999990);  //9999990
 
 cout << setprecision(17);
 
