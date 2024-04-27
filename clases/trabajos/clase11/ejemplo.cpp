@@ -84,12 +84,17 @@ class romb : public square{
 //добавляется double alfa;
 protected:
     double alfa;
+
 public:
     romb();
-    romt(int xx, int yy , int  );
+    romb(int xx, int yy , int dxx, int dyy, double al);
+    romb(int xx, int yy, int dxx, int dyy, double al, int c);
 
 
-
+    void draw();
+    void hide();
+    void move();
+    void rotate(double fi);
 
 
 
@@ -102,13 +107,20 @@ public:
 /////////////////////////////////
 class rect : public square{
 
+protected: 
+    double b;
     //3 constructor + 1 destructor;
 
+public:
 
-        void draw();
-        void hide();
-        void move(int dxx, int dyy);
-        void rotate(double fi);
+    rect();
+    rect(int xx, int yy, int dxx, int dyy, double bb);
+    rect(int xx, int yy, int dxx, int dyy, double bb, int c);
+
+    void draw();
+    void hide();
+    void move(int dxx, int dyy);
+    void rotate(double fi);
 
 };
 
