@@ -2,5 +2,8 @@
     "cSpell.words": [
         "SFML"
     ],
-    "C_Cpp.errorSquiggles": "enabled"
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.associations": {
+        "cstdlib": "cpp"
+    }
 }
