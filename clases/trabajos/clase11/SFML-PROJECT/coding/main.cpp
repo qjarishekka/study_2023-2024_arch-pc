@@ -2,7 +2,6 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
- 
 
 /*
 лаб. 3 наследование
@@ -17,9 +16,11 @@
  |       /
 паралелограм
 */
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-sf::RenderWindow window(sf::VideoMode(800, 1000), "punto");
+sf::RenderWindow window(sf::VideoMode(1000, 800), "punto");
 
 
 
@@ -53,7 +54,9 @@ point :: point(){
     y = 100;
     color = 255;
     visable = 100;
-    circulo.setRadius(10);
+
+
+    circulo.setRadius(3);
     circulo.setPosition(x,y);
     circulo.setFillColor(sf::Color(color*visable,255*visable,255*visable));
 
@@ -66,7 +69,7 @@ point :: point(int xx, int yy){
     color = 255;
     visable = 100;
 
-    circulo.setRadius(10);
+    circulo.setRadius(3);
     circulo.setPosition(x,y);
     circulo.setFillColor(sf::Color(color*visable,255*visable,255*visable));
 
@@ -80,7 +83,7 @@ point :: point(int xx, int yy, int c){
     color = c;
     visable = 1;
 
-    circulo.setRadius(10);
+    circulo.setRadius(3);
     circulo.setPosition(x,y);
     circulo.setFillColor(sf::Color(color*visable,255*visable,255*visable));
 
@@ -108,14 +111,15 @@ void point::move(int dxx, int dyy){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class tline : public point{
 
 protected: 
     int dx;
     int dy;    
+    sf::Vertex linea[2];
 
 
 public:
@@ -126,17 +130,70 @@ public:
 
     void draw();
     void hide();
-    void move(int dxx, int dyy);
+    void move(int mxx, int myy);
     void rotate(double fi);
 
 };
+
+
+tline :: tline() : point(){
+
+    dx = 200;
+    dy = 100;
+
+    linea[0] = sf::Vertex(sf::Vector2f(x,y),sf::Color(color*visable,255*visable,255*visable));
+    linea[1] = sf::Vertex(sf::Vector2f(dx,dy),sf::Color(color*visable,255*visable,255*visable));
+
+
+}
+
+
+
 
 tline :: tline(int xx, int yy, int dxx, int dyy) : point(xx , yy){
 
     dx = dxx;
     dy = dyy;
+    
+    linea[0] = sf::Vertex(sf::Vector2f(x,y),sf::Color(color*visable,255*visable,255*visable));
+    linea[1] = sf::Vertex(sf::Vector2f(dx,dy),sf::Color(color*visable,255*visable,255*visable));
 
 }
+
+tline :: tline(int xx, int yy, int dxx, int dyy, int c) : point(xx, yy, c){
+
+    dx = dxx;
+    dy = dyy;
+
+    linea[0] = sf::Vertex(sf::Vector2f(x,y),sf::Color(color*visable,255*visable,255*visable));
+    linea[1] = sf::Vertex(sf::Vector2f(dx,dy),sf::Color(color*visable,255*visable,255*visable));
+
+}
+
+tline:: ~tline(){}
+
+void tline::draw(){
+
+    window.draw(linea,100,sf::Lines);
+
+
+}
+
+void tline::hide(){
+
+    window.display();
+
+}
+
+
+void tline::move(int mxx, int myy){
+    
+    linea[0] = sf::Vertex(sf::Vector2f(x+mxx,y+myy),sf::Color(color*visable,255*visable,255*visable));
+    linea[1] = sf::Vertex(sf::Vector2f(dx+mxx,dy+myy),sf::Color(color*visable,255*visable,255*visable));
+
+}
+
+
 
 
 
@@ -238,6 +295,19 @@ parallelepipedo :: parallelepipedo (int xx, int yy, int dxx ,int dyy, double al,
 
 main(){
 
+
+    point punto1;
+
+    point punto2(100,200);
+
+    point punto3(100,300,100);
+
+    tline linea1;
+    tline linea2(100, 200, 400 , 200);
+    tline linea3(100, 300, 400, 300,230);
+
+
+
 while(window.isOpen()){
 
     sf::Event event;
@@ -248,11 +318,7 @@ while(window.isOpen()){
                 window.close();
         }
 
-    point punto1;
-
-    point punto2(100,200);
-
-    point punto3(100,300,100);
+    
 
 
     window.clear();
@@ -260,6 +326,12 @@ while(window.isOpen()){
     punto1.draw();
     punto2.draw();
     punto3.draw();
+
+    linea1.draw();
+    linea2.draw();
+    linea3.draw();
+
+
     window.display();
 
 
