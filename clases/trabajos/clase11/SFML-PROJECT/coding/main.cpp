@@ -395,10 +395,10 @@ void square::move(int mxx,int myy){
 
     transform.rotate(90, sf::Vector2f(x,y));
     transform2.rotate(-90, sf::Vector2f(dx,dy));
-    transform3.rotate(-90, sf::Vector2f(x,y));
-    transform4.rotate(-90,sf::Vector2f(dx,dy));
-
-    transform4.combine(transform3);
+    //transform3.rotate(-90, sf::Vector2f(x,y));
+    //transform4.rotate(90,sf::Vector2f(dx,dy));
+    transform4.translate(10,19);
+    //transform4.combine(transform3);
 
 
 
