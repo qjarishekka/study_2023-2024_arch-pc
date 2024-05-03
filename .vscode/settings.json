@@ -4,6 +4,7 @@
     ],
     "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "*.tcc": "cpp"
     }
 }

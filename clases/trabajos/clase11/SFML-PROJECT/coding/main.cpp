@@ -240,6 +240,7 @@ protected:
 
     sf::Transform transform2;
     sf::Transform transform3;
+    sf::Transform transform4;
 
 public: 
     //escrbir 3 constructores + destructor;
@@ -252,7 +253,7 @@ public:
 
     void draw();
     void hide();
-    void move();
+    void move(int mxx, int myy);
     void rotate(double fi);
 
 };
@@ -273,7 +274,12 @@ ppunto4.resize(2);
 
 transform.rotate(90, sf::Vector2f(x,y));
 transform2.rotate(-90, sf::Vector2f(dx,dy));
-transform3.translate(dy-y,dx-x);
+
+
+transform3.rotate(-90, sf::Vector2f(x,y));
+transform4.rotate(-90,sf::Vector2f(dx,dy));
+
+transform4.combine(transform3);
 
 
 }
@@ -294,7 +300,12 @@ ppunto4.resize(2);
 
 transform.rotate(90, sf::Vector2f(x,y));
 transform2.rotate(-90, sf::Vector2f(dx,dy));
-transform3.translate(dy-y,dx-x);
+
+transform3.rotate(-90, sf::Vector2f(x,y));
+transform4.rotate(-90,sf::Vector2f(dx,dy));
+
+transform4.combine(transform3);
+
 }
 
 square::square(int xx, int yy, int dxx, int dyy,int c) : tline(xx,yy,dxx,dyy,c){
@@ -314,8 +325,13 @@ ppunto4.resize(2);
 transform.rotate(90, sf::Vector2f(x,y));
 transform2.rotate(-90, sf::Vector2f(dx,dy));
 
-transform3.rotate(90,sf::Vector2f(x,y));
-transform3.translate(dy-y,dx-x);
+transform3.rotate(-90, sf::Vector2f(x,y));
+transform4.rotate(-90,sf::Vector2f(dx,dy));
+
+transform4.combine(transform3);
+
+
+
 
 
 }
@@ -344,8 +360,8 @@ window.draw(ppunto2,transform);
    
 window.draw(ppunto3,transform2);
 
-    transform3.rotate(90,sf::Vector2f(x,y));
-window.draw(ppunto4,transform3);
+    
+window.draw(ppunto4,transform4);
 
     
 
@@ -355,7 +371,38 @@ void square::hide(){
 
 }
 
-void square::move(){
+void square::move(int mxx,int myy){
+
+    transform.rotate(-90, sf::Vector2f(x,y));
+    transform2.rotate(90, sf::Vector2f(dx,dy));
+    
+    transform4.rotate(90, sf::Vector2f(dx,dy));
+    transform3.rotate(-90, sf::Vector2f(dx,dy));
+    transform4.combine(transform3);
+
+
+    x+=mxx;
+    y+=myy;
+    dx+=mxx;
+    dy+=myy; 
+    
+
+    punto1.position = sf::Vector2f(x,y);
+    punto2.position = sf::Vector2f(dx,dy);
+
+    
+
+
+    transform.rotate(90, sf::Vector2f(x,y));
+    transform2.rotate(-90, sf::Vector2f(dx,dy));
+    transform3.rotate(-90, sf::Vector2f(x,y));
+    transform4.rotate(-90,sf::Vector2f(dx,dy));
+
+    transform4.combine(transform3);
+
+
+
+
 
 }
 
@@ -458,7 +505,7 @@ int main(){
     tline linea3(100, 300, 400, 300,0);
 
     square cuadrado1;
-    square cuadrado2(300, 200, 400, 100);
+    square cuadrado2(300, 200, 800, 100);
     square cuadrado3(300, 400, 400, 100, 50);
 
 
@@ -482,17 +529,9 @@ while(window.isOpen()){
 
     window.clear();
 
-    //punto1.draw();
-    //punto2.draw();
-    //punto3.draw();
+    
 
-    //linea1.draw();
-    //linea2.draw();
-    //linea3.draw();
-
-    cuadrado1.draw();
-    cuadrado2.draw();
-    cuadrado3.draw();
+    
 
 
     if(counter == 0){
@@ -500,10 +539,26 @@ while(window.isOpen()){
         linea1.rotate(90);
         linea2.rotate(-45);
         linea3.rotate(45);
-        counter++;
+        cuadrado1.move(10,0);
 
+
+
+
+        counter++;
     }
+
+    //punto1.draw();
+    //punto2.draw();
+    //punto3.draw();
+
+    //linea1.draw();
+    //linea2.draw();
+    //linea3.draw();
     
+    cuadrado1.draw();
+    cuadrado2.draw();
+    cuadrado3.draw();
+
 
     window.display();
 
