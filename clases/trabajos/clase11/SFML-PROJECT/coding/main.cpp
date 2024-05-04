@@ -652,6 +652,8 @@ protected:
 
     sf::Vertex punto3;
     sf::Vertex punto4;
+    sf::Vertex punto5;
+    sf::Vertex punto6;
     //3 constructor + 1 destructor;
 
 public:
@@ -681,20 +683,20 @@ punto4.position = sf::Vector2f(x+b,y);
 punto4.color = sf::Color(color*visable,255*visable,255*visable);
 
 
+punto5.position = sf::Vector2f(dx,dy);
+punto5.color = sf::Color(color*visable,255*visable,255*visable);
+
+punto6.position = sf::Vector2f(dx,dy+b);
+punto6.color = sf::Color(color*visable,255*visable,255*visable);
+
+
+
 
 transform.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
-
 transform2 = transform5;
+
+transform2.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
 transform3 = transform5;
-
-
-transform2.translate(dx-x,dy-y);
-
-transform3.rotate(AnguloDeInclinacion(x,y,dx,dy)+90,sf::Vector2f(dx,dy));
-
-transform3.combine(transform2);
-
-transform2 = transform3;
 
 
 
@@ -725,6 +727,11 @@ punto3.color = sf::Color(color*visable,255*visable,255*visable);
 punto4.position = sf::Vector2f(x+b,y);
 punto4.color = sf::Color(color*visable,255*visable,255*visable);
 
+punto5.position = sf::Vector2f(dx,dy);
+punto5.color = sf::Color(color*visable,255*visable,255*visable);
+
+punto6.position = sf::Vector2f(dx,dy+b);
+punto6.color = sf::Color(color*visable,255*visable,255*visable);
 
 
 
@@ -739,6 +746,7 @@ ppunto3.resize(2);
 
 ppunto4.setPrimitiveType(sf::Lines);
 ppunto4.resize(2);
+
 
 transform = transform5;
 transform2 = transform5;
@@ -771,22 +779,23 @@ punto4.position = sf::Vector2f(x+b,y);
 punto4.color = sf::Color(color*visable,255*visable,255*visable);
 
 
+punto5.position = sf::Vector2f(dx,dy);
+punto5.color = sf::Color(color*visable,255*visable,255*visable);
+
+punto6.position = sf::Vector2f(dx,dy+b);
+punto6.color = sf::Color(color*visable,255*visable,255*visable);
+
+
+
+
 transform.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
-
 transform2 = transform5;
-transform3 = transform5;
 
 
-transform2.translate(dx-x,dy-y);
+transform2.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
+transform4 = transform5;
 
-transform3.rotate(-AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
-
-transform3.combine(transform2);
-
-transform2 = transform3;
-
-
-
+transform4.rotate(90,sf::Vector2f(dx,y));
 
 }
 
@@ -798,8 +807,8 @@ ppunto1[1] = punto2;
 ppunto2[0] = punto3;
 ppunto2[1] = punto4;
 
-ppunto3[0] = punto3;
-ppunto3[1] = punto4;
+ppunto3[0] = punto5;
+ppunto3[1] = punto6;
 
 ppunto4[0] = punto1;
 ppunto4[1] = punto2;
@@ -892,6 +901,8 @@ int main(){
     rect rectangulo1;
     rect rectangulo2(800,600,1000,400,70,50);
 
+    rect rectangulo3(600,300,800,200,50,50);
+
 
 
 
@@ -955,6 +966,7 @@ while(window.isOpen()){
 
     rectangulo1.draw();
     rectangulo2.draw();
+    rectangulo3.draw();
 
 
     window.display();
