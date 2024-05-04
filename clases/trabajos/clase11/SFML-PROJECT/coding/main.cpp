@@ -2,6 +2,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
+#include<math.h>
+
+#define PI 3.14159265358979323846
 
 /*
 лаб. 3 наследование
@@ -16,6 +19,16 @@
  |       /
 паралелограм
 */
+
+double AnguloDeInclinacion(double x, double y,double dx, double dy){
+
+double pendiente = (dy-y) / (dx-x);
+
+double grados = (atan(pendiente)*180)/PI ;
+
+
+return grados;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,6 +51,7 @@ protected:
     int visable;
     sf::CircleShape circulo;
     sf::Vertex punto1;
+
     
 public:
 
@@ -45,11 +59,13 @@ public:
     point(int xx, int yy);
     point(int xx, int yy, int c);
     ~point(){};
+
     virtual void draw();
     virtual void hide();
     virtual void move(int dxx, int dyy);
     
 };
+
 
 point :: point(){
     
@@ -64,6 +80,7 @@ point :: point(){
 
 }
 
+
 point :: point(int xx, int yy){
 
     x = xx;
@@ -74,9 +91,8 @@ point :: point(int xx, int yy){
     punto1.position = sf::Vector2f(x,y);
     punto1.color = sf::Color(color*visable,255*visable,255*visable);
 
-
-
 }
+
 
 point :: point(int xx, int yy, int c){
 
@@ -100,22 +116,19 @@ void point::draw(){
 
     window.draw(ppunto);
 
-
-    return;
 }
+
 
 void point::hide(){
     
     punto1.color = sf::Color::Transparent;
 
-    return;
 }
 
 void point::move(int dxx, int dyy){
 
     punto1.position = sf::Vector2f(x+dxx,y+dyy);
 
-    return;
 }
 
 
@@ -128,13 +141,14 @@ void point::move(int dxx, int dyy){
 class tline : public point{
 
 protected: 
+
     int dx;
     int dy;    
     sf::Vertex punto2;
     sf::Transform transform;
 
-
 public:
+
     tline();
     tline(int xx, int yy, int dxx, int dyy);
     tline(int xx, int yy, int dxx, int dyy, int c);
@@ -147,6 +161,7 @@ public:
 
 };
 
+
 tline :: tline() : point(){
 
     dx = 200;
@@ -157,8 +172,8 @@ tline :: tline() : point(){
     punto2.position = sf::Vector2f(dx,dy);
     punto2.color = sf::Color(color*visable,255*visable,255*visable);
 
-
 }
+
 
 tline :: tline(int xx, int yy, int dxx, int dyy) : point(xx , yy){
 
@@ -169,9 +184,9 @@ tline :: tline(int xx, int yy, int dxx, int dyy) : point(xx , yy){
     punto1.color = sf::Color(color*visable,255*visable,255*visable);
     punto2.position = sf::Vector2f(dx,dy);
     punto2.color = sf::Color(color*visable,255*visable,255*visable);
-    
 
 }
+
 
 tline :: tline(int xx, int yy, int dxx, int dyy, int c) : point(xx, yy, c){
 
@@ -185,10 +200,11 @@ tline :: tline(int xx, int yy, int dxx, int dyy, int c) : point(xx, yy, c){
 
 }
 
+
 tline:: ~tline(){}
 
-void tline::draw(){
 
+void tline::draw(){
 
     sf::VertexArray ppunto(sf::Lines,2);
 
@@ -197,16 +213,14 @@ void tline::draw(){
 
     window.draw(ppunto,transform);
 
-
-return;
 }
+
 
 void tline::hide(){
 
     punto1.color = sf::Color::Transparent;
     punto2.color = sf::Color::Transparent;
 
-return;
 }
 
 
@@ -214,10 +228,9 @@ void tline::move(int mxx, int myy){
 
     punto1.position = sf::Vector2f(x+mxx,y+myy);
     punto2.position = sf::Vector2f(dx+mxx,dy+myy);
-    
-    
-return;
+
 }
+
 
 void tline::rotate(double fi){
 
@@ -233,7 +246,6 @@ void tline::rotate(double fi){
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 class square : public tline{
@@ -252,12 +264,10 @@ protected:
 
 public: 
 
-
     square();
     square(int xx, int yy, int dxx, int dyy);
     square(int xx, int yy, int dxx, int dyy, int c);
     ~square(){};
-
 
     void draw();
     void hide();
@@ -289,8 +299,8 @@ transform4.rotate(-90,sf::Vector2f(dx,dy));
 
 transform4.combine(transform3);
 
-
 }
+
 
 square::square(int xx, int yy, int dxx, int dyy) : tline(xx,yy,dxx,dyy){
 
@@ -461,10 +471,13 @@ alfa = 70;
 
 ppunto1.setPrimitiveType(sf::Lines);
 ppunto1.resize(2);
+
 ppunto2.setPrimitiveType(sf::Lines);
 ppunto2.resize(2);
+
 ppunto3.setPrimitiveType(sf::Lines);
 ppunto3.resize(2);
+
 ppunto4.setPrimitiveType(sf::Lines);
 ppunto4.resize(2);
 
@@ -490,10 +503,13 @@ alfa = al;
 
 ppunto1.setPrimitiveType(sf::Lines);
 ppunto1.resize(2);
+
 ppunto2.setPrimitiveType(sf::Lines);
 ppunto2.resize(2);
+
 ppunto3.setPrimitiveType(sf::Lines);
 ppunto3.resize(2);
+
 ppunto4.setPrimitiveType(sf::Lines);
 ppunto4.resize(2);
 
@@ -517,10 +533,13 @@ alfa = al;
 
 ppunto1.setPrimitiveType(sf::Lines);
 ppunto1.resize(2);
+
 ppunto2.setPrimitiveType(sf::Lines);
 ppunto2.resize(2);
+
 ppunto3.setPrimitiveType(sf::Lines);
 ppunto3.resize(2);
+
 ppunto4.setPrimitiveType(sf::Lines);
 ppunto4.resize(2);
 
@@ -595,11 +614,8 @@ void romb::move(int mxx, int myy){
 
 transform.rotate(alfa, sf::Vector2f(x,y));
 transform2.rotate(-180+alfa, sf::Vector2f(dx,dy));
-
-
 transform3.rotate(-alfa, sf::Vector2f(x,y));
 transform4.rotate(-180 + alfa,sf::Vector2f(dx,dy));
-
 transform4.combine(transform3);
 
 
@@ -614,30 +630,28 @@ transform2 = transform5;
 transform3 = transform5;
 transform4 = transform5;
 
-
-
-
 transform.rotate(alfa, sf::Vector2f(x,y));
 transform2.rotate(-180+alfa, sf::Vector2f(dx,dy));
-
-
 transform3.rotate(-180+alfa, sf::Vector2f(dx,dy));
 transform4 = transform3;
-
 transform4.rotate(-alfa,sf::Vector2f(x,y));
 
 
 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
 
-/////////////////////////////////
 class rect : public square{
 
 protected: 
     double b;
+
+    sf::Vertex punto3;
+    sf::Vertex punto4;
     //3 constructor + 1 destructor;
 
 public:
@@ -645,15 +659,186 @@ public:
     rect();
     rect(int xx, int yy, int dxx, int dyy, double bb);
     rect(int xx, int yy, int dxx, int dyy, double bb, int c);
-    ~rect();
+    ~rect(){};
 
     void draw();
     void hide();
-    void move(int dxx, int dyy);
+    void move(int mxx, int myy);
     void rotate(double fi);
 
 };
 
+rect::rect(): square(){
+
+b =  (pow( pow(dx-x,2) + pow(dy-y,2) ,0.5))/2;
+
+std::cout<<b<<std::endl;
+
+punto3.position = sf::Vector2f(x,y);
+punto3.color = sf::Color(color*visable,255*visable,255*visable);
+
+punto4.position = sf::Vector2f(x+b,y);
+punto4.color = sf::Color(color*visable,255*visable,255*visable);
+
+
+
+transform.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
+
+transform2 = transform5;
+transform3 = transform5;
+
+
+transform2.translate(dx-x,dy-y);
+
+transform3.rotate(AnguloDeInclinacion(x,y,dx,dy)+90,sf::Vector2f(dx,dy));
+
+transform3.combine(transform2);
+
+transform2 = transform3;
+
+
+
+/*
+transform.rotate(90, sf::Vector2f(x,y));
+transform2.rotate(-90, sf::Vector2f(dx,dy));
+
+
+transform3.rotate(-90, sf::Vector2f(x,y));
+transform4.rotate(-90,sf::Vector2f(dx,dy));
+
+transform4.combine(transform3);
+
+*/
+
+}
+
+
+rect::rect(int xx, int yy, int dxx, int dyy, double bb): square(xx, yy, dxx, dyy){
+
+b =  bb;
+
+std::cout<<b<<std::endl;
+
+punto3.position = sf::Vector2f(x,y);
+punto3.color = sf::Color(color*visable,255*visable,255*visable);
+
+punto4.position = sf::Vector2f(x+b,y);
+punto4.color = sf::Color(color*visable,255*visable,255*visable);
+
+
+
+
+ppunto1.setPrimitiveType(sf::Lines);
+ppunto1.resize(2);
+
+ppunto2.setPrimitiveType(sf::Lines);
+ppunto2.resize(2);
+
+ppunto3.setPrimitiveType(sf::Lines);
+ppunto3.resize(2);
+
+ppunto4.setPrimitiveType(sf::Lines);
+ppunto4.resize(2);
+
+transform = transform5;
+transform2 = transform5;
+transform3 = transform5;
+transform4 = transform5;
+
+transform.rotate(90, sf::Vector2f(x,y));
+transform2.rotate(-90, sf::Vector2f(dx,dy));
+
+
+transform3.rotate(-90, sf::Vector2f(x,y));
+transform4.rotate(-90,sf::Vector2f(dx,dy));
+
+transform4.combine(transform3);
+
+}
+
+
+
+rect::rect(int xx, int yy, int dxx, int dyy, double bb, int c): square(xx, yy, dxx, dyy, c){
+
+b =  bb;
+
+std::cout<<b<<std::endl;
+
+punto3.position = sf::Vector2f(x,y);
+punto3.color = sf::Color(color*visable,255*visable,255*visable);
+
+punto4.position = sf::Vector2f(x+b,y);
+punto4.color = sf::Color(color*visable,255*visable,255*visable);
+
+
+transform.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
+
+transform2 = transform5;
+transform3 = transform5;
+
+
+transform2.translate(dx-x,dy-y);
+
+transform3.rotate(-AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
+
+transform3.combine(transform2);
+
+transform2 = transform3;
+
+
+
+
+}
+
+void rect::draw(){
+
+ppunto1[0] = punto1;
+ppunto1[1] = punto2;
+
+ppunto2[0] = punto3;
+ppunto2[1] = punto4;
+
+ppunto3[0] = punto3;
+ppunto3[1] = punto4;
+
+ppunto4[0] = punto1;
+ppunto4[1] = punto2;
+
+
+
+
+
+    
+window.draw(ppunto1,transform5);
+window.draw(ppunto2,transform);
+window.draw(ppunto3,transform2);
+window.draw(ppunto4,transform4);
+
+}
+
+void rect::hide(){
+
+
+
+}
+
+
+void rect::move(int mxx, int myy){
+
+
+
+}
+
+
+void rotate(double fi){
+
+
+
+}
+
+
+
+/*
 
 //////////////////////////////////////////////////////////////////
 class parallelepipedo : public romb, rect{
@@ -691,7 +876,7 @@ int main(){
 
     point punto1;
     point punto2(100,200);
-    point punto3(100,300,100);
+    point punto3(500,500,50);
 
     tline linea1;
     tline linea2(100, 200, 400 , 200);
@@ -702,8 +887,10 @@ int main(){
     square cuadrado3(800, 600, 1100, 300, 50);
 
     romb rombo1;
-    romb rombo2(800, 600, 1000, 400, 50, 50);
+    romb rombo2(800, 600, 1000, 400, 100, 50);
 
+    rect rectangulo1;
+    rect rectangulo2(800,600,1000,400,70,50);
 
 
 
@@ -757,14 +944,17 @@ while(window.isOpen()){
     //linea1.draw();
     //linea2.draw();
     //linea3.draw();
-    rombo2.rotate(-0.1);
+    //rombo2.rotate(-0.1);
 
-    cuadrado1.draw();
-    cuadrado2.draw();
-    cuadrado3.draw();
+    //cuadrado1.draw();
+    //cuadrado2.draw();
+    //cuadrado3.draw();
 
-    rombo1.draw();
-    rombo2.draw();
+    //rombo1.draw();
+    //rombo2.draw();
+
+    rectangulo1.draw();
+    rectangulo2.draw();
 
 
     window.display();
