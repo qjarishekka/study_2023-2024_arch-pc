@@ -793,11 +793,20 @@ transform2 = transform5;
 
 
 transform2.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
+
 transform4 = transform5;
 
-transform4.rotate(90,sf::Vector2f(dx,y));
+//transform4.rotate(-AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
+
+transform4.translate(b,b);
+
+
+
+
 
 }
+
+
 
 void rect::draw(){
 
@@ -839,8 +848,7 @@ void rect::move(int mxx, int myy){
 }
 
 
-void rotate(double fi){
-
+void rect::rotate(double fi){
 
 
 }
@@ -967,6 +975,8 @@ while(window.isOpen()){
     rectangulo1.draw();
     rectangulo2.draw();
     rectangulo3.draw();
+    rectangulo3.rotate(0.01);
+    rectangulo2.rotate(0.01);
 
 
     window.display();
