@@ -650,10 +650,7 @@ class rect : public square{
 protected: 
     double b;
 
-    sf::Vertex punto3;
-    sf::Vertex punto4;
-    sf::Vertex punto5;
-    sf::Vertex punto6;
+    sf::RectangleShape rectangulo;
     //3 constructor + 1 destructor;
 
 public:
@@ -672,45 +669,17 @@ public:
 
 rect::rect(): square(){
 
-b =  (pow( pow(dx-x,2) + pow(dy-y,2) ,0.5))/2;
+b = 50;
 
-std::cout<<b<<std::endl;
+rectangulo.setSize(sf::Vector2f(pow( (pow(dx-x, 2)) + ( pow(dy-y, 2)), 0.5) ,b));
 
-punto3.position = sf::Vector2f(x,y);
-punto3.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setRotation(AnguloDeInclinacion(x,y,dx,dy));
 
-punto4.position = sf::Vector2f(x+b,y);
-punto4.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setPosition(sf::Vector2f(100,100));
 
+rectangulo.setFillColor(sf::Color::Transparent);
 
-punto5.position = sf::Vector2f(dx,dy);
-punto5.color = sf::Color(color*visable,255*visable,255*visable);
-
-punto6.position = sf::Vector2f(dx,dy+b);
-punto6.color = sf::Color(color*visable,255*visable,255*visable);
-
-
-
-
-transform.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
-transform2 = transform5;
-
-transform2.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
-transform3 = transform5;
-
-
-
-/*
-transform.rotate(90, sf::Vector2f(x,y));
-transform2.rotate(-90, sf::Vector2f(dx,dy));
-
-
-transform3.rotate(-90, sf::Vector2f(x,y));
-transform4.rotate(-90,sf::Vector2f(dx,dy));
-
-transform4.combine(transform3);
-
-*/
+rectangulo.setOutlineThickness(1);
 
 }
 
@@ -719,48 +688,15 @@ rect::rect(int xx, int yy, int dxx, int dyy, double bb): square(xx, yy, dxx, dyy
 
 b =  bb;
 
-std::cout<<b<<std::endl;
+rectangulo.setSize(sf::Vector2f(pow( (pow(dx-x, 2)) + ( pow(dy-y, 2)), 0.5) ,b));
 
-punto3.position = sf::Vector2f(x,y);
-punto3.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setRotation(AnguloDeInclinacion(x,y,dx,dy));
 
-punto4.position = sf::Vector2f(x+b,y);
-punto4.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setPosition(sf::Vector2f(x,y));
 
-punto5.position = sf::Vector2f(dx,dy);
-punto5.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setFillColor(sf::Color::Transparent);
 
-punto6.position = sf::Vector2f(dx,dy+b);
-punto6.color = sf::Color(color*visable,255*visable,255*visable);
-
-
-
-ppunto1.setPrimitiveType(sf::Lines);
-ppunto1.resize(2);
-
-ppunto2.setPrimitiveType(sf::Lines);
-ppunto2.resize(2);
-
-ppunto3.setPrimitiveType(sf::Lines);
-ppunto3.resize(2);
-
-ppunto4.setPrimitiveType(sf::Lines);
-ppunto4.resize(2);
-
-
-transform = transform5;
-transform2 = transform5;
-transform3 = transform5;
-transform4 = transform5;
-
-transform.rotate(90, sf::Vector2f(x,y));
-transform2.rotate(-90, sf::Vector2f(dx,dy));
-
-
-transform3.rotate(-90, sf::Vector2f(x,y));
-transform4.rotate(-90,sf::Vector2f(dx,dy));
-
-transform4.combine(transform3);
+rectangulo.setOutlineThickness(1);
 
 }
 
@@ -770,36 +706,17 @@ rect::rect(int xx, int yy, int dxx, int dyy, double bb, int c): square(xx, yy, d
 
 b =  bb;
 
-std::cout<<b<<std::endl;
+rectangulo.setSize(sf::Vector2f(pow( (pow(dx-x, 2)) + ( pow(dy-y, 2)), 0.5) ,b));
 
-punto3.position = sf::Vector2f(x,y);
-punto3.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setRotation(AnguloDeInclinacion(x,y,dx,dy));
 
-punto4.position = sf::Vector2f(x+b,y);
-punto4.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setPosition(sf::Vector2f(x,y));
 
+rectangulo.setFillColor(sf::Color::Transparent);
 
-punto5.position = sf::Vector2f(dx,dy);
-punto5.color = sf::Color(color*visable,255*visable,255*visable);
+rectangulo.setOutlineThickness(1);
 
-punto6.position = sf::Vector2f(dx,dy+b);
-punto6.color = sf::Color(color*visable,255*visable,255*visable);
-
-
-
-
-transform.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
-transform2 = transform5;
-
-
-transform2.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
-
-transform4 = transform5;
-
-//transform4.rotate(-AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
-
-transform4.translate(b,b);
-
+rectangulo.setOutlineColor(sf::Color(color*visable,255*visable,255*visable));
 
 
 
@@ -810,32 +727,14 @@ transform4.translate(b,b);
 
 void rect::draw(){
 
-ppunto1[0] = punto1;
-ppunto1[1] = punto2;
 
-ppunto2[0] = punto3;
-ppunto2[1] = punto4;
-
-ppunto3[0] = punto5;
-ppunto3[1] = punto6;
-
-ppunto4[0] = punto1;
-ppunto4[1] = punto2;
-
-
-
-
-
-    
-window.draw(ppunto1,transform5);
-window.draw(ppunto2,transform);
-window.draw(ppunto3,transform2);
-window.draw(ppunto4,transform4);
+window.draw(rectangulo);
 
 }
 
 void rect::hide(){
 
+rectangulo.setOutlineColor(sf::Color::Transparent);
 
 
 }
@@ -843,28 +742,36 @@ void rect::hide(){
 
 void rect::move(int mxx, int myy){
 
-
+rectangulo.move(x+mxx,y+myy);
 
 }
 
 
 void rect::rotate(double fi){
 
+rectangulo.rotate(fi);
 
 }
 
 
 
-/*
 
-//////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 class parallelepipedo : public romb, rect{
 
 public:
 
         //3 constructor + 1 destructor
+        parallelepipedo();
+        parallelepipedo(int xx, int yy, int dxx ,int dyy, double al, double bb);
 
         parallelepipedo (int xx, int yy, int dxx ,int dyy, double al, double bb, int c);
+        
         ~parallelepipedo();
 
         void draw();
@@ -884,7 +791,7 @@ romb(xx, yy, dxx, dyy, al, c),rect(xx,yy,dxx,dyy,bb,c){
 
 }
 
-*/
+
 
 int main(){
 
@@ -907,9 +814,9 @@ int main(){
     romb rombo2(800, 600, 1000, 400, 100, 50);
 
     rect rectangulo1;
-    rect rectangulo2(800,600,1000,400,70,50);
+    rect rectangulo2(800,600,1000,400,100,50);
 
-    rect rectangulo3(600,300,800,200,50,50);
+    rect rectangulo3(600,300,800,200,500,50);
 
 
 
@@ -951,6 +858,9 @@ while(window.isOpen()){
         //rombo2.move(-100,100);
         rombo2.rotate(-70);
 
+        rectangulo1.hide();
+       // rectangulo3.hide();
+
 
 
         counter++;
@@ -972,11 +882,13 @@ while(window.isOpen()){
     //rombo1.draw();
     //rombo2.draw();
 
-    rectangulo1.draw();
-    rectangulo2.draw();
-    rectangulo3.draw();
-    rectangulo3.rotate(0.01);
-    rectangulo2.rotate(0.01);
+    //rectangulo1.draw();
+    //rectangulo2.draw();
+    //rectangulo3.draw();
+    //rectangulo3.rotate(0.01);
+    //rectangulo2.rotate(0.01);
+
+
 
 
     window.display();
