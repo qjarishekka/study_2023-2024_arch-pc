@@ -651,6 +651,14 @@ protected:
     double b;
 
     sf::RectangleShape rectangulo;
+
+    sf::Vertex punto3;
+    sf::Vertex punto4;
+    sf::Vertex punto5;
+    sf::Vertex punto6;
+
+    sf::Transform transform6;
+
     //3 constructor + 1 destructor;
 
 public:
@@ -706,6 +714,43 @@ rect::rect(int xx, int yy, int dxx, int dyy, double bb, int c): square(xx, yy, d
 
 b =  bb;
 
+double temp = sin((90 + AnguloDeInclinacion(x,y,dx,dy))*PI/180) * b;
+double temp2 = cos((90 + AnguloDeInclinacion(x,y,dx,dy))*PI/180) * b;
+
+
+std::cout<<temp << std:: endl<< temp2 << std::endl;
+
+transform = transform5;
+transform2 = transform5;
+transform3 = transform5;
+transform4 = transform5;
+
+transform.rotate(90+AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
+transform2.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
+
+
+transform4.translate(temp2,temp);
+
+
+
+
+    punto3.position = sf::Vector2f(x,y);
+    punto3.color = sf::Color(color*visable,255*visable,255*visable);
+    punto4.position = sf::Vector2f(x+b,y);
+    punto4.color = sf::Color(color*visable,255*visable,255*visable);
+    punto5.position = sf::Vector2f(dx,dy);
+    punto5.color = sf::Color(color*visable,255*visable,255*visable);
+    punto6.position = sf::Vector2f(dx,dy+b);
+    punto6.color = sf::Color(color*visable,255*visable,255*visable);
+
+
+
+
+
+
+
+
+/*
 rectangulo.setSize(sf::Vector2f(pow( (pow(dx-x, 2)) + ( pow(dy-y, 2)), 0.5) ,b));
 
 rectangulo.setRotation(AnguloDeInclinacion(x,y,dx,dy));
@@ -719,7 +764,7 @@ rectangulo.setOutlineThickness(1);
 rectangulo.setOutlineColor(sf::Color(color*visable,255*visable,255*visable));
 
 
-
+*/
 
 }
 
@@ -728,9 +773,36 @@ rectangulo.setOutlineColor(sf::Color(color*visable,255*visable,255*visable));
 void rect::draw(){
 
 
+
+    ppunto1[0] = punto1;
+    ppunto1[1] = punto2;
+
+    ppunto2[0] = punto3;
+    ppunto2[1] = punto4;
+
+    ppunto3[0] = punto5;
+    ppunto3[1] = punto6;
+
+    ppunto4[0] = punto1;
+    ppunto4[1] = punto2;
+
+
+
+window.draw(ppunto1,transform5);
+
+window.draw(ppunto2,transform);
+
+window.draw(ppunto3,transform2);
+
+window.draw(ppunto4,transform4);
+
+
+
 window.draw(rectangulo);
 
 }
+
+
 
 void rect::hide(){
 
@@ -751,6 +823,14 @@ void rect::rotate(double fi){
 
 rectangulo.rotate(fi);
 
+transform.rotate(fi,sf::Vector2f(x,y));
+transform2.rotate(fi,sf::Vector2f(x,y));
+
+
+
+
+
+
 }
 
 
@@ -761,6 +841,7 @@ rectangulo.rotate(fi);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
 
 class parallelepipedo : public romb, rect{
 
@@ -783,6 +864,14 @@ public:
 
 };
 
+parallelepipedo::parallelepipedo() : romb() , rect(){
+
+
+
+
+}
+
+
 
 parallelepipedo :: parallelepipedo (int xx, int yy, int dxx ,int dyy, double al, double bb, int c): 
 romb(xx, yy, dxx, dyy, al, c),rect(xx,yy,dxx,dyy,bb,c){
@@ -791,7 +880,7 @@ romb(xx, yy, dxx, dyy, al, c),rect(xx,yy,dxx,dyy,bb,c){
 
 }
 
-
+*/
 
 int main(){
 
@@ -814,9 +903,9 @@ int main(){
     romb rombo2(800, 600, 1000, 400, 100, 50);
 
     rect rectangulo1;
-    rect rectangulo2(800,600,1000,400,100,50);
+    rect rectangulo2(800,600,1000,400,100,250);
 
-    rect rectangulo3(600,300,800,200,500,50);
+    rect rectangulo3(600,300,800,200,50,50);
 
 
 
@@ -882,10 +971,10 @@ while(window.isOpen()){
     //rombo1.draw();
     //rombo2.draw();
 
-    //rectangulo1.draw();
-    //rectangulo2.draw();
-    //rectangulo3.draw();
-    //rectangulo3.rotate(0.01);
+    rectangulo1.draw();
+    rectangulo2.draw();
+    rectangulo3.draw();
+    rectangulo3.rotate(0.01);
     //rectangulo2.rotate(0.01);
 
 
