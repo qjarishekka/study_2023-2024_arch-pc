@@ -830,7 +830,6 @@ transform2.rotate(fi,sf::Vector2f(x,y));
 
 
 
-
 }
 
 
