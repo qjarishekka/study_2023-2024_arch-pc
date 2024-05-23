@@ -2,7 +2,6 @@
 using namespace std;
 
 
-
 class vect {
 
 public:
@@ -312,7 +311,7 @@ v3.print();
 v2.print();
 v1.print();
 
-cout<<endl;
+std::cout<<endl;
 
 v3 = v2 - v1;
 
@@ -320,14 +319,14 @@ v3.print();
 v2.print();
 v1.print();
 
-cout<<endl;
+std::cout<<endl;
 
 
 int pato = v2 * v1;
 
-cout<< pato<< endl;
+std::cout<< pato<< endl;
 
-cout<<endl;
+std::cout<<endl;
 
 
 
@@ -337,7 +336,7 @@ v3.print();
 v2.print();
 v1.print();
 
-cout<<endl;
+std::cout<<endl;
 
 
 v3 = v2 = v1;
@@ -347,19 +346,38 @@ v2.print();
 v1.print();
 
 
+
+
  double **a = new double * [3];
-    for (int i = 0; i < 3; i++) {
-        a[i] = new double[3];
-        for (int j = 0; j < 3; j++) {
-            std::cin >> a[i][j];
-        }
+
+
+
+ for (int i = 0; i < 3; i++) {
+
+    a[i] = new double[3];
+
+    for (int j = 0; j < 3; j++) {
+            a[i][j] = 2*i + j+1;        
     }
+        
+}
 
 
-cout<<endl;
+
+std::cout<<endl<<endl<<endl<<endl;
+
+
 
 matr m1(3,a);
 matr m2(3,a);
+
+
+
+std::cout<<"матрица а"<<endl;
+
+m1.print();
+std::cout<<endl;
+
 
 matr m3;
 matr m4;
@@ -370,19 +388,20 @@ m3 = m1 + m2;
 m4 = m1 * m3;
 
 
-
+std::cout<<"матрица m3"<<endl;
 m3.print();
 
-cout<<endl;
+std::cout<<endl;
 
+std::cout<<"матрица m4"<<endl;
 m4.print();
 
-cout<<endl;
+std::cout<<endl;
 
 
 
 
-cout<< vect::count<<endl;
+std::cout<< vect::count<<endl;
 return 0;
 
 }

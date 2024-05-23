@@ -932,21 +932,21 @@ while(window.isOpen()){
 
     if(counter == 0){
 
-        linea1.rotate(90);
-        linea2.rotate(-45);
-        linea3.rotate(45);
+        //linea1.rotate(90);
+        //linea2.rotate(-45);
+        //linea3.rotate(45);
 
-        cuadrado1.move(100,100);
-        cuadrado3.move(-100,-100);
+        //cuadrado1.move(100,100);
+        //cuadrado3.move(-100,-100);
 
-        cuadrado1.rotate(100);
-        cuadrado3.rotate(45);
+        //cuadrado1.rotate(100);
+        //cuadrado3.rotate(45);
 
         //rombo1.hide();
         //rombo2.move(-100,100);
-        rombo2.rotate(-70);
+        //rombo2.rotate(-70);
 
-        rectangulo1.hide();
+        //rectangulo1.hide();
        // rectangulo3.hide();
 
 
@@ -954,20 +954,20 @@ while(window.isOpen()){
         counter++;
     }
 
-    //punto1.draw();
+    punto1.draw();
     //punto2.draw();
     //punto3.draw();
 
-    //linea1.draw();
+    linea1.draw();
     //linea2.draw();
     //linea3.draw();
     //rombo2.rotate(-0.1);
 
-    //cuadrado1.draw();
+    cuadrado1.draw();
     //cuadrado2.draw();
     //cuadrado3.draw();
 
-    //rombo1.draw();
+    rombo1.draw();
     //rombo2.draw();
 
     rectangulo1.draw();
@@ -975,7 +975,9 @@ while(window.isOpen()){
     rectangulo3.draw();
     rectangulo3.rotate(0.01);
     //rectangulo2.rotate(0.01);
-
+    linea1.rotate(-0.001);
+    cuadrado1.rotate(0.001);
+    rombo1.rotate(0.001);
 
 
 
