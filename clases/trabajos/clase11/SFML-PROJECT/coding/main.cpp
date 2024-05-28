@@ -652,10 +652,13 @@ protected:
 
     sf::RectangleShape rectangulo;
 
+    /*
+
     sf::Vertex punto3;
     sf::Vertex punto4;
     sf::Vertex punto5;
     sf::Vertex punto6;
+    */
 
     sf::Transform transform6;
 
@@ -714,43 +717,6 @@ rect::rect(int xx, int yy, int dxx, int dyy, double bb, int c): square(xx, yy, d
 
 b =  bb;
 
-double temp = sin((90 + AnguloDeInclinacion(x,y,dx,dy))*PI/180) * b;
-double temp2 = cos((90 + AnguloDeInclinacion(x,y,dx,dy))*PI/180) * b;
-
-
-std::cout<<temp << std:: endl<< temp2 << std::endl;
-
-transform = transform5;
-transform2 = transform5;
-transform3 = transform5;
-transform4 = transform5;
-
-transform.rotate(90+AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(x,y));
-transform2.rotate(AnguloDeInclinacion(x,y,dx,dy),sf::Vector2f(dx,dy));
-
-
-transform4.translate(temp2,temp);
-
-
-
-
-    punto3.position = sf::Vector2f(x,y);
-    punto3.color = sf::Color(color*visable,255*visable,255*visable);
-    punto4.position = sf::Vector2f(x+b,y);
-    punto4.color = sf::Color(color*visable,255*visable,255*visable);
-    punto5.position = sf::Vector2f(dx,dy);
-    punto5.color = sf::Color(color*visable,255*visable,255*visable);
-    punto6.position = sf::Vector2f(dx,dy+b);
-    punto6.color = sf::Color(color*visable,255*visable,255*visable);
-
-
-
-
-
-
-
-
-/*
 rectangulo.setSize(sf::Vector2f(pow( (pow(dx-x, 2)) + ( pow(dy-y, 2)), 0.5) ,b));
 
 rectangulo.setRotation(AnguloDeInclinacion(x,y,dx,dy));
@@ -761,41 +727,11 @@ rectangulo.setFillColor(sf::Color::Transparent);
 
 rectangulo.setOutlineThickness(1);
 
-rectangulo.setOutlineColor(sf::Color(color*visable,255*visable,255*visable));
-
-
-*/
-
 }
 
 
 
 void rect::draw(){
-
-
-
-    ppunto1[0] = punto1;
-    ppunto1[1] = punto2;
-
-    ppunto2[0] = punto3;
-    ppunto2[1] = punto4;
-
-    ppunto3[0] = punto5;
-    ppunto3[1] = punto6;
-
-    ppunto4[0] = punto1;
-    ppunto4[1] = punto2;
-
-
-
-window.draw(ppunto1,transform5);
-
-window.draw(ppunto2,transform);
-
-window.draw(ppunto3,transform2);
-
-window.draw(ppunto4,transform4);
-
 
 
 window.draw(rectangulo);
@@ -823,9 +759,6 @@ void rect::rotate(double fi){
 
 rectangulo.rotate(fi);
 
-transform.rotate(fi,sf::Vector2f(x,y));
-transform2.rotate(fi,sf::Vector2f(x,y));
-
 
 
 
@@ -840,9 +773,13 @@ transform2.rotate(fi,sf::Vector2f(x,y));
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+
 
 class parallelepipedo : public romb, rect{
+
+protected: 
+
+     sf::ConvexShape convex;
 
 public:
 
@@ -852,13 +789,14 @@ public:
 
         parallelepipedo (int xx, int yy, int dxx ,int dyy, double al, double bb, int c);
         
-        ~parallelepipedo();
+        ~parallelepipedo(){};
 
         void draw();
-        void hide();
-        void move(int dxx, int dyy);
-        void rotate(double fi);
-
+        /*
+        void hide(){};
+        void move(int dxx, int dyy){};
+        void rotate(double fi){};
+        */
 
 
 };
@@ -867,8 +805,43 @@ parallelepipedo::parallelepipedo() : romb() , rect(){
 
 
 
-
 }
+ 
+ parallelepipedo :: parallelepipedo(int xx, int yy, int dxx ,int dyy, double al, double bb) : romb (xx,yy,dxx,dyy,al) , rect(xx,yy,dxx,dyy,bb){
+
+
+
+ }
+
+ void parallelepipedo :: draw(){
+
+        convex.setPointCount(4);
+        convex.setPoint(0, sf::Vector2f(romb::x, romb::y));
+        convex.setPoint(1, sf::Vector2f(romb::dx, romb:: dy));
+        float p1x = romb::dx + cosf(alfa * PI / 180 + atan2(romb::y-romb::dy,romb::x-romb::dx)) * b;
+        float p1y = romb::dy + sinf(romb::alfa * PI / 180 + atan2(romb::y-romb::dy,romb::x-romb::dx)) * b;
+
+        float p2x = p1x + cosf((180-alfa) * PI / 180 + atan2(romb::dy-p1y,romb::dx-p1x)) * sqrt(pow(romb::x-romb::dx, 2) + pow(romb::y-romb::dy, 2));
+        float p2y = p1y + sinf((180-alfa) * PI / 180 + atan2(romb::dy-p1y,romb::dx-p1x)) * sqrt(pow(romb::x-romb::dx, 2) + pow(romb::y-romb::dy, 2));
+
+        convex.setPoint(2, sf::Vector2f((int) p1x, (int) p1y));
+        convex.setPoint(3, sf::Vector2f((int) p2x, (int) p2y));
+
+        if (romb::visable == 1) {
+            convex.setFillColor(sf::Color(romb::color, 255, 255));
+        }
+        else {
+            convex.setFillColor(sf::Color::Black);
+            romb::visable = 1;
+        }
+        window.draw(convex);
+    }
+
+
+
+
+
+
 
 
 
@@ -879,7 +852,7 @@ romb(xx, yy, dxx, dyy, al, c),rect(xx,yy,dxx,dyy,bb,c){
 
 }
 
-*/
+
 
 int main(){
 
@@ -905,6 +878,8 @@ int main(){
     rect rectangulo2(800,600,1000,400,100,250);
 
     rect rectangulo3(600,300,800,200,50,50);
+
+    parallelepipedo paralelepipedo1(200,200,500,500,30,100);
 
 
 
@@ -978,6 +953,8 @@ while(window.isOpen()){
     linea1.rotate(-0.001);
     cuadrado1.rotate(0.001);
     rombo1.rotate(0.001);
+
+    paralelepipedo1.parallelepipedo::draw();
 
 
 
