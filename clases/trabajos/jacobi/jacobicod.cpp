@@ -38,7 +38,7 @@ public:
     const friend vect operator-(vect l, vect r);
     friend vect operator*(vect l, int r);
     int operator*(vect &r);
-    vect operator=(const vect &r) n;
+    vect operator=(const vect &r);
     vect operator=(const matr& r);
     void print();
 };
