@@ -911,7 +911,7 @@ while(window.isOpen()){
         //linea2.rotate(-45);
         //linea3.rotate(45);
 
-        //cuadrado1.move(100,100);
+        cuadrado1.move(100,100);
         //cuadrado3.move(-100,-100);
 
         //cuadrado1.rotate(100);

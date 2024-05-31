@@ -1,5 +1,22 @@
-#include <iostream>
-using namespace std;
+#include<iostream>
+#include<math.h>
+#include<time.h>
+
+
+
+
+//функция для замена нулей
+double corrector(double &a ){
+
+    if (a == 0){    
+    a = (rand() % 10000/100.0) - 50;
+    
+    corrector(a);
+
+    }
+
+return a;
+}
 
 
 class vect {
@@ -119,25 +136,26 @@ void vect::print() {
 } 
 
 
-
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
+int ind(int n, int i, int j){
 
+return n*(i-1)+j-1;
 
+}
 
 class matr{
 
-protected:
 
-    int dim; 
-    double **a;
 
 public: 
+
+    int dim; double**a;
     matr();
-    matr(matr& x);
-    matr(int d);
+    matr(matr&x);
+    matr(int d); //единичная матрица
     matr(int n, double **x);
     ~matr();
 
@@ -149,9 +167,11 @@ public:
     vect operator*(vect &r);
     matr  operator=(const matr &r);
     void print();
+    void fill();
+
 };
 
-matr::matr(){
+matr::matr() {
     dim = 0;
     a = NULL;
 }
@@ -296,7 +316,7 @@ vect matr::operator*(vect &r) {
 void matr::print() {
     for (int i = 0; i < dim; i++) {
         for (int j = 0; j < dim; j++) {
-            std::cout << a[i][j] << " ";
+            std::cout << a[i][j] << " \t";
         }
         std::cout << "\n";
     }
@@ -304,115 +324,69 @@ void matr::print() {
 
 
 
-int main(){
 
-double x1[] = {1,1,1,1};
-double x2[] = {1,2,3,4};
+//заполняем матрицу
+void matr::fill(){
 
-vect v1(4,x1), v2(4,x2),v3;
-
-v3 = v2 + v1;
-
-v3.print();
-v2.print();
-v1.print();
-
-std::cout<<endl;
-
-v3 = v2 - v1;
-
-v3.print();
-v2.print();
-v1.print();
-
-std::cout<<endl;
+std::srand(std::time(NULL));
 
 
-int pato = v2 * v1;
+for(int i = 0; i < dim ; i++){
+    
+    for(int j = 0; j < dim ; j++){
 
-std::cout<< pato<< endl;
+        a[i][j] = (rand()%10000 /100.0 ) - 50;
 
-std::cout<<endl;
-
-
-
-v3 = v2 * 4;
-
-v3.print();
-v2.print();
-v1.print();
-
-std::cout<<endl;
-
-
-v3 = v2 = v1;
-
-v3.print();
-v2.print();
-v1.print();
-
-
-
-double b[3][3] = {{1,2,3},{4,5,6},{7,8,9}};
-
-
- double **a = new double * [3];
-
-
- for (int i = 0; i < 3; i++) {
-
-    a[i] = new double[3];
-
-    for (int j = 0; j < 3; j++) {
-            a[i][j] = b[i][j]; 
     }
-        
+
+}
+
+
+
+for(int i = 0; i < dim; i++){
+
+    corrector(a[i][i]);
+
+    a[i][i] = a[i][i] * 100;
+
+}
+
+
+
 }
 
 
 
 
 
+int main (){
+
+//Aij = (rand()%10000/100.0) - 50;
+// Aij != 0;
+// Aii = Aii * 100;
+
+int n;
+
+std::cin>> n;
 
 
-std::cout<<endl<<endl<<endl<<endl;
+
+matr A(n);
+
+A.fill();
+A.print();
 
 
 
-matr m1(3,a);
-matr m2(3,a);
+
+//A.fill();
+//A.print();
 
 
 
-std::cout<<"матрица а"<<endl;
-
-m1.print();
-std::cout<<endl;
 
 
-matr m3;
-matr m4;
-
-m3 = m1 + m2;
 
 
-m4 = m1 * m3;
-
-
-std::cout<<"матрица m3"<<endl;
-m3.print();
-
-std::cout<<endl;
-
-std::cout<<"матрица m4"<<endl;
-m4.print();
-
-std::cout<<endl;
-
-matr m5(5);
-m5.print();
-
-std::cout<< vect::count<<endl;
 return 0;
-
 }
