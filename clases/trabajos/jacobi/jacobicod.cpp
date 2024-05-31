@@ -367,6 +367,8 @@ int main (){
 
 int n;
 
+std::cout<<"введите размер матрицы"<<std::endl;
+
 std::cin>> n;
 
 
