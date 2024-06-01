@@ -3,7 +3,9 @@
 #include <cstdlib>
 #include <ctime>
 
+#define accurancy 0.001
 
+class matr;
 
 
 //функция для замена нулей
@@ -30,6 +32,7 @@ public:
 
 
     vect();
+    vect(int d);
     vect(int d, double *x);
     
     vect(vect &x);
@@ -40,7 +43,10 @@ public:
     friend vect operator*(vect l, int r);
     int operator*(vect &r);
     vect operator=(const vect &r);
-    void operator=(const matr &r);
+
+    friend vect jacobi(matr M, vect V);
+    
+    void fill();
     void print();
 };
 
@@ -53,6 +59,19 @@ vect::vect() {
     v = NULL;
 }
 
+vect::vect(int d){
+    count++;
+    num = count;
+    dim = d;
+    v = new double [dim];
+
+    for(int i = 0; i< dim ; i ++ ){
+
+        v[i] = 0;
+
+    }
+
+}
 
 vect::vect(int d, double *x) {
     count++; num = count;
@@ -77,7 +96,6 @@ vect::~vect() {
     delete[] v;
 }
 
-///////////////////////////////
 
 const vect vect::operator+(vect &r)const{
     vect tmp;
@@ -129,10 +147,25 @@ vect vect::operator=(const vect &r){
     return *this;
 }
 
+void vect::fill(){
+
+std::srand(std::time(NULL));
+
+v = new double [dim];
+
+
+for(int i = 0; i<dim ; i++){
+
+    v[i] = (rand()%10000 /100.0 ) - 50;
+
+}
+
+}
+
 
 void vect::print() {
     for (int i = 0; i < this->dim; i++) {
-        std::cout << this->v[i] << " ";
+        std::cout << this->v[i] << "\t";
     }
     std::cout << std::endl;
 } 
@@ -162,12 +195,15 @@ public:
     ~matr();
 
     const matr operator+(matr&r)const;
+    const matr operator+( vect &r )const;
+
     matr operator-(matr&r);
     matr operator-();
     matr operator*(matr&r);
     friend matr operator*(double k, matr &r);
     vect operator*(vect &r);
-    matr  operator=(const matr &r);
+    matr operator=(const matr &r);
+    friend vect jacobi(matr M, vect V);
     
     void print();
     void fill();
@@ -196,6 +232,16 @@ matr::matr(int d){
     for(int i = 0; i< dim ; i++){
 
         a[i] = new double[dim];
+
+    }
+
+    for(int i = 0; i<dim ;i ++){
+
+        for(int j = 0 ; j< dim ; j++){
+
+            a[i][j] = 0;
+
+        }
 
     }
 }
@@ -333,7 +379,6 @@ void matr::fill(){
 
 std::srand(std::time(NULL));
 
-
 for(int i = 0; i < dim ; i++){
     
     for(int j = 0; j < dim ; j++){
@@ -344,8 +389,6 @@ for(int i = 0; i < dim ; i++){
 
 }
 
-
-
 for(int i = 0; i < dim; i++){
 
     corrector(a[i][i]);
@@ -354,8 +397,25 @@ for(int i = 0; i < dim; i++){
 
 }
 
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+// metodo jacobi(matris, vector, precision)
+ vect jacobi(matr M, vect V, int a){
+
+int tempdim = V.dim;
+
+vect temp(tempdim);
 
 
+
+
+
+
+return 0;
 }
 
 
@@ -373,26 +433,19 @@ int n;
 std::cout<<"введите размер матрицы"<<std::endl;
 
 std::cin>> n;
-
-
+std::cout<<std::endl;
 
 matr A(n);
+vect B(n);
 
 A.fill();
 A.print();
+    std::cout<<std::endl;
+B.fill();
+B.print();
 
 
-
-
-
-
-
-
-//A.fill();
-//A.print();
-
-
-
+jacobi(A,B,accurancy);
 
 
 
