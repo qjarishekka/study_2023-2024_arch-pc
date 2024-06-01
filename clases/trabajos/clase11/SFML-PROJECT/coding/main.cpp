@@ -938,9 +938,9 @@ while(window.isOpen()){
     //linea3.draw();
     //rombo2.rotate(-0.1);
 
-    cuadrado1.draw();
+    //cuadrado1.draw();
     //cuadrado2.draw();
-    //cuadrado3.draw();
+    cuadrado3.draw();
 
     rombo1.draw();
     //rombo2.draw();

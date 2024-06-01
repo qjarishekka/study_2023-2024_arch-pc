@@ -7,7 +7,6 @@
 
 class matr;
 
-
 //функция для замена нулей
 double corrector(double &a ){
 
@@ -24,12 +23,13 @@ return a;
 
 class vect {
 
+
 public:
+
     int num;
     static int count;
     int dim;
     double *v;
-
 
     vect();
     vect(int d);
@@ -41,16 +41,20 @@ public:
     const vect operator+(vect &r) const;
     const friend vect operator-(vect l, vect r);
     friend vect operator*(vect l, int r);
+
+    friend vect operator*(vect &r);
+
     int operator*(vect &r);
     vect operator=(const vect &r);
 
-    friend vect jacobi(matr M, vect V);
+    vect jacobi(matr M, vect V, int a);
     
     void fill();
     void print();
 };
 
 int vect::count = 0;
+
 vect::vect() {
     count++;
     num = count;
@@ -106,6 +110,7 @@ const vect vect::operator+(vect &r)const{
     }
     return tmp;
 }
+
 vect const operator-(vect l, vect r){
     vect tmp;
     tmp.dim = r.dim; //(r.dim, this -> dim)
@@ -115,6 +120,7 @@ vect const operator-(vect l, vect r){
     }
     return tmp;
 }
+
 vect operator*(vect l, int r){
     vect tmp;
     tmp.dim = l.dim; //(r.dim, this -> dim)
@@ -124,7 +130,6 @@ vect operator*(vect l, int r){
     }
     return tmp;
 }
-
 
 int vect::operator*(vect &r) {
     int tmp;
@@ -183,11 +188,14 @@ return n*(i-1)+j-1;
 
 class matr{
 
+protected:
+
+int dim; double**a;
 
 
 public: 
 
-    int dim; double**a;
+    
     matr();
     matr(matr&x);
     matr(int d); //единичная матрица
@@ -201,9 +209,11 @@ public:
     matr operator-();
     matr operator*(matr&r);
     friend matr operator*(double k, matr &r);
+
     vect operator*(vect &r);
     matr operator=(const matr &r);
-    friend vect jacobi(matr M, vect V);
+
+    friend vect vect::jacobi(matr M, vect V, int a);
     
     void print();
     void fill();
@@ -371,9 +381,6 @@ void matr::print() {
     }
 }
 
-
-
-
 //заполняем матрицу
 void matr::fill(){
 
@@ -404,47 +411,73 @@ for(int i = 0; i < dim; i++){
 ////////////////////////////////////////////////////////////////////////////////////
 
 // metodo jacobi(matris, vector, precision)
- vect jacobi(matr M, vect V, int a){
 
-
-
+vect vect::jacobi(matr M, vect V, int a){
 
 int tempdim = V.dim;
 
 double suma = 0;
 double resta = 0;
-double division = 0;
+double max = 0;
+
+int flag = 0;
+int index = 0;
 
 vect temp(tempdim);
+vect respuesta(tempdim);
 
-for(int i = 0; i < M.dim ; i ++){
+do{
 
-    suma = 0;
-    resta = 0;
+    for(int i = 0; i < M.dim ; i++ ){
 
-    for(int j = 0; j < M.dim ; j++){
+        if(temp.v[i] - respuesta.v[i] < temp.v[i++] - respuesta.v[i++]){
 
-        if(i != j){
+            index++;
 
-        suma += M.a[i][j] * temp.v[j];
+        }
+                  
+    }
+
+    for(int i = 0; i < M.dim ; i ++){
+
+        suma = 0;
+        resta = 0;
+
+        for(int j = 0; j < M.dim ; j++){
+
+            if(i != j){
+
+            suma += M.a[i][j] * temp.v[j];
+
+            }
 
         }
 
+        resta = V.v[i] - suma;
+
+        temp.v[i] = resta/M.a[i][i];
+
+
     }
 
-    resta = V.v[i] - suma;
 
-    division = resta/M.a[i][i];
+    if( abs(temp.v[index] - respuesta.v[index]) <= accurancy){
 
+        flag = 1;
+
+    }
+
+    for(int i = 0; i<V.dim ; i++){
+
+        respuesta.v[i] = temp.v[i];
+
+    }
     
 
-}
+}while(flag != 1);
 
-temp.print();
 
-std::cout<< "suma: "<< suma<< std::endl;
-
-return 0;
+return respuesta;
 }
 
 
@@ -467,6 +500,8 @@ std::cout<<std::endl;
 matr A(n);
 vect B(n);
 
+vect R;
+
 A.fill();
 A.print();
     std::cout<<std::endl;
@@ -474,10 +509,11 @@ B.fill();
 B.print();
 
 
-jacobi(A,B,accurancy);
+R = R.jacobi(A,B,accurancy);
 
+R.print();
 
-
+std::cout<<std::endl;
 
 return 0;
 }
