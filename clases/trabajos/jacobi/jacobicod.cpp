@@ -2,6 +2,7 @@
 #include<math.h>
 #include <cstdlib>
 #include <ctime>
+#include <string.h>
 
 #define accurancy 0.001
 
@@ -420,8 +421,10 @@ double suma = 0;
 double resta = 0;
 double max = 0;
 
+
 int flag = 0;
 int index = 0;
+int rep = 0;
 
 vect temp(tempdim);
 vect respuesta(tempdim);
@@ -473,9 +476,12 @@ do{
 
     }
     
+    rep++;
+    std::cout<<rep<<std::endl;
 
 }while(flag != 1);
 
+std::cout<<rep<<std::endl;
 
 return respuesta;
 }
@@ -492,17 +498,37 @@ int main (){
 
 int n;
 
+double **a;
+a = new double*[4];
+
+double b[3][3] = {{1,2,3} , {4,5,6} , {7,8,9}};
+
+for(int i = 0; i < 3; i++){
+
+    a[i] = new double[4];
+
+    for(int j = 0 ; j < 3 ; j++){
+
+        a[i][j] = b[i][j];
+
+    }
+
+}
+
+
+
+
 std::cout<<"введите размер матрицы"<<std::endl;
 
 std::cin>> n;
 std::cout<<std::endl;
 
-matr A(n);
+matr A(3,a);
 vect B(n);
 
 vect R;
 
-A.fill();
+//A.fill();
 A.print();
     std::cout<<std::endl;
 B.fill();
