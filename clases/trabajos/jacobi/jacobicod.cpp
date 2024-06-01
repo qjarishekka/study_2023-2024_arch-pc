@@ -1,6 +1,7 @@
 #include<iostream>
 #include<math.h>
-#include<time.h>
+#include <cstdlib>
+#include <ctime>
 
 
 
@@ -39,7 +40,7 @@ public:
     friend vect operator*(vect l, int r);
     int operator*(vect &r);
     vect operator=(const vect &r);
-    vect operator=(const matr& r);
+    void operator=(const matr &r);
     void print();
 };
 
@@ -167,6 +168,7 @@ public:
     friend matr operator*(double k, matr &r);
     vect operator*(vect &r);
     matr  operator=(const matr &r);
+    
     void print();
     void fill();
 
