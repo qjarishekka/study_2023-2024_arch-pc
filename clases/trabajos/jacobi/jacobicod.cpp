@@ -149,7 +149,7 @@ vect vect::operator=(const vect &r){
 
 void vect::fill(){
 
-std::srand(std::time(NULL));
+//std::srand(std::time(NULL));
 
 v = new double [dim];
 
@@ -377,7 +377,7 @@ void matr::print() {
 //заполняем матрицу
 void matr::fill(){
 
-std::srand(std::time(NULL));
+//std::srand(std::time(NULL));
 
 for(int i = 0; i < dim ; i++){
     
@@ -406,14 +406,43 @@ for(int i = 0; i < dim; i++){
 // metodo jacobi(matris, vector, precision)
  vect jacobi(matr M, vect V, int a){
 
+
+
+
 int tempdim = V.dim;
+
+double suma = 0;
+double resta = 0;
+double division = 0;
 
 vect temp(tempdim);
 
+for(int i = 0; i < M.dim ; i ++){
 
+    suma = 0;
+    resta = 0;
 
+    for(int j = 0; j < M.dim ; j++){
 
+        if(i != j){
 
+        suma += M.a[i][j] * temp.v[j];
+
+        }
+
+    }
+
+    resta = V.v[i] - suma;
+
+    division = resta/M.a[i][i];
+
+    
+
+}
+
+temp.print();
+
+std::cout<< "suma: "<< suma<< std::endl;
 
 return 0;
 }
