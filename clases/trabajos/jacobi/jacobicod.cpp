@@ -421,6 +421,8 @@ int rep = 0;        //повторение
 vect temp(V.dim);   
 vect respuesta(V.dim);  //вектор ответа
 
+
+//якоби алгоритм
 do{
 
     //поиск самой большой разности значений векторов  X1[i] - X2[i]
@@ -542,6 +544,7 @@ B.fill();
 B.print();
 
 
+std::cout<<"ответ: ";
 R = R.jacobi(A,B,accurancy);
 
 R.print();
