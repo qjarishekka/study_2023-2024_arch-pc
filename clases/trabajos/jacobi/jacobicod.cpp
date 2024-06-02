@@ -1,29 +1,24 @@
 #include<iostream>
-#include<math.h>
-#include <cstdlib>
-#include <ctime>
-#include <string.h>
+#include<math.h> //для использования функции abs
+#include <cstdlib> // для использования функции srand
+#include <ctime>    //для использования функции time
 
-#define accurancy 0.001
+#define accurancy 0.001 //точность ответа
 
-class matr;
+class matr; //объявление класса матрицы
+
 
 //функция для замена нулей
 double corrector(double &a ){
-
     if (a == 0){    
-    a = (rand() % 10000/100.0) - 50;
-    
-    corrector(a);
-
+        a = (rand() % 10000/100.0) - 50;
+        corrector(a);
     }
-
 return a;
 }
 
-
+//класс весткор
 class vect {
-
 
 public:
 
@@ -63,7 +58,6 @@ vect::vect() {
 
     v = NULL;
 }
-
 vect::vect(int d){
     count++;
     num = count;
@@ -77,7 +71,6 @@ vect::vect(int d){
     }
 
 }
-
 vect::vect(int d, double *x) {
     count++; num = count;
     if (d > 0) {
@@ -153,6 +146,7 @@ vect vect::operator=(const vect &r){
     return *this;
 }
 
+//функция для заполнения векторов
 void vect::fill(){
 
 //std::srand(std::time(NULL));
@@ -167,7 +161,6 @@ for(int i = 0; i<dim ; i++){
 }
 
 }
-
 
 void vect::print() {
     for (int i = 0; i < this->dim; i++) {
@@ -187,15 +180,15 @@ return n*(i-1)+j-1;
 
 }
 
+//класс матрица
 class matr{
 
 protected:
 
-int dim; double**a;
-
+    int dim; 
+    double**a;
 
 public: 
-
     
     matr();
     matr(matr&x);
@@ -405,26 +398,26 @@ for(int i = 0; i < dim; i++){
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
-// metodo jacobi(matris, vector, precision)
 
+
+// метод якоби(матрица, вектор, точность)
 vect vect::jacobi(matr M, vect V, int a){
 
-int tempdim = V.dim;
-
-double suma = 0;
-double resta = 0;
-double max = 0;
+double suma = 0;    //сумма
+double resta = 0;   //разность
+double max = 0;     //мах
 
 
-int flag = 0;
+int flag = 1;
 int index = 0;
-int rep = 0;
+int rep = 0;        //повторение
 
-vect temp(tempdim);
-vect respuesta(tempdim);
+vect temp(V.dim);   
+vect respuesta(V.dim);  //вектор ответа
 
 do{
 
+    //поиск самой большой разности значений векторов  X1[i] - X2[i]
     for(int i = 0; i < M.dim ; i++ ){
 
         if(temp.v[i] - respuesta.v[i] < temp.v[i++] - respuesta.v[i++]){
@@ -435,35 +428,27 @@ do{
                   
     }
 
+    //сумма всех значений матрицы кроме когда j = i;
     for(int i = 0; i < M.dim ; i ++){
 
         suma = 0;
         resta = 0;
-
         for(int j = 0; j < M.dim ; j++){
-
             if(i != j){
-
             suma += M.a[i][j] * temp.v[j];
-
             }
-
         }
 
         resta = V.v[i] - suma;
-
         temp.v[i] = resta/M.a[i][i];
-
-
     }
 
-
+    //проверка точности ответа
     if( abs(temp.v[index] - respuesta.v[index]) <= accurancy){
-
-        flag = 1;
-
+        flag = 0;
     }
 
+    //копия вектора для следующей интеракции
     for(int i = 0; i<V.dim ; i++){
 
         respuesta.v[i] = temp.v[i];
@@ -471,12 +456,12 @@ do{
     }
     
     rep++;
+
     std::cout<<rep<<std::endl;
 
-}while(flag != 1);
+}while(flag);
 
 std::cout<<rep<<std::endl;
-
 
 /*
 for(int i =0 ; i < V.dim ; i++ ){
@@ -499,8 +484,9 @@ int main (){
 // Aij != 0;
 // Aii = Aii * 100;
 
-int n;
 
+
+/*
 double **a;
 double *c;
 a = new double*[4];
@@ -527,8 +513,9 @@ for(int i = 0; i< 3 ; i++){
     c[i] = d[i];
 
 }
+*/
 
-
+int n;
 
 std::cout<<"введите размер матрицы"<<std::endl;
 
@@ -542,7 +529,9 @@ vect R;
 
 A.fill();
 A.print();
-    std::cout<<std::endl;
+
+std::cout<<std::endl;
+
 B.fill();
 B.print();
 
