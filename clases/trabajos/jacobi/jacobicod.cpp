@@ -4,7 +4,7 @@
 #include <ctime>    //для использования функции time
 
 #define accurancy 0.001 //точность ответа
-#define random 0
+#define random 0    //случайность
 
 class matr; //объявление класса матрицы
 
