@@ -225,7 +225,6 @@ matr::matr() {
     dim = 0;
     a = NULL;
 }
-
 matr::matr(matr &x) {
     dim = x.dim;
     a = new double * [dim];
@@ -236,7 +235,6 @@ matr::matr(matr &x) {
         }
     }
 }
-
 matr::matr(int d){
     dim = d;
     a = new double*[d];
@@ -256,7 +254,6 @@ matr::matr(int d){
 
     }
 }
-
 matr::matr(int n, double **x) {
     dim = n;
     a = new double * [dim];
@@ -267,14 +264,12 @@ matr::matr(int n, double **x) {
         }
     }
 }
-
 matr::~matr() {
     for (int i = 0; i < dim; i++) {
         delete[] a[i];
     }
     delete[] a;
 }
-
 
 matr const matr::operator+(matr &r)const {
     matr tmp;
@@ -288,7 +283,6 @@ matr const matr::operator+(matr &r)const {
     }
     return tmp;
 }
-
 
 matr matr::operator-(matr &r) {
     matr tmp;
@@ -482,6 +476,13 @@ do{
 }while(flag != 1);
 
 std::cout<<rep<<std::endl;
+
+for(int i =0 ; i < V.dim ; i++ ){
+
+    std::cout<<respuesta.v[i]<<"\t";
+
+}
+
 
 return respuesta;
 }
