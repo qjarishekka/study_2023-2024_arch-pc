@@ -477,12 +477,14 @@ do{
 
 std::cout<<rep<<std::endl;
 
+
+/*
 for(int i =0 ; i < V.dim ; i++ ){
 
     std::cout<<respuesta.v[i]<<"\t";
 
 }
-
+*/
 
 return respuesta;
 }
@@ -533,15 +535,15 @@ std::cout<<"введите размер матрицы"<<std::endl;
 std::cin>> n;
 std::cout<<std::endl;
 
-matr A(3,a);
-vect B(3,d);
+matr A(n);
+vect B(n);
 
 vect R;
 
-//A.fill();
+A.fill();
 A.print();
     std::cout<<std::endl;
-//B.fill();
+B.fill();
 B.print();
 
 
