@@ -4,6 +4,7 @@
 #include <ctime>    //для использования функции time
 
 #define accurancy 0.001 //точность ответа
+#define random 0
 
 class matr; //объявление класса матрицы
 
@@ -149,7 +150,9 @@ vect vect::operator=(const vect &r){
 //функция для заполнения векторов
 void vect::fill(){
 
-//std::srand(std::time(NULL));
+if(random){
+std::srand(std::time(NULL));
+}
 
 v = new double [dim];
 
@@ -372,7 +375,10 @@ void matr::print() {
 //заполняем матрицу
 void matr::fill(){
 
-//std::srand(std::time(NULL));
+if(random){
+std::srand(std::time(NULL));
+}
+
 
 for(int i = 0; i < dim ; i++){
     
