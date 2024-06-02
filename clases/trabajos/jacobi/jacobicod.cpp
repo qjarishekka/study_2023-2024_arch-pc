@@ -499,9 +499,13 @@ int main (){
 int n;
 
 double **a;
+double *c;
 a = new double*[4];
+c = new double[3];
 
-double b[3][3] = {{1,2,3} , {4,5,6} , {7,8,9}};
+
+double b[3][3] = {{25, -0.9, -0.3} , {3.7, -7.3, -0.1} , {0.7, 0.1, -8.2}};
+double d[3] = { 20.2, -18.9 , -56 };
 
 for(int i = 0; i < 3; i++){
 
@@ -515,6 +519,11 @@ for(int i = 0; i < 3; i++){
 
 }
 
+for(int i = 0; i< 3 ; i++){
+
+    c[i] = d[i];
+
+}
 
 
 
@@ -524,14 +533,14 @@ std::cin>> n;
 std::cout<<std::endl;
 
 matr A(3,a);
-vect B(n);
+vect B(3,d);
 
 vect R;
 
 //A.fill();
 A.print();
     std::cout<<std::endl;
-B.fill();
+//B.fill();
 B.print();
 
 
