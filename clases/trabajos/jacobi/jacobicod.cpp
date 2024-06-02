@@ -3,7 +3,7 @@
 #include <cstdlib> // для использования функции srand
 #include <ctime>    //для использования функции time
 
-#define accurancy 0.001 //точность ответа
+#define accuracy 0.001 //точность ответа
 #define random 0    //случайность
 
 class matr; //объявление класса матрицы
@@ -452,7 +452,7 @@ do{
     }
 
     //проверка точности ответа
-    if( abs(temp.v[index] - respuesta.v[index]) <= accurancy){
+    if( abs(temp.v[index] - respuesta.v[index]) <= accuracy){
         flag = 0;
     }
 
@@ -545,7 +545,7 @@ B.print();
 
 
 std::cout<<"ответ: ";
-R = R.jacobi(A,B,accurancy);
+R = R.jacobi(A,B,accuracy);
 
 R.print();
 
