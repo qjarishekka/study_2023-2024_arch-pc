@@ -4,12 +4,12 @@
 #include <ctime>    //для использования функции time
 
 #define accuracy 0.001 //точность ответа
-#define random 0    //случайность
+#define random 0    //случайность по времени
 
 class matr; //объявление класса матрицы
 
 
-//функция для замена нулей
+//функция для замена нулей в функции matr::fill()
 double corrector(double &a ){
     if (a == 0){    
         a = (rand() % 10000/100.0) - 50;
