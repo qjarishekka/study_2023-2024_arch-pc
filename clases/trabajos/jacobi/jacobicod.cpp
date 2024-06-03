@@ -44,7 +44,7 @@ public:
     int operator*(vect &r);
     vect operator=(const vect &r);
 
-    vect jacobi(matr M, vect V, int a);
+    vect jacobi(matr M, vect V, double a);
     
     void fill();
     void print();
@@ -210,7 +210,7 @@ public:
     vect operator*(vect &r);
     matr operator=(const matr &r);
 
-    friend vect vect::jacobi(matr M, vect V, int a);
+    friend vect vect::jacobi(matr M, vect V, double a);
     
     void print();
     void fill();
@@ -407,7 +407,7 @@ for(int i = 0; i < dim; i++){
 
 
 // метод якоби(матрица, вектор, точность)
-vect vect::jacobi(matr M, vect V, int a){
+vect vect::jacobi(matr M, vect V, double a){
 
 double suma = 0;    //сумма
 double resta = 0;   //разность
@@ -428,7 +428,7 @@ do{
     //поиск самой большой разности значений векторов  X1[i] - X2[i]
     for(int i = 0; i < M.dim ; i++ ){
 
-        if(temp.v[i] - respuesta.v[i] < temp.v[i++] - respuesta.v[i++]){
+        if(temp.v[i] - respuesta.v[i] < temp.v[i+1] - respuesta.v[i+1]){
 
             index++;
 
@@ -542,6 +542,8 @@ std::cout<<std::endl;
 
 B.fill();
 B.print();
+
+std::cout<<std::endl;
 
 
 
