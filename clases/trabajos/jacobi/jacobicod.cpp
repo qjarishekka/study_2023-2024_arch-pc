@@ -544,9 +544,10 @@ B.fill();
 B.print();
 
 
-std::cout<<"ответ: ";
+
 R = R.jacobi(A,B,accuracy);
 
+std::cout<<"ответ: ";
 R.print();
 
 std::cout<<std::endl;
