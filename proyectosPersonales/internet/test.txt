@@ -1,0 +1,6 @@
+
+Wi-Fi                                      
+   Tipo:                 Dedicado             
+   Estado administrativo: Habilitado             
+   Estado de conexión:        Conectado             
+
