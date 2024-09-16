@@ -1,0 +1,162 @@
+imprimir algo en la consola
+print("Hello world")
+
+int a = (int) f;
+
+-----------------------------------------------------------------
+comando para transformar a un entero cualquier tipo de variable
+int(input());
+
+a = int(a) + b
+b = a + str(b)
+
+---------------------------------
+declarar variables como string
+
+a = '13' //string
+
+-----------------------
+sumar strings
+
+a = '15'
+b = '3'
+
+b = a + b #  '153'
+------------------
+
+a = 4.5
+b = 2.3
+
+print(a//b)
+-----------------------------
+operaciones aritmeticas 
++ - * / % // **
+
+// division con redondeo a la baja
+
+** potencias
+
+a += 1; suma a si mismo y uno
+
+-= *= /= 
+------------------
+comando if
+
+a = int(input())
+if a % 2 == 0:
+    print('is even')  // en este caso se pueden usar los '' o los "" sin diferencia
+else:
+    (print('is odd'))
+---------------------------
+condiciones concatenadas
+
+a = int(input())
+if a % 2 == 0:
+    print('is even')  // en este caso se pueden usar los '' o los "" sin diferencia
+elif a % 2 == 1:
+    print('is odd')
+else:
+    print('not an integrer')
+
+-------------------
+comentar en python
+
+# para comentar una linea detras del simbolo
+
+''' inicio de la parte a comentar
+''' final de la parte a comentar
+
+
+--------------------
+colecciones y listas
+
+list1 = [] # lista vacia
+list1 = [1, 2, 'ab' , [1, 's']]
+
+print(list1)
+print(list1[2])
+
+list1.append('last')  #agregar algo al final de la lista
+list1.insert(1,'first') #agreagar algo en algun lugar de la lista (lugar, variable a colocar)
+list1.remove(2)     #remover algo de la lista 
+print(list1)
+
+print(list1[2:4])
+print(list1[:3])
+print(list1[3:])
+
+list1 = [1,2,3,-2,4,5]      #dar otros valores a la lista
+print(sum(list1))       #sumar los valores de la listas
+print(max(list1))       #maximo valor de la lista
+print(min(list1))       #minimo valor de la lista
+print(len(list1))       #largo de la lista  en integrer
+print(sum(list1)/len(list1))  
+
+---------------
+conjuntos
+
+set1 = {'a', 2, 'b' , 'a'}
+print(set1)
+
+set1.add('c')
+print(set1)
+print(3 in set1) #consular si ese elemento esta en el conjunto
+
+-------------------
+
+diccionarios
+
+dict1 = {'a' : 123 , 'b' : 'text' } # los diccionarios siempre van en pares separados por # y cada par separado por ,
+print(dict1)
+print(dict1['a'])       #al imprimir un valor del diccionario te dara el valor de su par
+
+-------------
+tuplas (cortejos?)
+
+tuple1 = (1,2)
+print(tuple1)
+print(tuple1[0])
+tuple1[0]
+
+temp = list(tuple1)
+temp[0] = 3
+tuple1 = tuple(temp)
+print(tuple1)
+
+----------------
+
+ciclos
+#while
+
+a = input()
+list1 = []
+while a != 'exit':
+    list1.append(a)
+    a = input()
+print(list1)
+print(list(range(2,20,2)))
+
+#for
+
+
+
+for i in range(0, len(list1)):
+    list1[i] = list1[i]**2
+print(list1)
+
+
+for val in list1:
+    list1[0] = 2
+    #list1.append(2)
+    print(val , val *2)
+print(list1)
+
+
+----------------
+funciones
+
+def func(a, b):
+    return a + b
+
+print(func(1,2))
+print(func('a' + 'b'))
