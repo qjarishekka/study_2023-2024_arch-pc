@@ -45,6 +45,11 @@ class Pair : public Value {
 
     }
 
+    Pair( Value * l, Value *r){
+        
+
+    }
+
 
     Pair(Atom* l, Pair* r){
         left = l;

@@ -7,8 +7,16 @@ using namespace std;
 int main()
 {
 
-int e = 32 % 10;
+string a = "12345";
 
-cout << e << endl;
+cout<< a.length()<<endl;
+cout<< a.substr(1,2)<<endl;
+cout<< a.find('9')<<endl;
+bool b = a.rfind("1");
+
+cout<<b<<endl;
+
+
+return 0;
 
 }

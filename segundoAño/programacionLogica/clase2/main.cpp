@@ -4,6 +4,8 @@
 
 using namespace std;
 
+Value * parse( string);
+
 int main(){
 
 Atom* a = new Atom(1.0f);
@@ -22,26 +24,36 @@ Value *v1 = new Pair( new Atom(1.5) , new Pair(new Atom(1.3), new Atom(-3) ) );
 
 cout<< v1->sum()<<endl;
 
+Value * ejemplo = parse("1,2");
+
+cout<< ejemplo->sum()<<endl;
+
+
 
 return 0;
 }
 
+
 Value * parse(string str){
 
-if( str[0] == '(' && str[str.length()-1] == ')'){
+if( str[0] == '(' && str[ str.length()-1 ] == ')'){
 
 return parse( str.substr(1,str.length()-2));
 
 }
 
-if( str.find(',') == -1        ){
+bool aux = str.rfind(",");
 
-    return new Atom(stof(str));
+if(aux){
+
+    return new Atom( std::stof(str));
 
 }
 
 int coma = str.find(',');
 
-return Pair(parse(str.substr(0,coma)),parse(str.substr(coma)));
+cout<<"aqui"<<endl;
+
+return new Pair(parse(str.substr(0,coma)),parse(str.substr(coma)));
 
 }
