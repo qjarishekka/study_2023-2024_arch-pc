@@ -26,9 +26,13 @@ Value *v1 = new Pair( new Atom(1.5) , new Pair(new Atom(1.3), new Atom(-3) ) );
 
 cout<< v1->sum()<<endl;
 
-Value * ejemplo = parse("1,2");
+Value * ejemplo = parse("2,1");
 
-cout<< ejemplo->sum()<<endl;
+cout<<"aqui"<<endl;
+
+ejemplo->print();
+
+cout<<endl<< ejemplo->sum()<<endl;
 
 Pair ejemplo1( a , new Atom(5));
 
@@ -43,6 +47,8 @@ return 0;
 
 
 Value * parse(string str){
+
+
 
 if( str[0] == '(' && str[ str.length()-1 ] == ')'){
 
