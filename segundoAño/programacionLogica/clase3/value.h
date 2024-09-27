@@ -1,4 +1,6 @@
 #include<iostream>
+#include <string>
+
 
 class Value{
     public:
@@ -10,9 +12,14 @@ class Atom: public Value{
 public:
 std::string val;
 
+Atom(float val){
+		this->val = val;
+	}
+
+
 float calc() override{
 
-    return stof(val);
+    return std::stof(val);
 }
 
 
@@ -21,14 +28,23 @@ float calc() override{
 class Pair: public Value{
 public:
 
-Value *left, * right;
+Value *left, *right;
+	
+	Pair(Value *left, Value *right){
+		this->left = left;
+		this->right = right;
+	}
+
+
 
 float calc() override{
 
+
 Atom a = (Atom)(left);
+
 Pair p = (Pair)(right);
 
-switch(a.val){
+switch( a.val  ){
 
 case "+":
 

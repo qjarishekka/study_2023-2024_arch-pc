@@ -61,21 +61,13 @@ public:
 	}
 
 	int counter(Value * value) override{
-
 		int counter = 0;
 
-		if( (Value)value  )
-		counter += value->counter( value );
-
-
 		
-
 	}
 
 	float average() override{
-
 		this->sum(); 
-
 	}
 };
 	
