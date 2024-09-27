@@ -10,6 +10,8 @@ int main(){
 
 Atom* a = new Atom(1.0f);
 
+Pair * b = new Pair( a, new Pair( new Atom(2) , new Atom(7)  ));
+
 Pair * p = new Pair(a, new Atom(2));
 
 a->print();
@@ -27,6 +29,12 @@ cout<< v1->sum()<<endl;
 Value * ejemplo = parse("1,2");
 
 cout<< ejemplo->sum()<<endl;
+
+Pair ejemplo1( a , new Atom(5));
+
+cout<< ejemplo1.sum()<<endl;
+
+cout << b->sum() << endl;
 
 
 

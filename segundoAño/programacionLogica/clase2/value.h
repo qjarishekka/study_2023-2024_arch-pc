@@ -29,32 +29,14 @@ public:
 
 class Pair : public Value {
 
-    public:
-    Value* left;
-    Value* right;
-
-    Pair(Atom* l, Atom* r){
-        left = l;
-        right = r;
-    }
-
-    Pair(Pair & pair){
-
-        left = pair.left;
-        right= pair.right;
-
-    }
-
-    Pair( Value * l, Value *r){
-        
-
-    }
-
-
-    Pair(Atom* l, Pair* r){
-        left = l;
-        right = r;
-    }
+public:
+	Value *left;
+    Value *right;
+	
+	Pair(Value *left, Value *right){
+		this->left = left;
+		this->right = right;
+	}
 
     void print() override{
         std::cout<<"(";
