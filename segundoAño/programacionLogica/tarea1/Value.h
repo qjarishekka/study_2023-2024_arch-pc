@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 class Value{
@@ -7,7 +8,9 @@ public:
 	virtual void out() = 0;
 	virtual float sum() = 0;
 	virtual float average() = 0;
-	virtual int counter(Value * value) = 0;
+	virtual int counter() = 0;
+	virtual float deviationMax( float average) = 0;
+	virtual float deviationMin( float average) = 0;
 };
 
 class Atom : public Value{
@@ -32,8 +35,17 @@ public:
 		return number;
 	}
 
-	int counter(Value * value) override {
+	int counter() override {
 		return 1;
+	}
+
+	float deviationMax( float average) override{
+		
+		return number;
+	}
+
+	float deviationMin( float average) override{
+		return number;
 	}
 	
 	
@@ -60,14 +72,52 @@ public:
 		return left->sum() + right->sum();
 	}
 
-	int counter(Value * value) override{
+	int counter() override{
 		int counter = 0;
-
-		
+		counter += left->counter() + right->counter();
+		return counter;
 	}
 
 	float average() override{
-		this->sum(); 
+		return this->sum() / this->counter();
 	}
+
+	float deviationMax( float average ) override{
+
+		float devMax;
+		
+		float difR = abs(average - right->deviationMax( average) );
+		float difL = abs(average - left->deviationMax( average));
+
+
+		if(difL < difR ){
+
+			devMax = right->deviationMax( average);
+
+		}else{
+			devMax = left->deviationMax( average);
+		}
+		return devMax;
+	} 
+
+
+	float deviationMin( float average ) override{
+
+		float devMin;
+		float difR = abs(average - right->deviationMin( average) );
+		float difL = abs(average - left->deviationMin( average));
+
+		if(difL > difR ){
+			devMin = right->deviationMin( average);
+		}else{
+			devMin = left->deviationMin( average);
+		}
+		return devMin;
+	} 
+
+
+
+
+
 };
 	

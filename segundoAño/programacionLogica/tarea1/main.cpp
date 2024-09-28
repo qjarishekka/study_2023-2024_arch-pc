@@ -16,7 +16,9 @@ Value* parse(string line){
 
 
 int main(){
-	Value* v1 = new Atom(0);
+
+
+/* 	Value* v1 = new Atom(0);
 	v1->out();
 	cout << endl << "Sum = " << v1->sum() << endl;
 	v1 = new Pair(new Atom(1), new Atom(2)); // (1, 2)
@@ -27,6 +29,25 @@ int main(){
 	cout << endl << "Sum = " << v1->sum() << endl;
 	v1 = parse("1, 4");
 	v1->out();
-	cout << endl;
+	cout << endl; */
+
+	Value * v3 = new Pair( new Atom(9), new Pair ( new Pair(new Atom(10), new Atom(4) )			, new Pair( new Atom(6), new Atom(8))		));
+
+	cout << "Value: ";
+
+	v3->out();
+
+	cout<<endl; 
+
+	cout<< "количество чисел: "<< v3->counter() << endl;
+
+	cout<< "среднее число: " << v3->average()<<endl;
+
+	cout << "максимальное отклонение: " << v3->deviationMax( v3->average() )<<endl;
+
+	cout << "минимальное отклонение: " << v3->deviationMin( v3->average() )<<endl;
+
+
+
 	return 0;
 }
