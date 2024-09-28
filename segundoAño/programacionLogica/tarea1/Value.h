@@ -115,9 +115,5 @@ public:
 		return devMin;
 	} 
 
-
-
-
-
 };
 	
