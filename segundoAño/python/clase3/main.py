@@ -3,7 +3,7 @@ from Unit import *
 
 print('hello')
  
-field = Field( (10,10))
+field = Field( (10,20))
 
 field.out()
 

@@ -21,7 +21,7 @@ class Field:
         for i in range(self.size[1]):
             self.matrix.append([])
 
-            for j in range(self.size[1]):
+            for j in range(self.size[0]):
                 rnd = random.randint(1,100)
                 if rnd <= 60:    
                     self.matrix[i].append('_')
