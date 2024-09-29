@@ -15,6 +15,7 @@ player.out()
 command = input()
 
 while(command != 'exit'):
+    
     player.move(command)
     player.out()
     print('//'*field.size[0])
