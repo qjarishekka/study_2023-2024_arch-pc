@@ -33,6 +33,10 @@ class Unit(ABC):
     def getpoints(self):
         pass
 
+    # @abstractmethod
+    # def aretherecoins(self):
+    #     pass
+
 
 
 class Rook(Unit):
@@ -71,6 +75,8 @@ class Rook(Unit):
             self.field.matrix[self.pos[1]][self.pos[0]] = '_'
 
     def move(self, command):
+
+    
         x, y = self.pos
         if command == 'w' or command == 'up':
             y = y - 1
@@ -92,6 +98,13 @@ class Rook(Unit):
         self.damage()
         self.getpoints()
 
+    # def aretherecoins(self):
+    #     for i in range(self.field.size[1]):
+    #         for j in range(self.field.size[0]):
+    #             if(self.field.matrix == '©'):
+    #                 return True
+        
+    #     return False
 
 class RookBuffed(Rook):
 

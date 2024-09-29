@@ -60,6 +60,7 @@ while(command != 'exit'):
     if player.health == 0:
         break
 
+
     command = input()
 
 print( chr(27)+ "[31m" + "\n""//////////////////////" "\n" "////ИГРА ОКОНЧЕНА/////" "\n" "//////////////////////" "\n" )

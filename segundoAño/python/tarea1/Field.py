@@ -17,6 +17,7 @@ class Field:
             print(line)
 
 
+
     def gen(self):
         for i in range(self.size[1]):
             self.matrix.append([])
