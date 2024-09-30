@@ -10,15 +10,59 @@
 
 </head>
 
+<script>
+
+
+
+
+
+function Item(){
+
+    let valor= document.getElementById('banana').value
+
+    console.log(valor)
+
+}
+
+
+function addToList(){
+
+    var lista = document.getElementById('lista')
+    var check = document.querySelectorAll('.fruta')
+
+    lista.innerHTML = ''
+    check.forEach((e)=>{
+
+        if(e.checked == true){
+            var elemento = document.createElement('li')
+            elemento.className = 'list-group-item'
+            elemento.innerHTML = e.value
+            lista.appendChild(elemento)
+
+            console.log('aqui')
+        }
+
+
+
+
+    })
+
+
+}
+
+</script>
+
 <body>
     <header>
         <h1> Мой рынок</h1>
+
     </header>
 
 
     <form submit = "alert('ejemplo')" id = "browser">
-        <input type="text" placeholder="search">
-        <button type="button">search</button>
+        <input type="text" id="barraDeBusqueda" placeholder="search">
+
+        <button type="button" onclick="Item()" id="buscar">search</button>
     </form>
 
 
@@ -27,43 +71,40 @@
     <table>
         <tr>
             <td>
-                ejemplo1
+                вананы
             </td>
             <td>
-                ejemplo2
+                <input type="checkbox" id="banana" class="fruta" value="вананы">
             </td>
-            <td>
-                ejemplo3
-            </td>
-
         </tr>
+
         <tr>
             <td>
-                ejemplo1
+                глубники
             </td>
             <td>
-                ejemplo2
+                <input type="checkbox" id="strawberry" class="fruta" value="глубники">
             </td>
-            <td>
-                ejemplo3
-            </td>
-
         </tr>
 
     </table>
 
+
+
+    <input type="submit" onclick="addToList()">
+
+
+
     <aside>
-        
     <form submit = "alert" id = "login">
         <input type="text" id ="userID" placeholder="userID">
         <input type="password" id ="userPassword" placeholder="password">
         <button type="button">login</button>
     </form>
 
-
-
-    
         <div>lista de compras</div>
+        <ul id="lista" class="list-group"></ul>
+
     </aside>
     
 </body>
