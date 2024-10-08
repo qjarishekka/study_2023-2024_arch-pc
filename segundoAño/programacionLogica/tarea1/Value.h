@@ -6,21 +6,28 @@ using namespace std;
 class Value{
 public:
 	virtual void out() = 0;
-	
+
 	virtual float sum() = 0;
 	virtual float average() = 0;
 	virtual int counter() = 0;
 	virtual float deviationMax( float average) = 0;
 	virtual float deviationMin( float average) = 0;
+	virtual Value* replaceVar(std::string o , std::string n) = 0;		
 };
 
 class Atom : public Value{
 public:
 	float number;
+	std::string val;
 	//float number(){ return stof(val); }
 	
 	Atom(float number){
 		this->number = number;
+	}
+
+	Atom(std::string n){
+
+		this ->val = n;
 	}
 	
 	void out() override {
@@ -47,6 +54,20 @@ public:
 
 	float deviationMin( float average) override{
 		return number;
+	}
+
+	Value* replaceVar(string o , string n) override{
+
+		//return new Atom(val.replace(o,n));
+
+		std::string new_val = std::to_string(number);
+
+		if(number == 0){
+			return new Atom(n);
+		}
+
+
+
 	}
 	
 	
@@ -116,5 +137,18 @@ public:
 		return devMin;
 	} 
 
+	Value * replaceVar(std::string o, std::string n) override{
+
+		return new Pair(left->replaceVar(o,n), right->replaceVar(o,n));
+
+	}
 };
 	
+
+
+class Compiler{
+
+	
+
+
+};
