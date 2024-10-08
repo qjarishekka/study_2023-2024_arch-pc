@@ -148,7 +148,25 @@ public:
 
 class Compiler{
 
-	
+
 
 
 };
+
+
+struct Var{
+Value* var;
+Var* next;
+};
+
+
+struct Node{
+
+	int value;
+	Node * next;
+
+};
+
+Node* Vead;
+
+
