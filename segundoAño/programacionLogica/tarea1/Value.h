@@ -6,6 +6,7 @@ using namespace std;
 class Value{
 public:
 	virtual void out() = 0;
+	
 	virtual float sum() = 0;
 	virtual float average() = 0;
 	virtual int counter() = 0;

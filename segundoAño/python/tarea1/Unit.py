@@ -113,12 +113,21 @@ class RookBuffed(Rook):
     def move(self, command):
         x, y = self.pos
         if command == 'w' or command == 'up':
-            y = y - 2
+            y = y - 1
         if command == 's' or command == 'down':
-            y = y + 2
+            y = y + 1
         if command == 'a' or command == 'left':
-            x = x - 2
+            x = x - 1
         if command == 'd' or command == 'right':
+            x = x + 1
+
+        if command == 'ww' or command == 'up':
+            y = y - 2
+        if command == 'ss' or command == 'down':
+            y = y + 2
+        if command == 'aa' or command == 'left':
+            x = x - 2
+        if command == 'dd' or command == 'right':
             x = x + 2
 
         if self.field.matrix[y][x] == '▓':
