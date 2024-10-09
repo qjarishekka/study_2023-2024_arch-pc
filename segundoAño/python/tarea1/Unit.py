@@ -87,9 +87,13 @@ class Rook(Unit):
         if command == 'd' or command == 'right':
             x = x + 1
 
+
+        if y >= self.field.size[0] or x >= self.field.size[1] -1:
+            return
+        
+
         if self.field.matrix[y][x] == '▓':
             return
-
        
         self.pos = (x,y)
         

@@ -28,24 +28,52 @@ function Item(){
 function addToList(){
 
     var lista = document.getElementById('lista')
+    var lista2 = document.getElementById('listaCantidad')
     var check = document.querySelectorAll('.fruta')
+    var check2 = document.querySelectorAll('.cantidad')
+
+    var tabla = document.getElementById("tabla")
+    var row = tabla.getElementsByTagName("tr")
 
     lista.innerHTML = ''
-    check.forEach((e)=>{
+    lista2.innerHTML = ''
+    i = 0
 
-        if(e.checked == true){
+    // check.forEach((e)=>{
+
+    //     if(e.checked == true){
+    //         var elemento = document.createElement('li')
+    //         elemento.className = 'list-group-item'
+    //         elemento.innerHTML = e.value
+    //         lista.appendChild(elemento)
+
+    //         console.log('aqui')
+    //     }
+
+    // })
+
+    check2.forEach((f)=>{
+            
             var elemento = document.createElement('li')
+            var elemento2 = document.createElement('li')
+
             elemento.className = 'list-group-item'
-            elemento.innerHTML = e.value
+
+
+        
+            elemento.innerHTML = tabla.rows[i].cells.innerHTML
+
+            elemento2.className = 'list-group-item'
+            elemento2.innerHTML = f.value
+
             lista.appendChild(elemento)
+            lista2.appendChild(elemento2)
 
-            console.log('aqui')
-        }
-
-
-
+            i++
+            console.log('aqui')        
 
     })
+
 
 
 }
@@ -68,23 +96,65 @@ function addToList(){
 
 
 
-    <table>
+    <table id="tabla">
         <tr>
-            <td>
+            <td class="fruta">
                 вананы
             </td>
             <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>           
+            <!-- <td>
                 <input type="checkbox" id="banana" class="fruta" value="вананы">
-            </td>
+            </td> -->
         </tr>
 
         <tr>
-            <td>
+            <td class="fruta">
                 глубники
             </td>
+
             <td>
-                <input type="checkbox" id="strawberry" class="fruta" value="глубники">
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
             </td>
+            <!-- <td>
+                <input type="checkbox" id="strawberry" class="fruta" value="глубники">
+            </td> -->
+        </tr>
+        <tr>
+            <td class="fruta">
+                виноград
+            </td>
+
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>
+
+            <!-- <td>
+                <input type="checkbox" id="grapes" class="fruta" value="виноград">
+            </td> -->
+        </tr>
+        <tr>
+            <td class="fruta">
+                картофель
+            </td>
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>           
+            <!-- <td>
+                <input type="checkbox" id="potato" class="fruta" value="картофель">
+            </td> -->
+        </tr>
+        <tr>
+            <td class="fruta">
+                яблоко
+            </td>
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>           
+            <!-- <td>
+                <input type="checkbox" id="apple" class="fruta" value="яблоко">
+            </td> -->
         </tr>
 
     </table>
@@ -101,9 +171,16 @@ function addToList(){
         <input type="password" id ="userPassword" placeholder="password">
         <button type="button">login</button>
     </form>
+    </aside>
+
+    <aside >
 
         <div>lista de compras</div>
         <ul id="lista" class="list-group"></ul>
+    
+
+        <div>cantidad</div>
+        <ul id="listaCantidad" class="list-group"></ul>
 
     </aside>
     

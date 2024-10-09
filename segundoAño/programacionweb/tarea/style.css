@@ -19,7 +19,7 @@ color: white;
 aside{
 
 border: 1px solid red;
-margin-left: 80%;
+margin-left: 60%;
 
 }
 
@@ -44,3 +44,15 @@ margin-right: 50%;
 
 }
 
+
+
+
+aside{
+
+display: flex;
+justify-content: space-between;
+
+align-items: center;
+
+
+}
