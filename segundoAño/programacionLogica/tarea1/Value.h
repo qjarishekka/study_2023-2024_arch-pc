@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+
 using namespace std;
 
 class Value{
@@ -147,6 +148,80 @@ public:
 
 
 class Compiler{
+	public:
+	Variable*  headVar;
+
+	Compiler(){}
+
+	void run(Value* program){
+
+		if( typeof(program) == (Atom*) ){
+
+			cout<<((Atom*)program)->val<<endl;
+			return;
+		}
+
+		Pair* p = (Pair*)program;
+
+		if(typeid(p->left) == (Atom*) ){
+
+			Atom*a = (Atom*)p->left;
+			switch(a->val){
+			
+				case "var" : addVar(p->right);
+				return;
+				
+				case "out": out(p->right);
+				return;
+
+				case "block" :
+				if(typeof(p->right) == (Atom*)){
+
+					run(p->right);
+					return;
+				}
+			}
+
+
+			Pair * next = (Pair*)p->right;
+			while(next != nullptr){
+				run(next->left);
+				next = (Pair*)next->right;
+
+			}
+		}
+
+	return;
+
+}
+
+
+
+
+void addVar(Value* var){
+
+	Variable ** last = lastVar();
+	*last = new Variable( ((Atom*)((Pair*)var)->left)->val , ((Atom*)(((Pair*)(((Pair*)(var))->right))->left))->val );
+
+
+} 
+
+Variable** lastVar(){  //doble ** sirve para devolver la direccion del puntero
+
+	Variable** last = &headVar;
+
+	while(*last != nullptr){
+			last = &( (*last)->next );
+	}
+
+	return last;
+}
+
+void out(Value* val){
+
+	val-> out();
+}
+
 
 
 
@@ -167,6 +242,12 @@ struct Node{
 
 };
 
+struct Variable{
+
+std::string name;
+std::string type;
+std::string value;
+Variable* next;
+};
+
 Node* Vead;
-
-
