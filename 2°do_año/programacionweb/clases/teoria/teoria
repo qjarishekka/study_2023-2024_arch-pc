@@ -1,0 +1,47 @@
+etiquetas = cajas
+
+al inicio se pone <DOCTYPE html>
+
+<b> todo se pone en negrita </b>
+
+<h1> aqui se ponene los encabezados </h1> significa header1 y puede haber hasta 6 headers
+
+<p> parrafo </p>
+
+cada elemento tiene sus caracteristicas:
+
+    color
+    tamanio
+    margen
+    borde
+
+css permite modificar los elementos y sus caracteristicas
+
+CSS ( cascading style sheets)
+
+
+css funciona con selector y con un bloque de declaraciones
+
+ .cubo{
+    color: azul;
+    tamanio : 16px;
+    margen: 20 px;
+    borde: negro;
+
+
+ }
+
+
+ por ejemplo:
+
+
+ //seleccionando todo los parrafos <p></p>
+ p{
+
+color:blue;  //color
+Font-size: 18px; // tamanio  
+
+
+ }
+
+----------------------
