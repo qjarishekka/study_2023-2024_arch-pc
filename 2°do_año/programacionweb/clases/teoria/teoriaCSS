@@ -1,0 +1,57 @@
+dentro del head se coloca el link
+
+<link rel="stylesheeet" href="">
+
+
+para modificar un elemento html se usa
+
+nombreDeElemento{
+
+
+    caracteristicas
+
+}
+
+--------------------------
+
+para llamar a una clase
+
+.nombreDeLaClase{
+
+    caracteristicas
+
+}
+
+------------------------------
+
+para seleccionar solo una id se usa
+
+ #id{
+
+    caracteristicas
+
+ }
+
+
+ --------------------------
+
+ tipos de caracteristicas
+
+ color:
+ font-family:
+ font-size:
+ font-weight:
+ font-style:
+ text-aling:
+
+
+
+  se pueden poner varias tipografias como respaldo usando la coma
+
+  ejeplo:
+         font-family: sans-serif, roman, .....
+
+
+las tipografias tienen diferentes tama;os predeterminados y son los que podremos elegir al momento de usarlo en css
+
+
