@@ -38,12 +38,15 @@ para seleccionar solo una id se usa
  tipos de caracteristicas
 
  color:
- font-family:
- font-size:
- font-weight:
- font-style:
- text-aling:
-
+ font-family:   fuente
+ font-size:     tamanio
+ font-weight:   anchura de la letra
+ font-style:    inclinacion o estilo
+ text-aling:    por donde se ubica el texto (derecha izquierda)
+ text-decoration: subrayado sobrerayado tachado
+ line-height:   cambiar el tamanio de la linea de texto
+ letter-spacing:    espacio entre letras
+ text-transform: mayusculas , minusculas o capitalizar
 
 
   se pueden poner varias tipografias como respaldo usando la coma
@@ -53,5 +56,11 @@ para seleccionar solo una id se usa
 
 
 las tipografias tienen diferentes tama;os predeterminados y son los que podremos elegir al momento de usarlo en css
+
+
+
+text-aling: start //la caracteristicas start toma el pais en el cual es cargada la pagina para determinar por donde va a empezar el texto
+
+
 
 
