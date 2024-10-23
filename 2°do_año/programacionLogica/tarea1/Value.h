@@ -4,6 +4,35 @@
 
 using namespace std;
 
+
+struct Node{
+	int value;
+	Node * next;
+};
+
+struct Var{
+	string name;
+	string type;
+	string value;
+	Value* var;
+	Var* next;
+};
+
+struct Func{
+	string name;
+	string type;
+	string* args;
+	int argsCount;
+	Value* body;
+};
+
+struct Variable{
+	std::string name;
+	std::string type;
+	std::string value;
+	Variable* next;
+};
+
 class Value{
 public:
 	virtual void out() = 0;
@@ -13,7 +42,8 @@ public:
 	virtual int counter() = 0;
 	virtual float deviationMax( float average) = 0;
 	virtual float deviationMin( float average) = 0;
-	virtual Value* replaceVar(std::string o , std::string n) = 0;		
+	virtual Value* replaceVar(std::string o , std::string n) = 0;	
+	virtual bool isAtom()= 0;	
 };
 
 class Atom : public Value{
@@ -69,6 +99,10 @@ public:
 
 
 
+	}
+	bool isAtom() override{
+		bool isAtom();
+		return true;
 	}
 	
 	
@@ -138,18 +172,28 @@ public:
 		return devMin;
 	} 
 
+	bool isAtom() override{
+		bool isAtom();
+		return false;
+	}
+	
+
 	Value * replaceVar(std::string o, std::string n) override{
 
 		return new Pair(left->replaceVar(o,n), right->replaceVar(o,n));
 
 	}
+
+
 };
 	
 
 
 class Compiler{
 	public:
-	Variable*  headVar;
+	Variable *  headVar;
+	Func * headFunc;
+	string space;
 
 	Compiler(){}
 
@@ -163,22 +207,24 @@ class Compiler{
 
 		Pair* p = (Pair*)program;
 
-		if(typeid(p->left) == (Atom*) ){
+		if(typeof(p->left) == (Atom*) ){
 
 			Atom*a = (Atom*)p->left;
-			switch(a->val){
+			if(a->val == "var"){
 			
-				case "var" : addVar(p->right);
-				return;
+				addVar(p->right);
+			}
+
+			if(a->val == "out"){
 				
-				case "out": out(p->right);
-				return;
+				out(p->right);
+			}
 
-				case "block" :
-				if(typeof(p->right) == (Atom*)){
+			if(a->val == "block"){
 
+
+				if(typeof(p->right) == (Atom*) ){
 					run(p->right);
-					return;
 				}
 			}
 
@@ -196,12 +242,12 @@ class Compiler{
 }
 
 
+//hay que buscar como poner todos los para la estructura Variable
 
-
-void addVar(Value* var){
+void addVar( Value* var){
 
 	Variable ** last = lastVar();
-	*last = new Variable( ((Atom*)((Pair*)var)->left)->val , ((Atom*)(((Pair*)(((Pair*)(var))->right))->left))->val );
+	*last = new Variable{ ((Atom*)((Pair*)var)->left)->val /* , ((Atom*)(((Pair*)(((Pair*)(var))->right))->left))->val */ };
 
 
 } 
@@ -217,7 +263,7 @@ Variable** lastVar(){  //doble ** sirve para devolver la direccion del puntero
 	return last;
 }
 
-void out(Value* val){
+void out( Value* val){
 
 	val-> out();
 }
@@ -229,25 +275,40 @@ void out(Value* val){
 };
 
 
-struct Var{
-Value* var;
-Var* next;
-};
 
 
-struct Node{
 
-	int value;
-	Node * next;
 
-};
 
-struct Variable{
 
-std::string name;
-std::string type;
-std::string value;
-Variable* next;
-};
 
-Node* Vead;
+Node* Head;
+
+
+
+
+void addFunc (Value * val) {
+
+	if( val->isAtom()){
+		cout<< "Error";
+		return;
+
+	}
+
+	Pair* pair = (Pair*)val;
+	Pair* leftPair = (Pair*)pair->left;
+	Pair* rightPair = (Pair*)pair->right;
+
+	string name = ((Atom*)leftPair->left)->val;
+	string type = ((Atom*)leftPair->right)->val;
+	Pair* argsValue = ((Pair*)rightPair->left);
+
+	int argsCount;
+	if(argsValue== nullptr ){
+		argsCount = 0;
+	}else{
+		argsCount = (to_string(argsCount)).length(); ///////si hay algun error mirar aca
+	}
+
+	Value * body = rightPair->right;
+}
