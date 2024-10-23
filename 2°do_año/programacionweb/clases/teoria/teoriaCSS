@@ -61,6 +61,24 @@ las tipografias tienen diferentes tama;os predeterminados y son los que podremos
 
 text-aling: start //la caracteristicas start toma el pais en el cual es cargada la pagina para determinar por donde va a empezar el texto
 
+--------------------------
+
+atributos de cajas:
 
 
+width:
+height
+padding
+margin
+border-width
+border-radius
+box-sizing
 
+--------------------------
+
+padding: arriba derecha abajo izquiera
+
+ejemplo:
+    padding: 10px 0 7px 10px
+
+    
