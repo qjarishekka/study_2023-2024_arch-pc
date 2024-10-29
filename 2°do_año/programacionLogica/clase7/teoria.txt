@@ -1,0 +1,136 @@
+декларативное (логическое ) программирование
+------------
+
+факты -> предикаты
+
+lives (wolf, forest ) -----> (база данных)
+        связь
+
+? -> lives(wolf, forest)
+        true
+
+? -> lives(fox, forest)
+        false
+
+----------------------
+
+//declarar unas reglas en la base de datos:
+
+older (anton , masha)
+
+older (masha , misha)
+
+older (anton, dima )
+
+older (misha , lily)
+
+
+? -> older(anton, X)   //da todo los nombres que cumplen con la condicion
+        masha 
+        dima
+        misha
+        lily                // comparando con las base de datos creada se da la respuesta
+                            // usando el algoritmo de abajo se halla la respuesta pero con un error de 
+                            //sobrellenado de la memoria
+
+-----------------------
+
+older (X, Y  )    :     - older(X,Y)  ,  older(Z, Y)
+                если              логическое 'и'
+
+
+условия выхода:
+
+
+    older( anton, masha, fact)
+    older(. . . . . . , fact)
+    ....
+    ....
+    older (X, Y , rule) : -older( X, Z , fact ) , older ( Z, Y , __ )
+
+-------------------------------------------------------
+
+//otra base de datos:
+
+lives (wolf, forest )
+lives( fox, forest )
+lives (fish, sea)
+lives ( turtle , sea)
+
+lives ( who, where)
+
+wolf, forest ;
+
+
+algoritmo:
+
+    factorial ( N , X ) : -X = factorial( N-1 , __) * N 
+
+    condicion de salida : factorial(1 , 1 )
+
+
+
+
+entonces :
+
+
+        factorial (1, 1) .
+        factorial ( N , F) : -
+
+            N1 is N - 1,
+            factorial (N -1 , F1)   
+
+            F is N * F1 .                // is -> присвоение
+                                            всегда истина
+                                            ',' лог. И 
+                                            ';' лог. или
+
+        f1( .. , .) : -
+        (.... , ... )   переход только если истина
+        (...........)
+        (..........)
+
+                // термы -> значения   {H : T}
+
+
+item ( [ H : T ] ; elem  ) :- H == elem;
+                                item ( T , elem) .
+
+ ? - item ( [wolf, fox, ...] , X )
+
+ --------------------------------------------
+
+ lenght ([] , 0).
+
+ length ( [H : T] , L) :-  length (T , L1) , L is L1 + 1.
+
+
+---------------------------------------------
+
+fibonachi
+
+condicion de salida:
+
+    fib( 1, 1)  // primer termino es igual a 1
+    fib( 2 ,1 ) // segundo termino es igual a 1
+
+    fib( N , F) :- N1 is n - 1,
+                    N2 is N - 2, 
+                    fib ( N1, F1),
+                    fib( N2, F2) , 
+                    F is F1 + F2.
+
+fibonachi optimizado:
+
+    fib ( 1, 1 ,0)
+    fib ( 2 ,1 ,1)
+    fib ( N, F  FP):- N1 is N-1,
+                        fib(N1 ,F1, F2)
+                        F1 si F1 + F2
+                        FP is F1.
+
+лог.
+
+__ __ __ __ __
+
+
