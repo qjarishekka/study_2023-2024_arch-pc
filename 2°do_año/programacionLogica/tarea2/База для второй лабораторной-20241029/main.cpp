@@ -9,11 +9,11 @@ Value* parse(string line){
 	// отбросить пробелы
 	int br = 0;
 	int coma = -1;
-	bool outter_brackets = line[0] == '(';
-	for(int i = 0; i < (int)line.length(); i++){  //почему (int)?
-		if(line[i] == '(')						// (1,2)
+	bool outter_brackets = line[0] == '(';				
+	for(int i = 0; i < (int)line.length(); i++){  		//почему (int)?			
+		if(line[i] == '(')										
 			br++;
-		if(line[i] == ')')
+		if(line[i] == ')')								// ( 1 , ( 1 , 2 ) )	// 1 , ( 1 , 2)
 			br--;
 		if(br == 0 && i < (int)line.length() - 1){
 			outter_brackets = false;
@@ -22,7 +22,7 @@ Value* parse(string line){
 			coma = i;
 	}
 	if(outter_brackets) 
-		return parse(line.substr(1, line.length() - 2));
+		return parse(line.substr(1, line.length() - 2));// 1 , ( 1 , 2 )
 	if(coma == -1){
 		if(line == "null"){
 			return nullptr;
