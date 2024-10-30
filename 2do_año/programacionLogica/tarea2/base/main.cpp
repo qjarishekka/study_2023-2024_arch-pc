@@ -72,9 +72,10 @@ int main(){
 												new Pair( new Pair( new Atom("out"), new Atom("World")),
 														nullptr)));
 	*/
-	programm -> out();
+	//programm -> out();
 	cout << endl;
 	comp->run(programm);
+	cout<<endl;
 	
 	return 0;
 }
