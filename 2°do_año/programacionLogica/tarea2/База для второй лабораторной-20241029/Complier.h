@@ -58,6 +58,8 @@ public:
 		}
 		return last;
 	}
+
+	
 	// (var, (name, (type, value)))
 	void addVar(Value* var){ // добавление переменной
 		Var** last = lastVar();

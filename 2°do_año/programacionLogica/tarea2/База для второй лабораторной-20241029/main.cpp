@@ -52,11 +52,12 @@ Value* parseFormula(string line){
 		return new Atom(line); // вернём Атом от всей строки
 	// иначе (т.е. операция нашлась)
 	//						 						line[:id] // line[id+1:]
-	return new Pair(new Atom({line[id]}), new Pair(parseFormula(line.substr(0, id)),
+	return new Pair(new Atom( { line[id] } ), new Pair(parseFormula(line.substr(0, id)),
 												parseFormula(line.substr(id+1))));
 }
 
 int main(){
+	
 	Complier* comp = new Complier();
 	ifstream fin;
 	fin.open("prog.txt");
