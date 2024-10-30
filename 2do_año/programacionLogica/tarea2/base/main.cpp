@@ -60,7 +60,7 @@ int main(){
 	
 	Complier* comp = new Complier();
 	ifstream fin;
-	fin.open("prog.txt");
+	fin.open("programm.txt");
 	string text;
 	getline(fin, text);
 	cout << text;
