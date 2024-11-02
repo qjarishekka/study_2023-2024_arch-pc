@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <time.h>
+#include <math.h>
+#include <stdlib.h>
+
+#define lim1 10
+#define lim2 10
+#define limrand 11
+
+
+float MediaGeometrica(int matriz[lim1][lim2],int M, int N);
+
+
+int main() {
+
+
+//variables
+int m = 0; 
+int n = 0;
+int arreglo[lim1][lim2];
+int random = 0;
+int i = 0;
+int j = 0;
+
+
+float media_geometrica_temporal = 0;
+float multiplicacion_temporal = 1;
+float medias_geometricas[lim1];
+int numeros_mayores_a_la_media[lim2];
+
+
+
+//que hace el programa?
+printf("\nэта программа выводит сумму максимальных элементов строк матрицы\n");
+
+
+//preguntar los valores para n(filas) y m(columnas)
+do{
+
+printf("введите значение для \"n\" и \"m\" не больше %d и не меньше нуля\n",lim1);
+
+scanf("%d",&n);
+scanf("%d",&m);
+
+}while(n<=0 || n >lim1 || m<=0 || m>lim2);
+
+
+//semilla(семя) para rand
+srand(time(NULL));
+
+
+//dar valor a la variable en relacion a n
+
+
+
+
+//llenado de la matriz con numeros random
+for(i=0;i<n;i++){
+
+    for(j=0;j<m;j++){
+
+        arreglo[i][j] = rand() % (limrand-1) + 1;
+
+    }
+
+}
+
+
+
+//impresion de la matriz
+for(i=0;i<n;i++){
+    
+    for(j=0;j<m;j++){
+       
+       printf("%d\t",arreglo[i][j]);
+       }
+    printf("\n\n");
+
+}
+
+for(i=0;i<m;i++){
+
+medias_geometricas[i] = MediaGeometrica(arreglo, i, n);
+
+}
+
+//dar valor 0 a todos los valores del arreglo
+for(i=0;i<lim2;i++){
+
+    numeros_mayores_a_la_media[i] = 0;
+
+}
+
+//llenar el arreglo "numeros_mayores_a_la_media" 
+for(j=0;j<m;j++){
+
+    for(i=0;i<n;i++){
+
+        if(arreglo[i][j]>medias_geometricas[j]){
+
+            numeros_mayores_a_la_media[j]++;
+
+        }
+
+    }
+
+}
+
+//imprimir cantidad de valores mayores a sus respectivas medias geometricas
+for(i=0;i<n;i++){
+
+    printf("\nколичество чисел выше чем средний геомерический в столбе %d равно: %d\n",i+1,numeros_mayores_a_la_media[i]);
+
+}
+
+}
+
+
+
+
+
+
+
+float MediaGeometrica(int matriz[lim1][lim2],int M, int N){
+
+float exp;
+int MultiplicacionFilas = 1;
+int i = 0;
+float media = 0;
+
+exp = 1.0 / N;
+
+for(i=0;i<N;i++){
+
+    MultiplicacionFilas *= matriz[i][M];
+
+
+
+}
+
+media = pow(MultiplicacionFilas,exp);
+
+
+return media;
+
+}

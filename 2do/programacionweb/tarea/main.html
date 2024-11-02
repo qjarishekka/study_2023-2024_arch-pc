@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+   <title>мой рынок</title>
+   <link rel="shortcut icon" href="gato1.jpeg" />
+
+   <link rel="stylesheet" href="style.css">
+
+</head>
+
+<script>
+
+
+
+
+
+function Item(){
+
+    let valor= document.getElementById('banana').value
+
+    console.log(valor)
+
+}
+
+
+function addToList(){
+
+    var lista = document.getElementById('lista')
+    var lista2 = document.getElementById('listaCantidad')
+    var check = document.querySelectorAll('.fruta')
+    var check2 = document.querySelectorAll('.cantidad')
+
+    var tabla = document.getElementById("tabla")
+    var row = tabla.getElementsByTagName("tr")
+
+    lista.innerHTML = ''
+    lista2.innerHTML = ''
+    i = 0
+
+    // check.forEach((e)=>{
+
+    //     if(e.checked == true){
+    //         var elemento = document.createElement('li')
+    //         elemento.className = 'list-group-item'
+    //         elemento.innerHTML = e.value
+    //         lista.appendChild(elemento)
+
+    //         console.log('aqui')
+    //     }
+
+    // })
+
+    check2.forEach((f)=>{
+            
+            var elemento = document.createElement('li')
+            var elemento2 = document.createElement('li')
+
+            elemento.className = 'list-group-item'
+
+
+        
+            elemento.innerHTML = tabla.rows[i].cells.innerHTML
+
+            elemento2.className = 'list-group-item'
+            elemento2.innerHTML = f.value
+
+            lista.appendChild(elemento)
+            lista2.appendChild(elemento2)
+
+            i++
+            console.log('aqui')        
+
+    })
+
+
+
+}
+
+</script>
+
+<body>
+    <header>
+        <h1> Мой рынок</h1>
+
+    </header>
+
+
+    <form submit = "alert('ejemplo')" id = "browser">
+        <input type="text" id="barraDeBusqueda" placeholder="search">
+
+        <button type="button" onclick="Item()" id="buscar">search</button>
+    </form>
+
+
+
+
+    <table id="tabla">
+        <tr>
+            <td class="fruta">
+                вананы
+            </td>
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>           
+            <!-- <td>
+                <input type="checkbox" id="banana" class="fruta" value="вананы">
+            </td> -->
+        </tr>
+
+        <tr>
+            <td class="fruta">
+                глубники
+            </td>
+
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>
+            <!-- <td>
+                <input type="checkbox" id="strawberry" class="fruta" value="глубники">
+            </td> -->
+        </tr>
+        <tr>
+            <td class="fruta">
+                виноград
+            </td>
+
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>
+
+            <!-- <td>
+                <input type="checkbox" id="grapes" class="fruta" value="виноград">
+            </td> -->
+        </tr>
+        <tr>
+            <td class="fruta">
+                картофель
+            </td>
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>           
+            <!-- <td>
+                <input type="checkbox" id="potato" class="fruta" value="картофель">
+            </td> -->
+        </tr>
+        <tr>
+            <td class="fruta">
+                яблоко
+            </td>
+            <td>
+                <input type="number" id="cantidadquerida" class="cantidad" min="0">
+            </td>           
+            <!-- <td>
+                <input type="checkbox" id="apple" class="fruta" value="яблоко">
+            </td> -->
+        </tr>
+
+    </table>
+
+
+
+    <input type="submit" onclick="addToList()">
+
+
+
+    <aside>
+    <form submit = "alert" id = "login">
+        <input type="text" id ="userID" placeholder="userID">
+        <input type="password" id ="userPassword" placeholder="password">
+        <button type="button">login</button>
+    </form>
+    </aside>
+
+    <aside >
+
+        <div>lista de compras</div>
+        <ul id="lista" class="list-group"></ul>
+    
+
+        <div>cantidad</div>
+        <ul id="listaCantidad" class="list-group"></ul>
+
+    </aside>
+    
+</body>
+
+
+
+
+</html>

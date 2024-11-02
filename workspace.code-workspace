@@ -1,0 +1,11 @@
+{
+	"folders": [],
+	"settings": {
+		"files.associations": {
+			"xstring": "cpp",
+			"iostream": "cpp",
+			"ostream": "cpp"
+		},
+		"liveServer.settings.multiRootWorkspaceName": "study_2023-2024_arch-pc"
+	}
+}

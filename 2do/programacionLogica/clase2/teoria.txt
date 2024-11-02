@@ -1,0 +1,22 @@
+value:
+
+atom = 1 2 3 o '1123'
+pair = (value1 , value 2.)
+
+
+ejemplo 
+(123,456) pair
+((12,34),56) par de par y atom
+
+
+void funk (value val){
+    if (val.getClass() == Atom.class){
+
+        ------
+
+    }else{
+
+        funk(((pair)val).left);
+        unk(((pair)val).right);
+    }
+}

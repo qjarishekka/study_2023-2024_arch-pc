@@ -1,6 +1,0 @@
-include<fstream>
-
-fin = ifstream("document.txt");
-
-fin>>"informacino varia";
-

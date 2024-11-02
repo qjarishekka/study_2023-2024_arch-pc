@@ -1,0 +1,58 @@
+*{
+
+    margin: 0px;
+    padding: 0%;
+
+
+}
+
+header{
+
+border: 1px solid brown;
+
+text-align: center;
+background-color: red;
+color: white;
+
+}
+
+aside{
+
+border: 1px solid red;
+margin-left: 60%;
+
+}
+
+table{
+
+border: 1px solid black;
+
+margin-right: 60%;
+
+}
+
+#login{
+
+border: 1px solid blue;
+
+}
+
+#browser{
+
+border: 1px solid green;
+margin-right: 50%;
+
+}
+
+
+
+
+aside{
+
+display: flex;
+justify-content: space-between;
+
+align-items: center;
+
+
+}

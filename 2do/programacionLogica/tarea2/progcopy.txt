@@ -1,0 +1,31 @@
+(block,( (def,( (f,void) , (null,( block,((out,func),null))) ) ),
+
+
+((out,main),((f,null),null))))
+
+
+
+
+
+
+	// (def, ( (f, void), ( ( int:x1 , (int:x2, null) ) , (...) ) ) )
+
+    // ( for, ( (variable i,tope) , (factorDeCrecimiento,body)   )  )
+    
+
+    (var,(alfa,(int,2)))
+
+(out,alfa)
+
+
+(block,((var,(alfa,(int,2))),((out,alfa),null)))
+
+
+(block,((block,((out,hello ),null)),(block,((out,world),null))))
+
+
+
+(def,((f,void),((alfa,null),(out,alfa))))
+
+
+(var,(alfa,(int,2)))
