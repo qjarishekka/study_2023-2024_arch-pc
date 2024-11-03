@@ -1,15 +1,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+""" from statistics import* """
 
-data = pd.read_csv('crypto-markets.csv')
-data_bit = data[['date', 'open' , 'low' , 'hight' , 'cloase']][:200]
+
+data = pd.read_csv('C:/work/mirepositorio/2do/python/clase5/crypto-markets.csv')
+data_bit = data[['date', 'open' , 'low' , 'high' , 'close']][:200]
 
 plt.plot(data_bit['close'], 'b' , label= 'закрытие')
 plt.plot(data_bit['low'] , 'y--' , label='минимум')
 plt.plot(data_bit['high'], 'g--' , label='максимум')
 plt.axhline(mean, color='r' , linestyle= '-', label = 'среднее') # axhline горизонтальная линия
-plt.axhline(mean + std, color='r' , linestyle= '--')
-plt.axhline(mean - std , color='r' , linestyle= '--')
+plt.axhline(mean + 'std', color='r' , linestyle= '--')
+plt.axhline(mean - 'std' , color='r' , linestyle= '--')
 plt.axhline(median,  color='b' , linestyle='-.' , label = 'медиана')
 plt.xlabel('дни торгов')
 plt.ylabel('цены $')
