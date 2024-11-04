@@ -74,6 +74,7 @@ int main(){
 	*/
 	//programm -> out();
 	cout << endl;
+
 	comp->run(programm);
 	cout<<endl;
 	

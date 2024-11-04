@@ -21,6 +21,10 @@
 
 (block,((def,((f,void),((alfa,(beta,null)),(out,alfa)))),null))
 
+(block,((def,((f,void),((alfa,null),(out,alfa)))),(block,((f,(block,((var,(alfa,(int,2))),null))),null))))
+
+
+(block,((for,((block,((var,(i,(int,1))),null)),(1,(3,(out,i))))),null))
 
 
 
