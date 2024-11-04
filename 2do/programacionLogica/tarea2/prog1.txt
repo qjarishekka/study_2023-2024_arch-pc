@@ -26,5 +26,7 @@
 
 (block,((for,((block,((var,(i,(int,1))),null)),(1,(3,(out,i))))),null))
 
+(block,((block,((var,(alfa,(int,2))),((var,(beta,(int,3))),null))),((out,(+,(alfa,beta))),null)))
+
 
 

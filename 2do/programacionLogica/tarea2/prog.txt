@@ -1,5 +1,4 @@
-(block,((out,(+,(1,2))),null))
+(block,((var,(alfa,(int,2))),((out,(+,(2,alfa))),null)))
 
 
-(block,((+,(1,2)),null))
 

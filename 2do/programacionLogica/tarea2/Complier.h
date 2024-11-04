@@ -86,24 +86,17 @@ public:
 	}
 
 	bool isVariable(string var){
-
 		if(headVar == nullptr){
 			return false;
 		}
-
 		Var* temp = headVar;
-
 		while(temp->next != nullptr && temp->name!=var){
 			temp = temp->next;
 		}
-
 		if(temp->name != var){
 			return false;
 		}
-
 		return true;
-
-
 	}
 
 	Value* findValueOfVariable(string name){
@@ -213,12 +206,57 @@ public:
 		Pair* p = (Pair*)val; 
 		string rightValue = ((Atom*)p->right)->val;
 		string leftValue = ((Atom*)p->left)->val;
+		//cout<<leftValue<<endl<<rightValue<<endl;
 
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
+			cout<<rightValue<<endl<<leftValue<<endl;
+
 			varTemp.value = to_string(stof(leftValue) + stof(rightValue));
 
-		}else if( !isVariable(leftValue) && isVariable(rightValue) ){
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+			Var* right = getVariable(rightValue);
+			Var* left = getVariable(leftValue);
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+					string Rvar = (getVariable(rightValue))->value;
+					string Lvar = (getVariable(leftValue))->value;
+
+						if( (getVariable(rightValue))->type == "int"){
+							varTemp.value = to_string(stoi(Rvar) + stoi(Lvar));
+							varTemp.type = "int";
+						}
+
+						if( (getVariable(rightValue))->type == "float"){
+							varTemp.value = to_string(stof(Rvar) + stof(Lvar));
+							varTemp.type="float";
+						}
+			}
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+					string Rvar = (getVariable(rightValue))->value;
+
+					if(getVariable(rightValue)->type == "int"){
+						varTemp.value = to_string(stoi(Rvar) + stoi(leftValue));
+					}
+					if(getVariable(rightValue)->type == "float"){
+						varTemp.value = to_string(stof(Rvar) + stof(leftValue));
+					}
+
+
+
+			}
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+					string Lvar = (getVariable(leftValue))->value;
+
+					if(getVariable(leftValue)->type == "int"){
+						varTemp.value = to_string(stoi(Lvar) + stoi(rightValue));
+					}
+					if(getVariable(leftValue)->type == "float"){
+						varTemp.value = to_string(stof(Lvar) + stof(rightValue));
+					}
+			}				
 
 
 
