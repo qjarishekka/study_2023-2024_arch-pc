@@ -145,6 +145,10 @@ public:
 			//programm->out();
 			return;
 		}
+
+
+		
+
 		Pair* p = (Pair*)programm;
 		if(p->left->isAtom()){
 			Atom* a = (Atom*)p->left;
@@ -175,19 +179,29 @@ public:
 			if(a->val == "for"){
 				cicloFor(p->right);
 			}
+
+
 			Func* func = headFunc;
 			while(func != nullptr){
 
 				if(func->name == a->val){
 
+					//declarar las variables
 					if(func->argsCount!=0){
-						
+						while(func->argsCount!=0){
+
+							Var** last = lastVar();
+							string name= func->args[func->argsCount];
+/* 							string type= 
+							stirng value= */
+							
+							func->argsCount--;
+						}
 					}
 					
-/* 					if(p->right->isPair()){
-						run(p->right);
-					} */
-					
+				
+
+
 					run(func->body);
 					return;
 				}
