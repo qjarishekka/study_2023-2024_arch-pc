@@ -1,4 +1,3 @@
-(block,((var,(alfa,(int,2))),((out,(+,(2,alfa))),null)))
-
+(block,((while,((>,(1,2)),null)),null))
 
 

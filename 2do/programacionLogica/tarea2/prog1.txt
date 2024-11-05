@@ -28,5 +28,6 @@
 
 (block,((block,((var,(alfa,(int,2))),((var,(beta,(int,3))),null))),((out,(+,(alfa,beta))),null)))
 
+(block,((var,(alfa,(int,3))),((out,(!=,(9,alfa))),null)))
 
 

@@ -23,11 +23,13 @@ struct VarTemp{
 	string name;
 	string type;
 	string value;
+	bool flag;
 
 	VarTemp(){
 		name="temp";
 		type="";
 		value="";
+		flag=true;
 	}
 	
 	VarTemp(string name, string type, string value){
@@ -195,8 +197,32 @@ public:
 	}
 
 //dejamos de lado temporalmente hasta desarrollar los signos
-//( while , (signo,(va1,var2)) )
+//( while , ( (signo,(va1,var2)) , body)   )
 	void cicloWhile(Value* val){
+
+		Pair* p = (Pair*)val;
+
+		run(p->left);
+		//cout<<varTemp.flag<<endl;
+
+		while(varTemp.flag){
+			run(p->right);
+			run(p->left);
+		}
+
+	}
+
+//(if,((signo,(var1,var2)),(body)))
+	void cicloIf(Value* val){
+
+		Pair* p = (Pair*)val;
+
+		run(p->left);
+		if(varTemp.flag){
+			run(p->left);
+		}
+
+
 
 	}
 
@@ -206,18 +232,17 @@ public:
 		Pair* p = (Pair*)val; 
 		string rightValue = ((Atom*)p->right)->val;
 		string leftValue = ((Atom*)p->left)->val;
-		//cout<<leftValue<<endl<<rightValue<<endl;
 
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
-			cout<<rightValue<<endl<<leftValue<<endl;
-
+			//cout<<rightValue<<endl<<leftValue<<endl;
 			varTemp.value = to_string(stof(leftValue) + stof(rightValue));
+			varTemp.type = "float";
 
 		}else if( isVariable(leftValue) || isVariable(rightValue) ){
 
-			Var* right = getVariable(rightValue);
-			Var* left = getVariable(leftValue);
+			
+			
 
 			if(isVariable(leftValue)&&isVariable(rightValue)){
 
@@ -234,76 +259,279 @@ public:
 							varTemp.type="float";
 						}
 			}
+
 			if(!isVariable(leftValue) && isVariable(rightValue)){
 					string Rvar = (getVariable(rightValue))->value;
 
 					if(getVariable(rightValue)->type == "int"){
 						varTemp.value = to_string(stoi(Rvar) + stoi(leftValue));
+						varTemp.type = "int";
 					}
 					if(getVariable(rightValue)->type == "float"){
 						varTemp.value = to_string(stof(Rvar) + stof(leftValue));
+						varTemp.type="float";
 					}
-
-
-
 			}
+
 			if(isVariable(leftValue) && !isVariable(rightValue)){
 					string Lvar = (getVariable(leftValue))->value;
 
 					if(getVariable(leftValue)->type == "int"){
 						varTemp.value = to_string(stoi(Lvar) + stoi(rightValue));
+						varTemp.type = "int";
 					}
 					if(getVariable(leftValue)->type == "float"){
 						varTemp.value = to_string(stof(Lvar) + stof(rightValue));
-					}
-			}				
-
-
-
-		}
-
-
-
-		
-
-
-/* 		Var* right = getVariable(rightValue);
-		Var* left = getVariable(leftValue);
-
-		cout<< right->name<<endl;
-
-		if( right->type =="string" || left->type =="string" ){
-			cout<<"нельзя складивать переменные типа string"<<endl;
-			exit(1);
-		}		
-
-		if( (getVariable(rightValue))->type != (getVariable(leftValue))->type){
-			cout<<"нельзя складивать"<<(getVariable(rightValue))->type <<"и" <<(getVariable(leftValue))->type <<endl;
-			exit(1);
-		}
-
-		if(isVariable(rightValue)&&isVariable(leftValue)){
-
-				string Rvar = (getVariable(rightValue))->value;
-				string Lvar = (getVariable(leftValue))->value;
-
-					if( (getVariable(rightValue))->type == "int"){
-						varTemp.value = to_string(stoi(Rvar) + stoi(Lvar));
-						varTemp.type = "int";
-					}
-
-					if( (getVariable(rightValue))->type == "float"){
-
-						varTemp.value = to_string(stof(Rvar) + stof(Lvar));
 						varTemp.type="float";
 					}
+			}				
 		}
-		 */
 	}
 
+	void resta(Value* val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			cout<<rightValue<<endl<<leftValue<<endl;
+			varTemp.value = to_string(stof(leftValue) - stof(rightValue));
+			varTemp.type="float";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
 
 
-	void igual(Value * val){\
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+					string Rvar = (getVariable(rightValue))->value;
+					string Lvar = (getVariable(leftValue))->value;
+
+						if( (getVariable(rightValue))->type == "int"){
+							varTemp.value = to_string(stoi(Rvar) - stoi(Lvar));
+							varTemp.type = "int";
+						}
+
+						if( (getVariable(rightValue))->type == "float"){
+							varTemp.value = to_string(stof(Rvar) - stof(Lvar));
+							varTemp.type="float";
+						}
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+					string Rvar = (getVariable(rightValue))->value;
+
+					if(getVariable(rightValue)->type == "int"){
+						varTemp.value = to_string( stoi(leftValue) - stoi(Rvar) );
+						varTemp.type = "int";
+					}
+					if(getVariable(rightValue)->type == "float"){
+						varTemp.value = to_string( stof(leftValue) - stof(Rvar) );
+						varTemp.type="float";
+					}
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+					string Lvar = (getVariable(leftValue))->value;
+
+					if(getVariable(leftValue)->type == "int"){
+						varTemp.value = to_string(stoi(Lvar) - stoi(rightValue));
+						varTemp.type = "int";
+					}
+					if(getVariable(leftValue)->type == "float"){
+						varTemp.value = to_string(stof(Lvar) - stof(rightValue));
+						varTemp.type="float";
+					}
+			}				
+		}
+	}
+
+	void multiplicacion(Value* val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			cout<<rightValue<<endl<<leftValue<<endl;
+			varTemp.value = to_string(stof(leftValue) * stof(rightValue));
+			varTemp.type="float";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+					string Rvar = (getVariable(rightValue))->value;
+					string Lvar = (getVariable(leftValue))->value;
+
+						if( (getVariable(rightValue))->type == "int"){
+							varTemp.value = to_string(stoi(Rvar) * stoi(Lvar));
+							varTemp.type = "int";
+						}
+
+						if( (getVariable(rightValue))->type == "float"){
+							varTemp.value = to_string(stof(Rvar) * stof(Lvar));
+							varTemp.type="float";
+						}
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+					string Rvar = (getVariable(rightValue))->value;
+
+					if(getVariable(rightValue)->type == "int"){
+						varTemp.value = to_string(stoi(Rvar) * stoi(leftValue));
+						varTemp.type = "int";
+					}
+					if(getVariable(rightValue)->type == "float"){
+						varTemp.value = to_string(stof(Rvar) * stof(leftValue));
+						varTemp.type="float";
+					}
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+					string Lvar = (getVariable(leftValue))->value;
+
+					if(getVariable(leftValue)->type == "int"){
+						varTemp.value = to_string(stoi(Lvar) * stoi(rightValue));
+						varTemp.type = "int";
+					}
+					if(getVariable(leftValue)->type == "float"){
+						varTemp.value = to_string(stof(Lvar) * stof(rightValue));
+						varTemp.type="float";
+					}
+			}				
+		}
+	}
+
+	void division(Value* val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			cout<<rightValue<<endl<<leftValue<<endl;
+			varTemp.value = to_string(stof(leftValue) / stof(rightValue));
+			varTemp.type="float";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+					string Rvar = (getVariable(rightValue))->value;
+					string Lvar = (getVariable(leftValue))->value;
+
+						if( (getVariable(rightValue))->type == "int"){
+							varTemp.value = to_string(stoi(Rvar) / stoi(Lvar));
+							varTemp.type = "int";
+						}
+
+						if( (getVariable(rightValue))->type == "float"){
+							varTemp.value = to_string(stof(Rvar) / stof(Lvar));
+							varTemp.type="float";
+						}
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+					string Rvar = (getVariable(rightValue))->value;
+
+					if(getVariable(rightValue)->type == "int"){
+						varTemp.value = to_string(  stoi(leftValue) / stoi(Rvar));
+						varTemp.type = "int";
+						
+					}
+					if(getVariable(rightValue)->type == "float"){
+						varTemp.value = to_string(  stof(leftValue) /stof(Rvar));
+						varTemp.type="float";
+			
+					}
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+					string Lvar = (getVariable(leftValue))->value;
+
+					if(getVariable(leftValue)->type == "int"){
+						varTemp.value = to_string(stoi(Lvar) / stoi(rightValue));
+						varTemp.type = "int";
+
+					}
+					if(getVariable(leftValue)->type == "float"){
+						varTemp.value = to_string(stof(Lvar) / stof(rightValue));
+						varTemp.type="float";
+					}
+			}				
+		}
+	}
+
+	void resto(Value* val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			cout<<rightValue<<endl<<leftValue<<endl;
+			varTemp.value = to_string(   stoi(leftValue) % stoi(rightValue)  );
+			varTemp.type="float";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+					string Rvar = (getVariable(rightValue))->value;
+					string Lvar = (getVariable(leftValue))->value;
+
+						if( (getVariable(rightValue))->type == "int"){
+							varTemp.value = to_string(stoi(Rvar) % stoi(Lvar));
+							varTemp.type = "int";
+						}
+
+						if( (getVariable(rightValue))->type == "float"){
+							varTemp.value = to_string(stoi(Rvar) % stoi(Lvar));
+							varTemp.type = "float";
+						}
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+					string Rvar = (getVariable(rightValue))->value;
+
+					if(getVariable(rightValue)->type == "int"){
+						varTemp.value = to_string(  stoi(leftValue) % stoi(Rvar));
+						varTemp.type = "int";
+						
+					}
+					if(getVariable(rightValue)->type == "float"){
+						varTemp.value = to_string(  stoi(leftValue) %  stoi(Rvar));
+						varTemp.type = "float";
+			
+					}
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+					string Lvar = (getVariable(leftValue))->value;
+
+					if(getVariable(leftValue)->type == "int"){
+						varTemp.value = to_string(stoi(Lvar) % stoi(rightValue));
+
+					}
+					if(getVariable(leftValue)->type == "float"){
+						varTemp.value = to_string(stoi(Lvar) % stoi(rightValue));
+						varTemp.type = "float";
+					}
+			}				
+		}
+	}
+
+	void igual(Value * val){
 
 		Pair* p = (Pair*)val;
 
@@ -317,9 +545,285 @@ public:
 
 			Var *tmp = getVariable(leftValue);
 			tmp->value = varTemp.value;
+			tmp->type = varTemp.type;
 		}
 	}
 
+	void mayor(Value * val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			varTemp.flag= stoi(leftValue) > stoi(rightValue);//aqui
+			varTemp.type="bool";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) > stoi(Rvar);
+				varTemp.type = "bool";
+				
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+
+				varTemp.flag = stoi(leftValue) > stoi(Rvar);
+				varTemp.type="bool";
+
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) > stoi(rightValue);
+				varTemp.type="bool";
+
+			}
+
+
+
+		}
+	}
+
+	void menor(Value * val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			varTemp.flag= stoi(leftValue) < stoi(rightValue);//aqui
+			varTemp.type="bool";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) < stoi(Rvar);//aqui
+				varTemp.type = "bool";
+				
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+
+				varTemp.flag = stoi(leftValue) < stoi(Rvar);//aqui
+				varTemp.type="bool";
+
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) < stoi(rightValue);//aqui
+				varTemp.type="bool";
+
+			}
+
+
+
+		}
+	}
+
+	void CondIgual(Value * val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			varTemp.flag= stoi(leftValue) == stoi(rightValue);//aqui
+			varTemp.type="bool";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) == stoi(Rvar);//aqui
+				varTemp.type = "bool";
+				
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+
+				varTemp.flag = stoi(leftValue) == stoi(Rvar);//aqui
+				varTemp.type="bool";
+
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) == stoi(rightValue);//aqui
+				varTemp.type="bool";
+
+			}
+
+
+
+		}
+	}
+
+	void mayorIgual(Value * val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			varTemp.flag= stoi(leftValue) >= stoi(rightValue);//aqui
+			varTemp.type="bool";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) >= stoi(Rvar);//aqui
+				varTemp.type = "bool";
+				
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+
+				varTemp.flag = stoi(leftValue) >= stoi(Rvar);//aqui
+				varTemp.type="bool";
+
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) >= stoi(rightValue);//aqui
+				varTemp.type="bool";
+
+			}
+
+
+
+		}
+	}
+
+	void menorIgual(Value * val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			varTemp.flag= stoi(leftValue) <= stoi(rightValue);//aqui
+			varTemp.type="bool";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) <= stoi(Rvar);//aqui
+				varTemp.type = "bool";
+				
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+
+				varTemp.flag = stoi(leftValue) <= stoi(Rvar);//aqui
+				varTemp.type="bool";
+
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) <= stoi(rightValue);//aqui
+				varTemp.type="bool";
+
+			}
+
+
+
+		}
+	}
+
+	void diferente(Value * val){
+
+		Pair* p = (Pair*)val; 
+		string rightValue = ((Atom*)p->right)->val;
+		string leftValue = ((Atom*)p->left)->val;
+
+		if(!isVariable(leftValue) && !isVariable(rightValue)){
+
+			varTemp.flag= stoi(leftValue) != stoi(rightValue);//aqui
+			varTemp.type="bool";
+
+		}else if( isVariable(leftValue) || isVariable(rightValue) ){
+
+			if(isVariable(leftValue)&&isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) != stoi(Rvar);//aqui
+				varTemp.type = "bool";
+				
+			}
+
+			if(!isVariable(leftValue) && isVariable(rightValue)){
+
+				string Rvar = (getVariable(rightValue))->value;
+
+				varTemp.flag = stoi(leftValue) != stoi(Rvar);//aqui
+				varTemp.type="bool";
+
+			}
+
+			if(isVariable(leftValue) && !isVariable(rightValue)){
+
+				string Lvar = (getVariable(leftValue))->value;
+
+				varTemp.flag = stoi(Lvar) != stoi(rightValue);//aqui
+				varTemp.type="bool";
+
+			}
+
+
+
+		}
+	}
 
 
 
@@ -343,9 +847,16 @@ public:
 			if(a->val == "out"){
 
 				Atom* signo = (Atom*)((Pair*)((Pair*)p->right)->left)  ;
-				if( ((Atom*)signo)->val  == "+" ){
+				if( ((Atom*)signo)->val  == "+" || ((Atom*)signo)->val  == "-" || ((Atom*)signo)->val  == "*" || 
+					((Atom*)signo)->val  == "/" || ((Atom*)signo)->val  == "%"){
 					run(p->right);
 					cout<<varTemp.value<<endl;
+
+				}else if(((Atom*)signo)->val  == ">" || ((Atom*)signo)->val  == "<" || ((Atom*)signo)->val  == "==" || 
+					((Atom*)signo)->val  == ">=" || ((Atom*)signo)->val  == "<=" || ((Atom*)signo)->val  == "!="){
+
+					run(p->right);
+					cout<<varTemp.flag<<endl;
 
 				}else if(isVariable(b->val)){
 					//cout<<"a->val vale "<<b->val<<endl;
@@ -361,20 +872,38 @@ public:
 			if(a->val == "+"){
 				suma(p->right);
 			}
-
 			if(a->val =="-"){
-				//resta(p->right);
+				resta(p->right);
 			}
-
 			if(a->val =="*"){
-				//multiplicacion(p->right);
+				multiplicacion(p->right);
 			}
-
 			if(a->val =="/"){
-				//division(p->right);
+				division(p->right);
+			}
+			if(a->val =="%"){
+				resto(p->right);
 			}
 			if(a->val =="="){
 				igual(p->right);
+			}
+			if(a->val ==">"){
+				mayor(p->right);
+			}
+			if(a->val =="<"){
+				menor(p->right);
+			}
+			if(a->val =="=="){
+				CondIgual(p->right);
+			}
+			if(a->val==">="){
+				mayorIgual(p->right);
+			}
+			if(a->val=="<="){
+				menorIgual(p->right);
+			}
+			if(a->val=="!="){
+				diferente(p->right);
 			}
 
 
@@ -396,6 +925,9 @@ public:
 			}
 			if(a->val == "while"){
 				cicloWhile(p->right);
+			}
+			if(a->val=="if"){
+				cicloIf(p->right);
 			}
 
 
