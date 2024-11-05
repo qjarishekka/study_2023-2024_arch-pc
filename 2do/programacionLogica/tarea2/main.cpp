@@ -34,7 +34,7 @@ Value* parse(string line){
 	return new Pair(left, right); 
 }
 
-Value* parseFormula(string line){
+/* Value* parseFormula(string line){
 	// нужно снятие верхних скобок
 	char* ops = new char[4]{'+', '-', '*', '/'}; // набор операций
 	int id = -1; // позиция симовола оператора
@@ -54,7 +54,7 @@ Value* parseFormula(string line){
 	//						 						line[:id] // line[id+1:]
 	return new Pair(new Atom( { line[id] } ), new Pair(parseFormula(line.substr(0, id)),
 												parseFormula(line.substr(id+1))));
-}
+} */
 
 int main(){
 	

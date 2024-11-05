@@ -31,3 +31,27 @@
 (block,((var,(alfa,(int,3))),((out,(!=,(9,alfa))),null)))
 
 
+-------
+
+
+(block,((var,(alfa,(int,2))),((),null)))
+
+(block,((=,(alfa,(+,(alfa,1)))),((out,alfa),null)))
+
+
+(block,((block,((var,(alfa,(int,3))),((var,(beta,(int,9))),null))),((while,((<,(alfa,beta)),(block,((=,(alfa,(+,(alfa,1)))),null)))),((out,(alfa)),null))))
+                                                                                                                                                   
+
+(while,((<,(alfa,beta)),(block,((+,(alfa,1)),((out,alfa),null)))))
+
+(block,((+,(alfa,1)),null))
+
+
+(block,((var,(alfa,(int,3))),((var,(beta,(int,4))),null)))
+
+(block,((var,(alfa,(int,1))),(((out,alfa),null),null)))
+
+
+(block,(((+,(alfa,1)),null),((out,alfa),null)))
+
+(block,((while,((>,(1,2)),null)),null))

@@ -44,7 +44,7 @@ public:
 	}
 	// (+, (X, 0)).replace(X, 1)
 	// (+, (X, X0)).replace(X, 1)
-	Value* replaceVar(string varName, string varValue){
+	Value* replaceVar(string varName, string varValue)override{
 		if(val == varName)
 			return new Atom(varValue);
 		return new Atom(val);
@@ -99,7 +99,7 @@ public:
 		return l + r;
 	}
 	
-	Value* replaceVar(string varName, string varValue){
+	Value* replaceVar(string varName, string varValue)override{
 		return new Pair(left->replaceVar(varName, varValue), right->replaceVar(varName, varValue));
 	}
 };

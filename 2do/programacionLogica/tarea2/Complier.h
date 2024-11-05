@@ -233,6 +233,8 @@ public:
 		string rightValue = ((Atom*)p->right)->val;
 		string leftValue = ((Atom*)p->left)->val;
 
+		//cout<<leftValue<<" "<<rightValue<<endl;
+
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
 			//cout<<rightValue<<endl<<leftValue<<endl;
@@ -296,7 +298,7 @@ public:
 
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
-			cout<<rightValue<<endl<<leftValue<<endl;
+			//cout<<rightValue<<endl<<leftValue<<endl;
 			varTemp.value = to_string(stof(leftValue) - stof(rightValue));
 			varTemp.type="float";
 
@@ -356,7 +358,7 @@ public:
 
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
-			cout<<rightValue<<endl<<leftValue<<endl;
+			//cout<<rightValue<<endl<<leftValue<<endl;
 			varTemp.value = to_string(stof(leftValue) * stof(rightValue));
 			varTemp.type="float";
 
@@ -416,7 +418,7 @@ public:
 
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
-			cout<<rightValue<<endl<<leftValue<<endl;
+			//cout<<rightValue<<endl<<leftValue<<endl;
 			varTemp.value = to_string(stof(leftValue) / stof(rightValue));
 			varTemp.type="float";
 
@@ -478,7 +480,7 @@ public:
 
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
-			cout<<rightValue<<endl<<leftValue<<endl;
+			//cout<<rightValue<<endl<<leftValue<<endl;
 			varTemp.value = to_string(   stoi(leftValue) % stoi(rightValue)  );
 			varTemp.type="float";
 
@@ -538,7 +540,7 @@ public:
 		string leftValue = ((Atom*)p->left)->val;
 
 		if(!isVariable(leftValue)){
-			cout<<"ошибка: нельзя уравнять что-но на nonvariable"<<endl;
+			cout<<"ошибка: нельзя уравнять что-то на nonvariable"<<endl;
 			exit(1);
 		}else{
 			run(p->right);
@@ -546,6 +548,7 @@ public:
 			Var *tmp = getVariable(leftValue);
 			tmp->value = varTemp.value;
 			tmp->type = varTemp.type;
+			//cout<<varTemp.value<<varTemp.type<<endl;
 		}
 	}
 
@@ -600,6 +603,8 @@ public:
 		Pair* p = (Pair*)val; 
 		string rightValue = ((Atom*)p->right)->val;
 		string leftValue = ((Atom*)p->left)->val;
+
+		//cout<<leftValue<<" "<<rightValue<<endl;
 
 		if(!isVariable(leftValue) && !isVariable(rightValue)){
 
@@ -845,10 +850,24 @@ public:
 				addFunc(p->right);
 			}
 			if(a->val == "out"){
+				
+				Atom* signo = (Atom*)((Pair*)((Pair*)p->right)->left);
 
-				Atom* signo = (Atom*)((Pair*)((Pair*)p->right)->left)  ;
-				if( ((Atom*)signo)->val  == "+" || ((Atom*)signo)->val  == "-" || ((Atom*)signo)->val  == "*" || 
-					((Atom*)signo)->val  == "/" || ((Atom*)signo)->val  == "%"){
+				if(p->right->isAtom()){
+
+					if(isVariable(b->val)){
+					//cout<<"a->val vale "<<b->val<<endl;
+					//encontrar la variable que se esta solicitando
+					out(findValueOfVariable(b->val));
+					//cout<<endl;
+					}else{
+						out(p->right);	
+						cout<<endl;	
+						
+					}
+
+				}else if( ((Atom*)signo)->val  == "+" || ((Atom*)signo)->val  == "-" || ((Atom*)signo)->val  == "*" || 
+					((Atom*)signo)->val  == "/" || ((Atom*)signo)->val  == "%" || ((Atom*)signo)->val  == "="){
 					run(p->right);
 					cout<<varTemp.value<<endl;
 
@@ -858,14 +877,6 @@ public:
 					run(p->right);
 					cout<<varTemp.flag<<endl;
 
-				}else if(isVariable(b->val)){
-					//cout<<"a->val vale "<<b->val<<endl;
-					//encontrar la variable que se esta solicitando
-					out(findValueOfVariable(b->val));
-					cout<<endl;
-				}else{
-					out(p->right);	
-					cout<<endl;				
 				}
 			}
 
