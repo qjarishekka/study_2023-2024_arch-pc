@@ -6,19 +6,10 @@ using namespace std;
 
 int main(){
 
-string a = "123456789";
+int alfa = 3;
+int beta =alfa;
 
-bool B = true;
 
-cout<< (int)a.length()<<endl;
-
-cout<< typeid(B).name() <<endl;
-
-cout<<9%2<<endl;
-
-if(1){
-    cout<<false<<endl;
-}
-
+cout<<beta<<endl;
 
 }

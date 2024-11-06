@@ -55,3 +55,8 @@
 (block,(((+,(alfa,1)),null),((out,alfa),null)))
 
 (block,((while,((>,(1,2)),null)),null))
+
+
+----------------------------------
+
+(block,((var,(alfa,(int,3))),((block,((while,((<,(alfa,5)),(out,(=,(alfa,(+,(alfa,1))))))),(block,((out,alfa),null)))),null)))

@@ -1,5 +1,11 @@
-(block,((var,(alfa,(int,3))),((block,((while,((<,(alfa,5)),(=,(alfa,(+,(alfa,1)))))),(block,((out,alfa),null)))),null)))
+(block,((out,xd),null))
+
+(block,((block,((var,(alfa,(int,5))),((var,(beta,(int,1))),null))),((block,((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((block,((=,(alfa,(-,(alfa,1)))),null)),null))))),((out,beta),null))),null)))
 
 
-(block,((while,((<,(alfa,5)),(=,(alfa,(+,(alfa,1)))))),(block,((out,alfa),null))))
+
+
+
+
+
 

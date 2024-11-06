@@ -77,6 +77,7 @@ public:
 	// (out, ...val...)
 	void out(Value* val){
 		val->out();
+		cout<<endl;
 	}
 	
 	Var** lastVar(){ // конец списка переменных
@@ -128,7 +129,22 @@ public:
 		Var** last = lastVar();
 		string name = ((Atom*)((Pair*)var)->left)->val;
 		string type = ((Atom*)((Pair*)((Pair*)var)->right)->left)->val;
-		string value = ((Atom*)((Pair*)((Pair*)var)->right)->right)->val;
+		string value ="";
+
+		if( (((Pair*)((Pair*)var)->right)->right)->isPair()){
+
+			run(((Pair*)((Pair*)var)->right)->right);
+			value = varTemp.value;
+			type = varTemp.type;
+		}else if(isVariable(((Atom*)((Pair*)((Pair*)var)->right)->right)->val)){
+			
+				value = getVariable(((Atom*)((Pair*)((Pair*)var)->right)->right)->val)->value;
+				type = getVariable(((Atom*)((Pair*)((Pair*)var)->right)->right)->val)->type;
+
+			}else{
+				value = ((Atom*)((Pair*)((Pair*)var)->right)->right)->val;			
+			}
+		
 		*last = new Var(name, type, value);
 	}
 	
@@ -830,7 +846,25 @@ public:
 		}
 	}
 
+	void funReturn(Value * val){
+		Pair* p = (Pair*)val;
 
+		if(p->isAtom()){
+			if(isVariable(((Atom*)p)->val)){
+				varTemp.value = getVariable(((Atom*)p)->val)->value;
+				varTemp.type = getVariable(((Atom*)p)->val)->type;
+			}else{
+				varTemp.type = ((Atom*)p)->val;
+			}
+		}else{
+
+			run(p);
+		
+		}
+
+
+		
+	}
 
 
 
@@ -917,9 +951,6 @@ public:
 				diferente(p->right);
 			}
 
-
-
-
 			if(a->val == "block"){
 				Pair* next = (Pair*)p->right;
 				while(next != nullptr){ // пока не кончился список команд
@@ -940,6 +971,12 @@ public:
 			if(a->val=="if"){
 				cicloIf(p->right);
 			}
+
+			if(a->val=="return"){
+				funReturn(p->right);
+			}
+
+
 
 
 

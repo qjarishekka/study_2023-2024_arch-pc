@@ -76,7 +76,7 @@ int main(){
 	cout << endl;
 
 	comp->run(programm);
-	cout<<endl;
+	//cout<<endl;
 	
 	return 0;
 }
