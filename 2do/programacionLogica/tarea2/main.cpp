@@ -77,6 +77,10 @@ int main(){
 
 	comp->run(programm);
 	//cout<<endl;
+
+
+
+	//estaba viendo el out
 	
 	return 0;
 }

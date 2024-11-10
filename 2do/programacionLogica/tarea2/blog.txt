@@ -39,7 +39,7 @@
 (block,((=,(alfa,(+,(alfa,1)))),((out,alfa),null)))
 
 
-(block,((block,((var,(alfa,(int,3))),((var,(beta,(int,9))),null))),((while,((<,(alfa,beta)),(block,((=,(alfa,(+,(alfa,1)))),null)))),((out,(alfa)),null))))
+(block,((block,((var,(alfa,(int,3))),((var,(beta,(int,9))),null))),((while,((<,(alfa,beta)),(block,((=,(alfa,(+,(alfa,1)))),null)))),((out,(alfa,null)),null))))
                                                                                                                                                    
 
 (while,((<,(alfa,beta)),(block,((+,(alfa,1)),((out,alfa),null)))))
@@ -60,3 +60,16 @@
 ----------------------------------
 
 (block,((var,(alfa,(int,3))),((block,((while,((<,(alfa,5)),(out,(=,(alfa,(+,(alfa,1))))))),(block,((out,alfa),null)))),null)))
+
+
+
+------------
+
+
+int fun(int alfa, int beta){
+
+    asjfdjasdf
+    return alfa;
+}
+
+a = fun()

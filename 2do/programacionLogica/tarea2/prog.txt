@@ -1,11 +1,28 @@
-(block,((out,xd),null))
-
-(block,((block,((var,(alfa,(int,5))),((var,(beta,(int,1))),null))),((block,((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((block,((=,(alfa,(-,(alfa,1)))),null)),null))))),((out,beta),null))),null)))
+(block,((def,((permut,int),((alfa,null),(block,((var,(beta,(int,1))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))))),((out,(permut,(3,null))),((out,(permut,(2,null))),((def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(gama,null))))),((var,(b,(int,(permut,(delta,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null)))))))))))),((out,(comb,(3,(5,null)))),null))))))
 
 
 
 
+(def,((permut,int),((alfa,null),(block,((var,(beta,(int,0))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null))))))))
 
+
+(block,((var,(beta,(int,null))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))
+
+(while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null)))))
+
+(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null)))
+
+
+
+(def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(gama,null))))),((var,(b,(int,(permut,(delta,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null))))))))))))
+
+(block,((var,(a,(int,(permut,(gama,null))))),((var,(b,(int,(permut,(delta,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null))))))))
+
+
+
+(def,((arr,int),((epsilon,(zeta,null)),())))
+
+(block,(,null))
 
 
 

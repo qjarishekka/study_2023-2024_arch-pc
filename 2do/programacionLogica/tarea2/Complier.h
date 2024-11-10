@@ -112,6 +112,8 @@ public:
 
 	}
 
+
+
 	Var* getVariable(string name){
 		Var * temp = headVar;
 
@@ -183,12 +185,34 @@ public:
 	
 	// (def, ( (f, void), ( ( int:x1 , (int:x2, null) ) , (...) ) ) )
 
+	bool isFunction(string val){
 
+		Func* functions = headFunc;
 
+		while(functions->next != nullptr ){
+
+			functions = functions->next;
+		}
+
+		if(functions->name == val){
+			return true;
+		}
+		return false;
+	}
 
 //(for,( (block, ( (var,(nombre,(tipo,valor))) ,null ))   , (valorIncremtacion,(tope,body))  ))
 
+	Func* getFunc(string name){
 
+		Func * temp = headFunc;
+
+		while(temp !=nullptr && temp->name != name){
+			temp= temp->next;
+		}
+
+		return temp;
+
+	}
 
 	void cicloFor(Value* val){
 		
@@ -387,6 +411,8 @@ public:
 					string Rvar = (getVariable(rightValue))->value;
 					string Lvar = (getVariable(leftValue))->value;
 
+					cout<<Lvar<<endl<<Rvar<<endl;
+
 						if( (getVariable(rightValue))->type == "int"){
 							varTemp.value = to_string(stoi(Rvar) * stoi(Lvar));
 							varTemp.type = "int";
@@ -559,12 +585,19 @@ public:
 			cout<<"ошибка: нельзя уравнять что-то на nonvariable"<<endl;
 			exit(1);
 		}else{
+
+			if(p->right->isAtom()){
+				Var *tmp = getVariable(leftValue);
+				tmp->value = ((Atom*)p->right)->val;
+				
+			}else{
 			run(p->right);
 
 			Var *tmp = getVariable(leftValue);
 			tmp->value = varTemp.value;
 			tmp->type = varTemp.type;
 			//cout<<varTemp.value<<varTemp.type<<endl;
+			}
 		}
 	}
 
@@ -854,7 +887,7 @@ public:
 				varTemp.value = getVariable(((Atom*)p)->val)->value;
 				varTemp.type = getVariable(((Atom*)p)->val)->type;
 			}else{
-				varTemp.type = ((Atom*)p)->val;
+				varTemp.value = ((Atom*)p)->val;
 			}
 		}else{
 
@@ -866,9 +899,63 @@ public:
 		
 	}
 
+	void matchVariables(string funName, Value* entringVar){
 
+		Func* function = getFunc(funName);
+		int argsCount = function->argsCount;
+		int counter = 0;
+
+		Pair* parVariables = (Pair*)entringVar;
+		string* VarNames = function->args;
+		string* entringArgs= new string[argsCount];
+
+		
+
+		if(entringVar->len() == argsCount){
+
+			for(int i = 0; i<argsCount; i++){
+
+				Pair* var = new Pair(new Atom("var"),new Pair(new Atom(VarNames[i]),new Pair(new Atom("int"),new Atom("0"))));
+				run(var);
+
+			}
+
+			while(parVariables != nullptr){
+
+				entringArgs[counter] = ((Atom*)parVariables->left)->val;
+				parVariables = (Pair*)parVariables->right;
+				counter++;
+			}
+
+			for(int i = 0; i< argsCount; i++){
+
+				if(isVariable(entringArgs[i])){
+
+					getVariable(VarNames[i])->value = getVariable(entringArgs[i])->value;
+					getVariable(VarNames[i])->type = getVariable(entringArgs[i])->type;
+
+				}else{
+					
+					getVariable(VarNames[i])->value = entringArgs[i];
+				}
+
+
+
+			}
+		}else{
+			cout<<"ошибка: нет необходимых переменных"<<endl;
+			exit(1);
+		}
+
+
+
+		
+		
+	}
 
 	void run(Value* programm){ // исполнения кода
+		programm->out();
+		cout<<endl;
 		if(programm->isAtom()){
 			//programm->out();
 			return;
@@ -886,8 +973,14 @@ public:
 			if(a->val == "out"){
 				
 				Atom* signo = (Atom*)((Pair*)((Pair*)p->right)->left);
+				//((Atom*)signo)->out();
+
+
 
 				if(p->right->isAtom()){
+
+					p->right->out();
+					((Atom*)signo)->out();
 
 					if(isVariable(b->val)){
 					//cout<<"a->val vale "<<b->val<<endl;
@@ -911,6 +1004,9 @@ public:
 					run(p->right);
 					cout<<varTemp.flag<<endl;
 
+				}else if(isFunction(((Atom*)signo)->val)){
+					run(p->right);
+					cout<<varTemp.value<<endl;
 				}
 			}
 
@@ -974,6 +1070,7 @@ public:
 
 			if(a->val=="return"){
 				funReturn(p->right);
+				return;
 			}
 
 
@@ -989,7 +1086,25 @@ public:
 							std::cout<<"ошибка при вызове функции, нет нашлись необходимых переменных"<<endl;
 							exit(1);
 						}else{
-							run(p->right);
+							
+							//variables en funciones
+							matchVariables(a->val, p->right);
+
+
+							//run(p->right);
+
+
+							
+/* 							if(p->right->isAtom()){
+							if(isVariable(((Atom*)p->right)->val)){
+								
+								cout<<"is variable"<<endl;
+							}
+
+							}else{
+								run(p->right);
+							}
+							 */
 						}
 					}
 					run(func->body);
