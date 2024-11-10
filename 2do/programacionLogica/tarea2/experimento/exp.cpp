@@ -50,7 +50,7 @@ return d;
 
 int main(){
 
-int teta = permutacion(3);
+int teta = arreglo(3,4);
 
 cout<<teta;
 

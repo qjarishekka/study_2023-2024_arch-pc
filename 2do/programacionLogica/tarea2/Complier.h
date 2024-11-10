@@ -352,12 +352,12 @@ public:
 					string Lvar = (getVariable(leftValue))->value;
 
 						if( (getVariable(rightValue))->type == "int"){
-							varTemp.value = to_string(stoi(Rvar) - stoi(Lvar));
+							varTemp.value = to_string(stoi(Lvar) - stoi(Rvar));
 							varTemp.type = "int";
 						}
 
 						if( (getVariable(rightValue))->type == "float"){
-							varTemp.value = to_string(stof(Rvar) - stof(Lvar));
+							varTemp.value = to_string(stof(Lvar) - stof(Rvar));
 							varTemp.type="float";
 						}
 			}
@@ -411,7 +411,7 @@ public:
 					string Rvar = (getVariable(rightValue))->value;
 					string Lvar = (getVariable(leftValue))->value;
 
-					cout<<Lvar<<endl<<Rvar<<endl;
+					//cout<<Lvar<<endl<<Rvar<<endl;
 
 						if( (getVariable(rightValue))->type == "int"){
 							varTemp.value = to_string(stoi(Rvar) * stoi(Lvar));
@@ -473,12 +473,12 @@ public:
 					string Lvar = (getVariable(leftValue))->value;
 
 						if( (getVariable(rightValue))->type == "int"){
-							varTemp.value = to_string(stoi(Rvar) / stoi(Lvar));
+							varTemp.value = to_string(stoi(Lvar) / stoi(Rvar));
 							varTemp.type = "int";
 						}
 
 						if( (getVariable(rightValue))->type == "float"){
-							varTemp.value = to_string(stof(Rvar) / stof(Lvar));
+							varTemp.value = to_string(stof(Lvar) / stof(Rvar));
 							varTemp.type="float";
 						}
 			}
@@ -954,8 +954,8 @@ public:
 	}
 
 	void run(Value* programm){ // исполнения кода
-		programm->out();
-		cout<<endl;
+		//programm->out();
+		//cout<<endl;
 		if(programm->isAtom()){
 			//programm->out();
 			return;

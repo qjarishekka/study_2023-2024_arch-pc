@@ -1,4 +1,4 @@
-(block,((def,((permut,int),((alfa,null),(block,((var,(beta,(int,1))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))))),((out,(permut,(3,null))),((out,(permut,(2,null))),((def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(gama,null))))),((var,(b,(int,(permut,(delta,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null)))))))))))),((out,(comb,(3,(5,null)))),null))))))
+(block,((def,((permut,int),((alfa,null),(block,((var,(beta,(int,1))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))))),((out,(permut,(3,null))),((out,(permut,(2,null))),((def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null)))))))))))),((out,(comb,(3,(5,null)))),((def,((arr,int),((epsilon,(zeta,null)),(block,((var,(d,(int,(permut,(zeta,null))))),((var,(diferencia,(int,(-,(zeta,epsilon))))),((var,(e,(int,(permut,(diferencia,null))))),((=,(d,(/,(d,e)))),((return,d),null))))))))),(out,(arr,(3,(4,null))),null))))))))
 
 
 
@@ -14,15 +14,23 @@
 
 
 
-(def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(gama,null))))),((var,(b,(int,(permut,(delta,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null))))))))))))
+(def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null))))))))))))
 
-(block,((var,(a,(int,(permut,(gama,null))))),((var,(b,(int,(permut,(delta,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null))))))))
+(block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null))))))))
 
 
 
-(def,((arr,int),((epsilon,(zeta,null)),())))
 
-(block,(,null))
+
+
+
+
+
+(def,((arr,int),((epsilon,(zeta,null)),(block,((var,(d,(int,(permut,(zeta,null))))),((var,(diferencia,(int,(-,(zeta,epsilon))))),((var,(e,(int,(permut,(diferencia,null))))),((=,(d,(/,(d,e)))),((return,d),null)))))))))
+
+(block,((var,(d,(int,(permut,(zeta,null))))),((var,(diferencia,(int,(-,(zeta,epsilon))))),((var,(e,(int,(permut,(diferencia,null))))),((=,(d,(/,(d,e)))),((return,d),null))))))
+
+
 
 
 
