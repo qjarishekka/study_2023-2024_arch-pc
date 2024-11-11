@@ -1,18 +1,21 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-""" from statistics import* """
 
 
-data = pd.read_csv('C:/work/mirepositorio/2do/python/clase5/crypto-markets.csv')
+
+data = pd.read_csv('/Users/user/work/study/2023-2024/Архитектура_компьютера/tareas/mirepositorio/2do/python/clase5/crypto-markets.csv')
 data_bit = data[['date', 'open' , 'low' , 'high' , 'close']][:200]
-
+mean = data_bit['close'].mean()
+std= data_bit['close'].std()
 plt.plot(data_bit['close'], 'b' , label= 'закрытие')
 plt.plot(data_bit['low'] , 'y--' , label='минимум')
 plt.plot(data_bit['high'], 'g--' , label='максимум')
+
 plt.axhline(mean, color='r' , linestyle= '-', label = 'среднее') # axhline горизонтальная линия
-plt.axhline(mean + 'std', color='r' , linestyle= '--')
-plt.axhline(mean - 'std' , color='r' , linestyle= '--')
-plt.axhline(median,  color='b' , linestyle='-.' , label = 'медиана')
+plt.axhline(mean + std, color='r' , linestyle= '--')
+plt.axhline(mean - std , color='r' , linestyle= '--')
+plt.axhline(data_bit['close'].median(),  color='b' , linestyle='-.' , label = 'медиана')
+
 plt.xlabel('дни торгов')
 plt.ylabel('цены $')
 plt.title('рис.1. цены на биткоин за период торгов')
