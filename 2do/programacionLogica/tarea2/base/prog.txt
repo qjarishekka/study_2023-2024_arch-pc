@@ -1,1 +1,0 @@
-(block,((def,((f,void),(null,(block,((out,func),null))))),((out,main),((f,null),null)) ))
