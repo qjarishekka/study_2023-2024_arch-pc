@@ -1,4 +1,4 @@
-(block,((def,((permut,int),((alfa,null),(block,((var,(beta,(int,0))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))))),((def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null)))))))))))),((out,(comb,(3,(5,null)))),null))))
+(block,((def,((permut,int),((alfa,null),(block,((var,(beta,(int,0))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))))),((def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null)))))))))))),((var,(n,(int,0))),((var,(m,(int,0))),((out,(enter value for n)),((in,n),((out,enter value for m),((in,m),((out,(permut,(n,null))),((out,(comb,(m,(n,null)))),((out,(arr,(m,(n,null)))),null))))))))))))
 
 
 

@@ -185,19 +185,23 @@ public:
 	
 	// (def, ( (f, void), ( ( int:x1 , (int:x2, null) ) , (...) ) ) )
 
-	bool isFunction(string val){
+	bool isFunction(string nameFunction){
+
+		if(headFunc == nullptr){
+			return false;
+		}
 
 		Func* functions = headFunc;
 
-		while(functions->next != nullptr ){
+		while(functions->next != nullptr && functions->name!=nameFunction ){
 
 			functions = functions->next;
 		}
 
-		if(functions->name == val){
-			return true;
+		if(functions->name != nameFunction){
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 //(for,( (block, ( (var,(nombre,(tipo,valor))) ,null ))   , (valorIncremtacion,(tope,body))  ))
@@ -983,9 +987,6 @@ public:
 			if(a->val == "out"){
 				
 				Atom* signo = (Atom*)((Pair*)((Pair*)p->right)->left);
-
-
-
 
 				if(p->right->isAtom()){
 
