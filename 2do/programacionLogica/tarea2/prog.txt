@@ -1,4 +1,31 @@
+(block,((def,((permut,int),((alfa,null),(block,((var,(beta,(int,0))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))))),((def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null)))))))))))),((out,(comb,(3,(5,null)))),null))))
+
+
+
+
+программа без входа с клавиатуры
+
 (block,((def,((permut,int),((alfa,null),(block,((var,(beta,(int,1))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null)))))))),((out,(permut,(3,null))),((out,(permut,(2,null))),((def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null)))))))))))),((out,(comb,(3,(5,null)))),((def,((arr,int),((epsilon,(zeta,null)),(block,((var,(d,(int,(permut,(zeta,null))))),((var,(diferencia,(int,(-,(zeta,epsilon))))),((var,(e,(int,(permut,(diferencia,null))))),((=,(d,(/,(d,e)))),((return,d),null))))))))),(out,(arr,(3,(4,null))),null))))))))
+
+
+
+функция для перестановка 
+
+(def,((permut,int),((alfa,null),(block,((var,(beta,(int,0))),((=,(beta,1)),((while,((>,(alfa,1)),(block,((=,(beta,(*,(beta,alfa)))),((=,(alfa,(-,(alfa,1)))),null))))),((return,beta),null))))))))
+
+
+функция для сочетаний
+
+(def,((comb,int),((gama,(delta,null)),((block,((var,(a,(int,(permut,(delta,null))))),((var,(b,(int,(permut,(gama,null))))),((var,(diff,(int,(-,(delta,gama))))),((var,(c,(int,(permut,(diff,null))))),((=,(b,(*,(b,c)))),((=,(a,(/,(a,b)))),((return,a),null))))))))))))
+
+
+функция для размещений
+
+(def,((arr,int),((epsilon,(zeta,null)),(block,((var,(d,(int,(permut,(zeta,null))))),((var,(diferencia,(int,(-,(zeta,epsilon))))),((var,(e,(int,(permut,(diferencia,null))))),((=,(d,(/,(d,e)))),((return,d),null)))))))))
+
+
+
+
 
 
 

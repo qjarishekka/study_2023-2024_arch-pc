@@ -953,6 +953,11 @@ public:
 		
 	}
 
+	void funcIn(Value* val){
+		cin>>    getVariable(  ((Atom*)val)->val)->value;
+	}
+
+
 	void run(Value* programm){ // исполнения кода
 		//programm->out();
 		//cout<<endl;
@@ -970,17 +975,22 @@ public:
 			if(a->val == "def"){
 				addFunc(p->right);
 			}
+
+			if(a->val == "in"){
+				funcIn(p->right);
+			}
+
 			if(a->val == "out"){
 				
 				Atom* signo = (Atom*)((Pair*)((Pair*)p->right)->left);
-				//((Atom*)signo)->out();
+
 
 
 
 				if(p->right->isAtom()){
 
-					p->right->out();
-					((Atom*)signo)->out();
+					//p->right->out();
+					//((Atom*)signo)->out();
 
 					if(isVariable(b->val)){
 					//cout<<"a->val vale "<<b->val<<endl;

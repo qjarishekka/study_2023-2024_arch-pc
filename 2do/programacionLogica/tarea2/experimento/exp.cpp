@@ -50,7 +50,7 @@ return d;
 
 int main(){
 
-int teta = arreglo(3,4);
+int teta = combinacion(3,5);
 
 cout<<teta;
 
