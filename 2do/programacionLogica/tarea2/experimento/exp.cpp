@@ -50,9 +50,21 @@ return d;
 
 int main(){
 
-int teta = arreglo(3,5);
+int n;
+int m;
+cout<<"enter value for n \n";
+cin>>n;
+cout<<"enter value for m \n";
+cin>>m;
 
-cout<<teta;
+cout<<permutacion(n)<<endl;
+
+cout<<combinacion(m,n)<<endl;
+
+cout<<arreglo(m,n)<<endl;
+
+return 0;
+
 
 }
 
