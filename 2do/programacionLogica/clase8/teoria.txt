@@ -1,0 +1,22 @@
+binary search : O(log2(N)) 
+
+-------------------------
+
+mother(... ,...).
+
+dauther(... , ...).
+
+son(... , ...).
+
+mother(X, Y) :-     son( Y , X );                       ´;´ o logico
+                    dauther( Y, X ).                    ´,´ y logico
+
+-------------
+
+string.split(";") -> string * (devuelve un arreglo de lineas de texto)
+
+
+
+
+
+
