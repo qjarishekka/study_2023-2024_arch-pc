@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import calendar, locale
 from matplotlib.ticker import MultipleLocator
+import numpy as np
 """ locale.setlocale(locale.LC_ALL, 'en-EN') """
 
 
@@ -14,36 +15,60 @@ print(sistemaop)
 
 
 
-data = pd.read_csv('C:/work/mirepositorio/2do/python/tarea2/index.csv')
-data_bit = data[['Year','Federal Funds Target Rate']]
+data = pd.read_csv('C:/work/mirepositorio/2do/python/tarea2/nvda_data.csv')
+data_bit = data[['Datetime','Open',  'High' , 'Low' , 'Close']][:100]
 
 
-locator = mdates.AutoDateLocator()
-formatter = mdates.AutoDateFormatter(locator)
-
-fig = plt.figure(figsize=(9,5))
-
-ax = fig.add_axes([0.1, 0.1, 0.8, 0.8], aspect=30)
+fig = plt.figure(figsize=(10,7))
 
 
+ax = fig.add_axes([0.1, 0.1, 0.8, 0.8], aspect=5)
+ax.yaxis.set_major_locator(MultipleLocator(1))
 
-ax.xaxis.set_major_locator(locator)
-ax.xaxis.set_major_formatter(formatter)
-fig.autofmt_xdate()
+ax.plot(data_bit['Open'] , 'b-' , label='Open')
+ax.plot(data_bit['High'] , 'g-' , label='High')
+ax.plot(data_bit['Low'] , 'y-' , label='Low')
+ax.plot(data_bit['Close'] , 'c-' , label='Close')
 
-ax.yaxis.set_major_locator(MultipleLocator(2.5))
+mean = data_bit['Close'].mean()
+ax.axhline(data_bit['Close'].median(),  color='c' , linestyle='-.' , label = 'медиана Close')
 
-""" plt.xticks(rotation=90) """
+ax.legend()
+ax.set_xlabel('минуты')
+ax.set_ylabel('сток дата')
+
+ax.set_ylim(120,135)
+ax.set_xlim(0,100)
 
 
-plt.plot(data_bit['Federal Funds Target Rate'] , 'y--' , label='минимум')
+bx = plt.figure().add_subplot(projection='3d')
+bx.yaxis.set_major_locator(MultipleLocator(20))
+xs = np.arange(100)
+y1 = data_bit['Open']
+y2 = data_bit['High']
+y3 = data_bit['Low']
+y4 = data_bit['Close']
 
-""" plt.ylim(0,10) """
+""" y5 = [1,2,3,4,5,6,7,8,9,10] """
 
-""" plt.xlim(1,500) """
 
-plt.xlabel('year')
-plt.ylabel('interests')
+
+
+bx.bar(xs, y1, zs=0  , zdir='y', color='b', alpha=0.8)
+bx.bar(xs, y2, zs=20  , zdir='y', color='g', alpha=0.8)
+bx.bar(xs, y3, zs=40  , zdir='y', color='y', alpha=0.8)
+bx.bar(xs, y4, zs=60  , zdir='y', color='c', alpha=0.8)
+""" bx.bar(xs, y5, zs=80  , zdir='y', color='r', alpha=0.8) """
+
+bx.set_ylim(0,80)
+bx.set_xlim(0,100)
+
+bx.set_zlim(120,135)
+
+
+plt.xlabel('минуты')
+plt.ylabel('сток дата')
+plt.legend()
 
 plt.show()
 
