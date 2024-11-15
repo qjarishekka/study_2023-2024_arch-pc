@@ -1,0 +1,19 @@
+#table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: #0f0;
+
+}
+
+td{
+    border: 1px solid black;
+}
+
+th{
+    border: 1px solid black;
+    font-weight: normal;
+}
+
+div{
+    height: 10px;
+}
