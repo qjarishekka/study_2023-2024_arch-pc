@@ -1,0 +1,13 @@
+que es javascript
+- lenguaje de programacion
+- interpretado
+- orientado a objetos
+- imperativo
+- case sensitive (uppen and lower case) sensible a mayusculas y minusculas
+- basado en prototipos / instancias / classless 
+- tipado debil (las variables pueden guardar numeros letras o palabras y cambiar automaticamente en la ejecucion)
+- lenguaje dinamico (la variable se adapta al dato)
+
+- ECMASCRIPT (5.1 y 6 , 7 , 8, next)
+
+1) editor de texto 
