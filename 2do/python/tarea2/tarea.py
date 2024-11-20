@@ -15,7 +15,9 @@ print(sistemaop)
 
 
 
-data = pd.read_csv('C:/work/mirepositorio/2do/python/tarea2/nvda_data.csv')
+""" data = pd.read_csv('C:/work/mirepositorio/2do/python/tarea2/nvda_data.csv')"""
+data = pd.read_csv('/Users/user/work/study/2023-2024/Архитектура_компьютера/tareas/mirepositorio/2do/python/tarea2/nvda_data.csv')
+
 data_bit = data[['Datetime','Open',  'High' , 'Low' , 'Close']][:100]
 
 
@@ -35,7 +37,7 @@ ax.axhline(data_bit['Close'].median(),  color='c' , linestyle='-.' , label = 'м
 
 ax.legend()
 ax.set_xlabel('минуты')
-ax.set_ylabel('сток дата')
+ax.set_ylabel('акции компаний')
 
 ax.set_ylim(120,135)
 ax.set_xlim(0,100)
