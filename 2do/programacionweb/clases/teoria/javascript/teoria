@@ -11,3 +11,34 @@ que es javascript
 - ECMASCRIPT (5.1 y 6 , 7 , 8, next)
 
 1) editor de texto 
+
+variables
+-------------
+
+string 
+numero
+booleano
+
+hay 3 formas de declarar variables
+
+var // var es para un alcance global
+
+let  // es para una variable local (dentro de algun bloque)
+
+const // se usan para declarar variables que no pueden cambiar su valor
+
+
+tipos de datos
+-------------------
+
+undefined // significa que una variable esta declarada pero no esta inicializada
+
+prompt() // sirve para extraer un valor escrito por el usuario
+
+    ejemplo
+        let nombre = prompt("dime tu nombre")
+
+
+
+
+
