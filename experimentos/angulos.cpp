@@ -27,4 +27,6 @@ cout<< AnguloDeInclinacion(1,1,2,2)<<endl;
 
 return 0;
 
+
+ string yotuqe= "asd";
 }

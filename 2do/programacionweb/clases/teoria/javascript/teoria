@@ -39,6 +39,23 @@ prompt() // sirve para extraer un valor escrito por el usuario
         let nombre = prompt("dime tu nombre")
 
 
+suma de strings:
+---------------
 
+se puede usar el simbolo + o usar ${nombreDeVariable} para incluir el contenido de una variable durante la inicializacion de otra variable
+
+
+
+
+operadores logicos:
+-------------------
+
+== igualdad
+!= inigualdad
+=== estrictamente iguales (si tiene el mismo valor y sean el mismo tipo de dato)
+> mayor
+< menor
+>= mayor igual
+<= menor o igual
 
 
