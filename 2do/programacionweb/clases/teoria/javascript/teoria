@@ -57,5 +57,8 @@ operadores logicos:
 < menor
 >= mayor igual
 <= menor o igual
+&&
+||
+
 
 
