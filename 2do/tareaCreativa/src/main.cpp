@@ -14,7 +14,7 @@ struct Dupla{
         y = 0;
         x = 0;
     }
-    Dupla operator&=(Dupla a){
+    Dupla operator&=(Dupla &a){
         Dupla tmp;
         tmp.x = a.x;
         tmp.y = a.y;
@@ -25,41 +25,35 @@ struct Dupla{
 
 class Graph{
     public:
-    int numbereOfVectors;
+    int numberOfVectors;
     int numberOfEdges;
     int **incidenceMatrix;
     int ** adjacencyMatrix;
     int matrixSize;
 
     Graph(){
-        numbereOfVectors = 0;
-        matrixSize = numbereOfVectors;
+        numberOfVectors = 0;
+        matrixSize = numberOfVectors;
         numberOfEdges = 0;
         incidenceMatrix = nullptr;
         adjacencyMatrix = nullptr;
-        
     }
 
     Graph(int vectors,int **incidenceM){
 
-        numbereOfVectors = vectors;
-        matrixSize = numbereOfVectors;
+        numberOfVectors = vectors;
+        matrixSize = numberOfVectors;
         numberOfEdges = getNumberOfEdges(incidenceM);
         incidenceMatrix = incidenceM;
         adjacencyMatrix = getPointerOfAdjacencyMatrix(incidenceM);
-        
-        
     }
 
     int ** getPointerOfAdjacencyMatrix(int ** incidenceMatrix){
-
         return nullptr;
     }
    
     int getNumberOfEdges(int **incidenceMatrix){
         int counter = 0;
-        
-        //cout<<sizeof(incidenceMatrix)<<endl;
 
         for(int i = 0; i< matrixSize ; i++ ){
             for(int j = 0; j < i ; j++ ){
@@ -69,7 +63,6 @@ class Graph{
             }
         }
         return counter;
-
     }
 
     void print(){
@@ -79,13 +72,51 @@ class Graph{
             }
         cout<< endl;
         }
-
         cout<<endl;
+    }
+
+    void orderedDuplaOfVectors( Dupla *&duplaArray , int Edges){
+
+        Dupla temp;
+        Dupla min(99999999,99999999);
+        int indexMin = 0;
+        int edgeMin = 99999999;
+
+        for(int j = 0; j<Edges ; j++){
+            edgeMin = 99999999;
+            indexMin = 0;
+
+            for(int i = j; i<Edges; i++){
+                if(incidenceMatrix[duplaArray[i].x][duplaArray[i].y] <= edgeMin ){
+                    edgeMin = incidenceMatrix[duplaArray[i].x][duplaArray[i].y];
+                    indexMin = i;
+                }   
+            }
+
+            temp = duplaArray[j];
+            duplaArray[j] = duplaArray[indexMin];
+            duplaArray[indexMin] = temp;   
+        }
+    }
+
+    bool isVectorInArray(Dupla vertice, int array[]){
+
+        for(int i =0; i< numberOfVectors ; i++){
+            if(vertice.x == array[i] || vertice.y == array[i]){
+                return true;
+            }
+
+        }
+        return false;
+
+        
     }
 
     int ** kraskalAlgoritm(){
         Dupla * duplaOfVectors = new Dupla [numberOfEdges];
+        Dupla * treeOfEdges = new Dupla[numberOfEdges];
         int indexOfduplaOfVectors = 0;
+        int *arreyOfVectors = new int[numberOfVectors];
         
 
         for(int i = 0; i< matrixSize ; i++){
@@ -100,11 +131,50 @@ class Graph{
             }
         }
 
-/*         for(int i = 0; i< numberOfEdges ; i++){
-            cout<<duplaOfVectors[i].x << " " << duplaOfVectors[i].y<<endl;
-        } */
+        orderedDuplaOfVectors(duplaOfVectors, numberOfEdges);
 
-       
+
+
+        treeOfEdges[0] = duplaOfVectors[0];
+        for(int i = 0; i<numberOfEdges ; i++){
+        
+
+        treeOfEdges[i] = duplaOfVectors[i];
+
+        cout<<isVectorInArray(duplaOfVectors[i], arreyOfVectors)<<endl;
+
+        if(isVectorInArray(duplaOfVectors[i], arreyOfVectors) ){
+
+        }
+
+
+            
+        }
+
+
+
+
+
+
+/* //comprobacion de arreglos
+        for(int i = 0; i< numberOfEdges ; i++){
+            cout<<"("<<duplaOfVectors[i].x << ";" << duplaOfVectors[i].y<<")"<<" ";
+        }
+        cout<<endl<<endl;
+
+        
+
+        for(int i = 0; i< numberOfEdges ; i++){
+            cout<<"("<<duplaOfVectors[i].x << ";" << duplaOfVectors[i].y<<")"<<" ";
+        }
+
+        cout<<endl;
+        for(int i = 0; i<numberOfEdges; i++){
+            cout<< incidenceMatrix[duplaOfVectors[i].x][duplaOfVectors[i].y]<< " ";
+        }
+        cout<<endl;
+*/
+
 
         
 
@@ -113,7 +183,7 @@ class Graph{
 
         return 0;
     }
-
+ 
 
 
     ~Graph(){
@@ -169,7 +239,7 @@ Graph G1(15,pointerOfIncidenceMatrix);
 
 
 G1.print();
-//cout<< G1.numbereOfVectors<<" "<<G1.numberOfEdges<<endl;
+//cout<< G1.numberOfVectors<<" "<<G1.numberOfEdges<<endl;
 
 G1.kraskalAlgoritm();
 
