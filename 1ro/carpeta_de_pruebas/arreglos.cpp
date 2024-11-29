@@ -1,12 +1,23 @@
 
 #include<iostream>
 
+struct Dupla{
+    int y;
+    int x;
+
+    Dupla( int X, int Y){
+        x = X;
+        y = Y;
+    }
+    Dupla(){
+        y = 0;
+        x = 0;
+    }
+};
+
+
 int main(){
 
-int * ejemplo = new int[5];
 
-ejemplo[3] = 4;
-
-std::cout<<ejemplo[3];
 
 }
