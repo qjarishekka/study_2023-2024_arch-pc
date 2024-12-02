@@ -1,7 +1,7 @@
 import pandas as pd
 from random import random
 
-data=pd.read_csv('/Users/user/work/study/2023-2024/Архитектура_компьютера/tareas/mirepositorio/2do/python/clase7/crypto-markets.csv')
+data=pd.read_csv('C:\\work\\mirepositorio\\2do\\python\\clase7\\crypto-markets.csv')
 data_bit = data[['open','low','high','close']][:1000]
 
 class Model:

@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 from random import random
 
-data= pd.read_csv('/Users/user/work/study/2023-2024/Архитектура_компьютера/tareas/mirepositorio/2do/python/clase8/student-por.csv', sep=';')
+data= pd.read_csv('C:\\work\\mirepositorio\\2do\\python\\clase8\\student-por.csv', sep=';')
 
 dataX = data[['famrel', 'freetime', 'goout' , 'Dalc' , 'Walc']]
 dataX = (dataX- dataX.mean())/dataX.std()
@@ -52,5 +52,5 @@ model.fit(data[['G1','G2']]) """
 
 
 
-""" plt.scatter(data['G1'],data['G2']) """
-""" plt.show() """
+plt.scatter(data['G1'],data['G2'])
+plt.show()
