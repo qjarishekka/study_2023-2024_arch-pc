@@ -15,9 +15,10 @@ data  = pd.read_csv('C:/work/mirepositorio/2do/python/tarea3/BankChurners.csv')[
 #print(data.dtypes)
 
 X = data.iloc[:,[2,17]]
+Y = data.iloc[:,6]
 
 
-X_train, X_test = train_test_split(X, random_state=50)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=50)
 
 
 
