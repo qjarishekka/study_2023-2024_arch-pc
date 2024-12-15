@@ -74,7 +74,7 @@ class Sudoku{
             //cout<<X<< " " << Y <<endl;
             Field[Y][X] = to_string( rand()%(size) + 1 );
             //printField();
-            while(generationRowAndColumnsChecker(X,Y) || generationBoxChecker(X,Y)){
+            while(generationRowAndColumnsChecker(X,Y)){
                 Field[Y][X] = to_string( rand()%(size) + 1 );
                 printField();
             cout<<"--------------------------------------"<<endl;
@@ -90,19 +90,19 @@ class Sudoku{
         
         for(int i = 0; i<size; i++){
 
-            if(Field[Y][X].compare(Field[Y][i]) != 0){
-                return true;
+            if( !(Field[Y][X] ==Field[Y][i]) ){
+                return false;
             }
             
         }
 
         for(int i = 0; i< size ; i++){
-            if(Field[Y][X].compare(Field[i][X]) != 0){
-                return true;
+            if(!(Field[Y][X] ==Field[i][X])){
+                return false;
             }
             
         }
-        return false;
+        return true;
     }
 
     bool generationBoxChecker(int X , int Y){
@@ -118,9 +118,9 @@ class Sudoku{
 
                 for(int j = Xstart ; j<=Xend ; j++){
                 
-                if(!Field[Y][X].compare(Field[i][j])){
+                if(Field[Y][X].compare(Field[i][j])){
                     if(X != j && Y!=i){
-                        return true;
+                        return false;
                     }
                     
                 }
@@ -128,7 +128,7 @@ class Sudoku{
 
             }
         }
-        return false;
+        return true;
     }
 
 
