@@ -111,6 +111,9 @@ class Sudoku{
 
     bool generationRowAndColumnsChecker(int X , int Y){
         
+        
+
+
         for(int i = 0; i<size; i++){
             if( Field[Y][X] == Field[Y][i] ){
                 if( i != X){
@@ -156,18 +159,23 @@ class Sudoku{
     void absoluteSolver(){
         int counter = 0;
 
-        while(!isSodokuSolved() && hasFieldChanged){
+        while(!isSodokuSolved()){
             for(int Y = 0; Y < size ; Y++){
                 for(int X = 0; X< size; X++){
-                    cout<<X<< " " <<Y << endl;
+                    //cout<<X<< " " <<Y << endl;
 
                     rowSAndColumnSetter(X, Y);
                     boxSetter(X, Y);
-                    printField();
+                    
+                    //printField();
+
+                    if(X == size && Y == size){
+                        hasFieldChanged = true;
+                    }
                 }
             }
             counter++;
-            cout<<counter<<endl;
+            //cout<<counter<<endl;
         }
 
             
@@ -180,6 +188,7 @@ class Sudoku{
     void rowSAndColumnSetter(int X , int Y){
 
         hasFieldChanged = false;
+        string backup = Field[Y][X];
         if(Field[Y][X].length() != 1){
 
             for(int i = 0; i<size; i++){
@@ -187,6 +196,14 @@ class Sudoku{
                 if( Field[Y][i].length() == 1 &&  Field[Y][X].find(Field[Y][i]) != -1 && Field[Y][X].length() != Field[Y][i].length() ){
                     Field[Y][X].erase(Field[Y][X].begin() + Field[Y][X].find(Field[Y][i]));
                     hasFieldChanged = true;
+                    if(Field[Y][X].length() == 1){
+                        if(generationBoxChecker(X,Y)){
+                            Field[Y][X] = backup;
+                            hasFieldChanged = false;
+                
+                        }
+                    }
+                    
                 }
 
 
@@ -198,6 +215,13 @@ class Sudoku{
                     
                     Field[Y][X].erase(Field[Y][X].begin() + Field[Y][X].find(Field[i][X]));
                     hasFieldChanged = true;
+                    if(Field[Y][X].length() == 1){
+                        if(generationBoxChecker(X,Y)){
+                            Field[Y][X] = backup;
+                            hasFieldChanged = false;
+                
+                        }
+                    }
                 }
 
 
@@ -243,13 +267,26 @@ class Sudoku{
     void boxSetter(int X, int Y){
         //hasFieldChanged = false;
 
-        int Xstart;
-        int Xend;
-        int Ystart;
-        int Yend;
+        int Xstart = 0 + ( 3* ((int)(X/3)) ) ;
+        int Xend = Xstart+2;
+        int Ystart = 0 + ( 3* ((int)(Y/3)) );
+        int Yend = Ystart + 2;
+
 
 
         if(Field[Y][X].length() != 1){
+
+            for(int i = Ystart ; i< Yend; i++){
+                for(int j = Xstart ; j<Xend ; j++ ){
+                    if( Field[i][j].length() == 1 && Field[Y][X].find(Field[i][j]) != -1 && Field[Y][X].length() != Field[i][j].length() ){
+                        Field[Y][X].erase(Field[Y][X].begin() + Field[Y][X].find(Field[i][j]));
+                        hasFieldChanged = true;
+                    }
+
+                }
+            }
+
+
 
 
 
@@ -264,7 +301,7 @@ class Sudoku{
 
 
 
-/*                 Xstart = 0 + ( 3* ((int)(X/3)) ) ;
+/*              Xstart = 0 + ( 3* ((int)(X/3)) ) ;
                 Xend = Xstart+2;
                 Ystart = 0 + ( 3* ((int)(Y/3)) );
                 Yend = Ystart + 2;
@@ -312,8 +349,8 @@ class Sudoku{
                 }else{
 
                     //cambiar cuando haya acabado
-                    //cout<<"[]\t";
-                    cout<<Field[i][j] << "\t";
+                    cout<<"[]\t";
+                    //cout<<Field[i][j] << "\t";
                 }
                 
             }
@@ -332,12 +369,12 @@ int main(){
 
     srand(time(NULL));
 //123456789
-   string sudokuField[9][9] = {     {"123456789",   "4",            "123456789",        "123456789",    "123456789",    "123456789",         "123456789", "  123456789" ,    "6" },
+   string sudokuField[9][9] = {     {"123456789",   "4",            "123456789",        "123456789",    "123456789",    "123456789",         "123456789",    "123456789" ,    "6" },
                                     {"123456789",   "123456789",    "123456789",         "3",           "7",            "123456789",         "123456789",    "8",            "9" },
-                                    {"9",           "123456789",    "123456789",        "123456789",    "123456789",    "123456789",         "123456789",    "123456789" ,   "6" },
+                                    {"9",           "123456789",    "123456789",        "123456789",    "123456789",    "123456789",         "123456789",    "123456789" ,   "123456789" },
 
                                     {"123456789",   "5",            "9",                "7",            "4",            "2",                 "8",            "6" ,           "1" },
-                                    {"1",           "8",            "2",                "6",            "3",            "9",                 "7",            "3" ,           "123456789" },
+                                    {"1",           "8",            "2",                "6",            "3",            "9",                 "7",            "4" ,           "123456789" },
                                     {"4",           "7",            "6",                "5",            "1",            "8",                 "123456789",    "123456789" ,   "2" },
 
                                     {"8",           "6",            "4",                "1",            "123456789",    "3",                 "9",            "123456789" ,   "7" },
@@ -350,9 +387,10 @@ int main(){
     
     
     //cout<<sudoku.size<<endl;
+    cout<<"sudoku:"<<endl;
     sudoku.printField();
+    cout<<"sudoku solved" <<endl;
     sudoku.absoluteSolver();
-
     sudoku.printField();
 
 
