@@ -4,17 +4,20 @@ using namespace std;
 
 int main(){
 
-    string a = "2";
-    string b = "1234";
+    string a = "9";
+    string b = "12341asdasdf3";
+    string asdf[4]= {"1","2","2","4"};
 
-    bool c = a==b;
+ 
 
-    cout<<c <<endl;
+    //cout<<c <<endl;
+ 
 
-    if(a == b){
-        cout<<"es valido"<<endl;
-    }
+  int c = b.find(a);
 
+ 
+    cout<<c<<endl;
+    
 
     return 0;
 }
