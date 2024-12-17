@@ -395,10 +395,6 @@ int main(){
 
     cout<<endl<<endl<<endl;
 
-    Sudoku sudoku2(9,0);
-    sudoku2.printField();
-    sudoku2.absoluteSolver();
-
 
 
     //cout<< rand()%9 + 1<<endl;
