@@ -393,6 +393,13 @@ int main(){
     sudoku.absoluteSolver();
     sudoku.printField();
 
+    cout<<endl<<endl<<endl;
+
+    Sudoku sudoku2(9,0);
+    sudoku2.printField();
+    sudoku2.absoluteSolver();
+
+
 
     //cout<< rand()%9 + 1<<endl;
     //cout<<sudoku.Field[1][3].size()<<endl;
