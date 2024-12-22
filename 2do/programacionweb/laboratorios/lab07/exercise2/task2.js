@@ -14,3 +14,9 @@ function task2(){
 
 
 }
+
+function enter(e){
+    if(e.keyCode == 13){
+        task2()
+    }
+}

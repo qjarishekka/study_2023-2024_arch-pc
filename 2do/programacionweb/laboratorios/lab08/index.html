@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body style="text-align: center;">
+
+
+
+    <div >
+        <canvas id="myChart" ></canvas>
+    </div>
+    <div id="functionArea">
+        grade of the funcion
+        <select id="grade">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+    
+        <p id="grade1" class="funcion"> 
+            <input class="coeficient" type="number">X +<input class="coeficient" type="number">
+        </p>
+        <p id="grade2"> 
+            <input class="coeficient" type="number">X <sup>2</sup> + <input class="coeficient" type="number">X +<input class="coeficient" type="number">
+        </p>
+
+        <p id="grade3"> 
+            <input class="coeficient" type="number">X <sup>3</sup> + <input class="coeficient" type="number">X <sup>2</sup> + <input class="coeficient" type="number">X +<input class="coeficient" type="number">
+        </p>
+
+        <p id="grade4"> 
+            <input class="coeficient" type="number">X <sup>4</sup> +<input class="coeficient" type="number">X <sup>3</sup> + <input class="coeficient" type="number">X <sup>2</sup> + <input class="coeficient" type="number">X +<input class="coeficient" type="number">
+        </p>
+
+        <style>
+            .coeficient{
+                
+                width: min-content;
+                min-width: 20px;
+            }
+        </style>
+
+
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx = document.getElementById('myChart');
+
+        let X = []
+        let Y = []
+        for(let i = 0 ; i <= 100 ; i++){
+            X.push(i)
+        }
+
+
+
+
+        console.log(X)
+      
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: X,
+            datasets: [
+            
+            {
+              label: '# of Votes',
+              data: Y,
+              borderWidth: 1,
+              fill: {
+                target: 'number',
+                above: 'rgb(255, 255, 255)',   // Area will be red above the origin
+                below: 'rgb(0, 0, 255)'    // And blue below the origin
+              }
+            },
+
+        
+        ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          },
+
+        });
+
+      </script>  
+
+
+
+
+</body>
+</html>
