@@ -1,10 +1,10 @@
-function task4(){
+function task1(){
 
     let numeroLimite = document.getElementById("limit").value
     
     let res = minCMRange(numeroLimite)
 
-    document.getElementById("respuestaTask4").innerHTML = `task 4 : ${res}`
+    document.getElementById("respuestaTask4").innerHTML = `task 1 : ${res}`
 
 }
 
