@@ -1,11 +1,10 @@
 function extratequivalent(){
 
     let val = document.getElementsByTagName("td")
-    
     let days = document.getElementById("days")
-    
     let selecValue = days.value
     
+
     
     
     for(let i = 0 ; i < 7 ; i++){
@@ -14,7 +13,7 @@ function extratequivalent(){
     
     
         if( text.includes(selecValue) ){
-            document.getElementById('answer').innerHTML = val[i*2 + 1].innerHTML
+            document.getElementById('answer').innerHTML = `task 2 : ${val[i*2 + 1].innerHTML}`
         }
     
     
