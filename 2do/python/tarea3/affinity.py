@@ -5,8 +5,8 @@ from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.cluster import AffinityPropagation
 
-
-data  = pd.read_csv('C:/work/mirepositorio/2do/python/tarea3/BankChurners.csv')[:2000]
+data  = pd.read_csv('/Users/user/work/study/2023-2024/Архитектура_компьютера/tareas/mirepositorio/2do/python/tarea3/BankChurners.csv')[:1000]
+#data  = pd.read_csv('C:/work/mirepositorio/2do/python/tarea3/BankChurners.csv')[:2000]
 data.dropna(inplace=True)
 
 
@@ -23,7 +23,9 @@ clustering = AffinityPropagation(random_state=None).fit(data1[['Credit_Limit' , 
 
 
 X = data.iloc[:,[9,10,11,13,17]]
-Y = data.iloc[:,2]
+#Y = data.iloc[:,2]
+data['Marital_Status'] = data['Marital_Status'].replace({'Single' : 1 ,'Married' : 2 , 'Divorced' : 3 , 'Unknown' : 4 })
+Y = data.iloc[:,6]
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5)  
 
@@ -37,7 +39,7 @@ clusterint2 = AffinityPropagation(random_state=3).fit(data_min_max)
 
 
 plt.scatter(X_test['Months_on_book'] , X_test['Total_Trans_Amt'] , c=clusterint2.labels_)
-plt.xlabel('Customer Age')
+plt.xlabel('Months_on_book')
 plt.ylabel('Total Transactions Amount')
 plt.show()
 
