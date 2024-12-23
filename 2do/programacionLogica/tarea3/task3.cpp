@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+
+//class where every fact is going to be saved
 class Fact{
     public:
     string Parent;
@@ -13,32 +15,22 @@ class Fact{
     }
 };
 
-
+//node for the stack
 struct Node{
     Fact fact;
     Node * next;
-
-    Node(){
-
-    }
-
+    Node(){}
     Node( Fact f){
         fact = f;
         next = nullptr;
     }
 };
 
-
-
-
-
-
+//database
 class DB: public Fact{
-    
-    Node * head;
-    
-    public:
 
+    Node * head;
+    public:
     DB(){
        head = nullptr;
     }
@@ -69,7 +61,7 @@ class DB: public Fact{
         return newFact;
     }
 
-
+    
     void addFact(string fact ){
 
         if(fact.find("child") == -1 && fact.find("parent") == -1 && fact.find("print")!=-1){
@@ -100,27 +92,16 @@ class DB: public Fact{
     }
 
     void question(string q){
-
         Fact question = parse(q);
-
         Node * temp = *&head;
         while(temp != nullptr){
-            
             if(temp->fact == question){
                 cout<<"TRUE"<<endl;
                 return;
             }
-
-                
-            
-
             temp = temp->next;
         }
-
         cout<<"FALSE"<<endl;
-
-      
-
     }
 
 
@@ -129,45 +110,27 @@ class DB: public Fact{
 
 int main(){
 
-DB dataBase;
+    DB dataBase;
+    string query="";
+    /* string fact1 = "parent(maria,juan)";
+    string question = "ischild(maria,juan)";
+    dataBase.addFact(fact1);
+    dataBase.question(question); */
+    dataBase.printDataBase();
+    while(query != "quit"){
 
-string query="";
+        cin>>query;
 
-/* string fact1 = "parent(maria,juan)";
-string question = "ischild(maria,juan)";
+        if(query.find("is") != -1){
+            dataBase.question(query);        
+        }else{
+            dataBase.addFact(query);
+        }
 
-dataBase.addFact(fact1);
-dataBase.question(question); */
-
-
-
-dataBase.printDataBase();
-
-
-
-while(query != "quit"){
-
-    cin>>query;
-
-    if(query.find("is") != -1){
-        
-        dataBase.question(query);
-        //cout<<"yes"<<endl;
-        
-    }else{
-        dataBase.addFact(query);
-         //cout<<"no"<<endl;
+        if(query.find("print")!= -1){
+            dataBase.printDataBase();
+        }
     }
 
-    if(query.find("print")!= -1){
-        dataBase.printDataBase();
-    }
-
-
-    
-
-}
-
-
-
+    return 0;
 }
