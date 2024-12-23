@@ -2,10 +2,10 @@
 #include<string.h>
 using namespace std;
 
-class Complier{
+class Compiler{
     public:
     bool outsliner(string request){
-
+        return true;
     }
 };
 
@@ -17,14 +17,14 @@ class Fact{
     virtual bool check()= 0;
 };
 
-class Rule: public Fact, public Complier{
+class Rule: public Fact, public Compiler{
     string body;
 
     bool check() override{
         if( (int)body.find(';') >= 0 ){
             string* pands = body.split(';');
             for(int i = 0; i< sizeof(pands)/ sizeof(pands[0]); i++){
-                if(Complier::outsliner(pands[i]))
+                if( Compiler::outsliner(pands[i]))
                 return true;
             }
             return false;
