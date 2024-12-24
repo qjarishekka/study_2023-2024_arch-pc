@@ -5,72 +5,49 @@
 </head>
 <body style="text-align: center;">
 
-
-
-    <div >
-        <canvas id="myChart" ></canvas>
-    </div>
-    <div id="functionArea">
-        grade of the funcion
-        <select id="grade">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-
+  <div >
+    <canvas id="myChart" ></canvas>
+  </div>  
     
-        <p id="grade1" class="funcion"> 
-            <input class="coeficient" type="number">X +<input class="coeficient" type="number">
-        </p>
-        <p id="grade2"> 
-            <input class="coeficient" type="number">X <sup>2</sup> + <input class="coeficient" type="number">X +<input class="coeficient" type="number">
-        </p>
+  <div id="controlArea">
+    grade of the funcion
+    <select id="grade" onmouseleave="changeFucntion()">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      </select>
+  </div>
 
-        <p id="grade3"> 
-            <input class="coeficient" type="number">X <sup>3</sup> + <input class="coeficient" type="number">X <sup>2</sup> + <input class="coeficient" type="number">X +<input class="coeficient" type="number">
-        </p>
+  <div id="functionArea">
 
-        <p id="grade4"> 
-            <input class="coeficient" type="number">X <sup>4</sup> +<input class="coeficient" type="number">X <sup>3</sup> + <input class="coeficient" type="number">X <sup>2</sup> + <input class="coeficient" type="number">X +<input class="coeficient" type="number">
-        </p>
+    <p id="grade1" class="funcion"> 
+      <input class="coeficient" type="number" value="0" >X +<input class="coeficient" type="number" value="0">
+    </p>
 
-        <style>
-            .coeficient{
-                
-                width: min-content;
-                min-width: 20px;
-            }
-        </style>
+  </div>
 
-
-    </div>
+  <button onclick="calculateFunction()">chart</button>
     
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-      <script>
+  <script>
         const ctx = document.getElementById('myChart');
 
         let X = []
         let Y = []
         for(let i = 0 ; i <= 100 ; i++){
-            X.push(i)
+            X.push(i-50)
+            Y.push(0.0)
         }
-
-
-
-
-        console.log(X)
-      
-        new Chart(ctx, {
+        mychart =new Chart(ctx, {
           type: 'line',
           data: {
             labels: X,
             datasets: [
             
             {
-              label: '# of Votes',
+              label: 'function',
               data: Y,
               borderWidth: 1,
               fill: {
@@ -92,11 +69,82 @@
           },
 
         });
+        
+  </script>  
 
-      </script>  
+  <script>
+    let grade = 1
+
+    let functionToWrite =  [
+      `<p id="grade1" class="funcion"> 
+        <input class="coeficient" type="number" value="0">X +<input class="coeficient" type="number" value="0">
+      </p> ` , 
+      `<p id="grade2"> 
+        <input class="coeficient" type="number" value="0">X <sup>2</sup> + <input class="coeficient" type="number" value="0" >X +<input class="coeficient" type="number" value="0">
+      </p>` ,
+      `<p id="grade3"> 
+        <input class="coeficient" type="number" value="0">X <sup>3</sup> + <input class="coeficient" type="number" value="0">X <sup>2</sup> + <input class="coeficient" type="number" value="0">X +<input class="coeficient" type="number" value="0">
+      </p>`,
+      `<p id="grade4"> 
+        <input class="coeficient" type="number" value="0">X <sup>4</sup> +<input class="coeficient" type="number" value="0">X <sup>3</sup> + <input class="coeficient" type="number" value="0">X <sup>2</sup> + <input class="coeficient" type="number" value="0">X +<input class="coeficient" type="number" value="0">
+      </p>`
+    ]
 
 
 
+    function changeFucntion(){
+      grade = document.getElementById("grade").value
+      document.getElementById("functionArea").innerHTML = functionToWrite[grade-1] 
+    }
+    
+    function calculateFunction(){
+
+      let coeficient = document.getElementsByClassName("coeficient")
+
+      
+
+      for(let i = 0 ; i<= X.length ; i++){
+        
+      
+        for(let j = 0; j < coeficient.length ; j++ ){
+
+          Y[i] += parseInt(coeficient[coeficient.length-j-1].value) * Math.pow(i -50,j)
+          
+          //console.log(coeficient[coeficient.length-j-1].value)
+        }
+        console.log( Y[i])
+        
+
+      }
+      //console.log(Y, X)
+      
+      mychart.update()
+
+      
+
+      for(let i = 0 ; i <= 100 ; i++){
+
+           Y[i] = 0;
+      }
+      //console.log(Y[1])
+    }
+    
+  </script>
+
+  <style>
+    .coeficient{
+        
+        max-width:1dvi;
+        min-width: 20px;
+    }
+
+    body{
+      font-family: sans-serif;
+    }
+
+
+
+  </style>
 
 </body>
 </html>
