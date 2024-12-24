@@ -121,15 +121,15 @@ int main(){
 
         cin>>query;
 
-        if(query.find("is") != -1){
+        if(query.find("print")!= -1){
+            dataBase.printDataBase();
+        }else if(query.find("is") != -1){
             dataBase.question(query);        
         }else{
             dataBase.addFact(query);
         }
 
-        if(query.find("print")!= -1){
-            dataBase.printDataBase();
-        }
+        
     }
 
     return 0;

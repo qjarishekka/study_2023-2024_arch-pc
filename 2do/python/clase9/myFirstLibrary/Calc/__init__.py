@@ -8,11 +8,11 @@ def test1(comments=False):
     
     assert test.compute() == 2
     if comments:
-        print('test 1.1 completed')
+        print('first example test completed')
     test = Task("2*3")
     assert test.compute() == 6
     if comments:
-        print('test 1.2. completed')
+        print('second example test completed')
 
 if __name__ == '__main__':
     print('this is init of Calc module!')
