@@ -15,7 +15,7 @@ Y = data.iloc[:,6]
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y ,test_size= 0.5)
 
-data_min_max = preprocessing.StandardScaler().fit_transform(x_train)
+#data_min_max = preprocessing.StandardScaler().fit_transform(x_train)
 
 classification1 = KNeighborsClassifier(n_neighbors=10)
 classification1.fit(x_train, y_train)

@@ -36,9 +36,10 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5)
 data_min_max = preprocessing.StandardScaler().fit_transform(X_train)
 
 clusterint2 = AffinityPropagation(random_state=3).fit(data_min_max)
+y_pred = clusterint2.predict(X_test)
 
 
-plt.scatter(X_test['Months_on_book'] , X_test['Total_Trans_Amt'] , c=clusterint2.labels_)
+plt.scatter(X_test['Months_on_book'] , X_test['Total_Trans_Amt'] , c=y_pred)
 plt.xlabel('Months_on_book')
 plt.ylabel('Total Transactions Amount')
 plt.show()

@@ -16,7 +16,7 @@ Y = data.iloc[:,6]
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y ,test_size= 0.5)
 
-data_min_max = preprocessing.MinMaxScaler().fit_transform(x_train)
+#data_min_max = preprocessing.MinMaxScaler().fit_transform(x_train)
 
 
 regression = LogisticRegression(random_state=4, max_iter=10000)

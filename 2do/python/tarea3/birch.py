@@ -27,14 +27,18 @@ data_min_max = preprocessing.StandardScaler().fit_transform(X_train)
 
 #print(escalator.transform(X_train))
 
-clusterint1 = Birch(n_clusters=3)
-clusterint1.fit(data_min_max)
+clusterint1 = Birch(n_clusters=4)
+clusterint1.fit(X_train)
+
+y_pred = clusterint1.predict(X_test)
+
+print(y_pred)
 
 
 
 
 
-plt.scatter(X_test['Months_on_book'] , X_test['Total_Trans_Amt'], c=clusterint1.labels_)
+plt.scatter(X_test['Months_on_book'] , X_test['Total_Trans_Amt'], c=y_pred)
 plt.xlabel('Months on book')
 plt.ylabel('Total Transactions Amount')
 plt.show()
