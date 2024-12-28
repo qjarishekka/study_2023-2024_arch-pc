@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wambiguous-reversed-operator"
 
 //class where every fact is going to be saved
 class Fact{
@@ -117,6 +118,8 @@ int main(){
     dataBase.addFact(fact1);
     dataBase.question(question); */
     dataBase.printDataBase();
+    cout<<"WELCOME TO MY DATABASE"<<endl<<"comands: "<<endl<<"\tparent(name1,name2) \n \tchild(name1,name2\n\tisparent(name1,name2)\n\tischild(name1,name2)\n\tprint\n\tquit"<<endl;
+
     while(query != "quit"){
 
         cin>>query;
