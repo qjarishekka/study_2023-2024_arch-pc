@@ -9,10 +9,12 @@ public class App extends JFrame{
         setSize(480,380);
         setLayout(null);
 
-        JLabel label = new JLabel("hello");
-        label.setBounds(20,20,60, 30);
-        label.setFont(new Font("Papyrus", Font.ITALIC, 10));
-
+        JLabel label = new JLabel("hello its me michael");
+        label.setBounds(20,20,220, 40);
+        label.setFont(new Font("Papyrus", Font.ITALIC, 20));
+        label.setBackground(Color.RED);
+        label.setForeground(Color.GREEN);
+        label.setOpaque(true);
 
 
 
