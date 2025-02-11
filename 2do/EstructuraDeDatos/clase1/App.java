@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class App extends JFrame{
 
@@ -10,7 +11,17 @@ public class App extends JFrame{
 
         JLabel label = new JLabel("hello");
         label.setBounds(20,20,60, 30);
+        label.setFont(new Font("Papyrus", Font.ITALIC, 10));
+
+
+
+
         add(label);
+
+
+        JButton button = new JButton("click me");
+        button.setBounds(40,60,160,40);
+        add(button);
 
         setVisible(true);
 
@@ -18,7 +29,7 @@ public class App extends JFrame{
 
     public static void main(String[] args){
 
-     
+
         new App();
     }
 }
