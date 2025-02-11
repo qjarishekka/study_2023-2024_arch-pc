@@ -14,5 +14,6 @@
         "xutility": "cpp",
         "cmath": "cpp",
         "random": "cpp"
-    }
+    },
+    "java.debug.settings.onBuildFailureProceed": true
 }

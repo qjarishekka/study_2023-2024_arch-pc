@@ -5,6 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
+        },
+        {
+            "type": "java",
+            "name": "clase1",
+            "request": "launch",
+            "mainClass": "clase1",
+            "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
+        },
+        {
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
