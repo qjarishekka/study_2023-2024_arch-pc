@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-
 public class App extends JFrame{
 
     App(){
@@ -25,6 +24,13 @@ public class App extends JFrame{
         button.setBounds(40,60,160,40);
         add(button);
 
+        MyButtonlistener listener = new MyButtonlistener();
+        button.addActionListener(listener);
+        
+
+
+
+
         setVisible(true);
 
     }
@@ -33,5 +39,7 @@ public class App extends JFrame{
 
 
         new App();
+
+        //System.out.println("hola");
     }
 }
