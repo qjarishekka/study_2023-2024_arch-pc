@@ -40,6 +40,8 @@ public class App extends JFrame{
 
         KeyBoard keyBoard = new KeyBoard(pic);
         addKeyListener(keyBoard);
+        inputField.addKeyListener(keyBoard);
+
 
         Mouse mouse = new Mouse(pic);
         addMouseListener(mouse);
