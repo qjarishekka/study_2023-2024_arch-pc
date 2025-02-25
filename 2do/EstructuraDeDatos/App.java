@@ -40,17 +40,17 @@ public class App extends JFrame{
 
         KeyBoard keyBoard = new KeyBoard(pic);
         addKeyListener(keyBoard);
-        inputField.addKeyListener(keyBoard);
-
+        //inputField.addKeyListener(keyBoard);
+        //inputField.setFocusable(false);
 
         Mouse mouse = new Mouse(pic);
         addMouseListener(mouse);
 
-        //inputField.addKeyListener(keyBoard);
+        inputField.addKeyListener(keyBoard);
         //addKeyListener(keyBoard);
 
         //inputField.setFocusable(false);  //esta linea desabilita el enfoque hacia los objetos
-        //button.setFocusable(false);
+        button.setFocusable(false);
 
 
         

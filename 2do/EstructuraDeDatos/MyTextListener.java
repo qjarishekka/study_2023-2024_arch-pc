@@ -18,7 +18,7 @@ public class MyTextListener implements ActionListener{
     public void actionPerformed(ActionEvent e){
         output.setText(input.getText());
         input.setText("");
-        
+        //input.transferFocus();
 
     }
 
