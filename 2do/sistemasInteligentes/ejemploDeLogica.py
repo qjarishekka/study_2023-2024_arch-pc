@@ -79,7 +79,7 @@ def F_And (FV, method='minmax'):
     if method=='minmax':
         return np.min(FV)
     elif method=='probability':
-        return np.product(FV)
+        return np.prod(FV)
     else:
         print ('Неизвестный метод ', method)
         return None
@@ -142,7 +142,7 @@ def FS_describe(FS, method='minmax', verbose='True'):
     return (h, N, (Min_el, Max_el), (Fst_max, Cntr_max, Lst_max), Cntr_grav, Mmnt_in, ((R1, R1n), R2, R3))
 
 #print (alpha_srez (Pr1, alpha=0.5))
-r = FS_describe(Pr1)
+#r = FS_describe(Pr1)
 
 #print (FS_moment (Pr1, r[3][0]))
 #print (FS_moment (Pr1, r[3][1]))
@@ -150,14 +150,14 @@ r = FS_describe(Pr1)
 
 
 D_pr1 = triangle_FS(Spr, b=0, c=100, h=0.5)
-FS_plot([D_pr1], title = u'Максимально размытое множество', name='p6')
-r=FS_describe(D_pr1)
+#FS_plot([D_pr1], title = u'Максимально размытое множество', name='p6')
+#r=FS_describe(D_pr1)
 
 D_pr2 = dict()
 for el in Spr:
     D_pr2[el] = np.random.randint(2)
-FS_plot([D_pr2], title = u'Случайное строгое множество', name='p6')
-r=FS_describe(D_pr2)
+#FS_plot([D_pr2], title = u'Случайное строгое множество', name='p6')
+#r=FS_describe(D_pr2)
 
 
 def FS_quantificator(FS, quantificators=[u'очень']):
@@ -191,7 +191,7 @@ def FS_union (FSs, Ps=None, method='minmax'):
     for el in U:
         s_mu=[]
         for idx, FS in enumerate (FSs):
-            p= 1 if Ps is None else Ps[idx]
+            p = 1 if Ps is None else Ps[idx]
             s_mu.append(F_And([p, FS.get(el, 0)], method=method))
         res[el] = F_Or(s_mu, method=method)
     return res
