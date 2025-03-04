@@ -76,7 +76,7 @@ Spr = np.arange(1, 101, 1)
 Pr1 = triangle_FS(Spr, a=20, b=40, c=60, d=80, form='equal')
 Pr2 = triangle_FS(Spr, a=20, b=40, c=60, d=80, form='less')
 Pr3 = triangle_FS(Spr, a=20, b=40, c=60, d=80, form='greater')
-FS_plot([Pr1, Pr2, Pr3], labels=['medium_speed', 'low_speed', 'high_speed'])
+#FS_plot([Pr1, Pr2, Pr3], labels=['medium_speed', 'low_speed', 'high_speed'])
 
 Pr4 = triangle_FS(Spr)
 #FS_plot([Pr4], title='Идеальное множество')
@@ -241,7 +241,7 @@ def FS_divorse(FSs, Ps=None, method='minmax'):
     return res
 
 
-FS_plot([Pr1, Pr2], labels=['Equal', 'Less'], title='Исходные множества')
+#FS_plot([Pr1, Pr2], labels=['Equal', 'Less'], title='Исходные множества')
 FS_plot([FS_intersection([Pr1, Pr2], Ps=[1, 1], method='minmax'), FS_union([Pr1, Pr2], Ps=[1, 1], method='minmax'), FS_divorse([Pr1, Pr2], Ps=[1, 1], method='minmax')],
         labels=['Пересечение', 'Объединение', 'Отсечение'], title='Минимаксный подход')
 # FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='probability'), FS_union([Pr1,Pr2], Ps=[1,1], method='probability')], labels=['Пересечение', 'Объединение'], title='Вероятностный подход')
@@ -264,10 +264,10 @@ def FS_arifm_operation_Num(FS, num, Func=lambda x, y: x + y):
 Giri = np.array([8., 12., 16., 24., 32., 48., 64., 72., 128.])
 l_Giri = triangle_FS(Giri, b=8., d=64., h=1, form='equal')
 h_Giri = triangle_FS(Giri, b=16., d=64., h=1, form='greater')
-FS_plot([l_Giri, h_Giri], title='Легкая и тяжелая гири')
+#S_plot([l_Giri, h_Giri], title='Легкая и тяжелая гири')
 
 l2_Giri = FS_arifm_operation_Num(l_Giri, 2, Func=lambda x, y: x * y)
-FS_plot([l_Giri, l2_Giri], labels=['легкая', '2*легкая'], title='2 легкие гири')
+#FS_plot([l_Giri, l2_Giri], labels=['легкая', '2*легкая'], title='2 легкие гири')
 
 
 def FS_arifm_operation_Set(FS1, FS2, Func=lambda x, y: x + y, method='minmax', clearing=False):
@@ -301,7 +301,7 @@ l21_Giri = FS_arifm_operation_Set(l_Giri, l_Giri, clearing=True)
 l21_Giri = FS_arifm_operation_Set(l_Giri, l_Giri, clearing=True)
 
 
-FS_plot([l2_Giri, l21_Giri], labels=['2*легкая', 'легкая+легкая'], title='2 легкие гири')
+#FS_plot([l2_Giri, l21_Giri], labels=['2*легкая', 'легкая+легкая'], title='2 легкие гири')
 
 lh_Giri = FS_arifm_operation_Set(l_Giri, h_Giri)
 # FS_plot([lh_Giri], title='тяжелая + легкая гири(без очистки)')
@@ -314,20 +314,21 @@ Eng_words = np.arange(0, 6000, 100)
 A_level = triangle_FS(Eng_words, a = 300, b=600, c=2500, d=5000, h=1, form='less')
 B_level = triangle_FS(Eng_words, a = 300, b=600, c=2500, d=5000, h=1, form='equal')
 C_level = triangle_FS(Eng_words, a = 300, b=600, c=2500, d=5000, h=1, form='greater')
-FS_plot([A_level, B_level, C_level], labels=['A', 'B', 'C'], title='Уровень языка по числу выученных слов')
+#FS_plot([A_level, B_level, C_level], labels=['A', 'B', 'C'], title='Уровень языка по числу выученных слов')
 
 #A_level_harder_twice = FS_arifm_operation_Num(A_level, 2, Func=lambda x, y: x * y)
 B_level_harder_twice = FS_arifm_operation_Num(B_level, 2, Func=lambda x, y: x * y)
 #C_level_harder_twice = FS_arifm_operation_Num(C_level, 2, Func=lambda x, y: x * y)
-FS_plot([B_level, B_level_harder_twice], labels=['B', 'B harder twice'], title='Уровень языка по числу выученных слов')
+#FS_plot([B_level, B_level_harder_twice], labels=['B', 'B harder twice'], title='Уровень языка по числу выученных слов')
 
 A_level_X_B_level = FS_arifm_operation_Set(A_level, B_level, Func=lambda x, y: x + y)
-FS_plot([A_level, B_level, A_level_X_B_level], labels=['A', 'B', 'A+B'], title='Уровень языка по числу выученных слов')
+#FS_plot([A_level, B_level, A_level_X_B_level], labels=['A', 'B', 'A+B'], title='Уровень языка по числу выученных слов')
 
 A_level_navernoe = FS_quantificator(A_level, quantificators=['наверное'])
 B_level_ochen = FS_quantificator(B_level, quantificators=['очень'])
 C_level_ne_ochen = FS_quantificator(C_level, quantificators=['не', 'очень'])
-FS_plot([A_level_navernoe, B_level_ochen, C_level_ne_ochen], labels=['Navernoe A', 'Ochen B', 'Ne ochen C'], title='Уровень языка по числу выученных слов')
+#FS_plot([A_level_navernoe, B_level_ochen, C_level_ne_ochen], labels=['Navernoe A', 'Ochen B', 'Ne ochen C'], title='Уровень языка по числу выученных слов')
+
 '''
 Нечеткий вывод
 '''

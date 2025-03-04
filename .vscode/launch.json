@@ -8,6 +8,27 @@
             "type": "java",
             "name": "App",
             "request": "launch",
+            "mainClass": "clases.App",
+            "projectName": "mirepositorio_260f8393"
+        },
+        {
+            "type": "java",
+            "name": "homework",
+            "request": "launch",
+            "mainClass": "tarea1.homework",
+            "projectName": "mirepositorio_260f8393"
+        },
+        {
+            "type": "java",
+            "name": "Tarea",
+            "request": "launch",
+            "mainClass": "tarea1.Tarea",
+            "projectName": "mirepositorio_260f8393"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
             "mainClass": "App",
             "projectName": "mirepositorio_260f8393"
         },

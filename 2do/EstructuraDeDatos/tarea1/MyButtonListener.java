@@ -1,13 +1,15 @@
+package tarea1;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 
-public class MyButtonlistener implements ActionListener{
+public class MyButtonListener implements ActionListener{
     private JComponent component;
     private int dx, dy;
     int counter = 0;
 
-    public MyButtonlistener(JComponent component, int dx, int dy){
+    public MyButtonListener(JComponent component, int dx, int dy){
         this.component = component;
         this.dx = dx;
         this.dy = dy;
