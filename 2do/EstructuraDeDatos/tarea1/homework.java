@@ -17,16 +17,13 @@ public class homework extends JFrame {
     
 
     homework(){
-
-        Image img = null;
+        super("Homework1");
+        /* Image img = null;
         try {
-            img = ImageIO.read(new File("2do\\\\EstructuraDeDatos\\\\tarea1\\\\astronauta.jpg"));
+            img = ImageIO.read(new File("2do\\EstructuraDeDatos\\tarea1\\astronauta.jpg"));
         } catch (IOException e) {
         e.printStackTrace();
-        }
-        
-
-        super("Homework_1");
+        } */
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1280,720); //1280x720
         setLayout(null);
@@ -51,10 +48,10 @@ public class homework extends JFrame {
 
         
 
+        
 
-
-        //Image img  = new ImageIcon("2do\\EstructuraDeDatos\\tarea1\\astronauta.jpg").getImage(); 
-        JLabel pic = new JLabel(new ImageIcon(img.getScaledInstance(100, 100, 0)));
+        Image img  = new ImageIcon("astronauta.jpg").getImage(); 
+        JLabel pic = new JLabel(new ImageIcon(img.getScaledInstance(100, 100,DO_NOTHING_ON_CLOSE )));
         pic.setBounds(400,400,160,160 );
         add(pic);
 
@@ -63,6 +60,7 @@ public class homework extends JFrame {
 
         MyTextListener textListener = new MyTextListener(inputField,label,pic, img);
         inputField.addActionListener(textListener);
+        
         button.addActionListener(textListener);
 
         Mouse mouse = new Mouse(pic);
