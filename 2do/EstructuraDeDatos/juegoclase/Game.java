@@ -2,9 +2,9 @@ package juegoclase;
 import javax.swing.*;
 import java.awt.*;
 
-public class juego extends JFrame {
+public class Game extends JFrame {
     
-    juego(){
+    Game(){
         super("worms");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800,500);
