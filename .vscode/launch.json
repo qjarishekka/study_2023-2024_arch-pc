@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Game",
+            "request": "launch",
+            "mainClass": "juegoclase.Game",
+            "projectName": "mirepositorio_260f8393"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "clases.App",

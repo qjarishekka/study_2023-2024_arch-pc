@@ -12,23 +12,29 @@ public class Game extends JFrame {
         setLayout(null);
 
 
-        //JLabel cannon = new JLabel(new ImageIcon("src\\cannon.jpg"));
-        Image cannonImg  = new ImageIcon("src//cannon.jpg").getImage(); 
+        //image:
+
+        Image cannonImg  = new ImageIcon("src//cannon.jpg").getImage();
+        Image aimImg  = new ImageIcon("src//crosshair.png").getImage();
+        Image bulletImg  = new ImageIcon("src//bullet.png").getImage();
+
+        
         JLabel cannon = new JLabel(new ImageIcon(cannonImg.getScaledInstance(100, 100,0 )));
-        cannon.setBounds(0, getHeight()-200 , 100 , 100);
+        cannon.setBounds(0, getHeight()-100 , 100 , 100);
         add(cannon);
 
 
-
-        JLabel aim = new JLabel(new ImageIcon("src//crosshair.png"));
-        aim.setBounds(cannon.getX() + 100, cannon.getY() - 100 , 60 , 60  );
+         
+        JLabel aim = new JLabel(new ImageIcon(aimImg.getScaledInstance(100, 100,0 )));
+        aim.setBounds(cannon.getX() + 50, cannon.getY() - 50 , 60 , 60  );
         add(aim);
 
-        //JLabel bulletPic =  new JLabel(new ImageIcon("src//bullet.png"));
-        Image bulletImg  = new ImageIcon("src//bullet.png").getImage(); 
-        JLabel bulletPic = new JLabel(new ImageIcon(bulletImg.getScaledInstance(100, 100,DO_NOTHING_ON_CLOSE )));
         
+         
+        JLabel bulletPic = new JLabel(new ImageIcon(bulletImg.getScaledInstance(90, 41,DO_NOTHING_ON_CLOSE )));
         bulletPic.setBounds(100 , 100 ,100 ,100);
+        add(bulletPic);
+        
 
         Bullet bullet = new Bullet(bulletPic);
         
