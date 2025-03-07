@@ -16,6 +16,8 @@ public class juego extends JFrame {
         add(cannon);
 
         JLabel aim = new JLabel(new ImageIcon(""));
+        aim.setBounds();
+
 
         
 

@@ -28,7 +28,8 @@ public class Bullet {
     void move(double dt){
         x += vx * dt;
         y += vy * dt;
-        vy += 
+        vy += Physics.GRAVITY * dt;
+        pic.setLocation((int)x, (int)y);
     }
 
 }
