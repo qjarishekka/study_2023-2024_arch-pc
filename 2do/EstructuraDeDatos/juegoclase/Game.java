@@ -14,16 +14,19 @@ public class Game extends JFrame {
 
         //image:
 
-        Image cannonImg  = new ImageIcon("src//cannon.jpg").getImage();
+        /* Image cannonImg  = new ImageIcon("src//cannon.jpg").getImage();
         Image aimImg  = new ImageIcon("src//crosshair.png").getImage();
-        Image bulletImg  = new ImageIcon("src//bullet.png").getImage();
+        Image bulletImg  = new ImageIcon("src//bullet.png").getImage(); */
+
+        Image cannonImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\cannon.jpg").getImage();
+        Image aimImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\crosshair.png").getImage();
+        Image bulletImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\bullet.png").getImage();
+        Image backgroundImg = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\windows.png").getImage();
 
         
         JLabel cannon = new JLabel(new ImageIcon(cannonImg.getScaledInstance(100, 100,0 )));
         cannon.setBounds(0, getHeight()-100 , 100 , 100);
         add(cannon);
-
-
          
         JLabel aim = new JLabel(new ImageIcon(aimImg.getScaledInstance(100, 100,0 )));
         aim.setBounds(cannon.getX() + 50, cannon.getY() - 50 , 60 , 60  );
@@ -51,11 +54,22 @@ public class Game extends JFrame {
         Physics physics = new Physics(17, bullet, power);
         Timer timer = new Timer(17 , physics);
         timer.start();
+
+        JLabel background = new JLabel(new ImageIcon(backgroundImg.getScaledInstance(800,800,DO_NOTHING_ON_CLOSE)));
+        background.setBounds(0,0,800,800);
+       
+        add(background);
         
         setVisible(true);
         
 
     }
+
+
+   /*  @Override
+    public void paint(Graphics g){
+        
+    } */
 
     public static void main(String[] args) {
         new Game();

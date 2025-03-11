@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Game",
+            "request": "launch",
+            "mainClass": "juegoclase.Game",
+            "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
+        },
+        {
+            "type": "java",
             "name": "homework",
             "request": "launch",
             "mainClass": "tarea1.homework",
