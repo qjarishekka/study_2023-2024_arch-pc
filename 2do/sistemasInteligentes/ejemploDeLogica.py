@@ -219,11 +219,12 @@ def FS_cut(FSs, Ps = None , method ='minmax'):
         for idx, FS in enumerate(FSs):
             p = 1 if Ps is None else Ps[idx]
             s_mu.append(F_And([p,FS.get(el,0)],method=method))
-        res[el]=
+        res[el]=max(s_mu[0]-s_mu[1],0)
+    return res
             
 
 FS_plot([Pr1, Pr2], labels=[u'Equal', u'Less'], title=u'Исходные множества')
-FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='minmax'), FS_union([Pr1,Pr2], Ps=[1,1], method='minmax')], labels=[u'Пересечение', u'Объединение'], title=u'Минимаксный подход')
+FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='minmax'), FS_union([Pr1,Pr2], Ps=[1,1], method='minmax') , FS_cut([Pr1,Pr2], Ps=[1,1], method='minmax')], labels=[u'Пересечение', u'Объединение', u'отсечения'], title=u'Минимаксный подход')
 #FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='probability'), FS_union([Pr1,Pr2], Ps=[1,1], method='probability')], labels=[u'Пересечение', u'Объединение'], title=u'Вероятностный подход')
 
 
@@ -282,6 +283,23 @@ lh_Giri=FS_arifm_operation_Set(l_Giri, h_Giri)
 
 lhc_Giri=FS_arifm_operation_Set(l_Giri, h_Giri, clearing=True)
 #FS_plot([lhc_Giri], title=u'тяжелая + легкая гири(с очисткой)')
+
+lengthOfRop = np.arange(0,100,1)
+print(lengthOfRop)
+
+short= triangle_FS(lengthOfRop, a = 20 , b=50, c=70 , d=100 , h=1, form='less')
+medium = triangle_FS(lengthOfRop, a = 20 , b=50, c=70 , d=100 , h=1, form='equal')
+long= triangle_FS(lengthOfRop, a = 20 , b=50, c=70 , d=100 , h=1, form='greater')
+
+FS_plot([short,medium,long],labels=['Short', 'Medium', 'Long'] , title='lenght of a rope')
+
+operationWithMedium = FS_arifm_operation_Num(medium,2, Func=lambda x, y:x*y )
+
+FS_plot([medium,operationWithMedium],labels=[u'medium',u'medium+medium'], title=u'2 medium lenght')
+
+
+
+
 
 
 

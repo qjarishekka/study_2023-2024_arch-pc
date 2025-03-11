@@ -314,12 +314,12 @@ Eng_words = np.arange(0, 6000, 100)
 A_level = triangle_FS(Eng_words, a = 300, b=600, c=2500, d=5000, h=1, form='less')
 B_level = triangle_FS(Eng_words, a = 300, b=600, c=2500, d=5000, h=1, form='equal')
 C_level = triangle_FS(Eng_words, a = 300, b=600, c=2500, d=5000, h=1, form='greater')
-#FS_plot([A_level, B_level, C_level], labels=['A', 'B', 'C'], title='Уровень языка по числу выученных слов')
+FS_plot([A_level, B_level, C_level], labels=['A', 'B', 'C'], title='Уровень языка по числу выученных слов')
 
 #A_level_harder_twice = FS_arifm_operation_Num(A_level, 2, Func=lambda x, y: x * y)
 B_level_harder_twice = FS_arifm_operation_Num(B_level, 2, Func=lambda x, y: x * y)
 #C_level_harder_twice = FS_arifm_operation_Num(C_level, 2, Func=lambda x, y: x * y)
-#FS_plot([B_level, B_level_harder_twice], labels=['B', 'B harder twice'], title='Уровень языка по числу выученных слов')
+FS_plot([B_level, B_level_harder_twice], labels=['B', 'B harder twice'], title='Уровень языка по числу выученных слов')
 
 A_level_X_B_level = FS_arifm_operation_Set(A_level, B_level, Func=lambda x, y: x + y)
 #FS_plot([A_level, B_level, A_level_X_B_level], labels=['A', 'B', 'A+B'], title='Уровень языка по числу выученных слов')
@@ -327,7 +327,7 @@ A_level_X_B_level = FS_arifm_operation_Set(A_level, B_level, Func=lambda x, y: x
 A_level_navernoe = FS_quantificator(A_level, quantificators=['наверное'])
 B_level_ochen = FS_quantificator(B_level, quantificators=['очень'])
 C_level_ne_ochen = FS_quantificator(C_level, quantificators=['не', 'очень'])
-#FS_plot([A_level_navernoe, B_level_ochen, C_level_ne_ochen], labels=['Navernoe A', 'Ochen B', 'Ne ochen C'], title='Уровень языка по числу выученных слов')
+FS_plot([A_level_navernoe, B_level_ochen, C_level_ne_ochen], labels=['Navernoe A', 'Ochen B', 'Ne ochen C'], title='Уровень языка по числу выученных слов')
 
 '''
 Нечеткий вывод
