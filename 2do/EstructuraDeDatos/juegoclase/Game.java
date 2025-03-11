@@ -4,6 +4,8 @@ import java.awt.*;
 import java.text.CollationElementIterator;
 
 public class Game extends JFrame {
+
+    RotImage cannon,aim,bulletPic,back;
     
     Game(){
         super("worms");
