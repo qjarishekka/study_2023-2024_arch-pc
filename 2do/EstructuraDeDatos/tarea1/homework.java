@@ -3,7 +3,7 @@ package tarea1;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import clases.App;
+//import clases.App;
 
 import java.awt.*;
 import java.awt.geom.Dimension2D;
@@ -50,9 +50,9 @@ public class homework extends JFrame {
 
         
 
-        Image img  = new ImageIcon("astronauta.jpg").getImage(); 
+        Image img  = new ImageIcon("2do\\EstructuraDeDatos\\tarea1\\astronauta.jpg").getImage(); 
         JLabel pic = new JLabel(new ImageIcon(img.getScaledInstance(100, 100,DO_NOTHING_ON_CLOSE )));
-        pic.setBounds(400,400,160,160 );
+        pic.setBounds(400,400,100,100 );
         add(pic);
 
         add(pic);

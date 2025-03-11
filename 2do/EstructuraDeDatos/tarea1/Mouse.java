@@ -29,10 +29,10 @@ public class Mouse implements MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
 
 
-        int imgX = pic.getX() + 38;
-        int imgY = pic.getY()+ 61;
-        int imgXX = imgX + (int)(pic.getSize().getWidth())-61;
-        int imgYY = imgY + (int)(pic.getSize().getHeight()) -1;
+        int imgX = pic.getX();  //38 61 -61 -1
+        int imgY = pic.getY();
+        int imgXX = imgX + (int)(pic.getSize().getWidth());
+        int imgYY = imgY + (int)(pic.getSize().getHeight());
         Random aleatorio = new Random(System.currentTimeMillis());
         int rand1 = aleatorio.nextInt(520);
         int rand2 = aleatorio.nextInt(520);
