@@ -209,6 +209,18 @@ def FS_intersection (FSs, Ps=None, method='minmax'):
         res[el] = F_And(s_mu, method=method)
     return res
 
+def FS_cut(FSs, Ps = None , method ='minmax'):
+    U=set()
+    for FS in FSs:
+        U=set.union(U,FS.keys())
+    res=dict()
+    for el in U:
+        s_mu=[]
+        for idx, FS in enumerate(FSs):
+            p = 1 if Ps is None else Ps[idx]
+            s_mu.append(F_And([p,FS.get(el,0)],method=method))
+        res[el]=
+            
 
 FS_plot([Pr1, Pr2], labels=[u'Equal', u'Less'], title=u'Исходные множества')
 FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='minmax'), FS_union([Pr1,Pr2], Ps=[1,1], method='minmax')], labels=[u'Пересечение', u'Объединение'], title=u'Минимаксный подход')
