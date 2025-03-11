@@ -322,7 +322,7 @@ B_level_harder_twice = FS_arifm_operation_Num(B_level, 2, Func=lambda x, y: x * 
 FS_plot([B_level, B_level_harder_twice], labels=['B', 'B harder twice'], title='Уровень языка по числу выученных слов')
 
 A_level_X_B_level = FS_arifm_operation_Set(A_level, B_level, Func=lambda x, y: x + y)
-#FS_plot([A_level, B_level, A_level_X_B_level], labels=['A', 'B', 'A+B'], title='Уровень языка по числу выученных слов')
+FS_plot([A_level, B_level, A_level_X_B_level], labels=['A', 'B', 'A+B'], title='Уровень языка по числу выученных слов')
 
 A_level_navernoe = FS_quantificator(A_level, quantificators=['наверное'])
 B_level_ochen = FS_quantificator(B_level, quantificators=['очень'])

@@ -69,7 +69,7 @@ Spr = np.arange (1, 101, 1)
 Pr1 = triangle_FS (Spr, a=20, b=40, c=60, d=80)
 Pr2 = triangle_FS (Spr, a=20, b=40, c=60, d=80, form='less')
 Pr3 = triangle_FS (Spr, a=20, b=40, c=60, d=80, form='greater')
-FS_plot([Pr1, Pr2, Pr3], labels=['medium_speed', 'low_speed', 'high_speed'])
+#FS_plot([Pr1, Pr2, Pr3], labels=['medium_speed', 'low_speed', 'high_speed'])
 
 Pr4 = triangle_FS (Spr)
 #FS_plot([Pr4], title=u'Идеальное множество')
@@ -176,11 +176,11 @@ def FS_quantificator(FS, quantificators=[u'очень']):
 
 quants=[[u'не'], [u'очень'], [u'наверное']]
 labels=[u'не', u'очень', u'наверное']
-FS_plot([FS_quantificator(Pr1, quantificators=x) for x in quants], labels=labels)
+#FS_plot([FS_quantificator(Pr1, quantificators=x) for x in quants], labels=labels)
 
 quants=[[u'не', u'очень'], [u'очень', u'не'], [u'наверное', u'не', u'очень']]
 labels=[u'не очень', u'очень не', u'наверное не очень']
-FS_plot([FS_quantificator(Pr1, quantificators=x) for x in quants], labels=labels)
+#FS_plot([FS_quantificator(Pr1, quantificators=x) for x in quants], labels=labels)
 
 
 def FS_union (FSs, Ps=None, method='minmax'):
@@ -226,8 +226,8 @@ def FS_clipping(FSs, Ps = None , method ='minmax'):
     return res
             
 
-FS_plot([Pr1, Pr2], labels=[u'Equal', u'Less'], title=u'Исходные множества')
-FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='minmax'), FS_union([Pr1,Pr2], Ps=[1,1], method='minmax') , FS_clipping([Pr1,Pr2], Ps=[1,1], method='minmax')], labels=[u'Пересечение', u'Объединение', u'отсечения'], title=u'Минимаксный подход')
+#FS_plot([Pr1, Pr2], labels=[u'Equal', u'Less'], title=u'Исходные множества')
+#FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='minmax'), FS_union([Pr1,Pr2], Ps=[1,1], method='minmax') , FS_clipping([Pr1,Pr2], Ps=[1,1], method='minmax')], labels=[u'Пересечение', u'Объединение', u'отсечения'], title=u'Минимаксный подход')
 #FS_plot([FS_intersection([Pr1,Pr2], Ps=[1,1], method='probability'), FS_union([Pr1,Pr2], Ps=[1,1], method='probability')], labels=[u'Пересечение', u'Объединение'], title=u'Вероятностный подход')
 
 
@@ -247,10 +247,10 @@ def FS_arifm_operation_Num(FS, num, Func= lambda x,y: x+y):
 Giri=np.array([8., 12., 16., 24., 32., 48., 64., 72., 128.])
 l_Giri=triangle_FS(Giri, b=8., d=64., h=1, form='equal')
 h_Giri=triangle_FS(Giri, b=16., d=64., h=1, form='greater')
-FS_plot([l_Giri, h_Giri], title=u'Легкая и тяжелая гири')
+#FS_plot([l_Giri, h_Giri], title=u'Легкая и тяжелая гири')
 
 l2_Giri=FS_arifm_operation_Num(l_Giri, 2, Func= lambda x,y: x*y)
-FS_plot([l_Giri, l2_Giri], labels=[u'легкая', u'2*легкая'], title=u'2 легкие гири')
+#FS_plot([l_Giri, l2_Giri], labels=[u'легкая', u'2*легкая'], title=u'2 легкие гири')
 
 
 def FS_arifm_operation_Set(FS1, FS2, Func= lambda x,y: x+y, method='minmax', clearing=False):
@@ -279,7 +279,7 @@ def FS_arifm_operation_Set(FS1, FS2, Func= lambda x,y: x+y, method='minmax', cle
         return res
 
 l21_Giri=FS_arifm_operation_Set(l_Giri, l_Giri, clearing=True)
-FS_plot([l2_Giri, l21_Giri], labels=[u'2*легкая', u'легкая+легкая'], title=u'2 лекгие гири')
+#FS_plot([l2_Giri, l21_Giri], labels=[u'2*легкая', u'легкая+легкая'], title=u'2 лекгие гири')
 
 lh_Giri=FS_arifm_operation_Set(l_Giri, h_Giri)
 #FS_plot([lh_Giri], title=u'тяжелая + легкая гири(без очистки)')
@@ -288,7 +288,7 @@ lhc_Giri=FS_arifm_operation_Set(l_Giri, h_Giri, clearing=True)
 #FS_plot([lhc_Giri], title=u'тяжелая + легкая гири(с очисткой)')
 
 
-
+#example of fuzzy collection
 lengthOfRop = np.arange(0,100,1)
 print(lengthOfRop)
 
@@ -299,12 +299,22 @@ long= triangle_FS(lengthOfRop, a = 20 , b=50, c=70 , d=100 , h=1, form='greater'
 FS_plot([short,medium,long],labels=['Short', 'Medium', 'Long'] , title='lenght of a rope')
 
 
-
+# example of arithmetic operation
 operationWithMedium = FS_arifm_operation_Num(medium,2, Func=lambda x, y:x*y )
 FS_plot([medium,operationWithMedium],labels=[u'medium',u'medium+medium'], title=u'2 medium lenght')
 
+#expert system
 
+expertsystem = FS_arifm_operation_Set(short,medium,clearing=True)
+FS_plot([short,medium,expertsystem],labels=['short','medium','short+medium'],title="short+medium")
 
+#fuzzy result
+
+reallyLong= FS_quantificator(long,quantificators=["очень"])
+maybeMedium= FS_quantificator(medium,quantificators=["наверное"])
+noTooShort= FS_quantificator(short,quantificators=["не","очень"])
+
+FS_plot([reallyLong,maybeMedium,noTooShort],labels=['really long', 'maybe medium' , 'not too short'], title='quantificators')
 
 
 
