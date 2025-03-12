@@ -308,13 +308,7 @@ FS_plot([medium,operationWithMedium],labels=[u'medium',u'medium+medium'], title=
 expertsystem = FS_arifm_operation_Set(short,medium,clearing=True)
 FS_plot([short,medium,expertsystem],labels=['short','medium','short+medium'],title="short+medium")
 
-#fuzzy result
 
-reallyLong= FS_quantificator(long,quantificators=["очень"])
-maybeMedium= FS_quantificator(medium,quantificators=["наверное"])
-noTooShort= FS_quantificator(short,quantificators=["не","очень"])
-
-FS_plot([reallyLong,maybeMedium,noTooShort],labels=['really long', 'maybe medium' , 'not too short'], title='quantificators')
 
 
 
@@ -362,12 +356,30 @@ def FS_f(x, Ux, Uy):
             arr1 = np.append(arr1, float(maxy - y) / (maxy - gran))
     return arr1
 
+#fuzzy result
+
+exampleQuants=[[u'очень'],[u'наверное'],[u'не','очень']]
+isheavy = np.arange(0,100,1)
+
+
+reallyLong= FS_quantificator(long,quantificators=["очень"])
+maybeMedium= FS_quantificator(medium,quantificators=["наверное"])
+noTooShort= FS_quantificator(short,quantificators=["не","очень"])
+
+FS_plot([reallyLong,maybeMedium,noTooShort],labels=['really long', 'maybe medium' , 'not too short'], title='quantificators')
+#FS_plot([FS_func(FS_quantificator(lengthOfRop,quantificators=x),isheavy, Func=FS_f) for x in exampleQuants], labels=[u'очень',u''])
+
+
+
+
+
+
 Oboroti = np.arange(100, 2001, 10)
 #FS_plot([FS_func(Holodno, Oboroti, Func=FS_f), FS_func(Teplo, Oboroti, Func=FS_f), FS_func(Zharko, Oboroti, Func=FS_f)], labels=[u'Холодно', u'Тепло', u'Жарко'], title=u'Обороты вентилятора при')
 
 quants = [[u'не'],[u'очень'],[u'наверное']]
-#FS_plot( [FS_quantificator(Teplo, quantificators=x) for x in quants], labels=[u'не',u'очень',u'наверное'], title=u'тепло')
-#FS_plot( [FS_func(FS_quantificator(Teplo, quantificators=x), Oboroti, Func=FS_f) for x in quants], labels=[u'не',u'очень',u'наверное'], title=u'обороты вентилятора при тепло')
+FS_plot( [FS_quantificator(Teplo, quantificators=x) for x in quants], labels=[u'не',u'очень',u'наверное'], title=u'тепло')
+FS_plot( [FS_func(FS_quantificator(Teplo, quantificators=x), Oboroti, Func=FS_f) for x in quants], labels=[u'не',u'очень',u'наверное'], title=u'обороты вентилятора при тепло')
 
 
 
