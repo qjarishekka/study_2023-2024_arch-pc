@@ -4,8 +4,8 @@ import javax.swing.JLabel;
 
 public class Bullet {
     double x, y , vx , vy;
-    JLabel pic;
-    public Bullet(JLabel pic){
+    RotImage pic;
+    public Bullet(RotImage pic){
         this.pic = pic;
         x = 0;
         y = 0;

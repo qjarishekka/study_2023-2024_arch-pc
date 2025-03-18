@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 
 public class RotImage extends JLabel {
 
-    double angle = Math.PI/4;
+    double angle =  0;  //Math.PI/4;
     RotImage(Icon image){
         super(image);
     }

@@ -16,27 +16,28 @@ public class Game extends JFrame {
 
         //image:
 
-        /* Image cannonImg  = new ImageIcon("src//cannon.jpg").getImage();
+        Image cannonImg  = new ImageIcon("src//cannon.jpg").getImage();
         Image aimImg  = new ImageIcon("src//crosshair.png").getImage();
-        Image bulletImg  = new ImageIcon("src//bullet.png").getImage(); */
+        Image bulletImg  = new ImageIcon("src//bullet.png").getImage(); 
+        Image backgroundImg = new ImageIcon("src//windows.png").getImage();
 
-        Image cannonImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\cannon.jpg").getImage();
+        /* Image cannonImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\cannon.jpg").getImage();
         Image aimImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\crosshair.png").getImage();
         Image bulletImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\bullet.png").getImage();
         Image backgroundImg = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\windows.png").getImage();
-
+ */
         
-        JLabel cannon = new JLabel(new ImageIcon(cannonImg.getScaledInstance(100, 100,0 )));
+        cannon = new RotImage(new ImageIcon(cannonImg.getScaledInstance(100, 100,0 )));
         cannon.setBounds(0, getHeight()-100 , 100 , 100);
         add(cannon);
          
-        JLabel aim = new JLabel(new ImageIcon(aimImg.getScaledInstance(100, 100,0 )));
+        aim = new RotImage(new ImageIcon(aimImg.getScaledInstance(100, 100,0 )));
         aim.setBounds(cannon.getX() + 50, cannon.getY() - 50 , 60 , 60  );
         add(aim);
 
         
          
-        JLabel bulletPic = new JLabel(new ImageIcon(bulletImg.getScaledInstance(90, 41,DO_NOTHING_ON_CLOSE )));
+        bulletPic = new RotImage(new ImageIcon(bulletImg.getScaledInstance(90, 41,DO_NOTHING_ON_CLOSE )));
         bulletPic.setBounds(100 , 100 ,100 ,100);
         add(bulletPic);
         
@@ -66,6 +67,7 @@ public class Game extends JFrame {
         
 
     }
+    static Game proxy;
 
 
    /*  @Override
@@ -74,7 +76,8 @@ public class Game extends JFrame {
     } */
 
     public static void main(String[] args) {
-        new Game();
+
+        proxy = new Game();
     }
 
 }

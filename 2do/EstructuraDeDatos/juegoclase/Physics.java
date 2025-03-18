@@ -51,5 +51,6 @@ public class Physics implements ActionListener{
         double p = power / MAXpower;
         powerLabel.setBackground(new Color(  (int)(p*255)  , (int)(p*255)   ,   0)   );
         powerLabel.setSize((int)(100*p), 300);
+    
     }
 }
