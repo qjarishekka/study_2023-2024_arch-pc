@@ -49,7 +49,7 @@ public class Physics implements ActionListener{
         
         bullet.move(delay * 0.001);
         double p = power / MAXpower;
-        powerLabel.setBackground(new Color(  (int)(p*255)  , (int)(p*255)   ,   0)   );
+        powerLabel.setBackground(new Color(  (int)(p*255)  , (int)(255*(1-p))   ,   0)   );
         powerLabel.setSize((int)(100*p), 300);
     
     }

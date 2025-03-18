@@ -30,6 +30,7 @@ public class Bullet {
         y += vy * dt;
         vy += Physics.GRAVITY * dt;
         pic.setLocation((int)x, (int)y);
+        pic.angle = Math.atan2(vy,vx); //+ Math.PI/2;
     }
 
 }

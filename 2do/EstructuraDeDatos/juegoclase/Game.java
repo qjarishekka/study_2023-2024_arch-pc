@@ -27,7 +27,8 @@ public class Game extends JFrame {
         Image backgroundImg = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\windows.png").getImage();
 
         
-        cannon = new RotImage(new ImageIcon(cannonImg.getScaledInstance(100, 100,0 )));
+        //cannon = new RotImage(new ImageIcon(cannonImg.getScaledInstance(100, 100,0 )));
+        AnImage cannon = new AnImage("2do\\EstructuraDeDatos\\juegoclase\\src\\animation");
         cannon.setBounds(0, getHeight()-100 , 100 , 100);
         add(cannon);
          
