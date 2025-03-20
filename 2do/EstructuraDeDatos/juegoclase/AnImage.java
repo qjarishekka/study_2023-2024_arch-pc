@@ -18,7 +18,7 @@ public class AnImage extends JLabel{
         File dir = new File(path);
         File[] files = dir.listFiles();
         images = new BufferedImage[files.length];
-        for(int i = 0; i < files.length; i++){
+        for(int i = 0; i < files.length ; i++){ //
             try{
                 images[i] = ImageIO.read(files[i]);
             }catch(IOException e){}
