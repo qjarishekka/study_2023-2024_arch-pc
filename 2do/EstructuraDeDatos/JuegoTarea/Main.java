@@ -19,12 +19,13 @@ public class Main extends JFrame {
     int screenSize[] = new int [2];
     static Main proxy; 
 
-    
+
     BufferedReader bufferedReader;
     long linesCounter;
     File file;
     FileReader fileReader;
-    String points[];
+    String Scores[] = getLeadeBoard();
+    
     
     
     
@@ -48,15 +49,17 @@ public class Main extends JFrame {
 
     }
 
-    public void getPoints(){
+
+    public String[] getLeadeBoard(){
 
         int counter = 0;
+        String leaderboard[] = new String[1];
         
 
         
 
         try{
-        file = new File("src//saves//history.txt");
+        file = new File("src//saves//leaderboard.txt");
         fileReader = new FileReader(file);
         bufferedReader = new BufferedReader(fileReader);
         bufferedReader.mark(100);
@@ -64,9 +67,9 @@ public class Main extends JFrame {
             counter++;
         }
         bufferedReader.reset();
-        points = new String[counter];
+        leaderboard = new String[counter];
         for(int i = 0; i< counter ; i++){
-            points[i] = bufferedReader.readLine();
+            leaderboard[i] = bufferedReader.readLine();
             
         }        
 
@@ -81,6 +84,9 @@ public class Main extends JFrame {
                 e2.printStackTrace();
             }
         }
+        
+
+        return leaderboard;
 
     }
 
@@ -177,7 +183,7 @@ public class Main extends JFrame {
 
         proxy = new Main();
         proxy.sceneManager();
-        proxy.getPoints();
+        proxy.getLeadeBoard();
         
 
         
