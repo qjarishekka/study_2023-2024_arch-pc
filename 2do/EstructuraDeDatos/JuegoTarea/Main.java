@@ -4,10 +4,15 @@ import javax.swing.*;
 
 
 public class Main extends JFrame {
+
+    boolean playing = false;
+
     
     
 
     Main(){
+        
+        super("MyGame");
 
         Toolkit t = Toolkit.getDefaultToolkit();
         double screenSize[] = new double [2];
@@ -15,37 +20,30 @@ public class Main extends JFrame {
         screenSize[1] = t.getScreenSize().getHeight();
 
 
-        super("MyGame");
+        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize((int)screenSize[0],(int)screenSize[1]);
         setLayout(null);
         //setUndecorated(true);
 
-        
-
-
-
         setVisible(true);
 
     }
+
+    public void sceneManager(){
+        
+    }
+
+    
 
 
     static Main proxy;
     public static void main(String[] args){
         
-
-
-
+        proxy = new Main();        
+        
         
 
-
-
-        
-
-        
-
-
-        proxy = new Main();
        
     }
 
