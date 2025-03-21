@@ -104,14 +104,8 @@ public class Main extends JFrame {
 
         getContentPane().removeAll();
 
-
-
-
-        
-        //System.out.println("aqui");
         Image backGroundImage  = new ImageIcon("src//backGround.png").getImage();
         JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)screenSize[0], (int)screenSize[1],0 )));
-        
         backGround.setBounds(0 ,0 , (int)screenSize[0], (int)screenSize[1]);
         
 
@@ -122,7 +116,7 @@ public class Main extends JFrame {
 
 
         repaint();
-        //System.out.println("aqui2");
+
 
     }
 
