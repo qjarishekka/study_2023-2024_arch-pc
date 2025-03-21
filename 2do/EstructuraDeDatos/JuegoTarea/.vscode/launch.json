@@ -9,6 +9,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "JuegoTarea.Main",
+            "projectName": "mirepositorio_d00d95de"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "JuegoTarea.Main",
             "projectName": "mirepositorio_260f8393"
         },
         {

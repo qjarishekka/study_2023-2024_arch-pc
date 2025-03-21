@@ -1,6 +1,7 @@
 package JuegoTarea;
 import java.awt.*;
 import java.util.Observer;
+import java.lang.Exception;
 
 import javax.swing.*;
 
@@ -9,7 +10,8 @@ import juegoclase.RotImage;
 
 public class Main extends JFrame {
 
-    boolean Start = false;
+
+    public boolean Start = false;
     int screenSize[] = new int [2];
     static Main proxy;
     
@@ -38,8 +40,13 @@ public class Main extends JFrame {
 
         if(!Start){
             scene1();
+            Start = true;
+            System.out.println("escena1");
         }else{
             scene2();
+            Start= false;
+            System.out.println("escena2");
+
         }
         
         
@@ -48,8 +55,6 @@ public class Main extends JFrame {
     }
 
     public void scene1(){
-
-        
 
         Image backGroundImage  = new ImageIcon("src//backGround.png").getImage();
         JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)screenSize[0], (int)screenSize[1],0 )));
@@ -60,17 +65,33 @@ public class Main extends JFrame {
         
         JButton playButton = new JButton();
         int playButtonWidth = screenSize[0] * 30 / 100;
-        int playButttonHeight = screenSize[1] * 20 / 100;
-        playButton.setBounds( (screenSize[0]/2) - (playButtonWidth/2)  ,(screenSize[1]/2) - (playButttonHeight/2),playButtonWidth,playButttonHeight);
+        int playButtonHeight = screenSize[1] * 20 / 100;
+        playButton.setBounds( (screenSize[0]/2) - (playButtonWidth/2)  ,(screenSize[1]/2) - (playButtonHeight/2),playButtonWidth,playButtonHeight);
         Image playImage = new ImageIcon("src//play.png").getImage();
-        JLabel play = new JLabel(new ImageIcon(playImage.getScaledInstance(playButtonWidth, playButttonHeight, 0)));
+        JLabel play = new JLabel(new ImageIcon(playImage.getScaledInstance(playButtonWidth, playButtonHeight, 0)));
         
+        PlaybuttonListener playButtonListener = new PlaybuttonListener(proxy);
+        playButton.addActionListener(playButtonListener);
         
-        
+
+        JButton exitButton = new JButton();
+        int exitButtonWidth = screenSize[0] * 25 / 100;
+        int exitButtonHeight = screenSize[1] * 15 / 100;
+        exitButton.setBounds( (screenSize[0]/2) - (exitButtonWidth/2)  ,  screenSize[1] - exitButtonHeight*5/2 , exitButtonWidth, exitButtonHeight);
+        ExitButtonListener exitButtonListener = new ExitButtonListener(proxy);
+        exitButton.addActionListener(exitButtonListener);
+
+
+
+
+
         add(playButton);
-        playButton.setIcon(play.getIcon());;
-        add(backGround);
+        playButton.setIcon(play.getIcon());
+
+        add(exitButton);
         
+        
+        add(backGround);
         repaint();
         
         
@@ -80,6 +101,28 @@ public class Main extends JFrame {
     }
 
     public void scene2(){
+
+        getContentPane().removeAll();
+
+
+
+
+        
+        //System.out.println("aqui");
+        Image backGroundImage  = new ImageIcon("src//backGround.png").getImage();
+        JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)screenSize[0], (int)screenSize[1],0 )));
+        
+        backGround.setBounds(0 ,0 , (int)screenSize[0], (int)screenSize[1]);
+        
+
+
+
+        
+        proxy.add(backGround);
+
+
+        repaint();
+        //System.out.println("aqui2");
 
     }
 
@@ -91,6 +134,10 @@ public class Main extends JFrame {
 
         proxy = new Main();
         proxy.sceneManager();
+
+        
+
+        
     }
 
 }
