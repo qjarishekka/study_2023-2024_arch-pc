@@ -1,6 +1,10 @@
 package JuegoTarea;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Observer;
+import java.util.stream.Stream;
 import java.lang.Exception;
 
 import javax.swing.*;
@@ -13,7 +17,15 @@ public class Main extends JFrame {
 
     public boolean Start = false;
     int screenSize[] = new int [2];
-    static Main proxy;
+    static Main proxy; 
+
+    
+    BufferedReader bufferedReader;
+    long linesCounter;
+    File file;
+    FileReader fileReader;
+    String points[];
+    
     
     
 
@@ -33,6 +45,42 @@ public class Main extends JFrame {
         
 
         setVisible(true);
+
+    }
+
+    public void getPoints(){
+
+        int counter = 0;
+        
+
+        
+
+        try{
+        file = new File("src//saves//history.txt");
+        fileReader = new FileReader(file);
+        bufferedReader = new BufferedReader(fileReader);
+        bufferedReader.mark(100);
+        while(bufferedReader.readLine() != null){
+            counter++;
+        }
+        bufferedReader.reset();
+        points = new String[counter];
+        for(int i = 0; i< counter ; i++){
+            points[i] = bufferedReader.readLine();
+            
+        }        
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try {
+                if (null != fileReader) {
+                    fileReader.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
 
     }
 
@@ -108,6 +156,7 @@ public class Main extends JFrame {
         JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)screenSize[0], (int)screenSize[1],0 )));
         backGround.setBounds(0 ,0 , (int)screenSize[0], (int)screenSize[1]);
         
+        JLabel points = new JLabel();
 
 
 
@@ -128,6 +177,8 @@ public class Main extends JFrame {
 
         proxy = new Main();
         proxy.sceneManager();
+        proxy.getPoints();
+        
 
         
 
