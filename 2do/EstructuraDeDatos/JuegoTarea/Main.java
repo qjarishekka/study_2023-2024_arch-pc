@@ -48,9 +48,10 @@ public class Main extends JFrame {
         setVisible(true);
 
     }
+    
 
 
-    public String[] getLeadeBoard(){
+    private String[] getLeadeBoard(){
 
         int counter = 0;
         String leaderboard[] = new String[1];
