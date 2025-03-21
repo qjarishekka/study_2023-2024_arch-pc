@@ -8,6 +8,7 @@ public class Game extends JFrame {
     RotImage cannon,aim,bulletPic,back;
     
     Game(){
+        
         super("worms");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800,800);
@@ -48,6 +49,8 @@ public class Game extends JFrame {
         Bullet bullet = new Bullet(bulletPic);
         
         JLabel power = new JLabel("");
+
+
         power.setBounds(10, getHeight()-500,10,50);
         power.setBackground(Color.green);
         power.setOpaque(true);

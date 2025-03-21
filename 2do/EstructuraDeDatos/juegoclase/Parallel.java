@@ -16,7 +16,6 @@ public class Parallel implements Runnable{
     public void run(){
         while(true){
             pic.angle+= Math.PI / 120;
-            
             animation.frameID = (animation.frameID+1)%animation.images.length;
 
 
