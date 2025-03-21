@@ -88,11 +88,9 @@ public class Main extends JFrame {
 
     
     public static void main(String[] args){
-        
-        proxy = new Main();   
-        proxy.sceneManager();   
-          
-       
+
+        proxy = new Main();
+        proxy.sceneManager();
     }
 
 }
