@@ -1,5 +1,6 @@
 package JuegoTarea;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,7 +14,7 @@ import JuegoTarea.src.fonts.CustomFonts;
 import juegoclase.RotImage;
 
 
-public class Main extends JFrame {
+public class Main extends JFrame{
 
 
     public boolean Start = false;
@@ -28,6 +29,8 @@ public class Main extends JFrame {
     Scores scores = new Scores();
 
     CustomFonts customFonts = new CustomFonts();
+
+
 
     
     
@@ -107,10 +110,6 @@ public class Main extends JFrame {
         add(backGround);
         repaint();
         
-        
-        
-        
-
     }
 
     public void scene2(){
@@ -139,24 +138,22 @@ public class Main extends JFrame {
 
 
         Player player = new Player(proxy);
+        InputListener inputListener = new InputListener(player,proxy);
 
-        
-        
-        InputListener controller = new InputListener(player);
-        
-        JTextArea text = new JTextArea();
-        text.setBounds(40,40,100,100);
 
-        addKeyListener(controller);
+        proxy.addKeyListener(inputListener);
+        proxy.addMouseMotionListener(inputListener);
+        player.setFocusable(false);
+        setFocusable(true);
+        requestFocus();
 
-        //text.addKeyListener(controller);
-        //addKeyListener(controller);
-        
+        Bullet bullet = new Bullet(proxy);
+        add(bullet);
 
         //add(text);
         add(player);
 
-        add(points);
+        add(points); 
         add(currentPoints);
         
         add(backGround);
