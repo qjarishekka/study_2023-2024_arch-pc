@@ -141,14 +141,14 @@ public class Main extends JFrame{
         InputListener inputListener = new InputListener(player,proxy);
 
 
-        proxy.addKeyListener(inputListener);
-        proxy.addMouseMotionListener(inputListener);
+        addKeyListener(inputListener);
+        addMouseMotionListener(inputListener);
+        addMouseListener(inputListener);
         player.setFocusable(false);
         setFocusable(true);
         requestFocus();
 
-        Bullet bullet = new Bullet(proxy);
-        add(bullet);
+        
 
         //add(text);
         add(player);

@@ -76,7 +76,7 @@ public class Game extends JFrame {
         setVisible(true);
 
         Parallel parallel = new Parallel(aim, cannon);
-        parallel.run();
+        //parallel.run();
         Thread thread = new Thread(parallel);
         thread.start();
         

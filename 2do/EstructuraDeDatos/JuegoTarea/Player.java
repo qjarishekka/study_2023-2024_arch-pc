@@ -38,7 +38,7 @@ public class Player extends JLabel{
     }
 
     public void shoot(){
-
+        
     }
 
     @Override

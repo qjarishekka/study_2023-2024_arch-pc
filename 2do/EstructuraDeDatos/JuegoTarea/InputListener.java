@@ -64,7 +64,11 @@ public class InputListener implements MouseListener, MouseMotionListener, KeyLis
     @Override
     public void mouseClicked(MouseEvent e) {
 
-
+        Bullet bullet = new Bullet(proxy);
+        proxy.add(bullet, 0);
+        
+        System.out.println("balla aniadida");
+        proxy.repaint();
         
     }
 

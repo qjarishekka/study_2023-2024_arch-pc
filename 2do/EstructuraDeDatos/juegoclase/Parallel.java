@@ -14,6 +14,10 @@ public class Parallel implements Runnable{
 
     @Override
     public void run(){
+
+        
+        
+
         while(true){
             pic.angle+= Math.PI / 120;
             animation.frameID = (animation.frameID+1)%animation.images.length;
@@ -23,8 +27,9 @@ public class Parallel implements Runnable{
             animation.repaint();
 
             
+            
             try {
-                Thread.sleep(32);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
