@@ -9,10 +9,14 @@ public class Scores {
     long linesCounter;
     File file;
     FileReader fileReader;
+
+    
     public String leaderboard[];
+    public String maxScore[];
 
     Scores(){
         leaderboard = getLeadeBoard();
+        maxScore = getMaxScore();
     }
 
     private String[] getLeadeBoard(){
@@ -46,5 +50,28 @@ public class Scores {
             }
         }
         return leaderboard;
+    }
+
+    private String[] getMaxScore(){
+        
+        String maxScore[] = new String[2];
+        int scores = 0; 
+        int indexOfNumber = 0;
+
+        for(int i = 0 ; i< leaderboard.length ; i++){
+
+            indexOfNumber = leaderboard[i].indexOf(":", 0)+2;
+
+            if(scores < Integer.parseInt(leaderboard[i].substring(indexOfNumber)) ){
+                scores = Integer.parseInt(leaderboard[i].substring(indexOfNumber));
+                maxScore[0] = leaderboard[i].substring(indexOfNumber); 
+                maxScore[1] = leaderboard[i].substring(0, indexOfNumber-2);
+            }
+                
+
+        }
+
+
+        return maxScore;
     }
 }

@@ -9,6 +9,7 @@ import java.lang.Exception;
 
 import javax.swing.*;
 
+import JuegoTarea.src.CustomFonts;
 import juegoclase.RotImage;
 
 
@@ -25,6 +26,9 @@ public class Main extends JFrame {
     File file;
     FileReader fileReader;
     Scores scores = new Scores();
+
+    CustomFonts customFonts = new CustomFonts();
+
     
     
     
@@ -63,9 +67,6 @@ public class Main extends JFrame {
 
         }
         
-        
-
-
     }
 
     public void scene1(){
@@ -123,13 +124,36 @@ public class Main extends JFrame {
         backGround.setBounds(0 ,0 , (int)screenSize[0], (int)screenSize[1]);
         
         JLabel points = new JLabel();
+        points.setBounds(10,10,screenSize[0]*30/100 , screenSize[1]*20/100);
+        points.setText("Record: "+ scores.maxScore[0] + " by " + scores.maxScore[1]);
+        points.setFont(customFonts.font);
+        points.setForeground(Color.green);
+        points.setBackground(Color.BLACK);
+        //points.setOpaque(true);
+
+        JLabel currentPoints = new JLabel();
+        currentPoints.setBounds(screenSize[0]/2 - screenSize[0]*7/100, 10, screenSize[0]*15/100, screenSize[1]*15/100);
+        currentPoints.setText("Score: 000");
+        currentPoints.setFont(customFonts.font);
+        currentPoints.setForeground(Color.green);
+        currentPoints.setBackground(Color.WHITE);
+        //currentPoints.setOpaque(true);
+
+
+        JLabel player = new JLabel();
+        
+
+
 
 
 
         
-        proxy.add(backGround);
 
-
+        add(points);
+        add(currentPoints);
+        
+        add(backGround);
+        
         repaint();
 
 
@@ -143,6 +167,9 @@ public class Main extends JFrame {
 
         proxy = new Main();
         proxy.sceneManager();
+
+        System.out.println(proxy.scores.maxScore[1]);
+        
         
         
 
