@@ -1,4 +1,4 @@
-package JuegoTarea.src;
+package JuegoTarea.src.fonts;
 
 import java.awt.Font;
 import java.io.File;

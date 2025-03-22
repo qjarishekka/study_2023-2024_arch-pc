@@ -9,7 +9,7 @@ import java.lang.Exception;
 
 import javax.swing.*;
 
-import JuegoTarea.src.CustomFonts;
+import JuegoTarea.src.fonts.CustomFonts;
 import juegoclase.RotImage;
 
 
@@ -140,14 +140,9 @@ public class Main extends JFrame {
         //currentPoints.setOpaque(true);
 
 
-        JLabel player = new JLabel();
-        
+        Player player = new Player(proxy);
 
-
-
-
-
-        
+        add(player);
 
         add(points);
         add(currentPoints);
