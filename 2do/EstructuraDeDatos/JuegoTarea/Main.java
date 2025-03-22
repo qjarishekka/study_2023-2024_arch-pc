@@ -17,7 +17,7 @@ public class Main extends JFrame {
 
 
     public boolean Start = false;
-    int screenSize[] = new int [2];
+    //int screenSize[] = new int [2];
     static Main proxy; 
 
 
@@ -39,11 +39,9 @@ public class Main extends JFrame {
         super("MyGame");
 
         Toolkit t = Toolkit.getDefaultToolkit();
-        
-        screenSize[0] = (int)t.getScreenSize().getWidth();
-        screenSize[1] = (int)t.getScreenSize().getHeight();        
+            
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize((int)screenSize[0],(int)screenSize[1]);
+        setSize((int)t.getScreenSize().getWidth(),(int)t.getScreenSize().getHeight());
         setLayout(null);
         //setUndecorated(true);
 
@@ -72,16 +70,16 @@ public class Main extends JFrame {
     public void scene1(){
 
         Image backGroundImage  = new ImageIcon("src//backGround.png").getImage();
-        JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)screenSize[0], (int)screenSize[1],0 )));
+        JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)getWidth(), (int)getHeight(),0 )));
         
 
 
-        backGround.setBounds(0 ,0 , (int)screenSize[0], (int)screenSize[1]);
+        backGround.setBounds(getBounds());
         
         JButton playButton = new JButton();
-        int playButtonWidth = screenSize[0] * 30 / 100;
-        int playButtonHeight = screenSize[1] * 20 / 100;
-        playButton.setBounds( (screenSize[0]/2) - (playButtonWidth/2)  ,(screenSize[1]/2) - (playButtonHeight/2),playButtonWidth,playButtonHeight);
+        int playButtonWidth = getWidth() * 30 / 100;
+        int playButtonHeight = getHeight() * 20 / 100;
+        playButton.setBounds( (getWidth()/2) - (playButtonWidth/2)  ,(getHeight()/2) - (playButtonHeight/2),playButtonWidth,playButtonHeight);
         Image playImage = new ImageIcon("src//play.png").getImage();
         JLabel play = new JLabel(new ImageIcon(playImage.getScaledInstance(playButtonWidth, playButtonHeight, 0)));
         
@@ -90,9 +88,9 @@ public class Main extends JFrame {
         
 
         JButton exitButton = new JButton();
-        int exitButtonWidth = screenSize[0] * 25 / 100;
-        int exitButtonHeight = screenSize[1] * 15 / 100;
-        exitButton.setBounds( (screenSize[0]/2) - (exitButtonWidth/2)  ,  screenSize[1] - exitButtonHeight*5/2 , exitButtonWidth, exitButtonHeight);
+        int exitButtonWidth = getWidth() * 25 / 100;
+        int exitButtonHeight = getHeight() * 15 / 100;
+        exitButton.setBounds( (getWidth()/2) - (exitButtonWidth/2)  ,  getHeight() - exitButtonHeight*5/2 , exitButtonWidth, exitButtonHeight);
         ExitButtonListener exitButtonListener = new ExitButtonListener(proxy);
         exitButton.addActionListener(exitButtonListener);
 
@@ -120,11 +118,11 @@ public class Main extends JFrame {
         getContentPane().removeAll();
 
         Image backGroundImage  = new ImageIcon("src//backGround.png").getImage();
-        JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)screenSize[0], (int)screenSize[1],0 )));
-        backGround.setBounds(0 ,0 , (int)screenSize[0], (int)screenSize[1]);
+        JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)getWidth(), (int)getHeight(),0 )));
+        backGround.setBounds(0 ,0 , (int)getWidth(), (int)getHeight());
         
         JLabel points = new JLabel();
-        points.setBounds(10,10,screenSize[0]*30/100 , screenSize[1]*20/100);
+        points.setBounds(10,10,getWidth()*30/100 , getHeight()*20/100);
         points.setText("Record: "+ scores.maxScore[0] + " by " + scores.maxScore[1]);
         points.setFont(customFonts.font);
         points.setForeground(Color.green);
@@ -132,7 +130,7 @@ public class Main extends JFrame {
         //points.setOpaque(true);
 
         JLabel currentPoints = new JLabel();
-        currentPoints.setBounds(screenSize[0]/2 - screenSize[0]*7/100, 10, screenSize[0]*15/100, screenSize[1]*15/100);
+        currentPoints.setBounds(getWidth()/2 - getWidth()*7/100, 10, getWidth()*15/100, getHeight()*15/100);
         currentPoints.setText("Score: 000");
         currentPoints.setFont(customFonts.font);
         currentPoints.setForeground(Color.green);
@@ -142,6 +140,20 @@ public class Main extends JFrame {
 
         Player player = new Player(proxy);
 
+        
+        
+        InputListener controller = new InputListener(player);
+        
+        JTextArea text = new JTextArea();
+        text.setBounds(40,40,100,100);
+
+        addKeyListener(controller);
+
+        //text.addKeyListener(controller);
+        //addKeyListener(controller);
+        
+
+        //add(text);
         add(player);
 
         add(points);
@@ -162,6 +174,7 @@ public class Main extends JFrame {
 
         proxy = new Main();
         proxy.sceneManager();
+
 
         System.out.println(proxy.scores.maxScore[1]);
         

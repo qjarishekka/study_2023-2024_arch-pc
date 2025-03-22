@@ -20,19 +20,18 @@ public class Player extends JLabel{
 
 
 
-        playerBounds.width = main.screenSize[0]*10/100;
-        playerBounds.height = main.screenSize[1]*10/100;
-        playerBounds.x = (main.screenSize[0] - (int)playerBounds.getWidth())  /2;
-        playerBounds.y = (main.screenSize[1] - (int)playerBounds.getHeight())  /2;
+        playerBounds.width = main.getWidth()*10/100;
+        playerBounds.height = main.getHeight()*10/100;
+        playerBounds.x = (main.getWidth() - (int)playerBounds.getWidth())  /2;
+        playerBounds.y = (main.getHeight() - (int)playerBounds.getHeight())  /2;
 
         setIcon(new ImageIcon(PlayerImage.getScaledInstance((int)playerBounds.getWidth(),(int)playerBounds.getHeight(),0)));
         setBounds(playerBounds);
         
     }
 
-    public void move(int x , int y){
-
-
+    public void moving( int x , int y){
+        setLocation(getX() +x , getY()+y);
     }
 
     public void shoot(){

@@ -5,20 +5,24 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.text.JTextComponent.KeyBinding;
 
 import javax.swing.JLabel;
+import javax.swing.KeyStroke;
 
-public class Controls implements MouseListener, MouseMotionListener, KeyListener {
+public class InputListener extends KeyBinding implements MouseListener, MouseMotionListener {
+
+    public InputListener(KeyStroke key, String actionName) {
+        super(key, actionName);
+        //TODO Auto-generated constructor stub
+    }
 
     Player player;
 
 
 
-    public Controls(Player player){
 
-        this.player = player;
-    }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) { }
 
@@ -31,8 +35,7 @@ public class Controls implements MouseListener, MouseMotionListener, KeyListener
     @Override
     public void mouseExited(MouseEvent e) { }
 
-    @Override
-    public void keyReleased(KeyEvent e) { }
+
 
 
     //////////////////////////////////////////////
@@ -51,17 +54,8 @@ public class Controls implements MouseListener, MouseMotionListener, KeyListener
         
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
 
-    }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    
     
 
 

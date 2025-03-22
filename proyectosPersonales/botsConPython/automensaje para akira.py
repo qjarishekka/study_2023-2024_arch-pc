@@ -9,7 +9,7 @@ from time import sleep
 
 sleep(5)
 
-for i in range(20):
+for i in range(40):
     pyautogui.typewrite('akira')
     pyautogui.press('enter')
 
