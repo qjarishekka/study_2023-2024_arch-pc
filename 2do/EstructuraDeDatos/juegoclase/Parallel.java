@@ -7,6 +7,7 @@ public class Parallel implements Runnable{
 
     public RotImage pic;
     public AnImage animation;
+    
     public Parallel(RotImage pic, AnImage animation){
         this.pic = pic;
         this.animation = animation;

@@ -18,12 +18,15 @@ public class InputListener implements MouseListener, MouseMotionListener, KeyLis
     
     Player player;
     Main proxy;
+    Physics physics;
 
 
 
-    public InputListener(Player player, Main proxy){
+
+    public InputListener(Player player, Main proxy , Physics physics){
         this.player = player;
         this.proxy = proxy;
+        this.physics = physics;
    
 
     }
@@ -54,6 +57,7 @@ public class InputListener implements MouseListener, MouseMotionListener, KeyLis
         int oppositeLeg = (int)(e.getX() - player.getBounds().getCenterX());
         int adjacentLeg = (int)(  player.getBounds().getCenterY( )  - e.getY());
 
+
         player.angle = Math.atan2(oppositeLeg, adjacentLeg);
         //System.out.println(player.angle);
         player.repaint();
@@ -64,10 +68,23 @@ public class InputListener implements MouseListener, MouseMotionListener, KeyLis
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        Bullet bullet = new Bullet(proxy);
-        proxy.add(bullet, 0);
         
-        System.out.println("balla aniadida");
+
+        double radius = 10;
+        int dx = e.getX() - (int)player.getBounds().getCenterX();
+        int dy = e.getY() - (int)player.getBounds().getCenterY();
+        double d = Math.sqrt(dx*dx + dy*dy);
+        double r = radius/d;
+
+        Bullet bullet = new Bullet(proxy,physics,player, dx*r, dy*r );
+        proxy.add(bullet, 0);
+
+
+
+
+
+        
+        //System.out.println("balla aniadida");
         proxy.repaint();
         
     }

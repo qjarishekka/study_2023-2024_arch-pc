@@ -60,9 +60,11 @@ public class Game extends JFrame {
         addMouseMotionListener(controls);
         addMouseListener(controls);
 
-        Physics physics = new Physics(17, bullet, power);
+        Physics physics = new Physics(16, bullet, power);
         Timer timer = new Timer(17 , physics);
         timer.start();
+
+        
 
         
 

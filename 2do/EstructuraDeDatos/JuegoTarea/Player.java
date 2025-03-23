@@ -21,6 +21,8 @@ public class Player extends JLabel{
 
 
 
+
+
     public Player(Main main){
 
         playerBounds.width = main.getWidth()*10/100;

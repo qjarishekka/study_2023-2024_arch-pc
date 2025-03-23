@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "tangente",
+            "request": "launch",
+            "mainClass": "experimentos.tangente",
+            "projectName": "mirepositorio_260f8393"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "JuegoTarea.Main",

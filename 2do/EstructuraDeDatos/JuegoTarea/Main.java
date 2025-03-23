@@ -20,6 +20,7 @@ public class Main extends JFrame{
     public boolean Start = false;
     //int screenSize[] = new int [2];
     static Main proxy; 
+    
 
 
     BufferedReader bufferedReader;
@@ -137,8 +138,17 @@ public class Main extends JFrame{
         //currentPoints.setOpaque(true);
 
 
+        Timer timer = new Timer(1, null );
+        Physics physics = new Physics(timer,this);
+        timer.addActionListener(physics);
+        timer.start();
+
         Player player = new Player(proxy);
-        InputListener inputListener = new InputListener(player,proxy);
+        InputListener inputListener = new InputListener(player,proxy,physics);
+
+        
+
+
 
 
         addKeyListener(inputListener);
@@ -173,7 +183,7 @@ public class Main extends JFrame{
         proxy.sceneManager();
 
 
-        System.out.println(proxy.scores.maxScore[1]);
+        //System.out.println(proxy.scores.maxScore[1]);
         
         
         
