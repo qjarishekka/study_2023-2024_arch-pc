@@ -100,8 +100,6 @@ public class Main extends JFrame{
 
 
 
-
-
         add(playButton);
         playButton.setIcon(play.getIcon());
 
@@ -137,16 +135,18 @@ public class Main extends JFrame{
         currentPoints.setBackground(Color.WHITE);
         //currentPoints.setOpaque(true);
 
+        GameManager gameManager = new GameManager(this);
 
         Timer timer = new Timer(1, null );
-        Physics physics = new Physics(timer,this);
+        Physics physics = new Physics(timer,this, gameManager);
         timer.addActionListener(physics);
         timer.start();
 
         Player player = new Player(proxy);
         InputListener inputListener = new InputListener(player,proxy,physics);
 
-        
+        Enemy enemy = new Enemy(proxy);
+        add(enemy);
 
 
 

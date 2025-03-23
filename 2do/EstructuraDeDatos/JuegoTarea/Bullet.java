@@ -12,7 +12,7 @@ public class Bullet extends JLabel{
     Main main;
     Physics physics;
     Player player;
-    long createdTime;
+    public long createdTime;
     double X0= 0;
     double Y0 = 0;
     double vectorX = 0;
@@ -33,7 +33,7 @@ public class Bullet extends JLabel{
 
         
 
-        setIcon(new ImageIcon(bulletImage.getScaledInstance(main.getWidth()*1/300,main.getHeight()*2/300,0)));
+        setIcon(new ImageIcon(bulletImage.getScaledInstance(main.getWidth()*1/100,main.getWidth()*1/100,0)));
         setBounds(  (int)player.getBounds().getCenterX() , (int)player.getBounds().getCenterY(), getIcon().getIconWidth() , getIcon().getIconHeight());
         physics.addBullets(this);
         createdTime = physics.deltaTime;
@@ -42,6 +42,8 @@ public class Bullet extends JLabel{
         Y0 = player.getBounds().getCenterY();
         
     }
+
+
 
 
     public void moveTo( long deltaTime){
