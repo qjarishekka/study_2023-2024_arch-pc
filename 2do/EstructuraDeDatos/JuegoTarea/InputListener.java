@@ -124,7 +124,7 @@ public class InputListener implements MouseListener, MouseMotionListener, KeyLis
     @Override
     public void keyTyped(KeyEvent e) {
         switch (e.getKeyChar()) {
-            case 'a':
+            case 'a' :
                     player.moving(-10, 0);
                 break;
             case 'd':
@@ -136,7 +136,11 @@ public class InputListener implements MouseListener, MouseMotionListener, KeyLis
             case 's':
                     player.moving(0, 10);
                 break;
-        
+            case 27 : 
+                    
+                    //proxy.proxy.sceneManager();
+                    
+                
             default:
                 break;
         }
@@ -156,6 +160,10 @@ public class InputListener implements MouseListener, MouseMotionListener, KeyLis
                 break;
             case 's':
                     player.moving(0, 10);
+                break;
+            case 27 : 
+                //System.out.println("aqui");
+                //proxy.sceneManager();
                 break;
         
             default:

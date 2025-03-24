@@ -22,7 +22,6 @@ public class Main extends JFrame{
     static Main proxy; 
     
 
-
     BufferedReader bufferedReader;
     long linesCounter;
     File file;
@@ -30,6 +29,11 @@ public class Main extends JFrame{
     Scores scores = new Scores();
 
     CustomFonts customFonts = new CustomFonts();
+    Player player;
+
+
+
+
 
 
 
@@ -48,10 +52,8 @@ public class Main extends JFrame{
         setSize((int)t.getScreenSize().getWidth(),(int)t.getScreenSize().getHeight());
         setLayout(null);
         //setUndecorated(true);
-
-        
-
         setVisible(true);
+        
 
     }
 
@@ -72,6 +74,8 @@ public class Main extends JFrame{
     }
 
     public void scene1(){
+
+        //getContentPane().removeAll();
 
         Image backGroundImage  = new ImageIcon("src//backGround.png").getImage();
         JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)getWidth(), (int)getHeight(),0 )));
@@ -115,6 +119,7 @@ public class Main extends JFrame{
 
         getContentPane().removeAll();
 
+
         Image backGroundImage  = new ImageIcon("src//backGround.png").getImage();
         JLabel backGround = new JLabel(new ImageIcon(backGroundImage.getScaledInstance((int)getWidth(), (int)getHeight(),0 )));
         backGround.setBounds(0 ,0 , (int)getWidth(), (int)getHeight());
@@ -135,19 +140,21 @@ public class Main extends JFrame{
         currentPoints.setBackground(Color.WHITE);
         //currentPoints.setOpaque(true);
 
+        
+        player = new Player(proxy);
         GameManager gameManager = new GameManager(this);
+        Thread thread = new Thread(gameManager);
+        thread.start();
 
         Timer timer = new Timer(1, null );
         Physics physics = new Physics(timer,this, gameManager);
         timer.addActionListener(physics);
         timer.start();
 
-        Player player = new Player(proxy);
+        
         InputListener inputListener = new InputListener(player,proxy,physics);
 
-        Enemy enemy = new Enemy(proxy);
-        add(enemy);
-
+        
 
 
 

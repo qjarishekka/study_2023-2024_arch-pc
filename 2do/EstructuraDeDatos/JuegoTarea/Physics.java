@@ -16,6 +16,7 @@ public class Physics implements ActionListener {
     Long deltaTime;
     Main main;
     Bullet nexBullet;
+    Enemy nextEnemy;
     
 
 
@@ -28,7 +29,6 @@ public class Physics implements ActionListener {
 
     public void addBullets(Bullet bullet){
         gameManager.bullets.addLast(bullet);
-        
     }
 
     @Override
@@ -36,15 +36,20 @@ public class Physics implements ActionListener {
         deltaTime++;
 
         Iterator<Bullet> bulletIterator = gameManager.bullets.iterator();
+        while(bulletIterator.hasNext() && gameManager.flag){
 
-        while(bulletIterator.hasNext()){
             nexBullet = bulletIterator.next();
             nexBullet.moveTo(deltaTime);
+            nexBullet.boxCollider.refresBoxCollider();
             if(deltaTime - nexBullet.createdTime > 300 ){
-                
-                
+                bulletIterator.remove();
                 main.remove(nexBullet);
             }
+        }
+
+        if(deltaTime%100 == 0 && gameManager.flag){
+            if(gameManager.enemies.size() > 0)
+            gameManager.enemies.getLast().followPlayer();
         }
 
         
