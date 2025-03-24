@@ -1,0 +1,4 @@
+juan : 100
+pedro : 2
+pablo : 100
+feder : 30

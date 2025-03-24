@@ -74,7 +74,7 @@ public class GameManager implements Runnable {
 
     
                     if(nextEnemy.boxCollider.isColliding(nexBullet.boxCollider)){
-                        //System.out.println("bulletCollaiding");
+                        //System.out.printn("bulletCollaiding");
                         flag = false;
                         nextEnemy.lifePoints--;
                         main.remove(nexBullet);

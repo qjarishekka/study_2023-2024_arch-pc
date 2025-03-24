@@ -54,5 +54,7 @@ public class Bullet extends JLabel{
 
 
     }
+
+
     
 }
