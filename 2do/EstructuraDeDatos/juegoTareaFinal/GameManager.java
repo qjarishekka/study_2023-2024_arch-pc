@@ -26,6 +26,7 @@ public class GameManager implements Runnable{
     InputListener inputListener;
     Scores scores;
     JLabel currentPoints = new JLabel();
+    JLabel lifePoints = new JLabel();
     int points = 0;
 
     int bulletSize;
@@ -65,9 +66,7 @@ public class GameManager implements Runnable{
 
 
 
-        mainFrame.add(player , 0);
-        mainFrame.add(mainFrame.background);
-        mainFrame.repaint();
+        
 
         
         currentPoints.setBounds(mainFrame.getWidth()/2 - mainFrame.getWidth()*7/100, 10, mainFrame.getWidth()*15/100, mainFrame.getHeight()*15/100);
@@ -75,14 +74,32 @@ public class GameManager implements Runnable{
         currentPoints.setFont(customFonts.font);
         currentPoints.setForeground(Color.green);
         currentPoints.setBackground(Color.WHITE);
+
+
+        lifePoints.setBounds(mainFrame.getWidth() - mainFrame.getWidth()*15/100 - 10  , 10, mainFrame.getWidth()*15/100, mainFrame.getHeight()*15/100);
+        lifePoints.setText("life points: 3");
+        lifePoints.setFont(customFonts.font);
+        lifePoints.setForeground(Color.green);
+        lifePoints.setBackground(Color.WHITE);
+
+
+
+
+        
+
+
+        mainFrame.add(lifePoints, 0);
         mainFrame.add(currentPoints, 0);
+        mainFrame.add(player , 0);
+        mainFrame.add(mainFrame.background);
+        mainFrame.repaint();
+
+
 
 
 
         while(true){
             //System.out.println("el juego ha empezado");
-
-
     
             try{
                 Thread.sleep(10);
@@ -104,6 +121,7 @@ public class GameManager implements Runnable{
 
             if(player.lifePoints == 0){
                 mainFrame.gameOver();
+                break;
             }
 
             removeLostEnemies();
@@ -125,6 +143,7 @@ public class GameManager implements Runnable{
     public void refreshPoints(){
 
         currentPoints.setText( "Score: " +  points );
+        lifePoints.setText("life points: " + player.lifePoints);
 
     }
 

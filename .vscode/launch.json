@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "JuegoTarea.Main",
+            "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
+        },
+        {
+            "type": "java",
             "name": "tangente",
             "request": "launch",
             "mainClass": "experimentos.tangente",

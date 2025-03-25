@@ -4,7 +4,13 @@
     // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "java",
+            "name": "MainFrame",
+            "request": "launch",
+            "mainClass": "juegoTareaFinal.MainFrame",
+            "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
+        },
         {
             "type": "java",
             "name": "MainFrame",

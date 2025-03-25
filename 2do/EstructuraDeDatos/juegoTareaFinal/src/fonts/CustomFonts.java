@@ -21,8 +21,7 @@ public class CustomFonts {
         Font temporalFont = new Font(null);
 
         try{
-            
-            
+        
             InputStream inputStream = getClass().getResourceAsStream("Minecraft.ttf");
             temporalFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             

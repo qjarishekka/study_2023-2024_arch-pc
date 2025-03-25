@@ -28,7 +28,7 @@ public class Physics implements ActionListener {
     }
 
     public void addBullets(Bullet bullet){
-        gameManager.bullets.addLast(bullet);
+        gameManager.bullets.add(bullet);
     }
 
     @Override
@@ -48,8 +48,9 @@ public class Physics implements ActionListener {
         }
 
         if(deltaTime%100 == 0 && gameManager.flag){
-            if(gameManager.enemies.size() > 0)
-            gameManager.enemies.getLast().followPlayer();
+            //if(gameManager.enemies.size() > 0)
+
+            //gameManager.enemies.getLast().followPlayer();
         }
 
         

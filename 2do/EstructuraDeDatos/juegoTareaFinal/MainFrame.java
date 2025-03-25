@@ -1,6 +1,7 @@
 package juegoTareaFinal;
 
 import java.awt.Color;
+import java.awt.Font;
 import  java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,6 +32,7 @@ public class MainFrame extends JFrame{
     File file;
     FileReader fileReader;
     Scores scores = new Scores();
+    
 
     CustomFonts customFonts = new CustomFonts();
     
@@ -86,8 +88,6 @@ public class MainFrame extends JFrame{
 
         getContentPane().removeAll();
 
-
-
         gameManager = new GameManager(this);
         thread = new Thread(gameManager);
         thread.start();
@@ -98,11 +98,26 @@ public class MainFrame extends JFrame{
 
     public void gameOver(){
 
+        
+        
+        thread.interrupt();
+        getContentPane().removeAll();
 
-        gameManager = null;
-        System.gc();
-        proxy.dispose();
-        System.exit(ABORT);
+        JLabel gameOverText = new JLabel();
+        gameOverText.setBounds(   (proxy.getWidth() - proxy.getWidth()*20/100)/2  , (proxy.getHeight() - proxy.getHeight()*20/100)/2  , proxy.getWidth()*20/100 , proxy.getHeight()*20/100);
+        //gameOverText.setLocation( (proxy.getWidth()  - gameOverText.getWidth())/2 ,  (proxy.getHeight()- gameOverText.getHeight())/2 );
+        gameOverText.setText("GAME OVER");
+        gameOverText.setFont(customFonts.font);
+        gameOverText.setForeground(Color.green);
+        add(gameOverText);
+        add(background);
+
+
+
+        //System.gc();
+        //proxy.dispose();
+        //System.exit(ABORT);
+        repaint();
 
 
     }

@@ -18,20 +18,20 @@ public class Game extends JFrame {
         //image:
 
         //Image cannonImg  = new ImageIcon("src//cannon.jpg").getImage();
-        Image aimImg  = new ImageIcon("src//crosshair.png").getImage();
-        Image bulletImg  = new ImageIcon("src//bullet.png").getImage();
-        Image backgroundImg = new ImageIcon("src//windows.png").getImage();
+        //Image aimImg  = new ImageIcon("src//crosshair.png").getImage();
+        //Image bulletImg  = new ImageIcon("src//bullet.png").getImage();
+        //Image backgroundImg = new ImageIcon("src//windows.png").getImage();
 
-        //Image cannonImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\cannon.jpg").getImage();
-        /* Image aimImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\crosshair.png").getImage();
+        Image cannonImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\cannon.jpg").getImage();
+        Image aimImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\crosshair.png").getImage();
         Image bulletImg  = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\bullet.png").getImage();
-        Image backgroundImg = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\windows.png").getImage(); */
+        Image backgroundImg = new ImageIcon("2do\\EstructuraDeDatos\\juegoclase\\src\\windows.png").getImage();
 
         
         //cannon = new RotImage(new ImageIcon(cannonImg.getScaledInstance(100, 100,0 )));
-        //AnImage cannon = new AnImage("2do\\EstructuraDeDatos\\juegoclase\\src\\animation");
+        AnImage cannon = new AnImage("2do\\EstructuraDeDatos\\juegoclase\\src\\animation");
 
-        AnImage cannon = new AnImage("src//animation");
+        //AnImage cannon = new AnImage("src//animation");
         cannon.setBounds(0, getHeight()-100 , 100 , 100);
         add(cannon);
          
@@ -63,18 +63,31 @@ public class Game extends JFrame {
         Physics physics = new Physics(16, bullet, power);
         Timer timer = new Timer(17 , physics);
         timer.start();
-
-        
-
-        
-
         
 
         JLabel background = new JLabel(new ImageIcon(backgroundImg.getScaledInstance(800,800,DO_NOTHING_ON_CLOSE)));
         background.setBounds(0,0,800,800);
        
-        add(background);
         
+        
+
+
+        Sort sort = new Sort(100);
+        sort.setBounds(0,0,1000,250);
+        sort.setOpaque(true);
+        sort.gen();
+
+        JButton startSort = new JButton();
+        startSort.setBounds(30,300 , 70, 30);
+        JButton generateSort = new JButton();
+        generateSort.setBounds(100,300 , 70, 30);
+
+
+        add(startSort);
+        add(generateSort);
+        add(sort);
+        add(background);
+
         setVisible(true);
 
         Parallel parallel = new Parallel(aim, cannon);
