@@ -54,12 +54,6 @@ public class Enemy extends JLabel {
         setLocation(    (int)(getBounds().getCenterX() + dx*r) , (int)(getBounds().getCenterY() + dy*r));
         boxCollider.refresBoxCollider();
 
-
-
-
-
-
-
     }
 
 

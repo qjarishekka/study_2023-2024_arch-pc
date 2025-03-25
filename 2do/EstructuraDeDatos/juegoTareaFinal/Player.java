@@ -18,7 +18,7 @@ public class Player extends JLabel{
     String path = "src//animations//playerAnimation";
 
     Animator animator = new Animator(path);
-    BoxCollider boxCollider = new BoxCollider();
+    BoxCollider boxCollider = new BoxCollider(this);
 
     double angle;
     int lifePoints = 3;
@@ -44,8 +44,6 @@ public class Player extends JLabel{
     public void nextFrame(){
         setIcon( new ImageIcon( animator.nextFrame().getScaledInstance(playerSize, playerSize, 0) ));
     }
-
-
 
 
     @Override

@@ -33,15 +33,6 @@ public class Main extends JFrame{
 
 
 
-
-
-
-
-    
-    
-    
-    
-
     Main(){
         
         super("MyGame");

@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class Bullet extends JLabel {
 
     Image bulletImage = new ImageIcon("src//bullet.png").getImage();
-    BoxCollider boxCollider = new BoxCollider();
+    BoxCollider boxCollider = new BoxCollider(this);
 
     double X0 = 0;
     double Y0 = 0;
@@ -38,6 +38,7 @@ public class Bullet extends JLabel {
         X0 = X0 + vectorX;
         Y0 = Y0 +  vectorY;
         setLocation((int)X0 , (int)Y0);
+        boxCollider.refresBoxCollider();
     }
 
 

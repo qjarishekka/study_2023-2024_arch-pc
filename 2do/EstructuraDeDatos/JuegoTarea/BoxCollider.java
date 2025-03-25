@@ -39,7 +39,6 @@ public class BoxCollider {
         /* if(anotherCollider == null){
             return false;
         } */
-       
 
         if(   x < anotherCollider.x && anotherCollider.x < dx    &&     y < anotherCollider.y && anotherCollider.y < dy  ){
             return true;
