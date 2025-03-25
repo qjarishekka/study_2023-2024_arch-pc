@@ -138,7 +138,7 @@ public class GameManager implements Runnable{
         Bullet newBullet = new Bullet((int)player.getBounds().getCenterX(), (int)player.getBounds().getCenterY(), vectorX, vectorY, bulletSize, timer);
         //System.out.println( "vector x: " + newBullet.vectorX  + " vector y: " + newBullet.vectorY );
         mainFrame.add(newBullet,1);
-        bullets.addLast(newBullet);
+        bullets.add(newBullet);
         canMoveBullets = true;
 
     }
