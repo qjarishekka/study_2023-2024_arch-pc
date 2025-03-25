@@ -18,11 +18,13 @@ public class Enemy extends JLabel {
     double Y0;
     double vectorX;
     double vectorY;
+    Random random = new Random();
     int mode = new Random().nextInt(2);
+    public long createdTime;
     
 
 
-    public Enemy(int enemySize){
+    public Enemy(int enemySize, long createdTime){
 
         this.enemySize = enemySize;
         setIcon(new ImageIcon(animator.bufferedImage[0].getScaledInstance(enemySize, enemySize, 0)));
@@ -30,20 +32,25 @@ public class Enemy extends JLabel {
         X0 = 10;
         Y0 = 10;
         boxCollider.refresBoxCollider();
+        this.createdTime = createdTime;
  
 
     
 
     }
 
-    public Enemy(int enemySize, int x , int y){
+    public Enemy(int enemySize, int x , int y , long createdTime){
 
         this.enemySize = enemySize;
         setIcon(new ImageIcon(animator.bufferedImage[0].getScaledInstance(enemySize, enemySize, 0)));
         setBounds(x ,y , enemySize, enemySize);
         X0 = x;
         Y0 = y;   
+        vectorX = random.nextInt(20) - 10;
+        vectorY = random.nextInt(20) - 10;
+
         boxCollider.refresBoxCollider();
+        this.createdTime = createdTime;
         
     }
 

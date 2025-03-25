@@ -91,17 +91,22 @@ public class GameManager implements Runnable{
 
             moveBullets();
             checkingColliders();
+            
 
             if(timer % 100l == 0)
                 animating();
 
             if(enemies.size() == 0){
                 setEnemyAtRandomPosition();
+                setEnemyAtRandomPosition();
+                setEnemyAtRandomPosition();
             }
 
             if(player.lifePoints == 0){
                 mainFrame.gameOver();
             }
+
+            removeLostEnemies();
             refreshPoints();
             mainFrame.repaint();
             mainFrame.requestFocus();
@@ -150,6 +155,11 @@ public class GameManager implements Runnable{
                 //System.out.println("objetos: " + mainFrame.getContentPane().getComponentCount());
             }
         }
+
+        for(int i = 0; i < enemies.size() ; i++){
+            enemies.get(i).moveTo();
+        }
+
     }
 
     public void animating(){
@@ -158,7 +168,7 @@ public class GameManager implements Runnable{
 
     public void setEnemyAtRandomPosition(){
         Random random = new Random();
-        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  );
+        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  , timer);
         enemies.add(enemy);
         mainFrame.add(enemy,0);
     }
@@ -198,18 +208,26 @@ public class GameManager implements Runnable{
                         mainFrame.remove(nextEnemy);
                         points++;
                     }
-
                 }
-
             }
         }
+
+
 
 
     }
 
     
 
+    public void removeLostEnemies(){
 
+        for(int i = 0 ; i< enemies.size() ; i++){
+            if( timer -   enemies.get(i).createdTime > 300l ){
+                mainFrame.remove(enemies.remove(i));
+            }
+        }
+
+    }
 
 
 
