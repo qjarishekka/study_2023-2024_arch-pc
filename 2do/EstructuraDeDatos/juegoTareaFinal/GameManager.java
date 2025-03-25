@@ -8,14 +8,16 @@ import java.util.Random;
 import javax.swing.JLabel;
 
 import juegoTareaFinal.src.fonts.CustomFonts;
+import javax.swing.Timer;
+
 
 
 
 public class GameManager implements Runnable{
 
     Player player;
-    ArrayList<Bullet> bullets = new ArrayList<>();
-    ArrayList<Enemy> enemies = new ArrayList<>();
+    ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     CustomFonts customFonts = new CustomFonts();
     Iterator <Enemy> enemiesIterator;
     Iterator<Bullet> bulletIterator;
@@ -31,9 +33,13 @@ public class GameManager implements Runnable{
 
     int bulletSize;
     int enemySize;
-    Long timer = 0l;
+    
 
     boolean canMoveBullets= false;
+
+    Time time = new Time();
+    Timer timer = new Timer(1, time);
+    
 
     
 
@@ -42,11 +48,14 @@ public class GameManager implements Runnable{
 
     public GameManager(MainFrame mainFrame){
         
+        timer.start();
+
         this.mainFrame = mainFrame;
         player = new Player(mainFrame);
 
         bulletSize = mainFrame.getHeight()*1/100;
         enemySize = mainFrame.getHeight()*10/100;
+        
 
 
     }
@@ -76,7 +85,7 @@ public class GameManager implements Runnable{
         currentPoints.setBackground(Color.WHITE);
 
 
-        lifePoints.setBounds(mainFrame.getWidth() - mainFrame.getWidth()*15/100 - 10  , 10, mainFrame.getWidth()*15/100, mainFrame.getHeight()*15/100);
+        lifePoints.setBounds(mainFrame.getWidth() - mainFrame.getWidth()*20/100 - 10  , 10, mainFrame.getWidth()*20/100, mainFrame.getHeight()*20/100);
         lifePoints.setText("life points: 3");
         lifePoints.setFont(customFonts.font);
         lifePoints.setForeground(Color.green);
@@ -97,20 +106,18 @@ public class GameManager implements Runnable{
 
 
 
-
         while(true){
             //System.out.println("el juego ha empezado");
     
             try{
                 Thread.sleep(10);
             }catch(InterruptedException e){}
-            timer++;
 
             moveBullets();
             checkingColliders();
             
 
-            if(timer % 100l == 0)
+            if(time.time % 1000l == 0)
                 animating();
 
             if(enemies.size() == 0){
@@ -126,6 +133,7 @@ public class GameManager implements Runnable{
 
             removeLostEnemies();
             refreshPoints();
+
             mainFrame.repaint();
             mainFrame.requestFocus();
             System.gc();
@@ -154,7 +162,7 @@ public class GameManager implements Runnable{
         canMoveBullets = false;
 
         //System.out.println("balla creada");
-        Bullet newBullet = new Bullet((int)player.getBounds().getCenterX(), (int)player.getBounds().getCenterY(), vectorX, vectorY, bulletSize, timer);
+        Bullet newBullet = new Bullet((int)player.getBounds().getCenterX(), (int)player.getBounds().getCenterY(), vectorX, vectorY, bulletSize, time.time);
         //System.out.println( "vector x: " + newBullet.vectorX  + " vector y: " + newBullet.vectorY );
         mainFrame.add(newBullet,1);
         bullets.add(newBullet);
@@ -165,7 +173,7 @@ public class GameManager implements Runnable{
     public void moveBullets(){
         for(int i = 0; i < bullets.size() ; i++){
             bullets.get(i).moveTo();
-            if( timer -   bullets.get(i).createdTime  >  1000){
+            if( time.time -   bullets.get(i).createdTime  >  1000){
 
                 mainFrame.remove(bullets.remove(i));
 
@@ -187,7 +195,7 @@ public class GameManager implements Runnable{
 
     public void setEnemyAtRandomPosition(){
         Random random = new Random();
-        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  , timer);
+        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  , time.time);
         enemies.add(enemy);
         mainFrame.add(enemy,0);
     }
@@ -241,7 +249,7 @@ public class GameManager implements Runnable{
     public void removeLostEnemies(){
 
         for(int i = 0 ; i< enemies.size() ; i++){
-            if( timer -   enemies.get(i).createdTime > 300l ){
+            if( time.time -   enemies.get(i).createdTime > 3000l ){
                 mainFrame.remove(enemies.remove(i));
             }
         }

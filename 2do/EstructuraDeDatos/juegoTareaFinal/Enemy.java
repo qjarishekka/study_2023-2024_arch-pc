@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Enemy extends JLabel {
 
-    String path = "src\\animations\\enemyAnimation";
+    String path = "src//animations//enemyAnimation";
 
     Animator animator = new Animator(path);
     BoxCollider boxCollider = new BoxCollider(this); 

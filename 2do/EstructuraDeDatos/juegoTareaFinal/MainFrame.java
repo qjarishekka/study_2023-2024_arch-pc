@@ -27,7 +27,6 @@ public class MainFrame extends JFrame{
     Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
     JLabel background = new JLabel();
 
-
     BufferedReader bufferedReader;
     File file;
     FileReader fileReader;
@@ -113,7 +112,6 @@ public class MainFrame extends JFrame{
         add(background);
 
 
-
         //System.gc();
         //proxy.dispose();
         //System.exit(ABORT);
@@ -133,9 +131,6 @@ public class MainFrame extends JFrame{
         proxy.Menu();
 
         //proxy.gameStart();
-
-        
-        
 
     }
 }
