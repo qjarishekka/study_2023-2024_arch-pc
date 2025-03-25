@@ -1,4 +1,5 @@
 package juegoTareaFinal;
+
 import java.awt.Color;
 import  java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -7,8 +8,11 @@ import java.io.FileReader;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+
 
 import JuegoTarea.src.fonts.CustomFonts;
 
@@ -59,6 +63,18 @@ public class MainFrame extends JFrame{
 
     public void Menu(){
 
+        JButton playButton = new JButton();
+        int playButtonWidth = getWidth() * 30 / 100;
+        int playButtonHeight = getHeight() * 20 / 100;
+        playButton.setBounds( (getWidth()/2) - (playButtonWidth/2)  ,(getHeight()/2) - (playButtonHeight/2),playButtonWidth,playButtonHeight);
+        Image playImage = new ImageIcon("src//play.png").getImage();
+        playButton.setIcon( new ImageIcon(playImage.getScaledInstance(playButtonWidth, playButtonHeight, 0))   );
+        
+        PlayButtonListener playButtonListener = new PlayButtonListener(proxy);
+        playButton.addActionListener(playButtonListener);
+
+
+        add(playButton);
         add(background);
 
         repaint();
@@ -66,8 +82,10 @@ public class MainFrame extends JFrame{
     }
 
 
-
     public void gameStart(){
+
+        getContentPane().removeAll();
+
 
 
         gameManager = new GameManager(this);
@@ -76,6 +94,17 @@ public class MainFrame extends JFrame{
 
         System.out.println("numero de objetos " + getContentPane().getComponentCount());
         repaint();
+    }
+
+    public void gameOver(){
+
+
+        gameManager = null;
+        System.gc();
+        proxy.dispose();
+        System.exit(ABORT);
+
+
     }
 
 

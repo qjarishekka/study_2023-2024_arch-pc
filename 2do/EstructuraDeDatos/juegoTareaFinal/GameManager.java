@@ -1,9 +1,13 @@
 package juegoTareaFinal;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.SynchronousQueue;
 import java.util.Random;
+
+import javax.swing.JLabel;
+
+import juegoTareaFinal.src.fonts.CustomFonts;
 
 
 
@@ -12,6 +16,7 @@ public class GameManager implements Runnable{
     Player player;
     ArrayList<Bullet> bullets = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
+    CustomFonts customFonts = new CustomFonts();
     Iterator <Enemy> enemiesIterator;
     Iterator<Bullet> bulletIterator;
 
@@ -19,6 +24,9 @@ public class GameManager implements Runnable{
     Physics physics;
     MainFrame mainFrame;
     InputListener inputListener;
+    Scores scores;
+    JLabel currentPoints = new JLabel();
+    int points = 0;
 
     int bulletSize;
     int enemySize;
@@ -53,11 +61,22 @@ public class GameManager implements Runnable{
         mainFrame.addMouseMotionListener(inputListener);
         mainFrame.addMouseListener(inputListener);
         mainFrame.addKeyListener(inputListener);
-        
         setEnemyAtRandomPosition();
 
+
+
         mainFrame.add(player , 0);
+        mainFrame.add(mainFrame.background);
         mainFrame.repaint();
+
+        
+        currentPoints.setBounds(mainFrame.getWidth()/2 - mainFrame.getWidth()*7/100, 10, mainFrame.getWidth()*15/100, mainFrame.getHeight()*15/100);
+        currentPoints.setText("Score: 000");
+        currentPoints.setFont(customFonts.font);
+        currentPoints.setForeground(Color.green);
+        currentPoints.setBackground(Color.WHITE);
+        mainFrame.add(currentPoints, 0);
+
 
 
         while(true){
@@ -70,26 +89,27 @@ public class GameManager implements Runnable{
             }catch(InterruptedException e){}
             timer++;
 
-
-
             moveBullets();
             checkingColliders();
-
-
-
 
             if(timer % 100l == 0)
                 animating();
 
-            
-
             if(enemies.size() == 0){
                 setEnemyAtRandomPosition();
             }
-            
+
+            if(player.lifePoints == 0){
+                mainFrame.gameOver();
+            }
+            refreshPoints();
             mainFrame.repaint();
             mainFrame.requestFocus();
             System.gc();
+
+
+
+
   
         }
         
@@ -97,7 +117,11 @@ public class GameManager implements Runnable{
     }
 
 
+    public void refreshPoints(){
 
+        currentPoints.setText( "Score: " +  points );
+
+    }
 
 
 
@@ -134,9 +158,9 @@ public class GameManager implements Runnable{
 
     public void setEnemyAtRandomPosition(){
         Random random = new Random();
-        Enemy enemy = new Enemy(enemySize, random.nextInt(mainFrame.getWidth()), random.nextInt(mainFrame.getHeight()));
+        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  );
         enemies.add(enemy);
-        mainFrame.add(enemy);
+        mainFrame.add(enemy,0);
     }
 
     public void checkingColliders(){
@@ -150,6 +174,8 @@ public class GameManager implements Runnable{
                 enemiesIterator.remove();
                 mainFrame.remove(nextEnemy);
                 player.lifePoints--;
+                
+                System.out.println("vida del jugador: " + player.lifePoints);
                 //mainFrame.repaint();
             }
             nextEnemy = null;
@@ -170,6 +196,7 @@ public class GameManager implements Runnable{
                     if(nextEnemy.lifePoints == 0){
                         enemiesIterator.remove();
                         mainFrame.remove(nextEnemy);
+                        points++;
                     }
 
                 }

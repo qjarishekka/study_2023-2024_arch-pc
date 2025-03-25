@@ -113,7 +113,10 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
                     player.moving(0, 10);
                 break;
             case 27 : //escape
-  
+                gameManager = null;
+                System.gc();
+                mainFrame.dispose();
+                System.exit(128);            
             default:
                 break;
         }
@@ -136,8 +139,11 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
             case 's':
                     player.moving(0, 10);
                 break;
-            case 27 : //escape
-  
+            case 27 : //escape  
+                gameManager = null;
+                System.gc();
+                mainFrame.dispose();
+                System.exit(128);
             default:
                 break;
         }
