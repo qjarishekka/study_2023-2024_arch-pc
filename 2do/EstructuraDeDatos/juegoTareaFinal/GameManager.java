@@ -1,6 +1,8 @@
 package juegoTareaFinal;
 
 import java.awt.Color;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -33,22 +35,23 @@ public class GameManager implements Runnable{
 
     int bulletSize;
     int enemySize;
+
+    boolean playing = true;
     
 
     boolean canMoveBullets= false;
 
-    Time time = new Time();
-    Timer timer = new Timer(1, time);
-    
+    Instant beginTime = Instant.now();
+    Long timer = 0l;
+
+    double deltaTime;
+    Instant deltaTime0;
+    int sleep = 10;
+
 
     
-
-
-
 
     public GameManager(MainFrame mainFrame){
-        
-        timer.start();
 
         this.mainFrame = mainFrame;
         player = new Player(mainFrame);
@@ -56,7 +59,6 @@ public class GameManager implements Runnable{
         bulletSize = mainFrame.getHeight()*1/100;
         enemySize = mainFrame.getHeight()*10/100;
         
-
 
     }
 
@@ -72,11 +74,6 @@ public class GameManager implements Runnable{
         mainFrame.addMouseListener(inputListener);
         mainFrame.addKeyListener(inputListener);
         setEnemyAtRandomPosition();
-
-
-
-        
-
         
         currentPoints.setBounds(mainFrame.getWidth()/2 - mainFrame.getWidth()*7/100, 10, mainFrame.getWidth()*15/100, mainFrame.getHeight()*15/100);
         currentPoints.setText("Score: 000");
@@ -92,11 +89,6 @@ public class GameManager implements Runnable{
         lifePoints.setBackground(Color.WHITE);
 
 
-
-
-        
-
-
         mainFrame.add(lifePoints, 0);
         mainFrame.add(currentPoints, 0);
         mainFrame.add(player , 0);
@@ -106,18 +98,24 @@ public class GameManager implements Runnable{
 
 
 
-        while(true){
-            //System.out.println("el juego ha empezado");
+        while(playing){
+
+            
+
+            //System.out.println("timer: " + timer);
     
             try{
-                Thread.sleep(10);
+                Thread.sleep(sleep);
             }catch(InterruptedException e){}
 
-            moveBullets();
+            deltaTime0 = Instant.now();
+            timer = Duration.between(beginTime, Instant.now() ).getSeconds();
+
+            moveAll();
             checkingColliders();
             
 
-            if(time.time % 1000l == 0)
+            if( true)
                 animating();
 
             if(enemies.size() == 0){
@@ -127,6 +125,7 @@ public class GameManager implements Runnable{
             }
 
             if(player.lifePoints == 0){
+                mainFrame.score = points;
                 mainFrame.gameOver();
                 break;
             }
@@ -134,12 +133,19 @@ public class GameManager implements Runnable{
             removeLostEnemies();
             refreshPoints();
 
+
+
             mainFrame.repaint();
             mainFrame.requestFocus();
             System.gc();
+            deltaTime = Duration.between(deltaTime0,Instant.now()).getNano() / 1e9;
 
+            
+            //System.out.println(deltaTime.getNano() / 1e9);
+            //System.out.println(deltaTime);
+            sleep = (int)( Math.abs((0.033 - deltaTime ))  *  1000);
 
-
+            
 
   
         }
@@ -162,7 +168,7 @@ public class GameManager implements Runnable{
         canMoveBullets = false;
 
         //System.out.println("balla creada");
-        Bullet newBullet = new Bullet((int)player.getBounds().getCenterX(), (int)player.getBounds().getCenterY(), vectorX, vectorY, bulletSize, time.time);
+        Bullet newBullet = new Bullet((int)player.getBounds().getCenterX(), (int)player.getBounds().getCenterY(), vectorX, vectorY, bulletSize, timer);
         //System.out.println( "vector x: " + newBullet.vectorX  + " vector y: " + newBullet.vectorY );
         mainFrame.add(newBullet,1);
         bullets.add(newBullet);
@@ -170,10 +176,10 @@ public class GameManager implements Runnable{
 
     }
 
-    public void moveBullets(){
+    public void moveAll(){
         for(int i = 0; i < bullets.size() ; i++){
             bullets.get(i).moveTo();
-            if( time.time -   bullets.get(i).createdTime  >  1000){
+            if( timer -   bullets.get(i).createdTime  >  5l){
 
                 mainFrame.remove(bullets.remove(i));
 
@@ -187,6 +193,8 @@ public class GameManager implements Runnable{
             enemies.get(i).moveTo();
         }
 
+        player.moving(inputListener.x, inputListener.y);
+
     }
 
     public void animating(){
@@ -195,7 +203,7 @@ public class GameManager implements Runnable{
 
     public void setEnemyAtRandomPosition(){
         Random random = new Random();
-        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  , time.time);
+        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  , timer);
         enemies.add(enemy);
         mainFrame.add(enemy,0);
     }
@@ -249,11 +257,19 @@ public class GameManager implements Runnable{
     public void removeLostEnemies(){
 
         for(int i = 0 ; i< enemies.size() ; i++){
-            if( time.time -   enemies.get(i).createdTime > 3000l ){
+            if( timer -   enemies.get(i).createdTime > 3l ){
                 mainFrame.remove(enemies.remove(i));
             }
         }
 
+    }
+
+    public void stopPlaying(){
+        playing = false;
+    }
+
+    public void playing(){
+        playing = true;
     }
 
 

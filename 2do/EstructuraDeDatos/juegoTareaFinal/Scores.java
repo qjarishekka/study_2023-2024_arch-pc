@@ -1,14 +1,20 @@
 package juegoTareaFinal;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Scores {
     BufferedReader bufferedReader;
+    PrintWriter writer;
+
     long linesCounter;
     File file;
     FileReader fileReader;
+    FileWriter fileWriter;
 
     
     public String leaderboard[];
@@ -27,7 +33,7 @@ public class Scores {
         file = new File("src//saves//leaderboard.txt");
         fileReader = new FileReader(file);
         bufferedReader = new BufferedReader(fileReader);
-        bufferedReader.mark(100);
+        bufferedReader.mark(10000000);
         while(bufferedReader.readLine() != null){
             counter++;
         }
@@ -52,6 +58,8 @@ public class Scores {
         return leaderboard;
     }
 
+
+
     private String[] getMaxScore(){
         
         String maxScore[] = new String[2];
@@ -68,10 +76,33 @@ public class Scores {
                 maxScore[1] = leaderboard[i].substring(0, indexOfNumber-2);
             }
                 
-
         }
 
-
         return maxScore;
+    }
+
+    public void setNewScore(String name , int score){
+
+        try {
+            
+            fileWriter = new FileWriter(file);
+            writer = new PrintWriter(fileWriter);
+
+            for(int i = 0 ; i < leaderboard.length ; i++){
+                writer.println(leaderboard[i]);
+            }
+            writer.println(name + " : " + score);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+               
+                fileWriter.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
     }
 }

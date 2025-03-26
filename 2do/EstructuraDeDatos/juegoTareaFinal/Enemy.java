@@ -19,6 +19,8 @@ public class Enemy extends JLabel {
     double vectorX;
     double vectorY;
     Random random = new Random();
+
+    int velocity = 1;
     int mode = new Random().nextInt(2);
     public long createdTime;
     

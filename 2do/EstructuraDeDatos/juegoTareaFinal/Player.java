@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.geom.AffineTransform;
 
 
@@ -23,9 +24,11 @@ public class Player extends JLabel{
     double angle;
     int lifePoints = 3;
     int playerSize;
+    double velocity = 1;
 
 
     public Player(MainFrame main){
+     
 
         playerSize = main.getHeight()*10/100;
         setIcon(new ImageIcon(animator.bufferedImage[0].getScaledInstance(playerSize, playerSize, 0)));
@@ -36,8 +39,12 @@ public class Player extends JLabel{
 
     }
 
-    public void moving ( int x , int y ){
-        setLocation(getX() + x,getY()+ y);
+    public void moving ( double x , double y ){
+        
+        setLocation( (int)( getX() + (x*velocity) ), (int)( getY()+ (y*velocity)  ));
+        
+
+
         boxCollider.refresBoxCollider();
     }
 

@@ -12,8 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import JuegoTarea.src.fonts.CustomFonts;
 
@@ -31,6 +32,7 @@ public class MainFrame extends JFrame{
     File file;
     FileReader fileReader;
     Scores scores = new Scores();
+    int score = 0;
     
 
     CustomFonts customFonts = new CustomFonts();
@@ -68,9 +70,10 @@ public class MainFrame extends JFrame{
         int playButtonWidth = getWidth() * 30 / 100;
         int playButtonHeight = getHeight() * 20 / 100;
         playButton.setBounds( (getWidth()/2) - (playButtonWidth/2)  ,(getHeight()/2) - (playButtonHeight/2),playButtonWidth,playButtonHeight);
-        Image playImage = new ImageIcon("src//play.png").getImage();
-        playButton.setIcon( new ImageIcon(playImage.getScaledInstance(playButtonWidth, playButtonHeight, 0))   );
-        
+        //Image playImage = new ImageIcon("src//play.png").getImage();
+        //playButton.setIcon( new ImageIcon(playImage.getScaledInstance(playButtonWidth, playButtonHeight, 0))   );
+        playButton.setText("PLAY");
+        playButton.setFont(customFonts.font);
         PlayButtonListener playButtonListener = new PlayButtonListener(proxy);
         playButton.addActionListener(playButtonListener);
 
@@ -97,17 +100,44 @@ public class MainFrame extends JFrame{
 
     public void gameOver(){
 
+        try {
+            thread.interrupt();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         
         
-        thread.interrupt();
+
         getContentPane().removeAll();
 
         JLabel gameOverText = new JLabel();
-        gameOverText.setBounds(   (proxy.getWidth() - proxy.getWidth()*20/100)/2  , (proxy.getHeight() - proxy.getHeight()*20/100)/2  , proxy.getWidth()*20/100 , proxy.getHeight()*20/100);
-        //gameOverText.setLocation( (proxy.getWidth()  - gameOverText.getWidth())/2 ,  (proxy.getHeight()- gameOverText.getHeight())/2 );
+        //gameOverText.setBounds(   (proxy.getWidth() - proxy.getWidth()*20/100)/2  , (proxy.getHeight() - proxy.getHeight()*20/100)/2  , proxy.getWidth()*20/100 , proxy.getHeight()*20/100);
+        gameOverText.setBounds(   0 , 0 , proxy.getWidth()*20/100 , proxy.getHeight()*20/100);
+
+        gameOverText.setLocation( (proxy.getWidth() - gameOverText.getWidth()) /2 ,   getHeight()*5/100 );
+        gameOverText.setHorizontalAlignment(SwingConstants.CENTER);
         gameOverText.setText("GAME OVER");
         gameOverText.setFont(customFonts.font);
+        gameOverText.setBackground(Color.WHITE);
+        gameOverText.setOpaque(false);
         gameOverText.setForeground(Color.green);
+
+        JTextField insertYourName = new JTextField();
+        insertYourName.setBounds(0 , 0 , getWidth()*30/100 , getHeight()*5/100);
+        insertYourName.setLocation( (int)gameOverText.getBounds().getCenterX() - (int)insertYourName.getWidth()/2 ,  (int)gameOverText.getBounds().getCenterY() + insertYourName.getHeight() )  ;
+        insertYourName.setForeground(Color.green);
+        insertYourName.setOpaque(false);
+        insertYourName.setFocusable(true);
+        insertYourName.setFont(customFonts.font);
+
+        TextInputLIstener textInputLIstener = new TextInputLIstener(insertYourName, scores, proxy);
+        insertYourName.addActionListener(textInputLIstener);
+        
+
+
+        
+        
+        add(insertYourName);
         add(gameOverText);
         add(background);
 

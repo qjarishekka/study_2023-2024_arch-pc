@@ -12,6 +12,12 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
     GameManager gameManager;
     Player player;
     boolean canShoot = true;
+    double x = 0;
+    double y = 0;
+    int a = 0;
+    int d = 0;
+    int w = 0;
+    int s = 0;
 
     public InputListener(MainFrame mainFrame){
 
@@ -33,7 +39,7 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
         player.repaint(); // por si aca dejo esto aqui;
 
         if(canShoot){
-            double radius = 10;
+            double radius = 20;
             int dx = e.getX() - (int)player.getBounds().getCenterX();
             int dy = e.getY() - (int)player.getBounds().getCenterY();
             double d = Math.sqrt(dx*dx + dy*dy);
@@ -54,7 +60,7 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
         int oppositeLeg = (int)(e.getX() - player.getBounds().getCenterX());
         int adjacentLeg = (int)(player.getBounds().getCenterY() - e.getY());
         player.angle = Math.atan2(oppositeLeg, adjacentLeg);
-        player.repaint();
+        //player.repaint();
 
         //System.out.println("angulo " +  player.angle );
 
@@ -63,7 +69,7 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        double radius = 10;
+        double radius = 20;
             int dx = e.getX() - (int)player.getBounds().getCenterX();
             int dy = e.getY() - (int)player.getBounds().getCenterY();
             double d = Math.sqrt(dx*dx + dy*dy);
@@ -101,25 +107,33 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
 
         switch (e.getKeyChar()) {
             case 'a' :
-                    player.moving(-10, 0);
+
+                a = -10;
+                    //player.moving(-10, 0);
                 break;
             case 'd':
-                    player.moving(10, 0);
+                d = 10;
+                    //player.moving(10, 0);
                 break;
             case 'w':
-                    player.moving(0, -10);
+
+                w = -10;
+                    //player.moving(0, -10);
                 break;
             case 's':
-                    player.moving(0, 10);
+                s = 10;
+                    //player.moving(0, 10);
                 break;
-            case 27 : //escape
-                gameManager = null;
-                System.gc();
-                mainFrame.dispose();
-                System.exit(128);            
+            case 27 : //escape  
+                gameManager.stopPlaying();
+                mainFrame.gameOver();
+
             default:
                 break;
         }
+
+        refreshAxis();
+
         
     }
 
@@ -128,34 +142,72 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
 
         switch (e.getKeyChar()) {
             case 'a' :
-                    player.moving(-10, 0);
+                a = -10;
+                    //player.moving(-10, 0);
                 break;
             case 'd':
-                    player.moving(10, 0);
+                d = 10;
+                    //player.moving(10, 0);
                 break;
             case 'w':
-                    player.moving(0, -10);
+                w = -10;
+                    //player.moving(0, -10);
                 break;
             case 's':
-                    player.moving(0, 10);
+                s = 10;
+                    //player.moving(0, 10);
                 break;
             case 27 : //escape  
-                gameManager = null;
-                System.gc();
-                mainFrame.dispose();
-                System.exit(128);
-            default:
+                //mainFrame.gameOver();
                 break;
         }
+
+        refreshAxis();
+
+
         
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        switch (e.getKeyChar()) {
+            case 'a' :
+
+                a = 0;
+                    //player.moving(-10, 0);
+                break;
+            case 'd':
+                d = 0;
+                    //player.moving(10, 0);
+                break;
+            case 'w':
+
+                w = 0;
+
+                    //player.moving(0, -10);
+                break;
+            case 's':
+
+                s = 0;
+                    //player.moving(0, 10);
+                break;
+            case 27 : //escape  
+
+            default:
+                break;
+        }
+        refreshAxis();
         
     }
 
 
+
+    public void refreshAxis(){
+        x = a + d;
+        y = w + s;
+        //double alfa = 1 + 0.5;
+        //System.out.println(   alfa );
+    }
 
     
 }
