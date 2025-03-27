@@ -15,6 +15,7 @@ public class Scores {
     File file;
     FileReader fileReader;
     FileWriter fileWriter;
+    int limitOfSaves = 5;
 
     
     String leaderboard[];
@@ -68,7 +69,8 @@ public class Scores {
             writer = new PrintWriter(fileWriter);
 
             for(int i = 0 ; i < leaderboard.length-1 ; i++){
-                writer.println(leaderboard[i]);
+                if(i < limitOfSaves)
+                    writer.println(leaderboard[i]);
             }
             writer.print(leaderboard[leaderboard.length-1]);
 
@@ -184,7 +186,7 @@ public class Scores {
 
         text = text+ "<html>";
 
-        System.out.println(text);
+        //System.out.println(text);
         return text;
     }
 

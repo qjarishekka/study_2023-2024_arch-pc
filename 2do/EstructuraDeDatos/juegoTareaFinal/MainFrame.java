@@ -16,7 +16,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import JuegoTarea.src.fonts.CustomFonts;
+import juegoTareaFinal.src.fonts.CustomFonts;
+
 
 public class MainFrame extends JFrame{
 
@@ -37,6 +38,8 @@ public class MainFrame extends JFrame{
 
     CustomFonts customFonts = new CustomFonts();
     LeaderBoard leaderBoard;
+
+    JButton playButton;
     
 
 
@@ -67,14 +70,16 @@ public class MainFrame extends JFrame{
 
     public void Menu(){
 
-        JButton playButton = new JButton();
+        playButton = new JButton();
         int playButtonWidth = getWidth() * 30 / 100;
         int playButtonHeight = getHeight() * 20 / 100;
         playButton.setBounds( (getWidth()/2) - (playButtonWidth/2)  ,(getHeight()/2) - (playButtonHeight/2),playButtonWidth,playButtonHeight);
-        //Image playImage = new ImageIcon("src//play.png").getImage();
-        //playButton.setIcon( new ImageIcon(playImage.getScaledInstance(playButtonWidth, playButtonHeight, 0))   );
         playButton.setText("PLAY");
-        playButton.setFont(customFonts.font);
+        playButton.setFont(  customFonts.font(70)  );
+        playButton.setOpaque(false);
+        playButton.setContentAreaFilled(false);
+        playButton.setBorderPainted(false);
+        playButton.setForeground(Color.green);
         PlayButtonListener playButtonListener = new PlayButtonListener(proxy);
         playButton.addActionListener(playButtonListener);
 
@@ -95,7 +100,7 @@ public class MainFrame extends JFrame{
         thread = new Thread(gameManager);
         thread.start();
 
-        System.out.println("numero de objetos " + getContentPane().getComponentCount());
+        //System.out.println("numero de objetos " + getContentPane().getComponentCount());
         repaint();
     }
 
@@ -126,10 +131,15 @@ public class MainFrame extends JFrame{
         JTextField insertYourName = new JTextField();
         insertYourName.setBounds(0 , 0 , getWidth()*30/100 , getHeight()*5/100);
         insertYourName.setLocation( (int)gameOverText.getBounds().getCenterX() - (int)insertYourName.getWidth()/2 ,  (int)gameOverText.getBounds().getCenterY() + insertYourName.getHeight() )  ;
+        insertYourName.setBackground(new java.awt.Color(0,0,0,1));
+        insertYourName.setBorder(null);
         insertYourName.setForeground(Color.green);
         insertYourName.setOpaque(false);
         insertYourName.setFocusable(true);
         insertYourName.setFont(customFonts.font);
+
+        
+
 
         JLabel feedback = new JLabel();
         feedback.setBounds(insertYourName.getBounds());
@@ -153,15 +163,48 @@ public class MainFrame extends JFrame{
         TextInputLIstener textInputLIstener = new TextInputLIstener(insertYourName, scores, proxy , feedback, leaderBoard);
         insertYourName.addActionListener(textInputLIstener);
 
-        
-        
+        playButton = new JButton();
+        int playButtonWidth = getWidth() * 30 / 100;
+        int playButtonHeight = getHeight() * 20 / 100;
+        playButton.setBounds( 0 ,0 ,playButtonWidth,playButtonHeight);
+        playButton.setLocation( getWidth()*10/100 , getHeight()/2 );
+        playButton.setText("PLAY AGAIN");
+        playButton.setFont(  customFonts.font(70)  );
+        playButton.setOpaque(false);
+        playButton.setContentAreaFilled(false);
+        playButton.setBorderPainted(false);
+        playButton.setForeground(Color.green);
+        PlayButtonListener playButtonListener = new PlayButtonListener(proxy);
+        playButton.addActionListener(playButtonListener);
+
+        JButton exitButton = new JButton();
+        int exitButtonWidth = getWidth() * 30 / 100;
+        int exitButtonHeight = getHeight() * 20 / 100;
+        exitButton.setBounds( 0 ,0 ,exitButtonWidth,exitButtonHeight);
+        exitButton.setLocation( getWidth()*90/100 - exitButtonWidth , getHeight()/2 );
+        exitButton.setText("EXIT");
+        exitButton.setFont(  customFonts.font(70)  );
+        exitButton.setOpaque(false);
+        exitButton.setContentAreaFilled(false);
+        exitButton.setBorderPainted(false);
+        exitButton.setForeground(Color.green);
+        ExitButtonListener exitButtonListener = new ExitButtonListener(proxy);
+        exitButton.addActionListener(exitButtonListener);
 
 
+
+        
+
+        
+        add(exitButton);
+        add(playButton);
         add(leaderBoard);
         add(feedback);
         add(insertYourName);
         add(gameOverText);
         add(background);
+
+        insertYourName.requestFocus();
 
 
         //System.gc();
@@ -180,7 +223,7 @@ public class MainFrame extends JFrame{
     public static void main(String[] args){
 
         proxy = new MainFrame();
-        proxy.gameOver();
+        proxy.Menu();;
 
         //proxy.gameStart();
 

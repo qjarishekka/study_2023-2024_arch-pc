@@ -35,7 +35,7 @@ public class Player extends JLabel{
         setBounds( main.getWidth()/2 - playerSize/2 , main.getHeight()/2 - playerSize/2 , playerSize,playerSize);
 
 
-        System.out.println("numero de frames " + animator.bufferedImage.length);
+        //System.out.println("numero de frames " + animator.bufferedImage.length);
 
     }
 

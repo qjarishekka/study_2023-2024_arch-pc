@@ -1,7 +1,6 @@
-camila : 40
-pablo : 39
-raul : 20
-juan : 15
-alberto : 11
-qjari : 10
-killary : 1
+pan : 0
+camila : 0
+pan2 : 0
+juana : 0
+alcachofa : 0
+hello : 0

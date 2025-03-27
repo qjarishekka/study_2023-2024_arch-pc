@@ -32,12 +32,14 @@ public class TextInputLIstener implements ActionListener {
         if( !input.getText().isEmpty() ){
             String inputCleaned = input.getText().replace(" ", "");
             scores.setNewScore(inputCleaned,  score);
+
             //input.setText("");
         }
 
         if(scores.wasNewScoreSet()){    
             input.setFocusable(false);
             feedBack.setText("new name registered");
+     
         }else{
             feedBack.setText("");
             feedBack.repaint();
@@ -50,9 +52,9 @@ public class TextInputLIstener implements ActionListener {
             }
             
         }
-
-        leaderBoard.setText(scores.getLeaderBoardAsText());
-        leaderBoard.setFont(fonts);
+        
+        leaderBoard.refresBoard();
+        //leaderBoard.setFont(fonts);
 
 
         

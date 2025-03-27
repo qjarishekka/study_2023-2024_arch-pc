@@ -25,7 +25,6 @@ public class GameManager implements Runnable{
     Iterator<Bullet> bulletIterator;
 
 
-    Physics physics;
     MainFrame mainFrame;
     InputListener inputListener;
     JLabel currentPoints = new JLabel();
@@ -219,7 +218,7 @@ public class GameManager implements Runnable{
                 mainFrame.remove(nextEnemy);
                 player.lifePoints--;
                 
-                System.out.println("vida del jugador: " + player.lifePoints);
+                //System.out.println("vida del jugador: " + player.lifePoints);
                 //mainFrame.repaint();
             }
             nextEnemy = null;
@@ -265,6 +264,7 @@ public class GameManager implements Runnable{
 
     public void stopPlaying(){
         playing = false;
+        mainFrame.gameOver();
     }
 
     public void playing(){

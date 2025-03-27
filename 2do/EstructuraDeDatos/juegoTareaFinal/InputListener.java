@@ -21,7 +21,7 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
 
     public InputListener(MainFrame mainFrame){
 
-        System.out.println("inicio de InputListener " );
+        //System.out.println("inicio de InputListener " );
 
         this.mainFrame = mainFrame;
         this.gameManager = mainFrame.gameManager;
@@ -126,7 +126,6 @@ public class InputListener implements MouseListener,MouseMotionListener , KeyLis
                 break;
             case 27 : //escape  
                 gameManager.stopPlaying();
-                mainFrame.gameOver();
 
             default:
                 break;
