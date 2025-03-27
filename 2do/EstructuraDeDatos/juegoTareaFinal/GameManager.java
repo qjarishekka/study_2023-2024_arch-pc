@@ -28,7 +28,6 @@ public class GameManager implements Runnable{
     Physics physics;
     MainFrame mainFrame;
     InputListener inputListener;
-    Scores scores;
     JLabel currentPoints = new JLabel();
     JLabel lifePoints = new JLabel();
     int points = 0;

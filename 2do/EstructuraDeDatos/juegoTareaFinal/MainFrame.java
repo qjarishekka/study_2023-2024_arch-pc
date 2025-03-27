@@ -36,6 +36,7 @@ public class MainFrame extends JFrame{
     
 
     CustomFonts customFonts = new CustomFonts();
+    LeaderBoard leaderBoard;
     
 
 
@@ -139,18 +140,24 @@ public class MainFrame extends JFrame{
         feedback.setHorizontalAlignment(SwingConstants.CENTER);
         //feedback.setText("ejemplo");
         
+        /* JLabel leaderBoard = new JLabel();
+        leaderBoard.setBounds(feedback.getBounds());
+        leaderBoard.setSize(leaderBoard.getWidth(), getHeight()/2);
+        leaderBoard.setOpaque(true);
+        leaderBoard.setFont(customFonts.font);
+        leaderBoard.setText(scores.getLeaderBoardAsText());
+        leaderBoard.setHorizontalAlignment(SwingConstants.CENTER); */
 
-        TextInputLIstener textInputLIstener = new TextInputLIstener(insertYourName, scores, proxy , feedback);
+        leaderBoard = new LeaderBoard(proxy);
+
+        TextInputLIstener textInputLIstener = new TextInputLIstener(insertYourName, scores, proxy , feedback, leaderBoard);
         insertYourName.addActionListener(textInputLIstener);
 
-        JLabel laderBoard = new JLabel();
-        
-
         
         
 
 
-        
+        add(leaderBoard);
         add(feedback);
         add(insertYourName);
         add(gameOverText);

@@ -1,5 +1,6 @@
 package juegoTareaFinal;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,12 +14,16 @@ public class TextInputLIstener implements ActionListener {
     int score;
     JLabel feedBack;
     boolean flag = false;
+    LeaderBoard leaderBoard;
+    Font fonts;
 
-    public TextInputLIstener( JTextField input, Scores scores , MainFrame mainFrame , JLabel feedBack){
+    public TextInputLIstener( JTextField input, Scores scores , MainFrame mainFrame , JLabel feedBack , LeaderBoard leaderBoard){
         this.input = input;
         this.scores = scores;
         score = mainFrame.score;
         this.feedBack = feedBack;
+        this.leaderBoard = leaderBoard;
+        fonts = mainFrame.customFonts.font;
     }
 
     @Override
@@ -45,6 +50,9 @@ public class TextInputLIstener implements ActionListener {
             }
             
         }
+
+        leaderBoard.setText(scores.getLeaderBoardAsText());
+        leaderBoard.setFont(fonts);
 
 
         

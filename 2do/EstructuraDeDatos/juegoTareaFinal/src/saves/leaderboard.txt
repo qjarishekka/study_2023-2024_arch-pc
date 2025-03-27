@@ -1,1 +1,7 @@
-alfa : 0
+camila : 40
+pablo : 39
+raul : 20
+juan : 15
+alberto : 11
+qjari : 10
+killary : 1
