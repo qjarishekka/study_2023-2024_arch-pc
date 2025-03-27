@@ -130,13 +130,28 @@ public class MainFrame extends JFrame{
         insertYourName.setFocusable(true);
         insertYourName.setFont(customFonts.font);
 
-        TextInputLIstener textInputLIstener = new TextInputLIstener(insertYourName, scores, proxy);
+        JLabel feedback = new JLabel();
+        feedback.setBounds(insertYourName.getBounds());
+        feedback.setLocation(feedback.getX() , feedback.getY() + (int)(feedback.getHeight()*1.5));
+        //feedback.setOpaque(true);
+        feedback.setFont(customFonts.font);
+        feedback.setForeground(Color.green);
+        feedback.setHorizontalAlignment(SwingConstants.CENTER);
+        //feedback.setText("ejemplo");
+        
+
+        TextInputLIstener textInputLIstener = new TextInputLIstener(insertYourName, scores, proxy , feedback);
         insertYourName.addActionListener(textInputLIstener);
+
+        JLabel laderBoard = new JLabel();
+        
+
+        
         
 
 
         
-        
+        add(feedback);
         add(insertYourName);
         add(gameOverText);
         add(background);
@@ -158,7 +173,7 @@ public class MainFrame extends JFrame{
     public static void main(String[] args){
 
         proxy = new MainFrame();
-        proxy.Menu();
+        proxy.gameOver();
 
         //proxy.gameStart();
 

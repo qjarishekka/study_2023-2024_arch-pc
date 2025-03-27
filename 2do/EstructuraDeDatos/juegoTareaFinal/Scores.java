@@ -20,12 +20,14 @@ public class Scores {
     public String leaderboard[];
     public String maxScore[];
 
+    boolean wasScoreSet = false;
+
     Scores(){
-        leaderboard = getLeadeBoard();
+        leaderboard = getLeaderBoard();
         maxScore = getMaxScore();
     }
 
-    private String[] getLeadeBoard(){
+    private String[] getLeaderBoard(){
 
         int counter = 0;
         String leaderboard[] = new String[1];
@@ -87,12 +89,23 @@ public class Scores {
             
             fileWriter = new FileWriter(file);
             writer = new PrintWriter(fileWriter);
+            boolean flag = true;
 
             for(int i = 0 ; i < leaderboard.length ; i++){
+
                 writer.println(leaderboard[i]);
+                if(leaderboard[i].startsWith(name)){
+                    flag = false;
+                }
             }
-            writer.println(name + " : " + score);
+
+            if(flag){
+                writer.print(name + " : " + score);
+            }
             
+            wasScoreSet = flag;
+            
+
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
@@ -105,4 +118,9 @@ public class Scores {
         }
 
     }
+
+    public boolean wasNewScoreSet(){
+        return wasScoreSet;
+    }
+
 }
