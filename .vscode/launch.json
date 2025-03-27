@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainFrame",
+            "request": "launch",
+            "mainClass": "juegoTareaFinal.MainFrame",
+            "projectName": "mirepositorio_260f8393"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "JuegoTarea.Main",
