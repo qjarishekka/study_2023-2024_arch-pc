@@ -16,7 +16,7 @@ import java.awt.geom.AffineTransform;
 
 public class Player extends JLabel{
     
-    String path = "src//src//animations//playerAnimation";
+    String path = "src//resources//animations//playerAnimation";
 
     Animator animator = new Animator(path);
     BoxCollider boxCollider = new BoxCollider(this);

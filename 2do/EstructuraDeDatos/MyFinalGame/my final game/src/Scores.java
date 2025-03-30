@@ -33,7 +33,7 @@ public class Scores {
         int counter = 0;
         String leaderboard[] = new String[1];
         try{
-        file = new File("src//src//saves//leaderboard.txt");
+        file = new File("src//resources//saves//leaderboard.txt");
         fileReader = new FileReader(file);
         bufferedReader = new BufferedReader(fileReader);
         bufferedReader.mark(10000000);

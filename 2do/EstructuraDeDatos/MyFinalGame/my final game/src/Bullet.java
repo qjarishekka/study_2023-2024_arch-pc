@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 public class Bullet extends JLabel {
 
-    Image bulletImage = new ImageIcon("src//src//bullet.png").getImage();
+    Image bulletImage = new ImageIcon("src//resources//bullet.png").getImage();
     BoxCollider boxCollider = new BoxCollider(this);
 
     double X0 = 0;

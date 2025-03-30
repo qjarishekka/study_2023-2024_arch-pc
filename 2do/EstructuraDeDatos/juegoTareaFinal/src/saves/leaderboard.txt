@@ -1,6 +1,6 @@
+qjari : 46
+pan3 : 7
 pan : 0
 camila : 0
 pan2 : 0
-juana : 0
-alcachofa : 0
 hello : 0

@@ -23,7 +23,7 @@ public class MainFrame extends JFrame{
     GameManager gameManager;
     Thread thread;
 
-    Image backgroundImage = new ImageIcon("src//src//backGround.png").getImage();
+    Image backgroundImage = new ImageIcon("src//resources//backGround.png").getImage();
     JLabel background = new JLabel();
 
     BufferedReader bufferedReader;

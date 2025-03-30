@@ -20,7 +20,7 @@ public class CustomFonts {
 
         try{
         
-            InputStream inputStream = getClass().getResourceAsStream("src//fonts//Minecraft.ttf");
+            InputStream inputStream = getClass().getResourceAsStream("resources//fonts//Minecraft.ttf");
             temporalFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             
 
@@ -43,7 +43,7 @@ public class CustomFonts {
 
         try{
         
-            InputStream inputStream = getClass().getResourceAsStream("src//fonts//Minecraft.ttf");
+            InputStream inputStream = getClass().getResourceAsStream("resources//fonts//Minecraft.ttf");
             temporalFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             
 

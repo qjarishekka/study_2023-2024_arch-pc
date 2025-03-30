@@ -12,6 +12,8 @@ sleep(5)
 for i in range(40):
     pyautogui.typewrite('akira')
     pyautogui.press('enter')
+    pyautogui.typewrite('entre')
+    pyautogui.press('enter')
 
 """ pyautogui.typewrite('sale su r6')
 pyautogui.press('enter') """
