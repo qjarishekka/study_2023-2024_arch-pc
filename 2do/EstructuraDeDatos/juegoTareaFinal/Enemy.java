@@ -65,6 +65,13 @@ public class Enemy extends JLabel {
 
     }
 
+    public void nextFrame(){
+        
+        setIcon( new ImageIcon( animator.nextFrame().getScaledInstance(enemySize, enemySize, 0) ));
+        //this.repaint();
+        
+    }
+
 
 
 

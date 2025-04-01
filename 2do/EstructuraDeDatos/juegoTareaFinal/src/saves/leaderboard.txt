@@ -1,6 +1,6 @@
-qjari : 46
-pan3 : 7
-pan : 0
-camila : 0
-pan2 : 0
-hello : 0
+beta : 4
+qjari : 3
+alfa : 3
+yo : 0
+mi : 0
+beta1 : 0

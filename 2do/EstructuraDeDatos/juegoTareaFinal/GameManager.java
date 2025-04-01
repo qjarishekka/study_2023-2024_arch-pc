@@ -41,6 +41,7 @@ public class GameManager implements Runnable{
 
     Instant beginTime = Instant.now();
     Long timer = 0l;
+    Long animationTimer = 0l;
 
     double deltaTime;
     Instant deltaTime0;
@@ -108,13 +109,16 @@ public class GameManager implements Runnable{
 
             deltaTime0 = Instant.now();
             timer = Duration.between(beginTime, Instant.now() ).getSeconds();
+            //animationTimer = timer;
 
             moveAll();
             checkingColliders();
             
 
-            if( true)
+            if( true){
                 animating();
+                animationTimer = timer;
+            }
 
             if(enemies.size() == 0){
                 setEnemyAtRandomPosition();
@@ -122,7 +126,7 @@ public class GameManager implements Runnable{
                 setEnemyAtRandomPosition();
             }
 
-            if(player.lifePoints == 0){
+            if(player.lifePoints <= 0){
                 mainFrame.score = points;
                 mainFrame.gameOver();
                 break;
@@ -197,6 +201,13 @@ public class GameManager implements Runnable{
 
     public void animating(){
         player.nextFrame();
+        enemiesIterator = enemies.iterator();
+        while(enemiesIterator.hasNext()){
+            Enemy nextenemy = enemiesIterator.next();
+            nextenemy.nextFrame();
+        }
+
+        
     }
 
     public void setEnemyAtRandomPosition(){
@@ -263,8 +274,10 @@ public class GameManager implements Runnable{
     }
 
     public void stopPlaying(){
-        playing = false;
+        mainFrame.score = points;
         mainFrame.gameOver();
+        playing = false;
+        
     }
 
     public void playing(){

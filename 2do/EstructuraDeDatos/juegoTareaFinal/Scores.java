@@ -7,7 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-public class Scores {
+import javax.swing.JLabel;
+
+public class Scores extends Thread {
     BufferedReader bufferedReader;
     PrintWriter writer;
 
@@ -149,6 +151,8 @@ public class Scores {
         int smaller = 0;
         int indexL = 0;
         int indexS = 0;
+
+        new Thread(this).start();
 
         for(int i = 0  ; i < leaderboard.length ; i++ ){
             for(int j = 0 ; j < leaderboard.length - i -1 ; j ++){

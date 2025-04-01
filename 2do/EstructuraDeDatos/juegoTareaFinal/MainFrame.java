@@ -191,9 +191,13 @@ public class MainFrame extends JFrame{
         ExitButtonListener exitButtonListener = new ExitButtonListener(proxy);
         exitButton.addActionListener(exitButtonListener);
 
-
-
         
+
+
+
+        //Sort sort = new Sort(proxy);
+
+        //add(sort);
 
         
         add(exitButton);

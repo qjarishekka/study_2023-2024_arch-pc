@@ -38,6 +38,7 @@ public class Sort extends JLabel implements Runnable {
 
     void bubble(){
         new Thread(this).start();
+        
     }
 
 
