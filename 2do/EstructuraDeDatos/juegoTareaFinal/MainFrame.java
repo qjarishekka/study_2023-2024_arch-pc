@@ -225,7 +225,6 @@ public class MainFrame extends JFrame{
         proxy = new MainFrame();
         proxy.Menu();;
 
-        //proxy.gameStart();
 
     }
 }
