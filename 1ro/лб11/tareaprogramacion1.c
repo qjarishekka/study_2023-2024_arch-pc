@@ -98,6 +98,10 @@ sumainf = SumaInferior(arreglo,n);
 printf("\nдве суммы элементов, расположенных ниже и выше главной диагонали равны:\nвысшяя сумма: %d \nнижняя сумма: %d\n",sumasup,sumainf);
 
 
+
+return 0;
+
+
 }
 
 

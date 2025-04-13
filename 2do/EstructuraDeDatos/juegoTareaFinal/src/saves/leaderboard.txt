@@ -1,6 +1,6 @@
 beta : 4
 qjari : 3
 alfa : 3
+miyo : 2
 yo : 0
-mi : 0
 beta1 : 0
