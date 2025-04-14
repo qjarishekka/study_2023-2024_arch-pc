@@ -59,7 +59,7 @@ public class MainFrame extends JFrame{
 
         background.setIcon(new ImageIcon(backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
         background.setBounds(0,0,getWidth(),getHeight());
-  
+    
  
 
 
