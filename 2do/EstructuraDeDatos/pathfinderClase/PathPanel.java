@@ -30,7 +30,9 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
         gen(); 
         addMouseListener(this); 
     } 
- 
+    
+    
+
     void gen(){ 
         Random rng = new Random(); 
         for(int i = 0; i < field.length; i++) 
@@ -44,6 +46,29 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
             } 
     } 
     int [][] matrix; 
+
+    boolean checkNeighbor(int i , int j , int dy , int dx){
+        if(i+dy < 0 || i +dy >= matrix.length || j + dx < 0 || j + dx >= matrix[i].length)
+            return false;
+        
+        if ((matrix[i][j] == -1 && matrix[i +dy ][j - dx] >= 0) ||
+            (matrix[i][j] > matrix[i + dy][j + dx] +1  )  ) {
+
+            matrix[i][j] = matrix[i][j - 1] + 1; 
+            //fl = true; 
+            sleep(1); 
+        } 
+
+        return false;
+    }
+    Point []neighbor = new Point[]{
+        new Point(0 , 1),
+        new Point(0 , -1),
+        new Point(1 , 0),
+        new Point(-1 , 0),
+
+    };
+
     void findPath(){ 
         searching = true; 
         currentPath = new Path(); 
@@ -62,26 +87,16 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
             // пересчитаем матрицу 
             for (int i = 0; i < matrix.length; i++) { 
                 for (int j = 0; j < matrix[i].length; j++) { 
-                    if (matrix[i][j] == -1 && j > 0 && matrix[i][j - 1] >= 0) { 
-                        matrix[i][j] = matrix[i][j - 1] + 1; 
-                        fl = true; 
-                        sleep(1); 
-                    } 
-                    if (matrix[i][j] == -1 && i > 0 && matrix[i - 1][j] >= 0) { 
-                        matrix[i][j] = matrix[i - 1][j] + 1; 
-                        fl = true; 
-                        sleep(1); 
-                    } 
-                    if (matrix[i][j] == -1 && j < matrix[i].length - 1 && matrix[i][j + 1] >= 0) { 
-                        matrix[i][j] = matrix[i][j + 1] + 1; 
-                        fl = true; 
-                        sleep(1); 
-                    } 
-                    if (matrix[i][j] == -1 && i < matrix.length - 1 && matrix[i + 1][j] >= 0) { 
-                        matrix[i][j] = matrix[i + 1][j] + 1; 
-                        fl = true; 
-                        sleep(1); 
-                    } 
+
+                    for(Point actualNeighbor : neighbor ){
+                        fl = fl || checkNeighbor(i  , j , actualNeighbor.y, actualNeighbor.x);
+                    }
+                    
+                    /* fl = fl || checkNeighbor(i, j, 1, 0);
+                    fl = fl || checkNeighbor(i, j, 0, -1);
+                    fl = fl || checkNeighbor(i, j, -1, 0);
+                    fl = fl || checkNeighbor(i, j, 0, 1); */
+
  
                 } 
                 //repaint(); 
