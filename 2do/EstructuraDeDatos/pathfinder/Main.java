@@ -10,6 +10,7 @@ public class Main extends JFrame{
         setSize(30*PathPanel.CELL_SIZE + 100,30 * PathPanel.CELL_SIZE);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
+        //setFocusable(true);;
 
         PathPanel pathPanel = new PathPanel(getWidth(), getHeight());
         pathPanel.setLocation(0 , 0);
@@ -18,6 +19,7 @@ public class Main extends JFrame{
         JButton genButton = new JButton("gen");
         genButton.setBounds(getWidth() - 100 , 0,  100 , 30);
         genButton.setVisible(true);
+        genButton.setFocusable(true);
         
         genButton.addActionListener(e->{
             pathPanel.gen();
@@ -25,6 +27,18 @@ public class Main extends JFrame{
         });
 
         add(genButton);
+
+        JButton pathButton = new JButton("path");
+        pathButton.setBounds(getWidth() - 100 , 100,  100 , 30);
+        pathButton.setVisible(true);
+        pathButton.setFocusable(true);
+        
+        pathButton.addActionListener(e->{
+            pathPanel.findPath();
+            pathPanel.repaint();
+        });
+
+        add(pathButton);
 
 
 

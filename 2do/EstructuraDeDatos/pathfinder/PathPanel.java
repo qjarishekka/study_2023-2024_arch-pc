@@ -26,7 +26,7 @@ public class PathPanel extends JComponent implements MouseListener{
     }
 
 
-    Path currenPath = null;
+    Path currentPath = new Path();
 
 
     PathPanel(int w, int h){
@@ -40,7 +40,25 @@ public class PathPanel extends JComponent implements MouseListener{
     }
 
     void findPath(){
-        
+        Path path = new Path();
+        Point current = new Point(start.x , start.y); // si algo falla mirar aqui
+
+        while(current.x != finish.x || current.y != finish.y){
+            if(finish.x > current.x ){
+                current.x++;
+            }else if(finish.x < current.x ){
+                current.x--;
+            }else if(finish.y > current.y ){
+                current.y++;
+            }else{
+                current.y--; 
+            }
+                path.steps.add(new Point(current.x , current.y));
+        }
+
+        path.steps.remove(current);
+        currentPath =  path;
+
     }
 
 
@@ -61,10 +79,14 @@ public class PathPanel extends JComponent implements MouseListener{
     }
 
     Color getColor(int i, int j){
+
+        
         if(start.x == j && start.y == i )
             return Color.GREEN;
-            if(finish.x == j && finish.y == i )
+        if(finish.x == j && finish.y == i )
             return Color.red;
+        if(currentPath.steps.contains(new Point(j,i)))
+            return Color.blue;
 
         switch (field[i][j]){
             case '_' : return Color.white;
