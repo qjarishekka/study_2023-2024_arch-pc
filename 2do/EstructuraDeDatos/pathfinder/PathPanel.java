@@ -41,7 +41,22 @@ public class PathPanel extends JComponent implements MouseListener{
 
     void findPath(){
         Path path = new Path();
-        Point current = new Point(start.x , start.y); // si algo falla mirar aqui
+        Point current = new Point(start); // si algo falla mirar aqui
+
+        int [][] matrix = new int[field.length][field[0].length];
+        for(int i = 0 ; i < matrix.length ; i++)
+            for(int j = 0 ; j < matrix[i].length ; j++){
+                matrix[i][j] = field[i][j] == '0' ? -2: -1;
+            }
+        matrix[start.y][start.x] = 0;
+
+        //recalculamos la matriz
+        for(int i = 0 ; i < matrix.length ; i++)
+            for(int j = 0 ; j < matrix[i].length ; j++){
+                if(matrix[i][j] == -1 && matrix[i][j-1] >= 0)
+                    matrix[i][j-1] = matrix[i][j] + 1;
+            }
+        
 
         while(current.x != finish.x || current.y != finish.y){
             if(finish.x > current.x ){
@@ -53,7 +68,7 @@ public class PathPanel extends JComponent implements MouseListener{
             }else{
                 current.y--; 
             }
-                path.steps.add(new Point(current.x , current.y));
+                path.steps.add(new Point(current));
         }
 
         path.steps.remove(current);
@@ -119,7 +134,7 @@ public class PathPanel extends JComponent implements MouseListener{
             start = new Point(J,I);
         else 
             finish = new Point(J, I);
-
+        findPath();
         repaint();
     }
 
