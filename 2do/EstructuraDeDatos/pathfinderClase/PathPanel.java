@@ -48,31 +48,35 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
     int [][] matrix; 
 
     boolean checkNeighbor(int i , int j , int dy , int dx){
-        if(i+dy < 0 || i +dy >= matrix.length || j + dx < 0 || j + dx >= matrix[i].length)
+        if(checkOutRange(j + dx , i + dy))
             return false;
         
         if ((matrix[i][j] == -1 && matrix[i +dy ][j - dx] >= 0) ||
             (matrix[i][j] > matrix[i + dy][j + dx] +1  )  ) {
 
             matrix[i][j] = matrix[i][j - 1] + 1; 
-            //fl = true; 
-            sleep(1); 
+            sleep(1);
+            return true;
         } 
 
         return false;
     }
-    Point []neighbor = new Point[]{
-        new Point(0 , 1),
-        new Point(0 , -1),
-        new Point(1 , 0),
-        new Point(-1 , 0),
 
-    };
+
+    
 
     void findPath(){ 
         searching = true; 
         currentPath = new Path(); 
         Path path = new Path(); 
+
+        Point []neighbor = new Point[]{
+            new Point(0 , 1),
+            new Point(0 , -1),
+            new Point(1 , 0),
+            new Point(-1 , 0),
+    
+        };
  
         matrix = new int[field.length][field[0].length]; 
         for (int i = 0; i < matrix.length; i++) 
@@ -131,7 +135,77 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
         searching = false; 
  
     } 
+
+
+    boolean checkOutRange(int x ,int y ){
+
+        return y < 0 || y >= matrix.length || x < 0 || x >= matrix[y].length;
+    }
+
+    class Node{
+        int x , y, step, length;
+        boolean check = false;
+        Node(int x , int y , int step){
+            this.x = x ;
+            this.y = y;
+            this.step = step;
+            estimate();
+        }
+
+        void estimate(){
+            length = (int)(finish.x - x  + Math.abs(finish.y - y));
+        }
+        boolean lessThan(Node other){
+            if(other.check) 
+                return true;
+
+            return step + length < other.step + other.length;
+        }
+
+    }
  
+
+    void AStar(){
+        searching = true;
+        currentPath = new Path();
+        Path path = new Path();
+        Node current = new Node(start.x, start.y, 0);
+
+        Point[] steps = new Point[]{
+            new Point(0 , 1),
+            new Point(0 , -1),
+            new Point(1 , 0),
+            new Point(-1 , 0),
+    
+        };
+
+
+        ArrayList<Node> nodes  = new ArrayList<>(4);
+        while(current.x != finish.x && current.y != finish.y){
+
+            
+            for(Point step : steps){
+                if(checkOutRange(current.x + step.x , current.y + step.y)  && matrix[current.x + step.x][current.y + step.y ] != '0' ){
+                    if(current.x + step.x == finish.x && current.y + step.y == finish.getY()){
+                        current = new Node(finish.x , finish.y , current.step+1);
+                        break;
+                    }
+                        
+
+                    nodes.add(new Node(current.x + step.x , current.y + step.y, current.step +1));
+                }
+            }
+            Node min = nodes.get(0);
+            for(Node node : nodes){
+                if(node.lessThan(min)){
+                    min = node;
+                }
+            }
+            current = min;
+        }
+
+    }
+
     Color getColor(int i, int j){ 
         if (start.x == j && start.y == i) 
             return Color.GREEN; 

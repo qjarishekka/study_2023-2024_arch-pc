@@ -9,6 +9,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "pathfinderClase.Main",
+            "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "pathfinderClase.Main",
             "projectName": "mirepositorio_d00d95de"
         },
         {
