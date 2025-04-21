@@ -47,18 +47,24 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
     } 
     int [][] matrix; 
 
-    boolean checkNeighbor(int i , int j , int dy , int dx){
-        if(checkOutRange(j + dx , i + dy))
-            return false;
-        
-        if ((matrix[i][j] == -1 && matrix[i +dy ][j - dx] >= 0) ||
-            (matrix[i][j] > matrix[i + dy][j + dx] +1  )  ) {
+    boolean checkOutRange(int x ,int y ){
 
-            matrix[i][j] = matrix[i][j - 1] + 1; 
+        return y < 0 || y >= matrix.length || x < 0 || x >= matrix[y].length;
+    }
+
+    boolean checkNeighbor(int i , int j , int dy , int dx){
+        if(checkOutRange(j + dx , i + dy)){
+            
+            return false;
+        }
+            
+        
+        if (  matrix[i + dy][j + dx] >= 0 && ( matrix[i][j] == -1  ||  matrix[i][j] > matrix[i + dy][j + dx] + 1 )    ) {
+            
+            matrix[i][j] = matrix[i + dy][j + dx] + 1; 
             sleep(1);
             return true;
         } 
-
         return false;
     }
 
@@ -70,13 +76,7 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
         currentPath = new Path(); 
         Path path = new Path(); 
 
-        Point []neighbor = new Point[]{
-            new Point(0 , 1),
-            new Point(0 , -1),
-            new Point(1 , 0),
-            new Point(-1 , 0),
-    
-        };
+        
  
         matrix = new int[field.length][field[0].length]; 
         for (int i = 0; i < matrix.length; i++) 
@@ -84,6 +84,14 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
                 matrix[i][j] = field[i][j] == '0' ? -2 : -1; 
  
  
+        Point []neighbors = new Point[]{
+                new Point(0 , 1),
+                new Point(0 , -1),
+                new Point(1 , 0),
+                new Point(-1 , 0),
+    
+            };
+
         matrix[start.y][start.x] = 0; 
         boolean fl = true; 
         while (fl && matrix[finish.y][finish.x] < 0) { 
@@ -91,23 +99,16 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
             // пересчитаем матрицу 
             for (int i = 0; i < matrix.length; i++) { 
                 for (int j = 0; j < matrix[i].length; j++) { 
-
-                    for(Point actualNeighbor : neighbor ){
-                        fl = fl || checkNeighbor(i  , j , actualNeighbor.y, actualNeighbor.x);
+                    for(Point neighbor : neighbors ){
+                        fl = fl || checkNeighbor(i  , j , neighbor.y, neighbor.x);
                     }
-                    
-                    /* fl = fl || checkNeighbor(i, j, 1, 0);
-                    fl = fl || checkNeighbor(i, j, 0, -1);
-                    fl = fl || checkNeighbor(i, j, -1, 0);
-                    fl = fl || checkNeighbor(i, j, 0, 1); */
-
- 
                 } 
                 //repaint(); 
                 //System.out.println("find Sleep"); 
  
  
             } 
+            //System.out.println("aqui");
  
         } 
  
@@ -115,21 +116,28 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
             searching = false; 
             return; 
         } 
+
         Point current = new Point(finish.x, finish.y); 
         while(current.x != start.x || current.y != start.y){ 
             if(current.x > 0 && matrix[current.y][current.x - 1] >= 0 && 
                     matrix[current.y][current.x - 1] < matrix[current.y][current.x]){ 
                 current.x--; 
-            }else if(current.x < matrix[0].length - 1 && matrix[current.y][current.x + 1] >= 0 && matrix[current.y][current.x + 1] < matrix[current.y][current.x]){ 
+
+            }else if(current.x < matrix[0].length - 1 && matrix[current.y][current.x + 1] >= 0 && 
+                    matrix[current.y][current.x + 1] < matrix[current.y][current.x]){ 
                 current.x++; 
+
             }else if(current.y > 0 && matrix[current.y - 1][current.x] >= 0 && 
                     matrix[current.y - 1][current.x] < matrix[current.y][current.x]){ 
                 current.y--; 
-            }else if(current.y < matrix.length - 1 && matrix[current.y + 1][current.x] >= 0 &&matrix[current.y + 1][current.x] < matrix[current.y][current.x]){ 
+
+            }else if(current.y < matrix.length - 1 && matrix[current.y + 1][current.x] >= 0 &&
+                    matrix[current.y + 1][current.x] < matrix[current.y][current.x]){ 
                 current.y++; 
             } 
             path.steps.add(new Point(current.x, current.y)); 
-        } 
+            
+        }
         path.steps.remove(current); // удаляем последний, т.к. 
         currentPath = path; 
         searching = false; 
@@ -137,10 +145,7 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
     } 
 
 
-    boolean checkOutRange(int x ,int y ){
-
-        return y < 0 || y >= matrix.length || x < 0 || x >= matrix[y].length;
-    }
+    
 
     class Node{
         int x , y, step, length;
