@@ -1,1 +1,1 @@
-SelectionSort
+ i < 1
