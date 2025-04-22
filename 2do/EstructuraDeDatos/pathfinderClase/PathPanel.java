@@ -174,7 +174,7 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
         searching = true;
         currentPath = new Path();
         Path path = new Path();
-        Node current = new Node(start.x, start.y, 0);
+        
 
         Point[] steps = new Point[]{
             new Point(0 , 1),
@@ -184,20 +184,20 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
     
         };
 
-
+        Node current = new Node(start.x, start.y, 0);
         ArrayList<Node> nodes  = new ArrayList<>(4);
-        while(current.x != finish.x && current.y != finish.y){
+        while(     !current.check  &&(current.x != finish.x && current.y != finish.y)   ){
 
-            
+            current.check = true; 
             for(Point step : steps){
                 if(checkOutRange(current.x + step.x , current.y + step.y)  && matrix[current.x + step.x][current.y + step.y ] != '0' ){
-                    if(current.x + step.x == finish.x && current.y + step.y == finish.getY()){
-                        current = new Node(finish.x , finish.y , current.step+1);
-                        break;
+                    if(current.x + step.x == finish.x && current.y + step.y == finish.y){
+                        current = new Node(finish.x , finish.y , current.step + 1);
+                        //break;
                     }
                         
-
-                    nodes.add(new Node(current.x + step.x , current.y + step.y, current.step +1));
+                    if(!nodes.contains(new Node(current.x + step.x , current.y + step.y , current.step + 1)))
+                        nodes.add(new Node(current.x + step.x , current.y + step.y, current.step +1));
                 }
             }
             Node min = nodes.get(0);
