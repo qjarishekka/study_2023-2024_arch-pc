@@ -48,7 +48,7 @@ public class GameManager implements Runnable{
     Instant deltaTime0;
     int sleep = 10;
 
-    char [][] field;
+
 
 
     
@@ -60,6 +60,7 @@ public class GameManager implements Runnable{
 
         bulletSize = mainFrame.getHeight()*1/100;
         enemySize = mainFrame.getHeight()*10/100;
+
         
 
     }
