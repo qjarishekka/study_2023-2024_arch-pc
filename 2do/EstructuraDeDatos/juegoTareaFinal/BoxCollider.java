@@ -17,7 +17,6 @@ public class BoxCollider {
         dx = component.getWidth() + x;
         dy = component.getHeight() + y;
 
-
     }
 
 

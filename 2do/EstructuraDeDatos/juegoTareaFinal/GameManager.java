@@ -25,6 +25,7 @@ public class GameManager implements Runnable{
     Iterator<Bullet> bulletIterator;
 
 
+
     MainFrame mainFrame;
     InputListener inputListener;
     JLabel currentPoints = new JLabel();
@@ -46,6 +47,8 @@ public class GameManager implements Runnable{
     double deltaTime;
     Instant deltaTime0;
     int sleep = 10;
+
+    char [][] field;
 
 
     
