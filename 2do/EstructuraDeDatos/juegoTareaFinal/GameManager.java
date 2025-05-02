@@ -25,6 +25,7 @@ public class GameManager implements Runnable{
     Iterator<Bullet> bulletIterator;
 
 
+
     MainFrame mainFrame;
     InputListener inputListener;
     JLabel currentPoints = new JLabel();
@@ -48,6 +49,8 @@ public class GameManager implements Runnable{
     int sleep = 10;
 
 
+
+
     
 
     public GameManager(MainFrame mainFrame){
@@ -57,6 +60,7 @@ public class GameManager implements Runnable{
 
         bulletSize = mainFrame.getHeight()*1/100;
         enemySize = mainFrame.getHeight()*10/100;
+
         
 
     }
