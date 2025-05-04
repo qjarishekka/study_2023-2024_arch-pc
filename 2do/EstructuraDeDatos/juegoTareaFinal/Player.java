@@ -30,7 +30,7 @@ public class Player extends JLabel{
     public Player(MainFrame main){
      
 
-        playerSize = main.getHeight()*10/100;
+        playerSize = main.getHeight()*8/100;
         setIcon(new ImageIcon(animator.bufferedImage[0].getScaledInstance(playerSize, playerSize, 0)));
         setBounds( main.getWidth()/2 - playerSize/2 , main.getHeight()/2 - playerSize/2 , playerSize,playerSize);
 
