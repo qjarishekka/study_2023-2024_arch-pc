@@ -23,6 +23,7 @@ public class GameManager implements Runnable{
     CustomFonts customFonts = new CustomFonts();
     Iterator <Enemy> enemiesIterator;
     Iterator<Bullet> bulletIterator;
+    Field field;
 
 
 
@@ -49,8 +50,6 @@ public class GameManager implements Runnable{
     int sleep = 10;
 
 
-
-
     
 
     public GameManager(MainFrame mainFrame){
@@ -60,6 +59,8 @@ public class GameManager implements Runnable{
 
         bulletSize = mainFrame.getHeight()*1/100;
         enemySize = mainFrame.getHeight()*10/100;
+        field = new Field(player, mainFrame);
+
 
         
 
