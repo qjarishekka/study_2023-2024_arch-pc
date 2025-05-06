@@ -1,6 +1,6 @@
+mimarcapersonal : 10
 beta : 4
 qjari : 3
 alfa : 3
 miyo2 : 3
-miyo : 2
 beta1 : 0

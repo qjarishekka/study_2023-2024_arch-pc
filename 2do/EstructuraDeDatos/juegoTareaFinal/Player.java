@@ -59,6 +59,7 @@ public class Player extends JLabel{
         Graphics2D g2 = (Graphics2D)g;
         AffineTransform at = g2.getTransform();
         at.rotate(angle,getWidth()/2,getHeight()/2);
+        //System.out.println(angle);
         g2.setTransform(at);
         super.paint(g2);
     }

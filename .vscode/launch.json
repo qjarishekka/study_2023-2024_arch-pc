@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "experimentos.Main",
+            "projectName": "study_2023-2024_arch-pc_2b55f55d"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "pathfinderClase.Main",
             "projectName": "study_2023-2024_arch-pc_4d4f8fd9"
         },

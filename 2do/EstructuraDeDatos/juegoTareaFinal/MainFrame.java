@@ -26,6 +26,7 @@ public class MainFrame extends JFrame{
     GameManager gameManager;
     Thread thread;
 
+
     Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
     JLabel background = new JLabel();
 
@@ -99,8 +100,6 @@ public class MainFrame extends JFrame{
         gameManager = new GameManager(this);
         thread = new Thread(gameManager);
         thread.start();
-
-        //System.out.println("numero de objetos " + getContentPane().getComponentCount());
         repaint();
     }
 
@@ -227,7 +226,8 @@ public class MainFrame extends JFrame{
     public static void main(String[] args){
 
         proxy = new MainFrame();
-        proxy.Menu();;
+       //proxy.Menu();;
+       proxy.gameStart();
 
 
     }

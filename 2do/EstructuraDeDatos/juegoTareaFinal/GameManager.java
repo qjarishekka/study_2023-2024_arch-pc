@@ -49,6 +49,10 @@ public class GameManager implements Runnable{
     Instant deltaTime0;
     int sleep = 10;
 
+    Thread thread;
+
+
+   
 
     
 
@@ -61,8 +65,6 @@ public class GameManager implements Runnable{
         enemySize = mainFrame.getHeight()*10/100;
         field = new Field(player, mainFrame);
 
-
-        
 
     }
 
@@ -77,7 +79,7 @@ public class GameManager implements Runnable{
         mainFrame.addMouseMotionListener(inputListener);
         mainFrame.addMouseListener(inputListener);
         mainFrame.addKeyListener(inputListener);
-        setEnemyAtRandomPosition();
+        //setEnemyAtRandomPosition();
         
         currentPoints.setBounds(mainFrame.getWidth()/2 - mainFrame.getWidth()*7/100, 10, mainFrame.getWidth()*15/100, mainFrame.getHeight()*15/100);
         currentPoints.setText("Score: 000");
@@ -93,18 +95,26 @@ public class GameManager implements Runnable{
         lifePoints.setBackground(Color.WHITE);
 
 
+        
+        
+
+        mainFrame.add(field);
+
         mainFrame.add(lifePoints, 0);
         mainFrame.add(currentPoints, 0);
         mainFrame.add(player , 0);
         mainFrame.add(mainFrame.background);
+        
         mainFrame.repaint();
+        
 
 
 
 
         while(playing){
 
-            
+            ///////////////////////
+     
 
             //System.out.println("timer: " + timer);
     
@@ -137,7 +147,7 @@ public class GameManager implements Runnable{
                 break;
             }
 
-            removeLostEnemies();
+            //removeLostEnemies();
             refreshPoints();
 
 
@@ -197,7 +207,11 @@ public class GameManager implements Runnable{
         }
 
         for(int i = 0; i < enemies.size() ; i++){
-            enemies.get(i).moveTo();
+            
+            field.setStartAndFinish( player.getLocation(), enemies.get(i).getLocation());
+            field.pathfinder();
+            
+            enemies.get(i).moveTo(field.path.get(0));
         }
 
         player.moving(inputListener.x, inputListener.y);
@@ -217,7 +231,34 @@ public class GameManager implements Runnable{
 
     public void setEnemyAtRandomPosition(){
         Random random = new Random();
-        Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  , timer);
+        //Enemy enemy = new Enemy(enemySize, Math.abs(random.nextInt(mainFrame.getWidth()) - enemySize )  , Math.abs( random.nextInt(mainFrame.getHeight()) - enemySize)  , timer);
+        Enemy enemy = new Enemy(enemySize,timer, this);
+        int counterOfFreePlaces = 0;
+        
+        /* for(int i = 0 ; i < field.meteoritesField.length; i++){
+            if(field.meteoritesField[0][i].getValue() == '_')
+                counterOfFreePlaces++;
+        } */
+
+        for(int i = 1; i < field.meteoritesField[0].length ; i++){
+
+            
+            if(field.meteoritesField[0][i].getValue() == '_' &&  random.nextInt(100) < 25 )  {
+                
+                int x = (int)(i * enemySize);
+                int y = (int)(0 * enemySize);
+                enemy.setLocation( x, y );
+                enemy.setXY( x, y );
+                break;
+            
+            }else{
+                int x = (int)(1 * enemySize);
+                int y = (int)(0 * enemySize);
+                enemy.setLocation( x, y );
+                enemy.setXY( x, y );
+            }
+        }
+
         enemies.add(enemy);
         mainFrame.add(enemy,0);
     }
@@ -237,7 +278,7 @@ public class GameManager implements Runnable{
                 //System.out.println("vida del jugador: " + player.lifePoints);
                 //mainFrame.repaint();
             }
-            nextEnemy = null;
+            //nextEnemy = null;
         }
 
 

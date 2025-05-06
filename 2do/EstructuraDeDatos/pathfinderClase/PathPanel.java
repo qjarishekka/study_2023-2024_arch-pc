@@ -62,7 +62,7 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
         if (  matrix[i + dy][j + dx] >= 0 && ( matrix[i][j] == -1  ||  matrix[i][j] > matrix[i + dy][j + dx] + 1 )    ) {
             
             matrix[i][j] = matrix[i + dy][j + dx] + 1; 
-            sleep(1);
+            //sleep(1);
             return true;
         } 
         return false;
@@ -139,7 +139,7 @@ public class PathPanel extends JComponent implements MouseListener, Runnable {
             
         }
         path.steps.remove(current); // удаляем последний, т.к. 
-        currentPath = path; 
+        currentPath = path;
         searching = false; 
  
     } 
