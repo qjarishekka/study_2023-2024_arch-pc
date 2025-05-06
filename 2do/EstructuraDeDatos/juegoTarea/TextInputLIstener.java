@@ -1,4 +1,4 @@
-package juegoTareaFinal;
+package juegoTarea;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

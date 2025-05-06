@@ -8,6 +8,13 @@
             "type": "java",
             "name": "MainFrame",
             "request": "launch",
+            "mainClass": "juegoTarea.MainFrame",
+            "projectName": "study_2023-2024_arch-pc_2b55f55d"
+        },
+        {
+            "type": "java",
+            "name": "MainFrame",
+            "request": "launch",
             "mainClass": "juegoTareaFinal.MainFrame",
             "projectName": "study_2023-2024_arch-pc_2b55f55d"
         },

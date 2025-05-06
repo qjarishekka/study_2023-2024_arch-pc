@@ -1,4 +1,4 @@
-package juegoTareaFinal;
+package juegoTarea;
 
 import java.awt.Color;
 import java.awt.Graphics;

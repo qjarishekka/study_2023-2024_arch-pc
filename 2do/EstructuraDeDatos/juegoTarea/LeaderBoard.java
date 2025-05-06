@@ -1,11 +1,11 @@
-package juegoTareaFinal;
+package juegoTarea;
 
 import java.awt.Color;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import juegoTareaFinal.src.fonts.CustomFonts;
+import juegoTarea.src.fonts.CustomFonts;
 
 public class LeaderBoard extends JLabel{
 

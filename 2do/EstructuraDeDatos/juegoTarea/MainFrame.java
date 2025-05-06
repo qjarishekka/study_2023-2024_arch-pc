@@ -1,4 +1,4 @@
-package juegoTareaFinal;
+package juegoTarea;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import juegoTareaFinal.src.fonts.CustomFonts;
+import juegoTarea.src.fonts.CustomFonts;
 
 
 public class MainFrame extends JFrame{

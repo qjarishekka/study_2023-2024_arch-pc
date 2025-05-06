@@ -1,4 +1,4 @@
-package juegoTareaFinal;
+package juegoTarea;
 
 import java.awt.Color;
 import java.time.Duration;
@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.JLabel;
-
-import juegoTareaFinal.src.fonts.CustomFonts;
 import javax.swing.Timer;
+
+import juegoTarea.src.fonts.CustomFonts;
 
 
 
