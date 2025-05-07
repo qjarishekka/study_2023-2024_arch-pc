@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import GameAliensAttack.MenuPanel;
 import juegoTarea.src.fonts.CustomFonts;
 
 
@@ -42,6 +43,7 @@ public class MainFrame extends JFrame{
 
     JButton playButton;
     
+    
 
 
 
@@ -60,6 +62,8 @@ public class MainFrame extends JFrame{
 
         background.setIcon(new ImageIcon(backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
         background.setBounds(0,0,getWidth(),getHeight());
+
+        
     
  
 
