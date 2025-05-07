@@ -9,6 +9,13 @@
             "name": "MainFrame",
             "request": "launch",
             "mainClass": "juegoTarea.MainFrame",
+            "projectName": "mirepositorio_d00d95de"
+        },
+        {
+            "type": "java",
+            "name": "MainFrame",
+            "request": "launch",
+            "mainClass": "juegoTarea.MainFrame",
             "projectName": "study_2023-2024_arch-pc_2b55f55d"
         },
         {
