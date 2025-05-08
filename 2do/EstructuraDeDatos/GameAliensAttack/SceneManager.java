@@ -4,9 +4,21 @@ import javax.swing.JFrame;
 
 public class SceneManager {
 
+
 JFrame menuPanel;
 JFrame PausePanel;
 JFrame Gamepanel;
+
+public SceneManager(){
+
+    
+
+}
+
+
+private void genMenuPanel(){
+
+}
 
     
 }

@@ -26,7 +26,6 @@ public class MainFrame extends JFrame {
         setSize(width,height);
         setLayout(null);
         //setIcon(new ImageIcon(backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
-
         setIconImage(backgroundImage);
         menuPanel = new MenuPanel();
         add(menuPanel);
