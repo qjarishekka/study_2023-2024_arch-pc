@@ -12,9 +12,7 @@ import javax.swing.JPanel;
 import GameAliensAttack.src.fonts.CustomFonts;
 
 public class MenuPanel extends JPanel {
-
     
-
     public MenuPanel() {
 
         setLayout(null);
@@ -34,11 +32,9 @@ public class MenuPanel extends JPanel {
         playButton.addActionListener((ActionEvent e)->{
             MainFrame.menuPanel.setVisible(false);
         });
-
         JLabel backGround = new JLabel();
         backGround.setBounds(getBounds());
         backGround.setIcon(new ImageIcon(MainFrame.backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
-        
         add(playButton);
         add(backGround);
         repaint();

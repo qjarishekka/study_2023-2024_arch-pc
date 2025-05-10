@@ -1,5 +1,5 @@
 package GameAliensAttack;
 
-public class PauseGame {
+public class PausePanel {
 
 }

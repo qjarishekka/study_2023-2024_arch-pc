@@ -13,6 +13,8 @@ public class MainFrame extends JFrame {
     static MenuPanel menuPanel;
     public static int width , height;
     public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
+    SceneManager sceneManager;
+    public static MainFrame proxy;
     //public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
     //JLabel background = new JLabel();
     
@@ -25,13 +27,24 @@ public class MainFrame extends JFrame {
         height = (int) t.getScreenSize().getHeight();
         setSize(width,height);
         setLayout(null);
+        proxy = this;
+
+
         //setIcon(new ImageIcon(backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
-        setIconImage(backgroundImage);
-        menuPanel = new MenuPanel();
-        add(menuPanel);
+        //setIconImage(backgroundImage);
 
+        /* SceneManager sceneManager = new SceneManager();
+        sceneManager.setScene("Menu"); */
+        
+        //sceneManager.setScene("Menu");
+        
+        
 
+        /* menuPanel = new MenuPanel();
+        add(menuPanel); */
 
+        GamePanel gamePanel = new GamePanel();
+        add(gamePanel);
 
         setVisible(true);
     }
