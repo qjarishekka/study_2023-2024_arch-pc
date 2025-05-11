@@ -34,8 +34,9 @@ public class GamePanel extends JPanel {
         JLabel backGround = new JLabel();
         backGround.setBounds(getBounds());
         backGround.setIcon(new ImageIcon(MainFrame.backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
+        Player player = new Player();
         
-
+        add(player);
         add(currentPoints);
         add(lifePoints);
         add(backGround);

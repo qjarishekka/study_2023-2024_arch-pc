@@ -10,10 +10,10 @@ import java.awt.Toolkit;
 
 public class MainFrame extends JFrame {
 
-    static MenuPanel menuPanel;
     public static int width , height;
     public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
     SceneManager sceneManager;
+    GameEngine gameEngine;
     public static MainFrame proxy;
     //public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
     //JLabel background = new JLabel();
@@ -29,22 +29,9 @@ public class MainFrame extends JFrame {
         setLayout(null);
         proxy = this;
 
-
-        //setIcon(new ImageIcon(backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
-        //setIconImage(backgroundImage);
-
-        /* SceneManager sceneManager = new SceneManager();
-        sceneManager.setScene("Menu"); */
-        
-        //sceneManager.setScene("Menu");
-        
-        
-
-        /* menuPanel = new MenuPanel();
-        add(menuPanel); */
-
-        GamePanel gamePanel = new GamePanel();
-        add(gamePanel);
+        sceneManager = new SceneManager();
+        sceneManager.setScene("Menu");
+        gameEngine = new GameEngine();
 
         setVisible(true);
     }

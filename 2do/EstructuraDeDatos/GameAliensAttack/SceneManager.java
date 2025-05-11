@@ -11,6 +11,9 @@ public class SceneManager {
 
     public SceneManager(){
 
+        gamePanel = new GamePanel();
+        menuPanel = new MenuPanel(this);
+        //pausePanel = new pausePanel();
 
     }
 

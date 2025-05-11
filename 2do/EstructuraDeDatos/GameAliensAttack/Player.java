@@ -1,6 +1,7 @@
-package juegoTarea;
+package GameAliensAttack;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -14,28 +15,26 @@ import java.awt.Point;
 import java.awt.geom.AffineTransform;
 
 
-public class Player extends JLabel{
+public class Player extends MonoBehavior{
     
-    String path = "src//animations//playerAnimation";
 
-    Animator animator = new Animator(path);
+    String path = "src//animations//playerAnimation";
+    int playerSize = MainFrame.height*8/100;
+    Animator animator = new Animator(path, this, playerSize);
     BoxCollider boxCollider = new BoxCollider(this);
 
     double angle;
     int lifePoints = 3;
-    int playerSize;
+    
     double velocity = 1;
 
 
-    public Player(MainFrame main){
-     
-        //System.out.println(main.getH);
-        playerSize = main.getHeight()*8/100;
-        setIcon(new ImageIcon(animator.bufferedImage[0].getScaledInstance(playerSize, playerSize, 0)));
-        setBounds( main.getWidth()/2 - playerSize/2 , main.getHeight()/2 - playerSize/2 , playerSize,playerSize);
-
-
+    public Player(){
         
+        setIcon(new ImageIcon(animator.getIgame(0)));
+        setBounds( MainFrame.width/2 - playerSize/2 , MainFrame.height/2 - playerSize/2 , playerSize,playerSize);
+        animator.play();
+        animator.setFPS(0.1);
 
     }
 
@@ -43,15 +42,8 @@ public class Player extends JLabel{
         
         setLocation( (int)( getX() + (x*velocity) ), (int)( getY()+ (y*velocity)  ));
         
-
-
-        boxCollider.refresBoxCollider();
     }
 
-    public void nextFrame(){
-        setIcon( new ImageIcon( animator.nextFrame().getScaledInstance(playerSize, playerSize, 0) ));
-        this.repaint();
-    }
 
 
     @Override
@@ -62,6 +54,15 @@ public class Player extends JLabel{
         //System.out.println(angle);
         g2.setTransform(at);
         super.paint(g2);
+    }
+
+
+
+
+    @Override
+    public void update() {
+
+
     }
 
 

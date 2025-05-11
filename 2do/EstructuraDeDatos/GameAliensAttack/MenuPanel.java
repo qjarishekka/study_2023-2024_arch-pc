@@ -13,7 +13,7 @@ import GameAliensAttack.src.fonts.CustomFonts;
 
 public class MenuPanel extends JPanel {
     
-    public MenuPanel() {
+    public MenuPanel(SceneManager sceneManager) {
 
         setLayout(null);
         setBounds(0,0, MainFrame.width, MainFrame.height);
@@ -30,7 +30,7 @@ public class MenuPanel extends JPanel {
         playButton.setForeground(Color.green);
         playButton.setFocusPainted(false);
         playButton.addActionListener((ActionEvent e)->{
-            MainFrame.menuPanel.setVisible(false);
+            sceneManager.setScene("Game");
         });
         JLabel backGround = new JLabel();
         backGround.setBounds(getBounds());

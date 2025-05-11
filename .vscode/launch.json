@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "experimentoEnjava",
+            "request": "launch",
+            "mainClass": "experimentos.experimentoEnjava",
+            "projectName": "study_2023-2024_arch-pc_2b55f55d"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "experimentos.Main",

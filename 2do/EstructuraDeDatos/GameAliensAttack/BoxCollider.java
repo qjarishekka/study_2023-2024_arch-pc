@@ -1,16 +1,19 @@
-package juegoTarea;
+package GameAliensAttack;
 
 import java.awt.Component;
+import java.util.ArrayList;
 
 
 public class BoxCollider {
     
     int x, y , dx , dy;
     Component component;
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static ArrayList<BoxCollider> boxColliderCollection = new ArrayList(1);
     
     
     public BoxCollider(Component component){
-
+        boxColliderCollection.add(this);
         this.component = component;
         x = component.getX();
         y = component.getY();
@@ -19,8 +22,6 @@ public class BoxCollider {
 
     }
 
-
-
     public void refresBoxCollider(){
         x = component.getX();
         y = component.getY();
@@ -28,7 +29,6 @@ public class BoxCollider {
         dy = component.getHeight() + y;
     }
     public Boolean isColliding(BoxCollider anotherCollider ){
-
 
         if(   x < anotherCollider.x && anotherCollider.x < dx    &&     y < anotherCollider.y && anotherCollider.y < dy  ){
             return true;
