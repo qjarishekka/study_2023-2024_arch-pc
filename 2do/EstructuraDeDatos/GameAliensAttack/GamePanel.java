@@ -35,7 +35,13 @@ public class GamePanel extends JPanel {
         backGround.setBounds(getBounds());
         backGround.setIcon(new ImageIcon(MainFrame.backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
         Player player = new Player();
+        Enemy enemy = new Enemy();
         
+        /* Input input = new Input();
+        addKeyListener(input);
+        addMouseListener(input);
+        addMouseMotionListener(input); */
+        add(enemy,0);
         add(player);
         add(currentPoints);
         add(lifePoints);

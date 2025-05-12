@@ -14,6 +14,7 @@ public class MainFrame extends JFrame {
     public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
     SceneManager sceneManager;
     GameEngine gameEngine;
+    Input input = new Input();
     public static MainFrame proxy;
     //public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
     //JLabel background = new JLabel();
@@ -28,11 +29,14 @@ public class MainFrame extends JFrame {
         setSize(width,height);
         setLayout(null);
         proxy = this;
-
         sceneManager = new SceneManager();
         sceneManager.setScene("Menu");
         gameEngine = new GameEngine();
+        addKeyListener(input);
+        addMouseListener(input);
+        addMouseMotionListener(input);
 
+        //requestFocus();
         setVisible(true);
     }
 

@@ -22,11 +22,12 @@ public class Player extends MonoBehavior{
     int playerSize = MainFrame.height*8/100;
     Animator animator = new Animator(path, this, playerSize);
     BoxCollider boxCollider = new BoxCollider(this);
+    RigidBody rigidBody = new RigidBody(boxCollider);
 
     double angle;
     int lifePoints = 3;
     
-    double velocity = 1;
+    double velocity = 4;
 
 
     public Player(){
@@ -38,9 +39,9 @@ public class Player extends MonoBehavior{
 
     }
 
-    public void moving ( double x , double y ){
+    public void moving (){
         
-        setLocation( (int)( getX() + (x*velocity) ), (int)( getY()+ (y*velocity)  ));
+        rigidBody.setVelocity(Input.horizontal * velocity,Input.vertical * velocity);
         
     }
 
@@ -62,6 +63,17 @@ public class Player extends MonoBehavior{
     @Override
     public void update() {
 
+        changeAngle();
+        moving();
+    
+
+    }
+
+    private void changeAngle(){
+        int oppositeLeg = (int)(Input.cursor.getX() - getBounds().getCenterX());
+        int adjacentLeg = (int)(getBounds().getCenterY() - Input.cursor.getY());
+        angle = Math.atan2(oppositeLeg, adjacentLeg);
+        //repaint();
 
     }
 

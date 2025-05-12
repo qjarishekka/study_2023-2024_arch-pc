@@ -17,6 +17,7 @@ public class GameEngine{
                 Iterator<BoxCollider>   boxColliderInterator = BoxCollider.boxColliderCollection.iterator();
                 Iterator<MonoBehavior>  monoBehaviorIterator = MonoBehavior.monoBehaviorsCollection.iterator();
                 Iterator<Animator>      animatorIterator = Animator.animatorsCollection.iterator();
+                Iterator<RigidBody>     rigidBodyIterator = RigidBody.rigidBodiesCollection.iterator();
 
                 BoxCollider temporalBoxCollider;
                 while(boxColliderInterator.hasNext()){
@@ -37,7 +38,20 @@ public class GameEngine{
                     temporalAnimator.animate();
                 }
 
+                RigidBody temporalRigidBody;
+                while(rigidBodyIterator.hasNext()){
+                    temporalRigidBody = rigidBodyIterator.next();
+                    temporalRigidBody.Update();
 
+
+                }
+
+
+
+                
+
+                MainFrame.proxy.repaint();
+                MainFrame.proxy.requestFocus();
             }
         }
     }

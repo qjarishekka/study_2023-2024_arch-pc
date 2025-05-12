@@ -1,5 +1,6 @@
 package GameAliensAttack;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -8,71 +9,165 @@ import java.awt.event.MouseMotionListener;
 
 public class Input implements MouseListener,MouseMotionListener , KeyListener{
 
-    double horizontal= 0;
-    double vertical = 0;
+    static double horizontal= 0;
+    static double vertical = 0;
+    static Point cursor  = new Point(0,0);
+    static boolean escape = false;
+    static boolean mouseDragged = false;
+    //static boolean mouseClicked = false;
+    int a = 0;
+    int d = 0;
+    int w = 0;
+    int s = 0;
+    
+
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
 
-        
-
-
+        switch (e.getKeyChar()) {
+            case 'a' :
+                a = -1;
+                    //player.moving(-1, 0);
+                break;
+            case 'd':
+                d = 1;
+                    //player.moving(1, 0);
+                break;
+            case 'w':
+                w = -1;
+                    //player.moving(0, -1);
+                break;
+            case 's':
+                s = 1;
+                    //player.moving(0, 1);
+                break;
+            case 27 : //escape  
+   
+                //mainFrame.gameOver();
+                break;
+        }
+        refreshAxis();
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+
+                switch (e.getKeyChar()) {
+            case 'a' :
+
+                a = 0;
+                    //player.moving(-1, 0);
+                break;
+            case 'd':
+                d = 0;
+                    //player.moving(1, 0);
+                break;
+            case 'w':
+                w = 0;
+                    //player.moving(0, -1);
+                break;
+            case 's':
+                s = 0;
+                    //player.moving(0, 1);
+                break;
+            case 27 : //escape  
+                    escape = false;
+            default:
+                break;
+        }
+        refreshAxis();
+       
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
+        
+        switch (e.getKeyChar()) {
+            case 'a' :
+
+                a = -1;
+                    //player.moving(-1, 0);
+                break;
+            case 'd':
+                d = 1;
+                    //player.moving(1, 0);
+                break;
+            case 'w':
+
+                w = -1;
+                    //player.moving(0, -1);
+                break;
+            case 's':
+                s = 1;
+                    //player.moving(0, 1);
+                break;
+            case 27 : //escape  
+                //gameManager.stopPlaying();
+                escape = true;
+
+            default:
+                break;
+        }
+
+        refreshAxis();
+       
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseDragged'");
+      
+        mouseDragged = true;
+        cursor.setLocation(e.getX(), e.getY());
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseMoved'");
+
+        cursor.setLocation(e.getX(), e.getY());
+       
     }
+
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseClicked'");
+        //mouseClicked = true;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseEntered'");
+        
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseExited'");
+        
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
+        //mouseClicked = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
+        //mouseClicked = false;
+        mouseDragged = false;
     }
+
+
+
+    public void refreshAxis(){
+        horizontal = a + d;
+        vertical = w + s;
+        //double alfa = 1 + 0.5;
+        //System.out.println(   alfa );
+        //System.out.println(horizontal);
+        //System.out.println(vertical);
+    }
+
+ 
+
     
 }

@@ -28,6 +28,7 @@ public class BoxCollider {
         dx = component.getWidth() + x;
         dy = component.getHeight() + y;
     }
+    
     public Boolean isColliding(BoxCollider anotherCollider ){
 
         if(   x < anotherCollider.x && anotherCollider.x < dx    &&     y < anotherCollider.y && anotherCollider.y < dy  ){

@@ -93,7 +93,7 @@ public class Animator{
                 }
 
                 time = Instant.now();
-                object.repaint();
+                //object.repaint();
                 //System.out.println(frameID);
             }
 
