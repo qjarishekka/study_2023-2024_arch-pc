@@ -59,18 +59,8 @@ public class MainFrame extends JFrame{
         setSize((int)t.getScreenSize().getWidth() , (int)t.getScreenSize().getHeight());
         setLayout(null);
         setVisible(true);
-
         background.setIcon(new ImageIcon(backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
         background.setBounds(0,0,getWidth(),getHeight());
-
-        
-    
- 
-
-
-
-    
-
     }
 
     public void Menu(){

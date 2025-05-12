@@ -17,8 +17,8 @@ def descending_gradient(w_ , b_ , alpha, x ,y):
     N = x.shape[0]
     dw = -(2/N)*np.sum(x*(y-(w_* x  + b_)))
     db = -(2/N)*np.sum(y-(w_* x  + b_))
-    w = w_ - alpha*dw
-    b = b_ - alpha*db
+    w = w_ - (alpha*dw)
+    b = b_ - (alpha*db)
     return w, b
 
 dataset = pd.read_csv('insurance.csv')[:50]
@@ -37,11 +37,18 @@ x_train, x_test, y_train, y_test = train_test_split(X,y,test_size= 0.25, random_
 
 #x_train , y_train = MinMaxScaler().fit_transform(x_train, y_train)
 
-x_train_scaled = MinMaxScaler().fit_transform(x_train)
-y_train_scaled = MinMaxScaler().fit_transform(y_train)
+#x_train_scaled = MinMaxScaler().fit_transform(x_train)
+#y_train_scaled = MinMaxScaler().fit_transform(y_train)
 
-x_train_scaled_polynomial = PolynomialFeatures(3).fit_transform(x_train_scaled)
-y_train_scaled_polynomial = PolynomialFeatures(3).fit_transform(y_train_scaled)
+
+poly  = PolynomialFeatures(degree=3)
+
+x_train = poly.fit_transform(x_train)
+y_train = poly.fit_transform(y_train)
+print(x_train)
+
+#x_train_scaled_polynomial = PolynomialFeatures(degree= 3, interaction_only=False).fit_transform(x_train)
+#y_train_scaled_polynomial = PolynomialFeatures(degree= 3,interaction_only=False).fit_transform(y_train)
 
 
 #print(x_train)
@@ -65,8 +72,9 @@ alpha = 0.0004
 nits = 40000
 
 for i in range(nits):
-    [w,b] = descending_gradient(w,b,alpha , x_train.values , y_train.values)
-    y_ = calculate_model(w,b,x_train_scaled_polynomial)
+    [w,b] = descending_gradient(w,b,alpha , x_train , y_train)
+    #[w,b] = descending_gradient(w,b,alpha , x_train_scaled , y_train_scaled)
+    y_ = calculate_model(w,b,x_train)
 
  
 
