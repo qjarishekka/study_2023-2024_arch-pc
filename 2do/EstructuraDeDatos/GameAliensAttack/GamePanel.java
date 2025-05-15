@@ -36,6 +36,7 @@ public class GamePanel extends JPanel {
         backGround.setIcon(new ImageIcon(MainFrame.backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
         Player player = new Player();
         Enemy enemy = new Enemy();
+        enemy.setTargetedEntity(player);
         
         /* Input input = new Input();
         addKeyListener(input);

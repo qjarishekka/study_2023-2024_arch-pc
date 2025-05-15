@@ -7,14 +7,15 @@ import java.util.ArrayList;
 public class BoxCollider {
     
     int x, y , dx , dy;
-    Component component;
+    MonoBehavior component;
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static ArrayList<BoxCollider> boxColliderCollection = new ArrayList(1);
     
     
-    public BoxCollider(Component component){
+    public BoxCollider(MonoBehavior component){
         boxColliderCollection.add(this);
         this.component = component;
+        this.component.boxCollider = this;
         x = component.getX();
         y = component.getY();
         dx = component.getWidth() + x;
@@ -44,10 +45,9 @@ public class BoxCollider {
         }else if( x < anotherCollider.x && anotherCollider.x < dx && y < anotherCollider.y && anotherCollider.y <dy && x < anotherCollider.dx && anotherCollider.dx < dx && y < anotherCollider.dy && anotherCollider.dy < dy  ){
             return true;
         }
-
-
             return false;
     }
+    
 
 
 }
