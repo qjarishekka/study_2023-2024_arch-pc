@@ -34,25 +34,23 @@ y = dataset[['charges']]
 print(X)
 print(y)
 
-x_train, x_test, y_train, y_test = train_test_split(X,y,test_size= 0.25, random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(X,y,test_size= 0.25 , shuffle=False , random_state=0)
 
 
-x_train = x_train.values.reshape([x_train.values.shape[0],1])
+""" x_train = x_train.values.reshape([x_train.values.shape[0],1])
 x_test = x_test.values.reshape([x_test.values.shape[0],1])
 y_train = y_train.values.reshape([y_train.values.shape[0],1])
-y_test = y_test.values.reshape([y_test.values.shape[0],1])
-
-poly  = PolynomialFeatures(degree=3)
-
-#x_train = MinMaxScaler().fit_transform(x_train)
-
-
-
-
-#x_train = poly.fit_transform(x_train)
-#y_train = poly.fit_transform(y_train)
+y_test = y_test.values.reshape([y_test.values.shape[0],1]) """
 
 print(x_train)
+
+poly  = PolynomialFeatures(degree=3, include_bias=False).fit(x_train)
+
+#x_train = MinMaxScaler().fit_transform(x_train)
+x_train = poly.fit_transform(x_train)
+#y_train = poly.fit_transform(y_train)
+
+print(pd.DataFrame(x_train).head)
 
 #x_train = MinMaxScaler().fit_transform(x_train)
 #print(x_train)

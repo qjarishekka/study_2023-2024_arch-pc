@@ -7,5 +7,5 @@ from time import sleep
 sleep(5)
 
 for i in range(100):
-    pyautogui.typewrite('Santy')
+    pyautogui.typewrite('hello')
     pyautogui.press('enter')
