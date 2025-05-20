@@ -35,12 +35,7 @@ public class SceneManager {
             MainFrame.proxy.repaint();
             
         }
-        if(sceneName.equals("Over")){
-
-        }
-        //System.out.println("Scene's name not found");
-        
-
+    
     }
 
     

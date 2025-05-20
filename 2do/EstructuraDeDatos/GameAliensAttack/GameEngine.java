@@ -61,12 +61,11 @@ public class GameEngine{
         
         thread = new Thread(engine);
         thread.start();
-        //counter = (counter + 1);
 
     }
 
     static public void pause(){
-        //System.out.println("paused " + counter);
+
         try{
             playing = false;
         }catch(Exception e){
@@ -75,14 +74,9 @@ public class GameEngine{
     }
 
     static public void play(){
-        //System.out.println("jugando");
         playing = true;
         thread = new Thread(engine);
         thread.start();
 
-    }
-
-
-
-    
+    }    
 }

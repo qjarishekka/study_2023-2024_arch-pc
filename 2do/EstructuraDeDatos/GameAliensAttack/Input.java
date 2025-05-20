@@ -12,11 +12,7 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
     static double horizontal= 0;
     static double vertical = 0;
     static Point cursor  = new Point(0,0);
-    static boolean mouseDragged = false;
-    //private boolean buttonDown = false;
-    //private KeyEvent e = null;
 
-    //static boolean mouseClicked = false;
     int a = 0;
     int d = 0;
     int w = 0;
@@ -119,8 +115,6 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-      
-        mouseDragged = true;
         cursor.setLocation(e.getX(), e.getY());
     }
 
@@ -134,30 +128,19 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
     
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        //Bullet bullet = new Bullet();
-        //MainFrame.proxy.sceneManager.gamePanel.add(bullet,0);
-    }
+    public void mouseClicked(MouseEvent e) { }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        
-    }
+    public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mousePressed(MouseEvent e) {
-       
-    }
+    public void mousePressed(MouseEvent e) { }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        //mouseClicked = false;
-        mouseDragged = false;
     }
 
     public void refreshAxis(){

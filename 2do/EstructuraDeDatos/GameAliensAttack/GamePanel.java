@@ -38,16 +38,12 @@ public class GamePanel extends JPanel {
         Enemy enemy = new Enemy();
         enemy.setTargetedEntity(player);
         
-        /* Input input = new Input();
-        addKeyListener(input);
-        addMouseListener(input);
-        addMouseMotionListener(input); */
         add(enemy,0);
         add(player);
         add(currentPoints);
         add(lifePoints);
         add(backGround);
-        //setVisible(true);
+
     }
 
     

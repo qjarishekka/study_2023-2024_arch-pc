@@ -6,7 +6,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 public class RigidBody {
 
     public static ArrayList<RigidBody> rigidBodiesCollection = new ArrayList<>(0);
@@ -29,9 +28,8 @@ public class RigidBody {
     public void giveForce(double x , double y){
         accelerationVector[0] = x/mass;
         accelerationVector[1] = y/mass;
-         
-
     }
+
     private void crash(){
 
         rigidBodyIterator = rigidBodiesCollection.iterator();
@@ -77,10 +75,6 @@ public class RigidBody {
         }
 
         chronometer = Duration.between(time, Instant.now()).getNano()/1e9;
-
-        
-        
-
     }
 
     public double getVelocity(){

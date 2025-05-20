@@ -2,10 +2,8 @@ package GameAliensAttack;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 
 public class MainFrame extends JFrame {
@@ -16,9 +14,6 @@ public class MainFrame extends JFrame {
     GameEngine gameEngine;
     Input input = new Input();
     public static MainFrame proxy;
-    //public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
-    //JLabel background = new JLabel();
-    
 
     public MainFrame() {
         super("Alien's Attack");
@@ -36,7 +31,6 @@ public class MainFrame extends JFrame {
         addMouseListener(input);
         addMouseMotionListener(input);
 
-        //requestFocus();
         setVisible(true);
     }
 

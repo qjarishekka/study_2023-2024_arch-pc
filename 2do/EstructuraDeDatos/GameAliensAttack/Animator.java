@@ -15,7 +15,6 @@ public class Animator{
 
     public static ArrayList<Animator> animatorsCollection = new ArrayList<>(0);
 
-
     BufferedImage bufferedImage[];
     int size = 1;
     int frameID = 0;
@@ -46,18 +45,6 @@ public class Animator{
     }
 
 
-    /* public Image nextFrame(){
-
-        frameID++;
-        //System.out.println(bufferedImage.length);
-        if(frameID >= bufferedImage.length){
-            frameID = 0;
-            return bufferedImage[0].getScaledInstance(size, size, 0);
-        }else{
-            return bufferedImage[frameID].getScaledInstance(size, size, 0);
-        }
-        
-    } */
 
     public void setFPS(double framesPerSecond){
 
@@ -93,13 +80,8 @@ public class Animator{
                 }
 
                 time = Instant.now();
-                //object.repaint();
-                //System.out.println(frameID);
             }
-
-            //double nano = ;
             chronometer = Duration.between(time, Instant.now()).getSeconds() + Duration.between(time, Instant.now()).getNano()/1e9;
-            //System.out.println(chronometer);
         }
     }
 
