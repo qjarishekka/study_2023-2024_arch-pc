@@ -30,7 +30,6 @@ public class Enemy extends MonoBehavior {
     private void followEntity(){
 
             if(targetedEntity != null){
-            double radius = 1;
             int dx = getX() - (int)targetedEntity.getX();
             int dy = getY() - (int)targetedEntity.getY();
             double angle = Math.atan2(dy, dx);
