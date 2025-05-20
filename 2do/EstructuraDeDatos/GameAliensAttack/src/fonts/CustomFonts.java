@@ -1,11 +1,7 @@
 package GameAliensAttack.src.fonts;
 
 import java.awt.Font;
-import java.io.File;
 import java.io.InputStream;
-import java.util.stream.Stream;
-
-import javax.xml.transform.stream.StreamSource;
 
 public class CustomFonts {
     public Font font(int size){
