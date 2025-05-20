@@ -16,7 +16,7 @@ import java.awt.geom.AffineTransform;
 
 
 public class Player extends MonoBehavior{
-    
+    static public Player proxy;
 
     String path = "src//animations//playerAnimation";
     int playerSize = MainFrame.height*8/100;
@@ -31,7 +31,7 @@ public class Player extends MonoBehavior{
 
 
     public Player(){
-        
+        proxy = this;
         setIcon(new ImageIcon(animator.getIgame(0)));
         setBounds( MainFrame.width/2 - playerSize/2 , MainFrame.height/2 - playerSize/2 , playerSize,playerSize);
         animator.play();
@@ -44,8 +44,6 @@ public class Player extends MonoBehavior{
         rigidBody.setVelocity(Input.horizontal * velocity,Input.vertical * velocity);
         
     }
-
-
 
     @Override
     public void paint(Graphics g){
@@ -76,6 +74,8 @@ public class Player extends MonoBehavior{
         //repaint();
 
     }
+
+
 
 
 

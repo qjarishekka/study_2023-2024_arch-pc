@@ -12,8 +12,10 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
     static double horizontal= 0;
     static double vertical = 0;
     static Point cursor  = new Point(0,0);
-    static boolean escape = false;
     static boolean mouseDragged = false;
+    //private boolean buttonDown = false;
+    //private KeyEvent e = null;
+
     //static boolean mouseClicked = false;
     int a = 0;
     int d = 0;
@@ -72,7 +74,7 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
                     //player.moving(0, 1);
                 break;
             case 27 : //escape  
-                    escape = false;
+                   
             default:
                 break;
         }
@@ -104,7 +106,8 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
                 break;
             case 27 : //escape  
                 //gameManager.stopPlaying();
-                escape = true;
+                MainFrame.proxy.sceneManager.setScene("Pause");
+                //System.out.println("pause");
 
             default:
                 break;
@@ -132,7 +135,8 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //mouseClicked = true;
+        //Bullet bullet = new Bullet();
+        //MainFrame.proxy.sceneManager.gamePanel.add(bullet,0);
     }
 
     @Override
@@ -147,7 +151,7 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        //mouseClicked = true;
+       
     }
 
     @Override
@@ -156,18 +160,10 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
         mouseDragged = false;
     }
 
-
-
     public void refreshAxis(){
         horizontal = a + d;
         vertical = w + s;
-        //double alfa = 1 + 0.5;
-        //System.out.println(   alfa );
-        //System.out.println(horizontal);
-        //System.out.println(vertical);
+
     }
-
- 
-
     
 }

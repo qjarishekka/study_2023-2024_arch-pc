@@ -10,6 +10,7 @@ public class Enemy extends MonoBehavior {
 
     String path = "src//animations//enemyAnimation";
     int size = (int)(MainFrame.height*0.1);
+    int velocity = 2;
 
 
     Animator animator = new Animator(path, this, size);
@@ -32,12 +33,23 @@ public class Enemy extends MonoBehavior {
     private void followEntity(){
 
             if(targetedEntity != null){
-            double radius = 10;
+            double radius = 1;
             int dx = getX() - (int)targetedEntity.getX();
             int dy = getY() - (int)targetedEntity.getY();
-            double d = Math.sqrt(dx*dx + dy*dy);
-            double r = radius/d;
-            rigidBody.setVelocity(-dx*r*0.01, -dy*r*0.01);
+            //double d = Math.sqrt(dx*dx + dy*dy);
+            //double r = radius/d;
+            double angle = Math.atan2(dy, dx);
+            double X = Math.cos(angle);
+            double Y = Math.sin(angle);
+
+            rigidBody.setVelocity(-X*velocity, -Y*velocity);
+
+
+
+            
+
+            
+            //System.out.println(dx/d);
             
             /* int dx = getX() - (int)targetedEntity.getX();
             int dy = getY() - (int)targetedEntity.getY();
@@ -46,6 +58,19 @@ public class Enemy extends MonoBehavior {
             
 
     }
+    
+    private int getaxis(int number){
+
+        if(number >=1 )
+            return 1;
+        if(number<=-1)
+            return -1;
+        if(number == 0 )
+            return 0;
+
+        return 0;
+    }
+    
 
 
 
@@ -53,6 +78,7 @@ public class Enemy extends MonoBehavior {
     @Override
     public void update() {
        followEntity();
+       
     }
     
 }

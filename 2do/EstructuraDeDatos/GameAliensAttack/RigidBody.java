@@ -18,6 +18,7 @@ public class RigidBody {
     BoxCollider boxCollider;
     Instant time = Instant.now();
     double chronometer = 0;
+    boolean crashingPhysics = true;
 
     
     public RigidBody(BoxCollider boxCollider){
@@ -36,9 +37,10 @@ public class RigidBody {
         rigidBodyIterator = rigidBodiesCollection.iterator();
         RigidBody temporalRigidBody;
         Point location = boxCollider.component.getLocation();
+
         while(rigidBodyIterator.hasNext()){
             temporalRigidBody = rigidBodyIterator.next();
-            if(temporalRigidBody.boxCollider.isColliding(boxCollider)){
+            if(temporalRigidBody.boxCollider.isColliding(boxCollider) && temporalRigidBody.crashingPhysics ){
                 if(Math.abs(temporalRigidBody.boxCollider.component.getBounds().getCenterX() - boxCollider.component.getBounds().getCenterX()) > 
                 Math.abs(temporalRigidBody.boxCollider.component.getBounds().getCenterY() - boxCollider.component.getBounds().getCenterY())  ){
                     boxCollider.component.setLocation(location.x + (int)(velocityVector[0]*-1), location.y );
@@ -52,10 +54,9 @@ public class RigidBody {
                      boxCollider.component.setLocation(location.x + (int)(velocityVector[0]*-1), location.y );
                 }
 
-                //setPosition();
-                //setAcceleration(0, 0);
             }
         }
+        
 
         
 
@@ -69,20 +70,9 @@ public class RigidBody {
             double x = boxCollider.component.getBounds().getX();
             double y = boxCollider.component.getBounds().getY();
 
-            
             velocityVector[0] = velocityVector[0] + accelerationVector[0]*0.01;
             velocityVector[1] = velocityVector[1] + accelerationVector[1]*0.01;
-            
-            
-
-            /* double dx = velocityVector[0];
-            double dy = velocityVector[1]; */
-            
             boxCollider.component.setLocation((int)(x+velocityVector[0]) ,(int)(y+velocityVector[1]));
-
-            //System.out.print(accelerationVector[0]+ " ");
-
-
             time = Instant.now();
         }
 

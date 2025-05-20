@@ -3,16 +3,20 @@ package GameAliensAttack;
 import java.util.Iterator;
 
 public class GameEngine{
-    Thread thread;
+    public static Thread thread;
+    public static int counter = 0;
+    public static boolean playing = true;
+    public static Engine engine = new Engine();
 
 
     
-    class Engine implements Runnable{
+    public static class Engine implements Runnable{
         @Override
         public void run() {
 
 
-            while (true) {
+            while (playing) {
+                
 
                 Iterator<BoxCollider>   boxColliderInterator = BoxCollider.boxColliderCollection.iterator();
                 Iterator<MonoBehavior>  monoBehaviorIterator = MonoBehavior.monoBehaviorsCollection.iterator();
@@ -46,10 +50,6 @@ public class GameEngine{
 
                 }
 
-
-
-                
-
                 MainFrame.proxy.repaint();
                 MainFrame.proxy.requestFocus();
             }
@@ -58,11 +58,31 @@ public class GameEngine{
 
 
     public GameEngine(){
-        Engine engine = new Engine();
+        
+        thread = new Thread(engine);
+        thread.start();
+        //counter = (counter + 1);
+
+    }
+
+    static public void pause(){
+        //System.out.println("paused " + counter);
+        try{
+            playing = false;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    static public void play(){
+        //System.out.println("jugando");
+        playing = true;
         thread = new Thread(engine);
         thread.start();
 
     }
+
+
 
     
 }
