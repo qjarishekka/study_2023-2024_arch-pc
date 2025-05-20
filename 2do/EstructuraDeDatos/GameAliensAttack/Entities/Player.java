@@ -1,9 +1,18 @@
-package GameAliensAttack;
+package GameAliensAttack.Entities;
 
 import javax.swing.ImageIcon;
+
+import GameAliensAttack.MainFrame;
+import GameAliensAttack.GameEngine.Animator;
+import GameAliensAttack.GameEngine.BoxCollider;
+import GameAliensAttack.GameEngine.Input;
+import GameAliensAttack.GameEngine.MonoBehavior;
+import GameAliensAttack.GameEngine.RigidBody;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import GameAliensAttack.GameEngine.Input;
 
 
 public class Player extends MonoBehavior{
@@ -45,13 +54,18 @@ public class Player extends MonoBehavior{
         super.paint(g2);
     }
 
-
-
-
     @Override
     public void update() {
         changeAngle();
         moving();
+
+        if(Input.trigger()){
+            Bullet bullet = new Bullet();
+            //MainFrame.proxy.sceneManager.gamePanel.add(bullet);
+            System.out.println("presionado");
+
+        }
+
     }
 
     private void changeAngle(){
@@ -59,10 +73,5 @@ public class Player extends MonoBehavior{
         int adjacentLeg = (int)(getBounds().getCenterY() - Input.cursor.getY());
         angle = Math.atan2(oppositeLeg, adjacentLeg);
     }
-
-
-
-
-
 
 }

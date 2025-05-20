@@ -1,6 +1,12 @@
-package GameAliensAttack;
+package GameAliensAttack.Entities;
 
 import javax.swing.ImageIcon;
+
+import GameAliensAttack.MainFrame;
+import GameAliensAttack.GameEngine.Animator;
+import GameAliensAttack.GameEngine.BoxCollider;
+import GameAliensAttack.GameEngine.MonoBehavior;
+import GameAliensAttack.GameEngine.RigidBody;
 
 public class Enemy extends MonoBehavior {
 
@@ -8,7 +14,6 @@ public class Enemy extends MonoBehavior {
     String path = "src//animations//enemyAnimation";
     int size = (int)(MainFrame.height*0.1);
     int velocity = 2;
-
 
     Animator animator = new Animator(path, this, size);
     BoxCollider boxCollider = new BoxCollider(this);

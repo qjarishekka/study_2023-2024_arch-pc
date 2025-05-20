@@ -1,4 +1,4 @@
-package GameAliensAttack;
+package GameAliensAttack.GameEngine;
 
 import java.awt.Point;
 import java.time.Duration;
@@ -17,7 +17,7 @@ public class RigidBody {
     BoxCollider boxCollider;
     Instant time = Instant.now();
     double chronometer = 0;
-    boolean crashingPhysics = true;
+    public boolean crashingPhysics = true;
 
     
     public RigidBody(BoxCollider boxCollider){

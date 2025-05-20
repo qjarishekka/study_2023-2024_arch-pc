@@ -1,9 +1,11 @@
-package GameAliensAttack;
+package GameAliensAttack.GameEngine;
 
 import java.util.Iterator;
 
+import GameAliensAttack.MainFrame;
+
 public class GameEngine{
-    public static Thread thread;
+    public static Thread thread = new Thread();
     public static int counter = 0;
     public static boolean playing = true;
     public static Engine engine = new Engine();
@@ -17,7 +19,7 @@ public class GameEngine{
 
             while (playing) {
                 
-
+                if(MonoBehavior.objectInitialized){
                 Iterator<BoxCollider>   boxColliderInterator = BoxCollider.boxColliderCollection.iterator();
                 Iterator<MonoBehavior>  monoBehaviorIterator = MonoBehavior.monoBehaviorsCollection.iterator();
                 Iterator<Animator>      animatorIterator = Animator.animatorsCollection.iterator();
@@ -28,14 +30,11 @@ public class GameEngine{
                     temporalBoxCollider = boxColliderInterator.next();
                     temporalBoxCollider.refresBoxCollider();
                 }
-
-                MonoBehavior temporalMonoBehavior;
+                MonoBehavior temporalMonoBehavior;                
                 while (monoBehaviorIterator.hasNext()) {
                     temporalMonoBehavior = monoBehaviorIterator.next();
                     temporalMonoBehavior.update();
                 }
-
-                
                 Animator temporalAnimator;
                 while(animatorIterator.hasNext()){
                     temporalAnimator = animatorIterator.next();
@@ -50,6 +49,7 @@ public class GameEngine{
 
                 MainFrame.proxy.repaint();
                 MainFrame.proxy.requestFocus();
+                }
             }
         }
     }
@@ -63,11 +63,11 @@ public class GameEngine{
     }
 
     static public void pause(){
-
         try{
+            thread.interrupt();
             playing = false;
         }catch(Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

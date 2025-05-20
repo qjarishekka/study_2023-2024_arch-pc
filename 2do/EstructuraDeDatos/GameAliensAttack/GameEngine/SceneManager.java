@@ -1,12 +1,15 @@
-package GameAliensAttack;
+package GameAliensAttack.GameEngine;
 
-
+import GameAliensAttack.MainFrame;
+import GameAliensAttack.Panels.GamePanel;
+import GameAliensAttack.Panels.MenuPanel;
+import GameAliensAttack.Panels.PausePanel;
 
 public class SceneManager {
 
-    GamePanel gamePanel;
-    MenuPanel menuPanel;
-    PausePanel pausePanel;
+    public GamePanel gamePanel;
+    public MenuPanel menuPanel;
+    public PausePanel pausePanel;
 
 
     public SceneManager(){

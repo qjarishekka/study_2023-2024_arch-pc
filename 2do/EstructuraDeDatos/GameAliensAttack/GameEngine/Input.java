@@ -1,4 +1,4 @@
-package GameAliensAttack;
+package GameAliensAttack.GameEngine;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -7,11 +7,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import GameAliensAttack.MainFrame;
+import GameAliensAttack.Entities.Bullet;
+import GameAliensAttack.Entities.Player;
+
 public class Input implements MouseListener,MouseMotionListener , KeyListener{
 
-    static double horizontal= 0;
-    static double vertical = 0;
-    static Point cursor  = new Point(0,0);
+    static public double horizontal= 0;
+    static public double vertical = 0;
+    static public Point cursor  = new Point(0,0);
+    public static boolean mouseClicked = false;
+    boolean clicked = false;
 
     int a = 0;
     int d = 0;
@@ -128,7 +134,11 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
     
 
     @Override
-    public void mouseClicked(MouseEvent e) { }
+    public void mouseClicked(MouseEvent e) {
+        mouseClicked = true;
+        //Bullet bullet = new Bullet();
+        
+     }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
@@ -148,5 +158,17 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
         vertical = w + s;
 
     }
+
+    public static boolean trigger(){
+
+        if(mouseClicked){
+            mouseClicked = false;
+            return true;
+        }
+
+        return false;
+        
+    }
+
     
 }

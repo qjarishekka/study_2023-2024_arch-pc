@@ -1,4 +1,4 @@
-package GameAliensAttack;
+package GameAliensAttack.Panels;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
+import GameAliensAttack.MainFrame;
+import GameAliensAttack.GameEngine.SceneManager;
 import GameAliensAttack.src.fonts.CustomFonts;
 
 public class MenuPanel extends JPanel {

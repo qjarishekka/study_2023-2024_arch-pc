@@ -1,10 +1,14 @@
-package GameAliensAttack;
+package GameAliensAttack.Panels;
 
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import GameAliensAttack.MainFrame;
+import GameAliensAttack.Entities.Enemy;
+import GameAliensAttack.Entities.Player;
 import GameAliensAttack.src.fonts.CustomFonts;
 
 public class GamePanel extends JPanel {

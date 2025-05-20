@@ -5,12 +5,13 @@ import javax.swing.JFrame;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import GameAliensAttack.GameEngine.*;
 
 public class MainFrame extends JFrame {
 
     public static int width , height;
     public static final Image backgroundImage = new ImageIcon("src//backGround.png").getImage();
-    SceneManager sceneManager;
+    public SceneManager sceneManager;
     GameEngine gameEngine;
     Input input = new Input();
     public static MainFrame proxy;

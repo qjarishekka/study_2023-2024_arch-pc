@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import GameAliensAttack.MenuPanel;
+import GameAliensAttack.Panels.MenuPanel;
 import juegoTarea.src.fonts.CustomFonts;
 
 

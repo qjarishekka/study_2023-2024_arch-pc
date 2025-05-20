@@ -1,4 +1,4 @@
-package GameAliensAttack;
+package GameAliensAttack.Panels;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import GameAliensAttack.MainFrame;
+import GameAliensAttack.GameEngine.GameEngine;
+import GameAliensAttack.GameEngine.SceneManager;
 import GameAliensAttack.src.fonts.CustomFonts;
 
 public class PausePanel extends JPanel {
@@ -25,6 +28,7 @@ public class PausePanel extends JPanel {
         continueButton.setBounds((getWidth()/2) - (continueButtonWidth/2)  ,(getHeight()/2) - (continueButtonHeight/2),continueButtonWidth,continueButtonHeight);
         continueButton.setFont(  new CustomFonts().font(70) );
         continueButton.setOpaque(false);
+        continueButton.setBackground(null);
         continueButton.setContentAreaFilled(false);
         continueButton.setBorderPainted(false);
         continueButton.setForeground(Color.green);
@@ -45,16 +49,15 @@ public class PausePanel extends JPanel {
         exitButton.setBorderPainted(false);
         exitButton.setForeground(Color.green);
         exitButton.addActionListener((ActionEvent e )->{
-            System.gc();
+            //System.gc();
             MainFrame.proxy.dispose();
             System.exit(128);
 
         });
 
-
         add(exitButton);
         add(continueButton);
-        repaint();
+        //repaint();
 
 
     }
