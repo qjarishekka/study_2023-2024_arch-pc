@@ -46,8 +46,6 @@ public class GameEngine{
                 while(rigidBodyIterator.hasNext()){
                     temporalRigidBody = rigidBodyIterator.next();
                     temporalRigidBody.Update();
-
-
                 }
 
                 MainFrame.proxy.repaint();
