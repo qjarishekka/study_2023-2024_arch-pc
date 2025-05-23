@@ -6,7 +6,6 @@ from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 
 class LinearRegression:
 
-
     def __init__(self, x , y , method = "analytic" , alpha = 0.01, nits = 1000):
         self.method = method
 
@@ -78,7 +77,7 @@ class PolinomialRegression:
         self.X_poly = x
         #metodo de gradiente
         if method == "gradient":
-            #guaramos la forma
+            #guardamos la forma
             n_s, n_f = self.X_poly.shape
             #creamos una matriz inicial de ceros
             w = np.zeros(n_f)
@@ -127,11 +126,11 @@ x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.25, shuffl
 scaler = StandardScaler()
 x_train_scaled = scaler.fit_transform(x_train)
 
-# Aplicar expansión polinómica externa (grado 3)
+# Aplicar expansión polinómica
 poly = PolynomialFeatures(degree=3, include_bias=False)
 x_train_poly = poly.fit_transform(x_train_scaled)
 
-
+#Entrenar model lineal
 rlAnalitic = LinearRegression(x=x_train_poly , y=y_train)
 rlGradient = LinearRegression(x=x_train_poly, y=y_train, method="gradient")
 
@@ -150,8 +149,6 @@ Y2 = rlGradient.predict(X1_poly)
 Y3 = prAnalitic.predict(X1_poly)
 Y4 = prGradient.predict(X1_poly)
 
-
-# Gráfico
 plt.scatter(x_train, y_train, color='blue', label='Datos')
 plt.plot(X1, Y1, 'b', label='Lineal Analitic')
 plt.plot(X1, Y2, 'y', label='Lineal Gradient')
