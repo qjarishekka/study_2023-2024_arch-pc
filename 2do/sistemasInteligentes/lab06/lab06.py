@@ -81,6 +81,9 @@ classifier = Classification(x_train, y_train)
 classifier.predict(x_test, y_test)
 
 # Mostrar resultados
+print("predictions euclidean: ", classifier.y_pred_euclidean)
+print("predictions mahalanobis: ", classifier.y_pred_mahalanobis)
+
 print("Accuracy Euclidean:", classifier.accuracy_euclidean)
 print("Confusion Matrix Euclidean:\n", classifier.confusion_matrix_euclidean)
 
