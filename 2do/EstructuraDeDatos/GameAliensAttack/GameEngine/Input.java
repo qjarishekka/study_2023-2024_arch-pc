@@ -33,6 +33,7 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
             case 'a' :
                 a = -1;
                     //player.moving(-1, 0);
+                    
                 break;
             case 'd':
                 d = 1;

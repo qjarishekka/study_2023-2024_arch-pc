@@ -18,23 +18,24 @@ public class GameEngine{
 
 
             while (playing) {
-                
-                if(MonoBehavior.objectInitialized){
-                Iterator<BoxCollider>   boxColliderInterator = BoxCollider.boxColliderCollection.iterator();
+
+                Iterator<BoxCollider>   boxColliderIterator = BoxCollider.boxColliderCollection.iterator();
                 Iterator<MonoBehavior>  monoBehaviorIterator = MonoBehavior.monoBehaviorsCollection.iterator();
                 Iterator<Animator>      animatorIterator = Animator.animatorsCollection.iterator();
                 Iterator<RigidBody>     rigidBodyIterator = RigidBody.rigidBodiesCollection.iterator();
 
                 BoxCollider temporalBoxCollider;
-                while(boxColliderInterator.hasNext()){
-                    temporalBoxCollider = boxColliderInterator.next();
+                while(boxColliderIterator.hasNext()){
+                    temporalBoxCollider = boxColliderIterator.next();
                     temporalBoxCollider.refresBoxCollider();
                 }
                 MonoBehavior temporalMonoBehavior;                
                 while (monoBehaviorIterator.hasNext()) {
                     temporalMonoBehavior = monoBehaviorIterator.next();
-                    temporalMonoBehavior.update();
+                    if(MonoBehavior.objectInitialized)
+                        temporalMonoBehavior.update();
                 }
+                
                 Animator temporalAnimator;
                 while(animatorIterator.hasNext()){
                     temporalAnimator = animatorIterator.next();
@@ -47,12 +48,20 @@ public class GameEngine{
                     temporalRigidBody.Update();
                 }
 
+                MonoBehavior.monoBehaviorsCollection.addAll(MonoBehavior.monoBehaviorsBuffer);
+                Animator.animatorsCollection.addAll(Animator.animatorsBuffer);
+                BoxCollider.boxColliderCollection.addAll(BoxCollider.boxColliderBuffer);
+                RigidBody.rigidBodiesCollection.addAll(RigidBody.rigidBodiesBuffer);
+
+
                 MainFrame.proxy.repaint();
                 MainFrame.proxy.requestFocus();
-                }
+                
+
             }
         }
     }
+
 
 
     public GameEngine(){
@@ -76,5 +85,16 @@ public class GameEngine{
         thread = new Thread(engine);
         thread.start();
 
-    }    
+    }
+
+    static public void sleep(int time){
+        try {
+            thread.sleep(time);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    
 }

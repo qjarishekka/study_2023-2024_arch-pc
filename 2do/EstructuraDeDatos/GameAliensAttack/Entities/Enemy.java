@@ -24,6 +24,7 @@ public class Enemy extends MonoBehavior {
         setBounds(500,500 , size, size);
         setIcon(new ImageIcon(animator.getIgame(0).getScaledInstance(size, size, 0)) );
         animator.play();
+        rigidBody.crashingPhysics = false;
         
 
 

@@ -9,6 +9,7 @@ import java.util.Iterator;
 public class RigidBody {
 
     public static ArrayList<RigidBody> rigidBodiesCollection = new ArrayList<>(0);
+    public static ArrayList<RigidBody> rigidBodiesBuffer = new ArrayList<>(0);
     Iterator<RigidBody> rigidBodyIterator;
 
     double velocityVector[] = {0,0};
@@ -21,7 +22,7 @@ public class RigidBody {
 
     
     public RigidBody(BoxCollider boxCollider){
-        rigidBodiesCollection.add(this);
+        rigidBodiesBuffer.add(this);
         this.boxCollider = boxCollider;
     }
 
@@ -35,6 +36,8 @@ public class RigidBody {
         rigidBodyIterator = rigidBodiesCollection.iterator();
         RigidBody temporalRigidBody;
         Point location = boxCollider.component.getLocation();
+        
+
 
         while(rigidBodyIterator.hasNext()){
             temporalRigidBody = rigidBodyIterator.next();

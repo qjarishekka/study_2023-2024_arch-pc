@@ -12,7 +12,6 @@ import GameAliensAttack.GameEngine.RigidBody;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
-import GameAliensAttack.GameEngine.Input;
 
 
 public class Player extends MonoBehavior{
@@ -36,6 +35,7 @@ public class Player extends MonoBehavior{
         setBounds( MainFrame.width/2 - playerSize/2 , MainFrame.height/2 - playerSize/2 , playerSize,playerSize);
         animator.play();
         animator.setFPS(0.1);
+        rigidBody.crashingPhysics = false;
 
     }
 
@@ -60,9 +60,11 @@ public class Player extends MonoBehavior{
         moving();
 
         if(Input.trigger()){
+
+
             Bullet bullet = new Bullet();
-            //MainFrame.proxy.sceneManager.gamePanel.add(bullet);
-            System.out.println("presionado");
+            MainFrame.proxy.sceneManager.gamePanel.add(bullet,0);
+            //System.out.println(Bullet.counter);
 
         }
 

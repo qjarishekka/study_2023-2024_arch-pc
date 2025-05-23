@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 public class Animator{
 
     public static ArrayList<Animator> animatorsCollection = new ArrayList<>(0);
+    public static ArrayList<Animator> animatorsBuffer = new ArrayList<>();
 
     BufferedImage bufferedImage[];
     int size = 1;
@@ -39,7 +40,7 @@ public class Animator{
             }catch(IOException e){}
         }
 
-        animatorsCollection.add(this);
+        animatorsBuffer.add(this);
         time = Instant.now();
     
     }
