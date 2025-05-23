@@ -5,39 +5,57 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 
 class LinearRegression:
-    #method = ""
+
+
     def __init__(self, x , y , method = "analytic" , alpha = 0.01, nits = 1000):
         self.method = method
 
+        #usando el metodo de busqueda de gradiente
         if method=="gradient" :
+            #aplanamos la matriz y para evitar problemas
             y = y.ravel()
+            #obtenemos la forma de la matrix X
             n_samples , n_features = x.shape
+            #formamos un arreglo de ceros con n componentes
             self.w = np.zeros(n_features)
+            #damos un valor inicial a B
             self.b = 0
-        
+
+            #iniciamos las interaciones
             for i in range(nits):
+                #multiplicamos las matrices y sumamos b (formula: X*w + b)
                 y_pred = x @ self.w + self.b
+                #guardamos los errores
                 error = y_pred - y
+                #calculamos la gradiente de la funcion de perdida respecto a los pesos
                 dw = (2/n_samples) * (x.T @ error)
+                #calculamos la gradiente de la funcion de perdida respecto al sesgo b
                 db = (2/n_samples) * np.sum(error)
 
+                #actualizamos los parametros con un paso de alpha en cada interaccion
                 self.w -= alpha * dw
                 self.b -= alpha*db
-
+                #imprimimos el error
                 if i % 100 == 0 :
                     loss = np.mean(error **2)
                     print("loss: ", loss)
             
-
+        #metodo analitico
         else:
             X_bias = np.hstack((np.ones((x.shape[0],1)), x))
+            #calculamos la solucion analitica para los coeficientes
+            # usando la pseudo inversa de Moore-Penrose 
+            # formulas: w = ( (X^t * X)^(-1) ) * (X^t)*y 
+            #      *se uso esta*    w = pinv(X^t * X) * (X^t) *y
+            # X_bias.T @ X_bias : genera una matriz normal
+            # .pinv() : calcula la pseudoinversa
             self.coefficients = np.linalg.pinv(X_bias.T @ X_bias) @ X_bias.T @ y
 
 
 
 
     def predict(self, x):
-
+        #calculamos la prediccion
         if self.method == "gradient":
             return x @ self.w + self.b
 
@@ -54,22 +72,37 @@ class LinearRegression:
 
 class PolinomialRegression:
     def __init__(self, x, y, method="", alpha=0.0001, nits=1000):
+        #aplanamos la matriz
         y = y.ravel()
-        self.X_poly = x
 
+        self.X_poly = x
+        #metodo de gradiente
         if method == "gradient":
+            #guaramos la forma
             n_s, n_f = self.X_poly.shape
+            #creamos una matriz inicial de ceros
             w = np.zeros(n_f)
+            #interacciones
             for epoch in range(nits):
+                #multiplicamos las matrices x y w
                 y_pred = self.X_poly @ w
+                #calculamos el error
                 error = y_pred - y
+                #calculamos la gradiente
                 grad = 2 * self.X_poly.T @ error / n_s
+                #actualizamos los pesos
                 w -= alpha * grad
+                #imprimimios los pesos
                 if epoch % 100 == 0:
                     loss = np.mean(error ** 2)
                     print(f"Epoch {epoch} - Loss: {loss:.4f}")
             self.coefficients = w
+        #metodo analitico
         else:
+            #self.X_poly.T @ self.X_poly : calculamos la matriz de correlacion entre las caracteristicas polinomicas
+            #.pinv: calulamos la psudoinversa
+            # @ self.X_poly.T @ y: terminamos de hallar 
+
             self.coefficients = np.linalg.pinv(self.X_poly.T @ self.X_poly) @ self.X_poly.T @ y
 
     def predict(self, x):
