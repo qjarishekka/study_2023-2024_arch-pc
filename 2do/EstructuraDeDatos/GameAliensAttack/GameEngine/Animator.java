@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -14,7 +14,9 @@ import javax.swing.ImageIcon;
 public class Animator{
 
     public static ArrayList<Animator> animatorsCollection = new ArrayList<>(0);
-    public static ArrayList<Animator> animatorsBuffer = new ArrayList<>();
+    //public static List<Animator> animatorsCollection = Collections.synchronizedList(new ArrayList<Animator>());
+    public static List<Animator> toAddBuffer = Collections.synchronizedList(new ArrayList<>());
+    public static List<Animator> toRemoveBuffer = Collections.synchronizedList(new ArrayList<>());
 
     BufferedImage bufferedImage[];
     int size = 1;
@@ -39,10 +41,18 @@ public class Animator{
                 bufferedImage[i] = ImageIO.read(files[i]);
             }catch(IOException e){}
         }
-
-        animatorsBuffer.add(this);
+        //animatorsCollection.add(this);
+        safeAdd(this);
         time = Instant.now();
     
+    }
+
+    public static void safeAdd(Animator obj) {
+        toAddBuffer.add(obj);
+    }
+
+    public static void safeRemove(Animator obj) {
+        toRemoveBuffer.add(obj);
     }
 
 
@@ -55,7 +65,6 @@ public class Animator{
 
     public Image getIgame(int index){
         if(index< bufferedImage.length) return bufferedImage[index].getScaledInstance(size, size, 0);
-
         return bufferedImage[0];
     }
 

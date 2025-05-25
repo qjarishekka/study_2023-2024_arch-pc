@@ -5,11 +5,15 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.List;
+import java.util.Collections;
 public class RigidBody {
 
     public static ArrayList<RigidBody> rigidBodiesCollection = new ArrayList<>(0);
-    public static ArrayList<RigidBody> rigidBodiesBuffer = new ArrayList<>(0);
+    //public static List<RigidBody> rigidBodiesCollection = Collections.synchronizedList(new ArrayList<RigidBody>(0));
+    public static List<RigidBody> toAddBuffer = Collections.synchronizedList(new ArrayList<>());
+    public static List<RigidBody> toRemoveBuffer = Collections.synchronizedList(new ArrayList<>());
+    
     Iterator<RigidBody> rigidBodyIterator;
 
     double velocityVector[] = {0,0};
@@ -22,7 +26,8 @@ public class RigidBody {
 
     
     public RigidBody(BoxCollider boxCollider){
-        rigidBodiesBuffer.add(this);
+        safeAdd(this);
+        //rigidBodiesCollection.add(this);
         this.boxCollider = boxCollider;
     }
 
@@ -31,38 +36,37 @@ public class RigidBody {
         accelerationVector[1] = y/mass;
     }
 
+    public static void safeAdd(RigidBody obj) {
+        toAddBuffer.add(obj);
+    }
+
+    public static void safeRemove(RigidBody obj) {
+        toRemoveBuffer.add(obj);
+    }
+
     private void crash(){
+        for (RigidBody other : rigidBodiesCollection) {
+            if (other == this || !other.crashingPhysics) continue;
 
-        rigidBodyIterator = rigidBodiesCollection.iterator();
-        RigidBody temporalRigidBody;
-        Point location = boxCollider.component.getLocation();
-        
+            if (boxCollider.isColliding(other.boxCollider)) {
+                Point location = boxCollider.component.getLocation();
 
+                double deltaX = other.boxCollider.component.getBounds().getCenterX() - boxCollider.component.getBounds().getCenterX();
+                double deltaY = other.boxCollider.component.getBounds().getCenterY() - boxCollider.component.getBounds().getCenterY();
 
-        while(rigidBodyIterator.hasNext()){
-            temporalRigidBody = rigidBodyIterator.next();
-            if(temporalRigidBody.boxCollider.isColliding(boxCollider) && temporalRigidBody.crashingPhysics ){
-                if(Math.abs(temporalRigidBody.boxCollider.component.getBounds().getCenterX() - boxCollider.component.getBounds().getCenterX()) > 
-                Math.abs(temporalRigidBody.boxCollider.component.getBounds().getCenterY() - boxCollider.component.getBounds().getCenterY())  ){
-                    boxCollider.component.setLocation(location.x + (int)(velocityVector[0]*-1), location.y );
-                }else{
-                     boxCollider.component.setLocation(location.x , location.y + (int)(velocityVector[1]*-1));
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    // Colisión horizontal
+                    boxCollider.component.setLocation(location.x - (int)velocityVector[0], location.y);
+                    velocityVector[0] = 0; // O rebote: velocityVector[0] *= -1;
+                } else {
+                    // Colisión vertical
+                    boxCollider.component.setLocation(location.x, location.y - (int)velocityVector[1]);
+                    velocityVector[1] = 0; // O rebote: velocityVector[1] *= -1;
                 }
-                if(Math.abs(temporalRigidBody.boxCollider.component.getBounds().getCenterX() - boxCollider.component.getBounds().getCenterX()) < 
-                Math.abs(temporalRigidBody.boxCollider.component.getBounds().getCenterY() - boxCollider.component.getBounds().getCenterY())  ){
-                    boxCollider.component.setLocation(location.x , location.y + (int)(velocityVector[1]*-1));
-                }else{
-                     boxCollider.component.setLocation(location.x + (int)(velocityVector[0]*-1), location.y );
-                }
-
             }
         }
-        
-
-        
-
-        
     }
+
 
     public void setPosition(){
         

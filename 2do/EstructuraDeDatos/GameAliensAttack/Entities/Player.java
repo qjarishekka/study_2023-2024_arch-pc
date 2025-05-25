@@ -8,6 +8,7 @@ import GameAliensAttack.GameEngine.BoxCollider;
 import GameAliensAttack.GameEngine.Input;
 import GameAliensAttack.GameEngine.MonoBehavior;
 import GameAliensAttack.GameEngine.RigidBody;
+import GameAliensAttack.GameEngine.SceneManager;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,24 +25,27 @@ public class Player extends MonoBehavior{
     RigidBody rigidBody = new RigidBody(boxCollider);
 
     double angle;
-    int lifePoints = 3;
-    
+    int lifePoints = 3;    
     double velocity = 4;
+    boolean canShoot = true;
 
+    public int life = 5;
 
     public Player(){
         proxy = this;
         setIcon(new ImageIcon(animator.getIgame(0)));
         setBounds( MainFrame.width/2 - playerSize/2 , MainFrame.height/2 - playerSize/2 , playerSize,playerSize);
+    
         animator.play();
         animator.setFPS(0.1);
-        rigidBody.crashingPhysics = false;
+        rigidBody.crashingPhysics = true;
+        setTag("Player");
 
     }
 
-    public void moving (){
-        
-        rigidBody.setVelocity(Input.horizontal * velocity,Input.vertical * velocity);
+    public void moving(){
+
+        rigidBody.setVelocity(Input.getHorizontalAxis() * velocity,Input.getVerticalAxis() * velocity);
         
     }
 
@@ -59,21 +63,35 @@ public class Player extends MonoBehavior{
         changeAngle();
         moving();
 
-        if(Input.trigger()){
 
 
+        if(Input.triggerMouseClick() && canShoot){
             Bullet bullet = new Bullet();
-            MainFrame.proxy.sceneManager.gamePanel.add(bullet,0);
-            //System.out.println(Bullet.counter);
-
+            SceneManager.addToSceneByTag(bullet, "Game");
+            canShoot = false;
         }
+
+        //System.out.println(Input.getCursorPosition());
+
+        if(!Input.isMousePressed()){
+            canShoot = true;
+        }
+
+        loosingLife();
 
     }
 
     private void changeAngle(){
-        int oppositeLeg = (int)(Input.cursor.getX() - getBounds().getCenterX());
-        int adjacentLeg = (int)(getBounds().getCenterY() - Input.cursor.getY());
+        int oppositeLeg = (int)(Input.getCursorPosition().getX() - getBounds().getCenterX());
+        int adjacentLeg = (int)(getBounds().getCenterY() - Input.getCursorPosition().getY());
         angle = Math.atan2(oppositeLeg, adjacentLeg);
+    }
+
+    private void loosingLife(){
+        if(boxCollider.isCollidingByTag("Enemy")){
+            life--;
+            System.out.println(life);
+        }
     }
 
 }

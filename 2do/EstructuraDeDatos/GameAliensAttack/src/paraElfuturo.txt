@@ -1,0 +1,3 @@
+﻿usar CardLayout
+mejorar fisicas
+usar JLayeredPane

@@ -1,18 +1,21 @@
 package GameAliensAttack.GameEngine;
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class BoxCollider {
     
     int x, y , dx , dy;
     MonoBehavior component;
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static ArrayList<BoxCollider> boxColliderCollection = new ArrayList(1);
-    public static ArrayList<BoxCollider> boxColliderBuffer = new ArrayList(1);
+    //@SuppressWarnings({ "rawtypes", "unchecked" })
+    public static ArrayList<BoxCollider> boxColliderCollection = new ArrayList<>();
+    //public static List<BoxCollider> boxColliderCollection = Collections.synchronizedList(new ArrayList<BoxCollider>(1));
+    public static List<BoxCollider> toAddBuffer = Collections.synchronizedList(new ArrayList<>());
+    public static List<BoxCollider> toRemoveBuffer = Collections.synchronizedList(new ArrayList<>());
     
     
     public BoxCollider(MonoBehavior component){
-        boxColliderBuffer.add(this);
+        safeAdd(this);
+        //boxColliderCollection.add(this);
         this.component = component;
         this.component.boxCollider = this;
         x = component.getX();
@@ -28,54 +31,40 @@ public class BoxCollider {
         dx = component.getWidth() + x;
         dy = component.getHeight() + y;
     }
-    
-    public Boolean isColliding(BoxCollider anotherCollider ){
 
-        double x = component.getBounds().getCenterX();
-        double y = component.getBounds().getCenterY();
-        double dx = anotherCollider.component.getBounds().getCenterX() - x;
-        double dy = anotherCollider.component.getBounds().getCenterY() - y;
+    public static void safeAdd(BoxCollider obj) {
+        toAddBuffer.add(obj);
+    }
 
-        double dinstance = Math.sqrt(dx * dx + dy*dy);
-
-        if(dinstance < component.getBounds().height*2 ){
-
-
-            if(   x < anotherCollider.x && anotherCollider.x < dx    &&     y < anotherCollider.y && anotherCollider.y < dy  ){
-                return true;
-            }else if( x  < anotherCollider.dx && anotherCollider.dx < dx &&   y < anotherCollider.y && anotherCollider.y < dy ){
-                return true;
-            }else if(x < anotherCollider.x && anotherCollider.x < dx &&   y < anotherCollider.dy && anotherCollider.dy < dy){
-                return true;
-            }else if( x < anotherCollider.dx && anotherCollider.dx < dx && y < anotherCollider.dy && anotherCollider.dy < dy  ){
-                return true;
-            }else if( anotherCollider.x < x && x < anotherCollider.dx && anotherCollider.y < y && y < anotherCollider.dy && anotherCollider.x < dx && dx < anotherCollider.dx && anotherCollider.y < dy && dy < anotherCollider.dy){
-                return true;
-            }else if( x < anotherCollider.x && anotherCollider.x < dx && y < anotherCollider.y && anotherCollider.y <dy && x < anotherCollider.dx && anotherCollider.dx < dx && y < anotherCollider.dy && anotherCollider.dy < dy  ){
-                return true;
-            }
-
-        }
-
-        
-            return false;
-
-        /* if(   x <= anotherCollider.x && anotherCollider.x <= dx    &&     y <= anotherCollider.y && anotherCollider.y <= dy  ){
-            return true;
-        }else if( x  <= anotherCollider.dx && anotherCollider.dx <= dx &&   y <= anotherCollider.y && anotherCollider.y <= dy ){
-            return true;
-        }else if(x <= anotherCollider.x && anotherCollider.x <= dx &&   y <= anotherCollider.dy && anotherCollider.dy <= dy){
-            return true;
-        }else if( x <= anotherCollider.dx && anotherCollider.dx <= dx && y <= anotherCollider.dy && anotherCollider.dy <= dy  ){
-            return true;
-        }else if( anotherCollider.x <= x && x <= anotherCollider.dx && anotherCollider.y <= y && y <= anotherCollider.dy && anotherCollider.x <= dx && dx <= anotherCollider.dx && anotherCollider.y <= dy && dy <= anotherCollider.dy){
-            return true;
-        }else if( x <= anotherCollider.x && anotherCollider.x <= dx && y <= anotherCollider.y && anotherCollider.y <=dy && x <= anotherCollider.dx && anotherCollider.dx <= dx && y <= anotherCollider.dy && anotherCollider.dy <= dy  ){
-            return true;
-        }     */
-
+    public static void safeRemove(BoxCollider obj) {
+        toRemoveBuffer.add(obj);
     }
     
+
+
+    public boolean isColliding(BoxCollider other) {
+        // Asegúrate de que las posiciones estén actualizadas
+        //this.refresBoxCollider();
+        //other.refresBoxCollider();
+
+        // Verificar si hay superposición en ambos ejes
+        boolean collisionX = this.x < other.dx && this.dx > other.x;
+        boolean collisionY = this.y < other.dy && this.dy > other.y;
+
+        return collisionX && collisionY;
+    }
+
+
+    public boolean isCollidingByTag(String tag){
+        synchronized(boxColliderCollection){
+            for(BoxCollider bc : boxColliderCollection){
+                if(bc.component.tag.matches(tag)){
+                    return isColliding(bc);
+                }
+            }
+        }
+        return false;
+    }
 
 
 }

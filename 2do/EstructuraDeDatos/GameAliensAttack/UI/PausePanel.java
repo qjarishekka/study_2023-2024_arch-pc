@@ -1,4 +1,4 @@
-package GameAliensAttack.Panels;
+package GameAliensAttack.UI;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,18 +8,20 @@ import javax.swing.JPanel;
 
 import GameAliensAttack.MainFrame;
 import GameAliensAttack.GameEngine.GameEngine;
-import GameAliensAttack.GameEngine.SceneManager;
+import GameAliensAttack.GameEngine.UIManager;
+import GameAliensAttack.GameEngine.UIPanel;
 import GameAliensAttack.src.fonts.CustomFonts;
 
-public class PausePanel extends JPanel {
+public class PausePanel extends UIPanel {
 
-    public PausePanel(SceneManager sceneManager){
+    public PausePanel(){
 
         //GameEngine.pause();
 
         setLayout(null);
         setBounds(0, 0, MainFrame.width, MainFrame.height);
-        setBackground(new Color(0, 0, 0, 100));
+        setBackground(new Color(0, 0, 0, 100));   
+        setTag("Pause");
 
         //Continue button
         int continueButtonWidth = getWidth()*30/100;
@@ -33,7 +35,7 @@ public class PausePanel extends JPanel {
         continueButton.setBorderPainted(false);
         continueButton.setForeground(Color.green);
         continueButton.addActionListener((ActionEvent e )->{
-            sceneManager.setScene("Game");
+            UIManager.hideUIPanel("Pause");
             GameEngine.play();
         });
         

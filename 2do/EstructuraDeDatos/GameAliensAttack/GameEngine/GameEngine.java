@@ -1,100 +1,89 @@
 package GameAliensAttack.GameEngine;
 
-import java.util.Iterator;
-
 import GameAliensAttack.MainFrame;
 
-public class GameEngine{
+public class GameEngine {
     public static Thread thread = new Thread();
-    public static int counter = 0;
     public static boolean playing = true;
     public static Engine engine = new Engine();
 
-
-    
-    public static class Engine implements Runnable{
+    public static class Engine implements Runnable {
         @Override
         public void run() {
+            while (true) {
+                if (playing) {
+                    synchronized (BoxCollider.boxColliderCollection) {
+                        for (BoxCollider bc : BoxCollider.boxColliderCollection) {
+                            bc.refresBoxCollider();
+                        }
+                        BoxCollider.boxColliderCollection.addAll(BoxCollider.toAddBuffer);
+                        BoxCollider.toAddBuffer.clear();
+                        BoxCollider.boxColliderCollection.removeAll(BoxCollider.toRemoveBuffer);
+                        BoxCollider.toRemoveBuffer.clear();
+                    }
 
+                    synchronized (Animator.animatorsCollection) {
+                        for (Animator ani : Animator.animatorsCollection) {
+                            ani.animate();
+                        }
+                        Animator.animatorsCollection.addAll(Animator.toAddBuffer);
+                        Animator.toAddBuffer.clear();
+                        Animator.animatorsCollection.removeAll(Animator.toRemoveBuffer);
+                        Animator.toRemoveBuffer.clear();
+                    }
 
-            while (playing) {
+                    synchronized (RigidBody.rigidBodiesCollection) {
+                        for (RigidBody rb : RigidBody.rigidBodiesCollection) {
+                            rb.Update();
+                        }
+                        RigidBody.rigidBodiesCollection.addAll(RigidBody.toAddBuffer);
+                        RigidBody.toAddBuffer.clear();
+                        RigidBody.rigidBodiesCollection.removeAll(RigidBody.toRemoveBuffer);
+                        RigidBody.toRemoveBuffer.clear();
+                    }
 
-                Iterator<BoxCollider>   boxColliderIterator = BoxCollider.boxColliderCollection.iterator();
-                Iterator<MonoBehavior>  monoBehaviorIterator = MonoBehavior.monoBehaviorsCollection.iterator();
-                Iterator<Animator>      animatorIterator = Animator.animatorsCollection.iterator();
-                Iterator<RigidBody>     rigidBodyIterator = RigidBody.rigidBodiesCollection.iterator();
-
-                BoxCollider temporalBoxCollider;
-                while(boxColliderIterator.hasNext()){
-                    temporalBoxCollider = boxColliderIterator.next();
-                    temporalBoxCollider.refresBoxCollider();
+                    synchronized (MonoBehavior.monoBehaviorsCollection) {
+                        for (MonoBehavior mb : MonoBehavior.monoBehaviorsCollection) {
+                            mb.update();
+                        }
+                        MonoBehavior.monoBehaviorsCollection.addAll(MonoBehavior.toAddBuffer);
+                        MonoBehavior.toAddBuffer.clear();
+                        MonoBehavior.monoBehaviorsCollection.removeAll(MonoBehavior.toRemoveBuffer);
+                        MonoBehavior.toRemoveBuffer.clear();
+                    }
                 }
-                MonoBehavior temporalMonoBehavior;                
-                while (monoBehaviorIterator.hasNext()) {
-                    temporalMonoBehavior = monoBehaviorIterator.next();
-                    if(MonoBehavior.objectInitialized)
-                        temporalMonoBehavior.update();
-                }
-                
-                Animator temporalAnimator;
-                while(animatorIterator.hasNext()){
-                    temporalAnimator = animatorIterator.next();
-                    temporalAnimator.animate();
-                }
 
-                RigidBody temporalRigidBody;
-                while(rigidBodyIterator.hasNext()){
-                    temporalRigidBody = rigidBodyIterator.next();
-                    temporalRigidBody.Update();
-                }
-
-                MonoBehavior.monoBehaviorsCollection.addAll(MonoBehavior.monoBehaviorsBuffer);
-                Animator.animatorsCollection.addAll(Animator.animatorsBuffer);
-                BoxCollider.boxColliderCollection.addAll(BoxCollider.boxColliderBuffer);
-                RigidBody.rigidBodiesCollection.addAll(RigidBody.rigidBodiesBuffer);
-
-
+                // Esto se ejecuta siempre, esté pausado o no
+                Input.endFrame();
                 MainFrame.proxy.repaint();
                 MainFrame.proxy.requestFocus();
-                
 
+                /* try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    break;
+                } */
             }
         }
     }
 
-
-
-    public GameEngine(){
-        
+    public GameEngine() {
         thread = new Thread(engine);
         thread.start();
-
     }
 
-    static public void pause(){
-        try{
-            thread.interrupt();
-            playing = false;
-        }catch(Exception e){
-            //e.printStackTrace();
-        }
+    public static void pause() {
+        playing = false;
     }
 
-    static public void play(){
+    public static void play() {
         playing = true;
-        thread = new Thread(engine);
-        thread.start();
-
     }
 
-    static public void sleep(int time){
-        try {
-            thread.sleep(time);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public static void removeObject(MonoBehavior object) {
+        MonoBehavior.safeRemove(object);
+        RigidBody.safeRemove(object.rigidBody);
+        Animator.safeRemove(object.animator);
+        BoxCollider.safeRemove(object.boxCollider);
     }
-    
-    
 }

@@ -1,4 +1,4 @@
-package GameAliensAttack.Panels;
+package GameAliensAttack.Scenes;
 
 import java.awt.Color;
 
@@ -9,9 +9,10 @@ import javax.swing.JPanel;
 import GameAliensAttack.MainFrame;
 import GameAliensAttack.Entities.Enemy;
 import GameAliensAttack.Entities.Player;
+import GameAliensAttack.GameEngine.Scene;
 import GameAliensAttack.src.fonts.CustomFonts;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends Scene {
 
     
 
@@ -19,6 +20,7 @@ public class GamePanel extends JPanel {
 
         setLayout(null);
         setBounds(0,0, MainFrame.width, MainFrame.height);
+        setTag("Game");
 
         JLabel currentPoints = new JLabel();
         currentPoints.setBounds(MainFrame.width/2 - MainFrame.width*7/100, 10, MainFrame.width*15/100, MainFrame.width*15/100);

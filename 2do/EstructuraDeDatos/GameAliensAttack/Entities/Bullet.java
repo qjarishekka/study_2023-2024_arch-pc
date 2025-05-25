@@ -1,50 +1,69 @@
 package GameAliensAttack.Entities;
 
 import java.awt.Image;
+import java.time.Duration;
+import java.time.Instant;
 
 import javax.swing.ImageIcon;
 
+import GameAliensAttack.GameManager;
 import GameAliensAttack.MainFrame;
 import GameAliensAttack.GameEngine.*;
 
-public class Bullet extends MonoBehavior{
+public class Bullet extends MonoBehavior {
     String path = "src//bullet.png";
     Image bulletImage = new ImageIcon(path).getImage();
-    BoxCollider boxCollider = new BoxCollider(this);
-    RigidBody rigidBody = new RigidBody(boxCollider);
     int size = (int)(MainFrame.height*0.05);
-    
+    static int counter = 0;
+    int Name = 0;
 
     double angle = 0;
     double x = 0;
     double y = 0;
     double dx = 0;
     double dy = 0;
-    //public static int counter = 0;
+    double r = 0;
+    double chronometer = 0;
+    Instant time0 = Instant.now(); 
 
-    public Bullet(){
+    public Bullet() {
+        x = Player.proxy.getBounds().getCenterX() - size/2;
+        y = Player.proxy.getBounds().getCenterY() - size/2;
+        double radius = 1;
+        dx = Input.getCursorPosition().getX() - Player.proxy.getBounds().getCenterX();
+        dy = Input.getCursorPosition().getY() - Player.proxy.getBounds().getCenterY();
 
-        x = Player.proxy.getBounds().getCenterX();
-        y = Player.proxy.getBounds().getCenterY();
-        
+        double d = Math.sqrt(dx*dx + dy*dy);
+        r = radius / d;
 
-        setBounds((int)x , (int)y , size ,size);
+        setBounds((int)x , (int)y , size , size);
         setIcon(new ImageIcon(bulletImage.getScaledInstance(size, size, 0)));
-        rigidBody.crashingPhysics = false;
-        //counter++;
+        setTag("Bullet");
+
+        this.boxCollider = new BoxCollider(this);
+        //this.rigidBody = new RigidBody(this.boxCollider);
     }
 
-    void move(){
+    void move() {
+        x = x + (dx * r);
+        y = y + (dy * r);
+        setLocation((int)x, (int)y);
+    }
 
-        rigidBody.setVelocity(dx, dy);
-
+    void autoKill() {
+        chronometer = Duration.between(time0, Instant.now()).getSeconds();
+        if (chronometer >= 1) {
+            SceneManager.removeFromSceneByTag(this, "Game");
+            //System.out.println(MonoBehavior.toRemoveBuffer.size());
+        }
     }
 
     @Override
     public void update() {
         move();
+        autoKill();
+        if (boxCollider != null && boxCollider.isCollidingByTag("Enemy")) {
+            SceneManager.removeFromSceneByTag(this, "Game");
+        }
     }
-    
-
-
 }

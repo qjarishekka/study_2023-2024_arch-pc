@@ -1,145 +1,93 @@
 package GameAliensAttack.GameEngine;
 
 import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import GameAliensAttack.MainFrame;
-import GameAliensAttack.Entities.Bullet;
-import GameAliensAttack.Entities.Player;
+public class Input implements KeyListener, MouseListener, MouseMotionListener {
 
-public class Input implements MouseListener,MouseMotionListener , KeyListener{
+    private static final Set<Integer> pressedKeys = new HashSet<>();
+    private static final Set<Integer> justPressedKeys = new HashSet<>();
+    private static boolean mousePressed = false;
+    private static boolean mouseClicked = false;
+    private static Point cursor = new Point(0, 0);
 
-    static public double horizontal= 0;
-    static public double vertical = 0;
-    static public Point cursor  = new Point(0,0);
-    public static boolean mouseClicked = false;
-    boolean clicked = false;
+    public static boolean isKeyPressed(int keyCode) {
+        return pressedKeys.contains(keyCode);
+    }
 
-    int a = 0;
-    int d = 0;
-    int w = 0;
-    int s = 0;
-    
+    public static boolean isKeyJustPressed(int keyCode) {
+        return justPressedKeys.contains(keyCode);
+    }
+
+    public static void endFrame() {
+        justPressedKeys.clear();
+        mouseClicked = false;
+    }
+
+    public static boolean isMousePressed() {
+        return mousePressed;
+    }
+
+    public static boolean triggerMouseClick() {
+        if (mouseClicked) {
+            return true;
+        }
+        return false;
+    }
+
+    public static Point getCursorPosition() {
+        return new Point(cursor);
+    }
+
+    public static double getHorizontalAxis() {
+        int axis = 0;
+        if (isKeyPressed(KeyEvent.VK_A)) axis -= 1;
+        if (isKeyPressed(KeyEvent.VK_D)) axis += 1;
+        return axis;
+    }
+
+    public static double getVerticalAxis() {
+        int axis = 0;
+        if (isKeyPressed(KeyEvent.VK_W)) axis -= 1;
+        if (isKeyPressed(KeyEvent.VK_S)) axis += 1;
+        return axis;
+    }
 
 
     @Override
     public void keyPressed(KeyEvent e) {
-
-        switch (e.getKeyChar()) {
-            case 'a' :
-                a = -1;
-                    //player.moving(-1, 0);
-                    
-                break;
-            case 'd':
-                d = 1;
-                    //player.moving(1, 0);
-                break;
-            case 'w':
-                w = -1;
-                    //player.moving(0, -1);
-                break;
-            case 's':
-                s = 1;
-                    //player.moving(0, 1);
-                break;
-            case 27 : //escape  
-   
-                //mainFrame.gameOver();
-                break;
+        int code = e.getKeyCode();
+        if (!pressedKeys.contains(code)) {
+            justPressedKeys.add(code);
         }
-        refreshAxis();
+        pressedKeys.add(code);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
-                switch (e.getKeyChar()) {
-            case 'a' :
-
-                a = 0;
-                    //player.moving(-1, 0);
-                break;
-            case 'd':
-                d = 0;
-                    //player.moving(1, 0);
-                break;
-            case 'w':
-                w = 0;
-                    //player.moving(0, -1);
-                break;
-            case 's':
-                s = 0;
-                    //player.moving(0, 1);
-                break;
-            case 27 : //escape  
-                   
-            default:
-                break;
-        }
-        refreshAxis();
-       
+        pressedKeys.remove(e.getKeyCode());
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        
-        switch (e.getKeyChar()) {
-            case 'a' :
+    public void keyTyped(KeyEvent e) {}
 
-                a = -1;
-                    //player.moving(-1, 0);
-                break;
-            case 'd':
-                d = 1;
-                    //player.moving(1, 0);
-                break;
-            case 'w':
 
-                w = -1;
-                    //player.moving(0, -1);
-                break;
-            case 's':
-                s = 1;
-                    //player.moving(0, 1);
-                break;
-            case 27 : //escape  
-                //gameManager.stopPlaying();
-                MainFrame.proxy.sceneManager.setScene("Pause");
-                //System.out.println("pause");
-
-            default:
-                break;
-        }
-
-        refreshAxis();
-       
+    @Override
+    public void mousePressed(MouseEvent e) {
+        mousePressed = true;
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-        cursor.setLocation(e.getX(), e.getY());
+    public void mouseReleased(MouseEvent e) {
+        mousePressed = false;
     }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-        cursor.setLocation(e.getX(), e.getY());
-       
-    }
-
-    
 
     @Override
     public void mouseClicked(MouseEvent e) {
         mouseClicked = true;
-        //Bullet bullet = new Bullet();
-        
-     }
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
@@ -147,29 +95,15 @@ public class Input implements MouseListener,MouseMotionListener , KeyListener{
     @Override
     public void mouseExited(MouseEvent e) {}
 
+  
     @Override
-    public void mousePressed(MouseEvent e) { }
+    public void mouseMoved(MouseEvent e) {
+        cursor = e.getPoint();
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseDragged(MouseEvent e) {
+        mouseClicked = true;
+        cursor = e.getPoint();
     }
-
-    public void refreshAxis(){
-        horizontal = a + d;
-        vertical = w + s;
-
-    }
-
-    public static boolean trigger(){
-
-        if(mouseClicked){
-            mouseClicked = false;
-            return true;
-        }
-
-        return false;
-        
-    }
-
-    
 }

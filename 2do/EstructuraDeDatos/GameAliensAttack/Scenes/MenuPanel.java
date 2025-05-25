@@ -1,4 +1,4 @@
-package GameAliensAttack.Panels;
+package GameAliensAttack.Scenes;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -9,15 +9,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import GameAliensAttack.MainFrame;
+import GameAliensAttack.GameEngine.Scene;
 import GameAliensAttack.GameEngine.SceneManager;
 import GameAliensAttack.src.fonts.CustomFonts;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel extends Scene {
     
-    public MenuPanel(SceneManager sceneManager) {
+    public MenuPanel() {
 
         setLayout(null);
         setBounds(0,0, MainFrame.width, MainFrame.height);
+        setTag("Menu");
         
         JButton playButton = new JButton();
         int playButtonWidth = getWidth() * 30 / 100;
@@ -31,8 +33,9 @@ public class MenuPanel extends JPanel {
         playButton.setForeground(Color.green);
         playButton.setFocusPainted(false);
         playButton.addActionListener((ActionEvent e)->{
-            sceneManager.setScene("Game");
+            SceneManager.setScene("Game");
         });
+        
         JLabel backGround = new JLabel();
         backGround.setBounds(getBounds());
         backGround.setIcon(new ImageIcon(MainFrame.backgroundImage.getScaledInstance(getWidth(), getHeight(), 0)));
