@@ -21,12 +21,18 @@ public class SceneManager {
 
     public static void setScene(String sceneName){
 
+        
+
         for(Scene scene : Scene.scenesCollection){
+            
             if(scene.getTag().matches(sceneName)){
                 MainFrame.proxy.add(scene);
                 currentScene = scene.getTag();
             }else{
+
                 MainFrame.proxy.remove(scene);
+
+
             }
         }
 
@@ -51,11 +57,26 @@ public class SceneManager {
             if(scene.getTag().equals(sceneName)){
                 scene.remove(object);
                 GameEngine.removeObject(object);
-            }    
+            }
         }
+        
         MainFrame.proxy.revalidate();
         MainFrame.proxy.repaint();
         //System.out.println(Scene.scenesCollection.get(0).tag);
+    }
+
+    public static void removeFromSceneByTag(String objectTag){
+        for(Scene scene : Scene.scenesCollection){
+            if(scene.getTag().equals(currentScene)){
+
+                for(MonoBehavior obj : MonoBehavior.monoBehaviorsCollection)
+                if(obj.tag.equals(objectTag)){
+                    scene.remove(obj);
+                    GameEngine.removeObject(obj);
+                }
+                
+            }
+        }
     }
 
     public static Scene getSceneByTag(String nameScene){

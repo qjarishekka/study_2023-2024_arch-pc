@@ -1,6 +1,6 @@
+qjari1 : 35
+Qjari2 : 29
+hello : 28
+Yo : 26
 mimarcapersonal : 10
-beta : 4
-qjari : 3
-alfa : 3
-miyo2 : 3
-beta1 : 0
+aksl;jdf : 0

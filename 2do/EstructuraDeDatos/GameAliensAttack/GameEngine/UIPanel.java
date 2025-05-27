@@ -1,8 +1,11 @@
 ﻿package GameAliensAttack.GameEngine;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+
+import GameAliensAttack.MainFrame;
 
 public class UIPanel extends JPanel {
     public static ArrayList<UIPanel> UICollection = new ArrayList<>();
@@ -13,6 +16,9 @@ public class UIPanel extends JPanel {
         UICollection.add(this);
         counter++;
         tag = Integer.toString(counter);
+        setLayout(null);
+        setBounds(0, 0, MainFrame.width, MainFrame.height);
+        setBackground(new Color(0, 0, 0, 100));   
     
     }
 

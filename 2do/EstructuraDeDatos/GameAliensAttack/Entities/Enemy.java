@@ -2,6 +2,7 @@ package GameAliensAttack.Entities;
 
 import javax.swing.ImageIcon;
 
+import GameAliensAttack.GameManager;
 import GameAliensAttack.MainFrame;
 import GameAliensAttack.GameEngine.Animator;
 import GameAliensAttack.GameEngine.BoxCollider;
@@ -13,11 +14,12 @@ import GameAliensAttack.GameEngine.SceneManager;
 public class Enemy extends MonoBehavior {
 
     String path = "src//animations//enemyAnimation";
-    int size = (int)(MainFrame.height * 0.1);
-    int velocity = 2;
+    public static int size = (int)(MainFrame.height * 0.1);
+    int velocity = 5;
     int life = 3;
 
     MonoBehavior targetedEntity = null;
+    
 
     public Enemy() {
         // Crear animador temporal
@@ -32,7 +34,8 @@ public class Enemy extends MonoBehavior {
         this.boxCollider = new BoxCollider(this);
         this.rigidBody = new RigidBody(this.boxCollider);
 
-        rigidBody.crashingPhysics = true;
+
+        rigidBody.crashingPhysics = false;
         setTag("Enemy");
     }
 
@@ -51,22 +54,30 @@ public class Enemy extends MonoBehavior {
             rigidBody.setVelocity(-X * velocity, -Y * velocity);
         }
     }
+    public void setLifePoints(int lifePoints){
+        life = lifePoints;
+    }
 
     @Override
     public void update() {
         followEntity();
 
-        if (boxCollider.isCollidingByTag("Bullet")) {
+        if (boxCollider.isCollidingByTag("Bullet")){
             life--;
+            SceneManager.removeFromSceneByTag(boxCollider.objectHitted, "Game");
+
         }
 
         if (life <= 0) {
             SceneManager.removeFromSceneByTag(this, "Game");
+            GameManager.score++;
         }
 
-        if(boxCollider.isColliding(targetedEntity.boxCollider)){
+        if(boxCollider.isColliding(targetedEntity.boxCollider)  ){
             SceneManager.removeFromSceneByTag(this, "Game");
+
         }
+
 
     }
 }

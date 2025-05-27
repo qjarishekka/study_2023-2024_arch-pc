@@ -50,19 +50,20 @@ public class GameEngine {
                         MonoBehavior.toAddBuffer.clear();
                         MonoBehavior.monoBehaviorsCollection.removeAll(MonoBehavior.toRemoveBuffer);
                         MonoBehavior.toRemoveBuffer.clear();
-                    }
-                }
 
-                // Esto se ejecuta siempre, esté pausado o no
+                    }
+                    
+                }
+                //MainFrame.proxy.requestFocus();
                 Input.endFrame();
                 MainFrame.proxy.repaint();
-                MainFrame.proxy.requestFocus();
+                
 
-                /* try {
+                try {
                     Thread.sleep(16);
                 } catch (InterruptedException e) {
                     break;
-                } */
+                }
             }
         }
     }
@@ -86,4 +87,41 @@ public class GameEngine {
         Animator.safeRemove(object.animator);
         BoxCollider.safeRemove(object.boxCollider);
     }
+
+    public static boolean isThereObjectByTag(String tag){
+        synchronized(MonoBehavior.monoBehaviorsCollection){
+
+            for(MonoBehavior temp : MonoBehavior.monoBehaviorsCollection){
+                if(temp.tag.equals(tag)){
+                    return true;
+                }
+            }
+
+        }
+
+        return false;
+    }
+
+    public static void removeObjectsByTag(String tag){
+        for(MonoBehavior mb : MonoBehavior.monoBehaviorsCollection){
+            if(mb.tag.equals(tag)){
+                
+                RigidBody.safeRemove(mb.rigidBody);
+                Animator.safeRemove(mb.animator);
+                BoxCollider.safeRemove(mb.boxCollider);
+                MonoBehavior.safeRemove(mb);
+            }
+        }
+    }
+
+    public static void removeAll(){
+        MonoBehavior.toRemoveBuffer.addAll(MonoBehavior.monoBehaviorsCollection);
+        BoxCollider.toRemoveBuffer.addAll(BoxCollider.boxColliderCollection);
+        RigidBody.toRemoveBuffer.addAll(RigidBody.rigidBodiesCollection);
+        Animator.toRemoveBuffer.addAll(Animator.animatorsCollection);
+    }
+
+/*     public static MonoBehavior[] findObjectByTag(String ){
+
+    } */
 }

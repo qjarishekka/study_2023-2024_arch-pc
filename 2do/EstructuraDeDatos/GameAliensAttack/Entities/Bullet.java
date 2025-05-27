@@ -25,6 +25,7 @@ public class Bullet extends MonoBehavior {
     double r = 0;
     double chronometer = 0;
     Instant time0 = Instant.now(); 
+    int velocity = 20;
 
     public Bullet() {
         x = Player.proxy.getBounds().getCenterX() - size/2;
@@ -41,29 +42,29 @@ public class Bullet extends MonoBehavior {
         setTag("Bullet");
 
         this.boxCollider = new BoxCollider(this);
+
         //this.rigidBody = new RigidBody(this.boxCollider);
     }
 
     void move() {
-        x = x + (dx * r);
-        y = y + (dy * r);
+        x = x + (dx * r * velocity);
+        y = y + (dy * r * velocity);
         setLocation((int)x, (int)y);
     }
 
     void autoKill() {
-        chronometer = Duration.between(time0, Instant.now()).getSeconds();
-        if (chronometer >= 1) {
+        chronometer = Duration.between(time0, Instant.now()).getNano()/1e9;
+        if (chronometer >= 0.5) {
             SceneManager.removeFromSceneByTag(this, "Game");
             //System.out.println(MonoBehavior.toRemoveBuffer.size());
         }
     }
 
+
+
     @Override
     public void update() {
         move();
         autoKill();
-        if (boxCollider != null && boxCollider.isCollidingByTag("Enemy")) {
-            SceneManager.removeFromSceneByTag(this, "Game");
-        }
     }
 }

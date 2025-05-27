@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import GameAliensAttack.GameManager;
 import GameAliensAttack.MainFrame;
 import GameAliensAttack.GameEngine.GameEngine;
 import GameAliensAttack.GameEngine.UIManager;
@@ -36,6 +37,7 @@ public class PausePanel extends UIPanel {
         continueButton.setForeground(Color.green);
         continueButton.addActionListener((ActionEvent e )->{
             UIManager.hideUIPanel("Pause");
+            GameManager.paused = false;
             GameEngine.play();
         });
         

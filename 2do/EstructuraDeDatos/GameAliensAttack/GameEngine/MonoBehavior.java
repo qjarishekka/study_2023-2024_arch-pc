@@ -38,5 +38,9 @@ public abstract class MonoBehavior extends JLabel {
         this.tag = tag;
     }
 
+    public String getTag(){
+        return tag;
+    }
+
     public abstract void update();
 } 

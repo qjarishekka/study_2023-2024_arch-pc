@@ -19,17 +19,15 @@ public class Player extends MonoBehavior{
     static public Player proxy;
 
     String path = "src//animations//playerAnimation";
-    int playerSize = MainFrame.height*8/100;
+    public int playerSize = MainFrame.height*8/100;
     Animator animator = new Animator(path, this, playerSize);
     BoxCollider boxCollider = new BoxCollider(this);
     RigidBody rigidBody = new RigidBody(boxCollider);
 
-    double angle;
-    int lifePoints = 3;    
-    double velocity = 4;
+    double angle; 
+    double velocity = 10;
     boolean canShoot = true;
-
-    public int life = 5;
+    public int life = 3;
 
     public Player(){
         proxy = this;
@@ -56,6 +54,7 @@ public class Player extends MonoBehavior{
         at.rotate(angle,getWidth()/2,getHeight()/2);
         g2.setTransform(at);
         super.paint(g2);
+        
     }
 
     @Override
@@ -65,7 +64,7 @@ public class Player extends MonoBehavior{
 
 
 
-        if(Input.triggerMouseClick() && canShoot){
+        if(Input.isMousePressed() && canShoot){
             Bullet bullet = new Bullet();
             SceneManager.addToSceneByTag(bullet, "Game");
             canShoot = false;
@@ -90,7 +89,7 @@ public class Player extends MonoBehavior{
     private void loosingLife(){
         if(boxCollider.isCollidingByTag("Enemy")){
             life--;
-            System.out.println(life);
+            //System.out.println(life);
         }
     }
 

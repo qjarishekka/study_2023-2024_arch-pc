@@ -11,7 +11,7 @@ public class BoxCollider {
     //public static List<BoxCollider> boxColliderCollection = Collections.synchronizedList(new ArrayList<BoxCollider>(1));
     public static List<BoxCollider> toAddBuffer = Collections.synchronizedList(new ArrayList<>());
     public static List<BoxCollider> toRemoveBuffer = Collections.synchronizedList(new ArrayList<>());
-    
+    public MonoBehavior objectHitted = null;
     
     public BoxCollider(MonoBehavior component){
         safeAdd(this);
@@ -40,30 +40,50 @@ public class BoxCollider {
         toRemoveBuffer.add(obj);
     }
     
-
-
     public boolean isColliding(BoxCollider other) {
-        // Asegúrate de que las posiciones estén actualizadas
-        //this.refresBoxCollider();
-        //other.refresBoxCollider();
 
-        // Verificar si hay superposición en ambos ejes
-        boolean collisionX = this.x < other.dx && this.dx > other.x;
-        boolean collisionY = this.y < other.dy && this.dy > other.y;
+        this.refresBoxCollider();
+        other.refresBoxCollider();
 
+        boolean collisionX = this.x <= other.dx && this.dx >= other.x;
+        boolean collisionY = this.y <= other.dy && this.dy >= other.y;
         return collisionX && collisionY;
+
     }
 
 
     public boolean isCollidingByTag(String tag){
         synchronized(boxColliderCollection){
             for(BoxCollider bc : boxColliderCollection){
-                if(bc.component.tag.matches(tag)){
-                    return isColliding(bc);
+                if (bc != this && isColliding(bc) && tag.equals(bc.component.tag)) {
+                    objectHitted = bc.component;
+                    return true;
                 }
             }
         }
         return false;
+    }
+
+    public MonoBehavior getObjectHitted(){
+        synchronized(boxColliderCollection){
+            for(BoxCollider bc : boxColliderCollection){
+                
+                if(isColliding(bc)){
+                    return bc.component;
+                }
+                
+            }
+
+            return null;
+        }
+
+    }
+
+    public void setOffset(int offset){
+        x -= offset;
+        y -= offset;
+        dx -= offset;
+        dy -= offset;
     }
 
 

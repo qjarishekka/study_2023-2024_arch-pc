@@ -25,16 +25,11 @@ public class MainFrame extends JFrame {
         height = (int) t.getScreenSize().getHeight();
         setSize(width,height);
         setLayout(null);
-        proxy = this;
-        
-        //sceneManager.setScene("Menu");
-        
+        proxy = this;        
         gameManager = new GameManager();
         sceneManager = new SceneManager();
         gameEngine = new GameEngine();
-        addKeyListener(input);
-        addMouseListener(input);
-        addMouseMotionListener(input);
+        Input.initialize(this);
         setVisible(true);
 
     }
