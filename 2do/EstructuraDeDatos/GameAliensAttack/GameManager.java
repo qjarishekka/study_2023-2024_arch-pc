@@ -2,6 +2,8 @@
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 
 import GameAliensAttack.Entities.Enemy;
@@ -21,7 +23,6 @@ public class GameManager extends MonoBehavior {
     public OptionsPanel optionsPanel = new OptionsPanel();
     public GameOver gameOverPanel = new GameOver(this);
     
-    
     static public boolean paused = false;
     static public boolean options = false;
     static public boolean gameLost = false;
@@ -29,9 +30,9 @@ public class GameManager extends MonoBehavior {
     static public int score = 0;
     public Player player = new Player();;
     int currentLevel = 0;
-    
 
-
+    double chronometer = 0;
+    Instant time = Instant.now();
 
 
 public GameManager() {
@@ -97,12 +98,11 @@ public GameManager() {
         if(!GameEngine.isThereObjectByTag("Enemy") && SceneManager.currentScene.equals("Game")){
             currentLevel++;
             setLevel(currentLevel);
-            //System.out.println("level: " + currentLevel);
+
         }
         showGameOver();
         GamePanel.setScore(score);
-        GamePanel.setLife(player.life);
-        
+        GamePanel.setLife(player.life);        
 
     }
 

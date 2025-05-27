@@ -18,9 +18,9 @@ import GameAliensAttack.src.fonts.CustomFonts;
 
 public class MenuPanel extends Scene {
 
-    static public boolean enable = true;
-        public JButton playButton = new JButton();
-        public JButton options = new JButton("Options");
+        static public boolean enable = true;
+        static public JButton playButton = new JButton();
+        static public JButton options = new JButton("Options");
     
     public MenuPanel() {
 

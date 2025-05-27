@@ -2,5 +2,5 @@ qjari1 : 35
 Qjari2 : 29
 hello : 28
 Yo : 26
-mimarcapersonal : 10
+SoyYo : 19
 aksl;jdf : 0

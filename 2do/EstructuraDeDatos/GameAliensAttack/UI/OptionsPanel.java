@@ -11,6 +11,7 @@ import GameAliensAttack.GameManager;
 import GameAliensAttack.MainFrame;
 import GameAliensAttack.GameEngine.Scene;
 import GameAliensAttack.GameEngine.SceneManager;
+import GameAliensAttack.GameEngine.UIManager;
 import GameAliensAttack.GameEngine.UIPanel;
 import GameAliensAttack.Scenes.MenuPanel;
 import GameAliensAttack.src.fonts.CustomFonts;
@@ -87,6 +88,13 @@ public class OptionsPanel extends UIPanel{
         accept.setBorderPainted(false);
         accept.setHorizontalAlignment(SwingConstants.CENTER);
         accept.setForeground(Color.green);
+        accept.addActionListener((ActionEvent e)->{
+            UIManager.hideUIPanel("Options");
+            MenuPanel.options.setEnabled(true);
+            MenuPanel.playButton.setEnabled(true);
+            MenuPanel.enable = true;
+
+        });
 
         add(accept);
         add(difficulty);
